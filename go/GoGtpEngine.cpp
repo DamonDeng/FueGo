@@ -1346,6 +1346,8 @@ SgPoint GoGtpEngine::GenBookMove(SgBlackWhite toPlay)
 
 SgPoint GoGtpEngine::GenMove(SgBlackWhite color, bool ignoreClock)
 {
+    SgDebug() << "GoGTPEngine is going to gen move\n";
+
     SG_ASSERT_BW(color);
     CheckMoveStackOverflow();
     StartStatistics();
@@ -1372,6 +1374,7 @@ SgPoint GoGtpEngine::GenMove(SgBlackWhite color, bool ignoreClock)
         AddStatistics("BOOK", 0);
     if (move == SG_NULLMOVE)
     {
+        SgDebug() << "Trying to call player's GenMove function to gen move.\n";
         player.ClearSearchTraces();
         move = player.GenMove(time, color);
         SgNode* searchTraces = player.TransferSearchTraces();

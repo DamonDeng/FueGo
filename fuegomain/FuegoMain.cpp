@@ -175,9 +175,13 @@ int main(int argc, char** argv)
         GoInit();
         PrintStartupMessage();
         SgRandom::SetSeed(options.m_srand);
+
+        SgDebug() << "Trying to create Fuego Main Engine\n";
+
         FuegoMainEngine engine(options.m_fixedBoardSize,
                                options.m_programPath,
                                ! options.m_allowHandicap);
+                               
         GoGtpAssertionHandler assertionHandler(engine);
         if (options.m_maxGames >= 0)
             engine.SetMaxClearBoard(options.m_maxGames);

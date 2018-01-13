@@ -144,163 +144,152 @@ libfuego_smartgame_a-SgGtpCommands.o: SgGtpCommands.cpp SgSystem.h \
   /usr/include/sys/_select.h /usr/include/sys/_types/_uuid_t.h \
   /usr/include/gethostuuid.h SgDebug.h SgRandom.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/list \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/random/mersenne_twister.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/user.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/select_compiler_config.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/compiler/clang.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/select_stdlib_config.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/no_tr1/utility.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/stdlib/libcpp.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/select_platform_config.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/platform/macos.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/posix_features.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/suffix.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/cstdint.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/integer/integer_mask.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/integer_fwd.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/limits.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/integer.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/integer_traits.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/static_assert.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/detail/workaround.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/random/detail/config.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/random/detail/ptr_helper.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/random/detail/seed.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/utility/enable_if.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/is_arithmetic.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/is_integral.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/detail/bool_trait_def.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/detail/template_arity_spec.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/int.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/int_fwd.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/adl_barrier.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/config/adl.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/config/msvc.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/config/intel.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/config/gcc.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/config/workaround.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/nttp_decl.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/config/nttp.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/integral_wrapper.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/integral_c_tag.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/config/static_constant.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/static_cast.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/cat.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/config/config.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/template_arity_fwd.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/preprocessor/params.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/config/preprocessor.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/comma_if.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/punctuation/comma_if.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/control/if.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/control/iif.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/logical/bool.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/facilities/empty.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/punctuation/comma.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/repeat.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/repetition/repeat.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/debug/error.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/detail/auto_rec.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/tuple/eat.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/inc.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/arithmetic/inc.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/config/lambda.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/config/ttp.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/config/ctps.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/config/overload_resolution.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/integral_constant.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/bool.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/bool_fwd.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/integral_c.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/integral_c_fwd.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/lambda_support.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/detail/bool_trait_undef.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/is_float.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/detail/ice_or.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/random/detail/seed_impl.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/no_tr1/cmath.hpp \
+  /usr/local/include/boost/random/mersenne_twister.hpp \
+  /usr/local/include/boost/config.hpp \
+  /usr/local/include/boost/config/user.hpp \
+  /usr/local/include/boost/config/detail/select_compiler_config.hpp \
+  /usr/local/include/boost/config/compiler/clang.hpp \
+  /usr/local/include/boost/config/detail/select_stdlib_config.hpp \
+  /usr/local/include/boost/config/stdlib/libcpp.hpp \
+  /usr/local/include/boost/config/detail/select_platform_config.hpp \
+  /usr/local/include/boost/config/platform/macos.hpp \
+  /usr/local/include/boost/config/detail/posix_features.hpp \
+  /usr/local/include/boost/config/detail/suffix.hpp \
+  /usr/local/include/boost/cstdint.hpp \
+  /usr/local/include/boost/integer/integer_mask.hpp \
+  /usr/local/include/boost/integer_fwd.hpp \
+  /usr/local/include/boost/limits.hpp \
+  /usr/local/include/boost/integer.hpp \
+  /usr/local/include/boost/integer_traits.hpp \
+  /usr/local/include/boost/static_assert.hpp \
+  /usr/local/include/boost/detail/workaround.hpp \
+  /usr/local/include/boost/config/workaround.hpp \
+  /usr/local/include/boost/random/detail/config.hpp \
+  /usr/local/include/boost/random/detail/ptr_helper.hpp \
+  /usr/local/include/boost/random/detail/seed.hpp \
+  /usr/local/include/boost/utility/enable_if.hpp \
+  /usr/local/include/boost/core/enable_if.hpp \
+  /usr/local/include/boost/type_traits/is_arithmetic.hpp \
+  /usr/local/include/boost/type_traits/is_integral.hpp \
+  /usr/local/include/boost/type_traits/integral_constant.hpp \
+  /usr/local/include/boost/type_traits/is_floating_point.hpp \
+  /usr/local/include/boost/mpl/bool.hpp \
+  /usr/local/include/boost/mpl/bool_fwd.hpp \
+  /usr/local/include/boost/mpl/aux_/adl_barrier.hpp \
+  /usr/local/include/boost/mpl/aux_/config/adl.hpp \
+  /usr/local/include/boost/mpl/aux_/config/msvc.hpp \
+  /usr/local/include/boost/mpl/aux_/config/intel.hpp \
+  /usr/local/include/boost/mpl/aux_/config/gcc.hpp \
+  /usr/local/include/boost/mpl/aux_/config/workaround.hpp \
+  /usr/local/include/boost/mpl/integral_c_tag.hpp \
+  /usr/local/include/boost/mpl/aux_/config/static_constant.hpp \
+  /usr/local/include/boost/random/detail/seed_impl.hpp \
+  /usr/local/include/boost/throw_exception.hpp \
+  /usr/local/include/boost/exception/exception.hpp \
+  /usr/local/include/boost/current_function.hpp \
+  /usr/local/include/boost/config/no_tr1/cmath.hpp \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cmath \
-  /usr/include/math.h \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/integer/static_log2.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/is_signed.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/remove_cv.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/broken_compiler_spec.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/detail/cv_traits_impl.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/detail/type_trait_def.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/detail/type_trait_undef.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/is_enum.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/intrinsics.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/config.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/is_same.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/is_reference.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/is_lvalue_reference.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/is_rvalue_reference.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/ice.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/detail/yes_no_type.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/detail/ice_and.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/detail/ice_not.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/detail/ice_eq.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/is_volatile.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/is_abstract.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/make_unsigned.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/if.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/value_wknd.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/config/integral.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/config/eti.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/na_spec.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/lambda_fwd.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/void_fwd.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/na.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/na_fwd.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/lambda_arity_param.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/arity.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/config/dtp.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/preprocessor/enum.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/preprocessor/def_params_tail.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/limits/arity.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/logical/and.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/logical/bitand.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/identity.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/facilities/identity.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/empty.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/arithmetic/add.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/arithmetic/dec.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/control/while.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/list/fold_left.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/list/detail/fold_left.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/control/expr_iif.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/list/adt.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/detail/is_binary.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/detail/check.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/logical/compl.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/list/fold_right.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/list/detail/fold_right.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/list/reverse.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/control/detail/while.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/tuple/elem.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/facilities/overload.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/variadic/size.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/tuple/rem.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/variadic/elem.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/arithmetic/sub.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/is_unsigned.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/is_const.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/add_const.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/add_volatile.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/random/detail/const_mod.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/assert.hpp \
-  /usr/include/assert.h \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/random/detail/large_arithmetic.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/random/detail/integer_log2.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/pending/integer_log2.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/random/detail/disable_warnings.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/random/detail/enable_warnings.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/random/detail/signed_unsigned_tools.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/random/detail/generator_bits.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/random/detail/generator_seed_seq.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/random/uniform_01.hpp \
-  SgTime.h
+  /usr/include/math.h /usr/local/include/boost/integer/static_log2.hpp \
+  /usr/local/include/boost/random/traits.hpp \
+  /usr/local/include/boost/type_traits/is_signed.hpp \
+  /usr/local/include/boost/type_traits/remove_cv.hpp \
+  /usr/local/include/boost/type_traits/is_enum.hpp \
+  /usr/local/include/boost/type_traits/intrinsics.hpp \
+  /usr/local/include/boost/type_traits/detail/config.hpp \
+  /usr/local/include/boost/version.hpp \
+  /usr/local/include/boost/type_traits/make_unsigned.hpp \
+  /usr/local/include/boost/type_traits/conditional.hpp \
+  /usr/local/include/boost/type_traits/is_unsigned.hpp \
+  /usr/local/include/boost/type_traits/is_same.hpp \
+  /usr/local/include/boost/type_traits/is_const.hpp \
+  /usr/local/include/boost/type_traits/is_volatile.hpp \
+  /usr/local/include/boost/type_traits/add_const.hpp \
+  /usr/local/include/boost/type_traits/add_volatile.hpp \
+  /usr/local/include/boost/mpl/if.hpp \
+  /usr/local/include/boost/mpl/aux_/value_wknd.hpp \
+  /usr/local/include/boost/mpl/aux_/static_cast.hpp \
+  /usr/local/include/boost/mpl/aux_/config/integral.hpp \
+  /usr/local/include/boost/mpl/aux_/config/eti.hpp \
+  /usr/local/include/boost/mpl/aux_/na_spec.hpp \
+  /usr/local/include/boost/mpl/lambda_fwd.hpp \
+  /usr/local/include/boost/mpl/void_fwd.hpp \
+  /usr/local/include/boost/mpl/aux_/na.hpp \
+  /usr/local/include/boost/mpl/aux_/na_fwd.hpp \
+  /usr/local/include/boost/mpl/aux_/config/ctps.hpp \
+  /usr/local/include/boost/mpl/aux_/config/lambda.hpp \
+  /usr/local/include/boost/mpl/aux_/config/ttp.hpp \
+  /usr/local/include/boost/mpl/int.hpp \
+  /usr/local/include/boost/mpl/int_fwd.hpp \
+  /usr/local/include/boost/mpl/aux_/nttp_decl.hpp \
+  /usr/local/include/boost/mpl/aux_/config/nttp.hpp \
+  /usr/local/include/boost/mpl/aux_/integral_wrapper.hpp \
+  /usr/local/include/boost/preprocessor/cat.hpp \
+  /usr/local/include/boost/preprocessor/config/config.hpp \
+  /usr/local/include/boost/mpl/aux_/lambda_arity_param.hpp \
+  /usr/local/include/boost/mpl/aux_/template_arity_fwd.hpp \
+  /usr/local/include/boost/mpl/aux_/arity.hpp \
+  /usr/local/include/boost/mpl/aux_/config/dtp.hpp \
+  /usr/local/include/boost/mpl/aux_/preprocessor/params.hpp \
+  /usr/local/include/boost/mpl/aux_/config/preprocessor.hpp \
+  /usr/local/include/boost/preprocessor/comma_if.hpp \
+  /usr/local/include/boost/preprocessor/punctuation/comma_if.hpp \
+  /usr/local/include/boost/preprocessor/control/if.hpp \
+  /usr/local/include/boost/preprocessor/control/iif.hpp \
+  /usr/local/include/boost/preprocessor/logical/bool.hpp \
+  /usr/local/include/boost/preprocessor/facilities/empty.hpp \
+  /usr/local/include/boost/preprocessor/punctuation/comma.hpp \
+  /usr/local/include/boost/preprocessor/repeat.hpp \
+  /usr/local/include/boost/preprocessor/repetition/repeat.hpp \
+  /usr/local/include/boost/preprocessor/debug/error.hpp \
+  /usr/local/include/boost/preprocessor/detail/auto_rec.hpp \
+  /usr/local/include/boost/preprocessor/tuple/eat.hpp \
+  /usr/local/include/boost/preprocessor/inc.hpp \
+  /usr/local/include/boost/preprocessor/arithmetic/inc.hpp \
+  /usr/local/include/boost/mpl/aux_/preprocessor/enum.hpp \
+  /usr/local/include/boost/mpl/aux_/preprocessor/def_params_tail.hpp \
+  /usr/local/include/boost/mpl/limits/arity.hpp \
+  /usr/local/include/boost/preprocessor/logical/and.hpp \
+  /usr/local/include/boost/preprocessor/logical/bitand.hpp \
+  /usr/local/include/boost/preprocessor/identity.hpp \
+  /usr/local/include/boost/preprocessor/facilities/identity.hpp \
+  /usr/local/include/boost/preprocessor/empty.hpp \
+  /usr/local/include/boost/preprocessor/arithmetic/add.hpp \
+  /usr/local/include/boost/preprocessor/arithmetic/dec.hpp \
+  /usr/local/include/boost/preprocessor/control/while.hpp \
+  /usr/local/include/boost/preprocessor/list/fold_left.hpp \
+  /usr/local/include/boost/preprocessor/list/detail/fold_left.hpp \
+  /usr/local/include/boost/preprocessor/control/expr_iif.hpp \
+  /usr/local/include/boost/preprocessor/list/adt.hpp \
+  /usr/local/include/boost/preprocessor/detail/is_binary.hpp \
+  /usr/local/include/boost/preprocessor/detail/check.hpp \
+  /usr/local/include/boost/preprocessor/logical/compl.hpp \
+  /usr/local/include/boost/preprocessor/list/fold_right.hpp \
+  /usr/local/include/boost/preprocessor/list/detail/fold_right.hpp \
+  /usr/local/include/boost/preprocessor/list/reverse.hpp \
+  /usr/local/include/boost/preprocessor/control/detail/while.hpp \
+  /usr/local/include/boost/preprocessor/tuple/elem.hpp \
+  /usr/local/include/boost/preprocessor/facilities/expand.hpp \
+  /usr/local/include/boost/preprocessor/facilities/overload.hpp \
+  /usr/local/include/boost/preprocessor/variadic/size.hpp \
+  /usr/local/include/boost/preprocessor/tuple/rem.hpp \
+  /usr/local/include/boost/preprocessor/tuple/detail/is_single_return.hpp \
+  /usr/local/include/boost/preprocessor/variadic/elem.hpp \
+  /usr/local/include/boost/preprocessor/arithmetic/sub.hpp \
+  /usr/local/include/boost/mpl/aux_/config/overload_resolution.hpp \
+  /usr/local/include/boost/mpl/aux_/lambda_support.hpp \
+  /usr/local/include/boost/random/detail/const_mod.hpp \
+  /usr/local/include/boost/assert.hpp /usr/include/assert.h \
+  /usr/local/include/boost/random/detail/large_arithmetic.hpp \
+  /usr/local/include/boost/random/detail/integer_log2.hpp \
+  /usr/local/include/boost/pending/integer_log2.hpp \
+  /usr/local/include/boost/integer/integer_log2.hpp \
+  /usr/local/include/boost/random/detail/disable_warnings.hpp \
+  /usr/local/include/boost/random/detail/enable_warnings.hpp \
+  /usr/local/include/boost/random/detail/signed_unsigned_tools.hpp \
+  /usr/local/include/boost/random/detail/generator_bits.hpp \
+  /usr/local/include/boost/random/detail/generator_seed_seq.hpp \
+  /usr/local/include/boost/random/detail/polynomial.hpp \
+  /usr/local/include/boost/random/uniform_01.hpp SgTime.h
 
 SgSystem.h:
 
@@ -724,316 +713,300 @@ SgRandom.h:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/list:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/random/mersenne_twister.hpp:
+/usr/local/include/boost/random/mersenne_twister.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config.hpp:
+/usr/local/include/boost/config.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/user.hpp:
+/usr/local/include/boost/config/user.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/select_compiler_config.hpp:
+/usr/local/include/boost/config/detail/select_compiler_config.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/compiler/clang.hpp:
+/usr/local/include/boost/config/compiler/clang.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/select_stdlib_config.hpp:
+/usr/local/include/boost/config/detail/select_stdlib_config.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/no_tr1/utility.hpp:
+/usr/local/include/boost/config/stdlib/libcpp.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/stdlib/libcpp.hpp:
+/usr/local/include/boost/config/detail/select_platform_config.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/select_platform_config.hpp:
+/usr/local/include/boost/config/platform/macos.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/platform/macos.hpp:
+/usr/local/include/boost/config/detail/posix_features.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/posix_features.hpp:
+/usr/local/include/boost/config/detail/suffix.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/suffix.hpp:
+/usr/local/include/boost/cstdint.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/cstdint.hpp:
+/usr/local/include/boost/integer/integer_mask.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/integer/integer_mask.hpp:
+/usr/local/include/boost/integer_fwd.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/integer_fwd.hpp:
+/usr/local/include/boost/limits.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/limits.hpp:
+/usr/local/include/boost/integer.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/integer.hpp:
+/usr/local/include/boost/integer_traits.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/integer_traits.hpp:
+/usr/local/include/boost/static_assert.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/static_assert.hpp:
+/usr/local/include/boost/detail/workaround.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/detail/workaround.hpp:
+/usr/local/include/boost/config/workaround.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/random/detail/config.hpp:
+/usr/local/include/boost/random/detail/config.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/random/detail/ptr_helper.hpp:
+/usr/local/include/boost/random/detail/ptr_helper.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/random/detail/seed.hpp:
+/usr/local/include/boost/random/detail/seed.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/utility/enable_if.hpp:
+/usr/local/include/boost/utility/enable_if.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/is_arithmetic.hpp:
+/usr/local/include/boost/core/enable_if.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/is_integral.hpp:
+/usr/local/include/boost/type_traits/is_arithmetic.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/detail/bool_trait_def.hpp:
+/usr/local/include/boost/type_traits/is_integral.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/detail/template_arity_spec.hpp:
+/usr/local/include/boost/type_traits/integral_constant.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/int.hpp:
+/usr/local/include/boost/type_traits/is_floating_point.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/int_fwd.hpp:
+/usr/local/include/boost/mpl/bool.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/adl_barrier.hpp:
+/usr/local/include/boost/mpl/bool_fwd.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/config/adl.hpp:
+/usr/local/include/boost/mpl/aux_/adl_barrier.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/config/msvc.hpp:
+/usr/local/include/boost/mpl/aux_/config/adl.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/config/intel.hpp:
+/usr/local/include/boost/mpl/aux_/config/msvc.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/config/gcc.hpp:
+/usr/local/include/boost/mpl/aux_/config/intel.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/config/workaround.hpp:
+/usr/local/include/boost/mpl/aux_/config/gcc.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/nttp_decl.hpp:
+/usr/local/include/boost/mpl/aux_/config/workaround.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/config/nttp.hpp:
+/usr/local/include/boost/mpl/integral_c_tag.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/integral_wrapper.hpp:
+/usr/local/include/boost/mpl/aux_/config/static_constant.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/integral_c_tag.hpp:
+/usr/local/include/boost/random/detail/seed_impl.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/config/static_constant.hpp:
+/usr/local/include/boost/throw_exception.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/static_cast.hpp:
+/usr/local/include/boost/exception/exception.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/cat.hpp:
+/usr/local/include/boost/current_function.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/config/config.hpp:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/template_arity_fwd.hpp:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/preprocessor/params.hpp:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/config/preprocessor.hpp:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/comma_if.hpp:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/punctuation/comma_if.hpp:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/control/if.hpp:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/control/iif.hpp:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/logical/bool.hpp:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/facilities/empty.hpp:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/punctuation/comma.hpp:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/repeat.hpp:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/repetition/repeat.hpp:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/debug/error.hpp:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/detail/auto_rec.hpp:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/tuple/eat.hpp:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/inc.hpp:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/arithmetic/inc.hpp:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/config/lambda.hpp:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/config/ttp.hpp:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/config/ctps.hpp:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/config/overload_resolution.hpp:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/integral_constant.hpp:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/bool.hpp:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/bool_fwd.hpp:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/integral_c.hpp:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/integral_c_fwd.hpp:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/lambda_support.hpp:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/detail/bool_trait_undef.hpp:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/is_float.hpp:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/detail/ice_or.hpp:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/random/detail/seed_impl.hpp:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/no_tr1/cmath.hpp:
+/usr/local/include/boost/config/no_tr1/cmath.hpp:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cmath:
 
 /usr/include/math.h:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/integer/static_log2.hpp:
+/usr/local/include/boost/integer/static_log2.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/is_signed.hpp:
+/usr/local/include/boost/random/traits.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/remove_cv.hpp:
+/usr/local/include/boost/type_traits/is_signed.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/broken_compiler_spec.hpp:
+/usr/local/include/boost/type_traits/remove_cv.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/detail/cv_traits_impl.hpp:
+/usr/local/include/boost/type_traits/is_enum.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/detail/type_trait_def.hpp:
+/usr/local/include/boost/type_traits/intrinsics.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/detail/type_trait_undef.hpp:
+/usr/local/include/boost/type_traits/detail/config.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/is_enum.hpp:
+/usr/local/include/boost/version.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/intrinsics.hpp:
+/usr/local/include/boost/type_traits/make_unsigned.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/config.hpp:
+/usr/local/include/boost/type_traits/conditional.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/is_same.hpp:
+/usr/local/include/boost/type_traits/is_unsigned.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/is_reference.hpp:
+/usr/local/include/boost/type_traits/is_same.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/is_lvalue_reference.hpp:
+/usr/local/include/boost/type_traits/is_const.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/is_rvalue_reference.hpp:
+/usr/local/include/boost/type_traits/is_volatile.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/ice.hpp:
+/usr/local/include/boost/type_traits/add_const.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/detail/yes_no_type.hpp:
+/usr/local/include/boost/type_traits/add_volatile.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/detail/ice_and.hpp:
+/usr/local/include/boost/mpl/if.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/detail/ice_not.hpp:
+/usr/local/include/boost/mpl/aux_/value_wknd.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/detail/ice_eq.hpp:
+/usr/local/include/boost/mpl/aux_/static_cast.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/is_volatile.hpp:
+/usr/local/include/boost/mpl/aux_/config/integral.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/is_abstract.hpp:
+/usr/local/include/boost/mpl/aux_/config/eti.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/make_unsigned.hpp:
+/usr/local/include/boost/mpl/aux_/na_spec.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/if.hpp:
+/usr/local/include/boost/mpl/lambda_fwd.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/value_wknd.hpp:
+/usr/local/include/boost/mpl/void_fwd.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/config/integral.hpp:
+/usr/local/include/boost/mpl/aux_/na.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/config/eti.hpp:
+/usr/local/include/boost/mpl/aux_/na_fwd.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/na_spec.hpp:
+/usr/local/include/boost/mpl/aux_/config/ctps.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/lambda_fwd.hpp:
+/usr/local/include/boost/mpl/aux_/config/lambda.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/void_fwd.hpp:
+/usr/local/include/boost/mpl/aux_/config/ttp.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/na.hpp:
+/usr/local/include/boost/mpl/int.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/na_fwd.hpp:
+/usr/local/include/boost/mpl/int_fwd.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/lambda_arity_param.hpp:
+/usr/local/include/boost/mpl/aux_/nttp_decl.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/arity.hpp:
+/usr/local/include/boost/mpl/aux_/config/nttp.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/config/dtp.hpp:
+/usr/local/include/boost/mpl/aux_/integral_wrapper.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/preprocessor/enum.hpp:
+/usr/local/include/boost/preprocessor/cat.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/aux_/preprocessor/def_params_tail.hpp:
+/usr/local/include/boost/preprocessor/config/config.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/mpl/limits/arity.hpp:
+/usr/local/include/boost/mpl/aux_/lambda_arity_param.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/logical/and.hpp:
+/usr/local/include/boost/mpl/aux_/template_arity_fwd.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/logical/bitand.hpp:
+/usr/local/include/boost/mpl/aux_/arity.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/identity.hpp:
+/usr/local/include/boost/mpl/aux_/config/dtp.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/facilities/identity.hpp:
+/usr/local/include/boost/mpl/aux_/preprocessor/params.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/empty.hpp:
+/usr/local/include/boost/mpl/aux_/config/preprocessor.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/arithmetic/add.hpp:
+/usr/local/include/boost/preprocessor/comma_if.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/arithmetic/dec.hpp:
+/usr/local/include/boost/preprocessor/punctuation/comma_if.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/control/while.hpp:
+/usr/local/include/boost/preprocessor/control/if.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/list/fold_left.hpp:
+/usr/local/include/boost/preprocessor/control/iif.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/list/detail/fold_left.hpp:
+/usr/local/include/boost/preprocessor/logical/bool.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/control/expr_iif.hpp:
+/usr/local/include/boost/preprocessor/facilities/empty.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/list/adt.hpp:
+/usr/local/include/boost/preprocessor/punctuation/comma.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/detail/is_binary.hpp:
+/usr/local/include/boost/preprocessor/repeat.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/detail/check.hpp:
+/usr/local/include/boost/preprocessor/repetition/repeat.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/logical/compl.hpp:
+/usr/local/include/boost/preprocessor/debug/error.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/list/fold_right.hpp:
+/usr/local/include/boost/preprocessor/detail/auto_rec.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/list/detail/fold_right.hpp:
+/usr/local/include/boost/preprocessor/tuple/eat.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/list/reverse.hpp:
+/usr/local/include/boost/preprocessor/inc.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/control/detail/while.hpp:
+/usr/local/include/boost/preprocessor/arithmetic/inc.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/tuple/elem.hpp:
+/usr/local/include/boost/mpl/aux_/preprocessor/enum.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/facilities/overload.hpp:
+/usr/local/include/boost/mpl/aux_/preprocessor/def_params_tail.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/variadic/size.hpp:
+/usr/local/include/boost/mpl/limits/arity.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/tuple/rem.hpp:
+/usr/local/include/boost/preprocessor/logical/and.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/variadic/elem.hpp:
+/usr/local/include/boost/preprocessor/logical/bitand.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/preprocessor/arithmetic/sub.hpp:
+/usr/local/include/boost/preprocessor/identity.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/is_unsigned.hpp:
+/usr/local/include/boost/preprocessor/facilities/identity.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/is_const.hpp:
+/usr/local/include/boost/preprocessor/empty.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/add_const.hpp:
+/usr/local/include/boost/preprocessor/arithmetic/add.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/type_traits/add_volatile.hpp:
+/usr/local/include/boost/preprocessor/arithmetic/dec.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/random/detail/const_mod.hpp:
+/usr/local/include/boost/preprocessor/control/while.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/assert.hpp:
+/usr/local/include/boost/preprocessor/list/fold_left.hpp:
+
+/usr/local/include/boost/preprocessor/list/detail/fold_left.hpp:
+
+/usr/local/include/boost/preprocessor/control/expr_iif.hpp:
+
+/usr/local/include/boost/preprocessor/list/adt.hpp:
+
+/usr/local/include/boost/preprocessor/detail/is_binary.hpp:
+
+/usr/local/include/boost/preprocessor/detail/check.hpp:
+
+/usr/local/include/boost/preprocessor/logical/compl.hpp:
+
+/usr/local/include/boost/preprocessor/list/fold_right.hpp:
+
+/usr/local/include/boost/preprocessor/list/detail/fold_right.hpp:
+
+/usr/local/include/boost/preprocessor/list/reverse.hpp:
+
+/usr/local/include/boost/preprocessor/control/detail/while.hpp:
+
+/usr/local/include/boost/preprocessor/tuple/elem.hpp:
+
+/usr/local/include/boost/preprocessor/facilities/expand.hpp:
+
+/usr/local/include/boost/preprocessor/facilities/overload.hpp:
+
+/usr/local/include/boost/preprocessor/variadic/size.hpp:
+
+/usr/local/include/boost/preprocessor/tuple/rem.hpp:
+
+/usr/local/include/boost/preprocessor/tuple/detail/is_single_return.hpp:
+
+/usr/local/include/boost/preprocessor/variadic/elem.hpp:
+
+/usr/local/include/boost/preprocessor/arithmetic/sub.hpp:
+
+/usr/local/include/boost/mpl/aux_/config/overload_resolution.hpp:
+
+/usr/local/include/boost/mpl/aux_/lambda_support.hpp:
+
+/usr/local/include/boost/random/detail/const_mod.hpp:
+
+/usr/local/include/boost/assert.hpp:
 
 /usr/include/assert.h:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/random/detail/large_arithmetic.hpp:
+/usr/local/include/boost/random/detail/large_arithmetic.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/random/detail/integer_log2.hpp:
+/usr/local/include/boost/random/detail/integer_log2.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/pending/integer_log2.hpp:
+/usr/local/include/boost/pending/integer_log2.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/random/detail/disable_warnings.hpp:
+/usr/local/include/boost/integer/integer_log2.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/random/detail/enable_warnings.hpp:
+/usr/local/include/boost/random/detail/disable_warnings.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/random/detail/signed_unsigned_tools.hpp:
+/usr/local/include/boost/random/detail/enable_warnings.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/random/detail/generator_bits.hpp:
+/usr/local/include/boost/random/detail/signed_unsigned_tools.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/random/detail/generator_seed_seq.hpp:
+/usr/local/include/boost/random/detail/generator_bits.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/random/uniform_01.hpp:
+/usr/local/include/boost/random/detail/generator_seed_seq.hpp:
+
+/usr/local/include/boost/random/detail/polynomial.hpp:
+
+/usr/local/include/boost/random/uniform_01.hpp:
 
 SgTime.h:

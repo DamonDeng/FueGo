@@ -6731,7 +6731,7 @@ case ".$var" in
 esac
 
 
-ac_config_files="$ac_config_files Makefile book/Makefile regression/Makefile misctests/Makefile fuegomain/Makefile fuegotest/Makefile go/Makefile gouct/Makefile gtpengine/Makefile features/Makefile simpleplayers/Makefile smartgame/Makefile unittestmain/Makefile"
+ac_config_files="$ac_config_files Makefile book/Makefile regression/Makefile misctests/Makefile fuegomain/Makefile fuegotest/Makefile go/Makefile gouct/Makefile gtpengine/Makefile features/Makefile simpleplayers/Makefile smartgame/Makefile unittestmain/Makefile dnnmain/Makefile"
 
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
@@ -7481,6 +7481,7 @@ do
     "simpleplayers/Makefile") CONFIG_FILES="$CONFIG_FILES simpleplayers/Makefile" ;;
     "smartgame/Makefile") CONFIG_FILES="$CONFIG_FILES smartgame/Makefile" ;;
     "unittestmain/Makefile") CONFIG_FILES="$CONFIG_FILES unittestmain/Makefile" ;;
+    "dnnmain/Makefile") CONFIG_FILES="$CONFIG_FILES dnnmain/Makefile" ;;
 
   *) as_fn_error $? "invalid argument: \`$ac_config_target'" "$LINENO" 5;;
   esac

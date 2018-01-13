@@ -11,6 +11,9 @@
 #include "SgDebug.h"
 #include "SgException.h"
 #include "SgInit.h"
+#include "GoBoard.h"
+#include "GoUctBoard.h"
+#include "GoUctPlayoutPolicy.h"
 
 #include <boost/utility.hpp>
 #include <boost/program_options/options_description.hpp>
@@ -94,43 +97,150 @@ void ParseOptions(int argc, char** argv)
 
 //----------------------------------------------------------------------------
 
+// int main(int argc, char** argv)
+// {
+//     if (argc > 0 && argv != 0)
+//     {
+//         g_programPath = argv[0];
+//         try
+//         {
+//             ParseOptions(argc, argv);
+//         }
+//         catch (const SgException& e)
+//         {
+//             SgDebug() << e.what() << "\n";
+//             return 1;
+//         }
+//     }
+//     if (g_quiet)
+//         SgDebugToNull();
+//     try
+//     {
+//         SgInit();
+//         GoInit();
+//         MainLoop();
+//         GoFini();
+//         SgFini();
+//     }
+//     catch (const GtpFailure& e)
+//     {
+//         SgDebug() << e.Response() << '\n';
+//         return 1;
+//     }
+//     catch (const std::exception& e)
+//     {
+//         SgDebug() << e.what() << '\n';
+//         return 1;
+//     }
+//     return 0;
+// }
+
+void printGoUctBoard(GoUctBoard& board){
+    int boardSize = 19;
+    SgBoardColor boardColor;
+    string result = "";
+
+    for (int i = 0; i< boardSize; i++){
+        for (int j = 0; j< boardSize; j++){
+            SgPoint curPoint = SgPointUtil::Pt(i, j);
+            boardColor = board.GetColor(curPoint);
+            if (boardColor == SG_BLACK){
+                result = result + "*";
+            } else if (boardColor == SG_WHITE){
+                result = result + "O";
+            } else{
+                result = result + ".";
+            }
+            
+        }
+        result = result + "\n";
+    }
+
+    SgDebug() << result ;
+
+}
+
 int main(int argc, char** argv)
 {
-    if (argc > 0 && argv != 0)
-    {
-        g_programPath = argv[0];
-        try
-        {
-            ParseOptions(argc, argv);
+    SgDebug() << "Starting the testing new. \n";
+
+    SgInit();
+    GoInit();
+
+    // SgPoint mv = SG_NULLMOVE;
+
+    // SgDebug() << "NULLMOVE: " << mv << "\n";
+
+    // GoBoard basicBoard;
+    // GoUctBoard goBoard(basicBoard);
+
+    // GoUctPlayoutPolicyParam param;
+
+    // param.
+
+    // GoUctPlayoutPolicy<GoUctBoard> curPolicy(goBoard, param);
+
+    SgPoint testingPoint;
+
+    // SgRandom sgRandom;
+    // GoUctPureRandomGenerator<GoUctBoard> randomGenerator(goBoard, sgRandom);
+
+    
+
+    SgTimer timer;
+
+    double start_time;
+    start_time = timer.GetTime();
+
+    for (int game_time = 0; game_time < 1000; game_time ++){
+
+        GoBoard basicBoard;
+        GoUctBoard goBoard(basicBoard);
+
+        SgRandom sgRandom;
+    
+        GoUctPureRandomGenerator<GoUctBoard> randomGenerator(goBoard, sgRandom);
+        randomGenerator.Start();
+    
+        for (int i =0; i< 1000; i++){
+            // testingPoint = curPolicy.GenerateMove();
+            testingPoint = randomGenerator.Generate();
+
+            if (testingPoint == SG_NULLMOVE){
+                break;
+            }
+
+            // SgDebug() << "testingPoint " << i << ": " << testingPoint << " . \n";
+
+            // SgPoint testingPoint = SgPointUtil::Pt(10, 10);
+            // SgBlackWhite color = SG_BLACK;
+
+            goBoard.Play(testingPoint);
+
         }
-        catch (const SgException& e)
-        {
-            SgDebug() << e.what() << "\n";
-            return 1;
-        }
     }
-    if (g_quiet)
-        SgDebugToNull();
-    try
-    {
-        SgInit();
-        GoInit();
-        MainLoop();
-        GoFini();
-        SgFini();
-    }
-    catch (const GtpFailure& e)
-    {
-        SgDebug() << e.Response() << '\n';
-        return 1;
-    }
-    catch (const std::exception& e)
-    {
-        SgDebug() << e.what() << '\n';
-        return 1;
-    }
+    
+
+    double end_time;
+    end_time = timer.GetTime();
+
+    double time_used = end_time - start_time;
+
+    SgDebug() << "Time used: " << time_used << ". \n";
+    
+    // // testingPoint = SgPointUtil::Pt(9, 9);
+
+    // testingPoint = curPolicy.GenerateMove();
+
+    // goBoard.Play(testingPoint);
+
+    // printGoUctBoard(goBoard);
+    
+    SgDebug() << "End of the testing \n";
     return 0;
 }
+
+
 
 //----------------------------------------------------------------------------
 

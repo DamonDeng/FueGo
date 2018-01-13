@@ -64,18 +64,16 @@ libfuego_smartgame_a-SgProp.o: SgProp.cpp SgSystem.h ../config.h SgProp.h \
   /usr/include/i386/limits.h /usr/include/i386/_limits.h \
   /usr/include/sys/syslimits.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__split_buffer \
-  SgBlackWhite.h \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/static_assert.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/user.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/select_compiler_config.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/compiler/clang.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/select_stdlib_config.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/no_tr1/utility.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/stdlib/libcpp.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/select_platform_config.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/platform/macos.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/posix_features.hpp \
+  SgBlackWhite.h /usr/local/include/boost/static_assert.hpp \
+  /usr/local/include/boost/config.hpp \
+  /usr/local/include/boost/config/user.hpp \
+  /usr/local/include/boost/config/detail/select_compiler_config.hpp \
+  /usr/local/include/boost/config/compiler/clang.hpp \
+  /usr/local/include/boost/config/detail/select_stdlib_config.hpp \
+  /usr/local/include/boost/config/stdlib/libcpp.hpp \
+  /usr/local/include/boost/config/detail/select_platform_config.hpp \
+  /usr/local/include/boost/config/platform/macos.hpp \
+  /usr/local/include/boost/config/detail/posix_features.hpp \
   /usr/include/unistd.h /usr/include/sys/unistd.h \
   /usr/include/sys/_types/_posix_vdisable.h \
   /usr/include/sys/_types/_seek_set.h /usr/include/sys/_types/_uid_t.h \
@@ -91,9 +89,9 @@ libfuego_smartgame_a-SgProp.o: SgProp.cpp SgSystem.h ../config.h SgProp.h \
   /usr/include/sys/_types/_fd_copy.h /usr/include/sys/_select.h \
   /usr/include/sys/_types/_dev_t.h /usr/include/sys/_types/_mode_t.h \
   /usr/include/sys/_types/_uuid_t.h /usr/include/gethostuuid.h \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/suffix.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/detail/workaround.hpp \
-  SgPoint.h \
+  /usr/local/include/boost/config/detail/suffix.hpp \
+  /usr/local/include/boost/detail/workaround.hpp \
+  /usr/local/include/boost/config/workaround.hpp SgPoint.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cstdlib \
   /usr/include/stdlib.h /usr/include/sys/wait.h \
   /usr/include/sys/_types/_id_t.h /usr/include/sys/signal.h \
@@ -347,27 +345,25 @@ SgProp.h:
 
 SgBlackWhite.h:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/static_assert.hpp:
+/usr/local/include/boost/static_assert.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config.hpp:
+/usr/local/include/boost/config.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/user.hpp:
+/usr/local/include/boost/config/user.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/select_compiler_config.hpp:
+/usr/local/include/boost/config/detail/select_compiler_config.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/compiler/clang.hpp:
+/usr/local/include/boost/config/compiler/clang.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/select_stdlib_config.hpp:
+/usr/local/include/boost/config/detail/select_stdlib_config.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/no_tr1/utility.hpp:
+/usr/local/include/boost/config/stdlib/libcpp.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/stdlib/libcpp.hpp:
+/usr/local/include/boost/config/detail/select_platform_config.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/select_platform_config.hpp:
+/usr/local/include/boost/config/platform/macos.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/platform/macos.hpp:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/posix_features.hpp:
+/usr/local/include/boost/config/detail/posix_features.hpp:
 
 /usr/include/unistd.h:
 
@@ -419,9 +415,11 @@ SgBlackWhite.h:
 
 /usr/include/gethostuuid.h:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/suffix.hpp:
+/usr/local/include/boost/config/detail/suffix.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/detail/workaround.hpp:
+/usr/local/include/boost/detail/workaround.hpp:
+
+/usr/local/include/boost/config/workaround.hpp:
 
 SgPoint.h:
 

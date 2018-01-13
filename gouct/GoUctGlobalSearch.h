@@ -648,6 +648,7 @@ void GoUctGlobalSearchState<POLICY>::SetPolicy(POLICY* policy)
 template<class POLICY>
 void GoUctGlobalSearchState<POLICY>::StartPlayout()
 {
+    // SgDebug() << "Start to Play out in GoUctGloblal Search. \n";
     GoUctState::StartPlayout();
     m_passMovesPlayoutPhase = 0;
     m_mercyRuleTriggered = false;
@@ -851,6 +852,11 @@ GoUctGlobalSearch<POLICY,FACTORY>::GoUctGlobalSearch(GoBoard& bd,
         SgDebug() 
             << "GoUctGlobalSearch: setting default number of threads to "
             << nuThreads << '\n';
+
+        // @todo, need to remove this, 
+        // for debuging, setting the thread to 1 to simplify the code output.
+        nuThreads = 1;
+
         SetNumberThreads(nuThreads);
     }
 }

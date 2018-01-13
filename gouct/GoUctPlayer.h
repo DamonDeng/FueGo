@@ -835,6 +835,9 @@ SgPoint GoUctPlayer<SEARCH, THREAD>::DoSearch(SgBlackWhite toPlay,
     earlyAbort.m_threshold = m_sureWinThreshold;
     earlyAbort.m_minGames = m_resignMinGames;
     earlyAbort.m_reductionFactor = 3;
+
+    SgDebug() << "Trying to call search function from m_search. \n";
+
     SgUctValue value = m_search.Search(m_maxGames, maxTime, sequence, rootFilter,
                                   initTree, &earlyAbort);
 
@@ -945,6 +948,7 @@ template <class SEARCH, class THREAD>
 SgPoint GoUctPlayer<SEARCH, THREAD>::GenMove(const SgTimeRecord& time,
                                              SgBlackWhite toPlay)
 {
+    SgDebug() << "Go Uct Player gen move function in .h file. \n";
     ++m_statistics.m_nuGenMove;
     if (m_searchMode == GOUCT_SEARCHMODE_PLAYOUTPOLICY)
         return GenMovePlayoutPolicy(toPlay);
@@ -971,6 +975,7 @@ SgPoint GoUctPlayer<SEARCH, THREAD>::GenMove(const SgTimeRecord& time,
                                                        ! m_writeDebugOutput);
         if (m_searchMode == GOUCT_SEARCHMODE_ONEPLY)
         {
+            SgDebug() << "OnePLY mode. \n";
             m_search.SetToPlay(toPlay);
             SgUctValue ignoreValue;
             move = m_search.SearchOnePly(m_maxGames, maxTime, ignoreValue);
@@ -979,6 +984,8 @@ SgPoint GoUctPlayer<SEARCH, THREAD>::GenMove(const SgTimeRecord& time,
         }
         else
         {
+            SgDebug() << "Normal mode. \n";
+
             SG_ASSERT(m_searchMode == GOUCT_SEARCHMODE_UCT);
             move = DoSearch(toPlay, maxTime, false);
             m_statistics.m_gamesPerSecond.Add(

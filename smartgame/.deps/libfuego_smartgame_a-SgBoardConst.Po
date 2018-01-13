@@ -1,23 +1,18 @@
 libfuego_smartgame_a-SgBoardConst.o: SgBoardConst.cpp SgSystem.h \
-  ../config.h SgBoardConst.h \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/shared_ptr.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/smart_ptr/shared_ptr.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/user.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/select_compiler_config.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/compiler/clang.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/select_stdlib_config.hpp \
+  ../config.h SgBoardConst.h /usr/local/include/boost/shared_ptr.hpp \
+  /usr/local/include/boost/smart_ptr/shared_ptr.hpp \
+  /usr/local/include/boost/config.hpp \
+  /usr/local/include/boost/config/user.hpp \
+  /usr/local/include/boost/config/detail/select_compiler_config.hpp \
+  /usr/local/include/boost/config/compiler/clang.hpp \
+  /usr/local/include/boost/config/detail/select_stdlib_config.hpp \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cstddef \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__config \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/stddef.h \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/no_tr1/utility.hpp \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/utility \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__tuple \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/type_traits \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/stdlib/libcpp.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/select_platform_config.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/platform/macos.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/posix_features.hpp \
+  /usr/local/include/boost/config/stdlib/libcpp.hpp \
+  /usr/local/include/boost/config/detail/select_platform_config.hpp \
+  /usr/local/include/boost/config/platform/macos.hpp \
+  /usr/local/include/boost/config/detail/posix_features.hpp \
   /usr/include/unistd.h /usr/include/_types.h /usr/include/sys/_types.h \
   /usr/include/sys/cdefs.h /usr/include/sys/_symbol_aliasing.h \
   /usr/include/sys/_posix_availability.h /usr/include/machine/_types.h \
@@ -41,9 +36,10 @@ libfuego_smartgame_a-SgBoardConst.o: SgBoardConst.cpp SgSystem.h \
   /usr/include/sys/_types/_fd_copy.h /usr/include/sys/_select.h \
   /usr/include/sys/_types/_dev_t.h /usr/include/sys/_types/_mode_t.h \
   /usr/include/sys/_types/_uuid_t.h /usr/include/gethostuuid.h \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/suffix.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/no_tr1/memory.hpp \
+  /usr/local/include/boost/config/detail/suffix.hpp \
+  /usr/local/include/boost/config/no_tr1/memory.hpp \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/memory \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/type_traits \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/typeinfo \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/exception \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cstdint \
@@ -56,6 +52,8 @@ libfuego_smartgame_a-SgBoardConst.o: SgBoardConst.cpp SgSystem.h \
   /usr/include/_types/_uintmax_t.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/new \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__undef___deallocate \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/utility \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__tuple \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/limits \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__undef_min_max \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/iterator \
@@ -77,8 +75,8 @@ libfuego_smartgame_a-SgBoardConst.o: SgBoardConst.cpp SgSystem.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cstring \
   /usr/include/string.h /usr/include/sys/_types/_rsize_t.h \
   /usr/include/sys/_types/_errno_t.h /usr/include/strings.h \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/assert.hpp \
-  /usr/include/assert.h /usr/include/stdlib.h /usr/include/sys/wait.h \
+  /usr/local/include/boost/assert.hpp /usr/include/assert.h \
+  /usr/include/stdlib.h /usr/include/sys/wait.h \
   /usr/include/sys/_types/_id_t.h /usr/include/sys/signal.h \
   /usr/include/machine/signal.h /usr/include/i386/signal.h \
   /usr/include/machine/_mcontext.h /usr/include/i386/_mcontext.h \
@@ -90,48 +88,181 @@ libfuego_smartgame_a-SgBoardConst.o: SgBoardConst.cpp SgSystem.h \
   /usr/include/sys/_endian.h /usr/include/libkern/_OSByteOrder.h \
   /usr/include/libkern/i386/_OSByteOrder.h /usr/include/alloca.h \
   /usr/include/machine/types.h /usr/include/i386/types.h \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/checked_delete.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/throw_exception.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/exception/detail/attribute_noreturn.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/detail/workaround.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/exception/exception.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/current_function.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/smart_ptr/detail/shared_count.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/smart_ptr/bad_weak_ptr.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/smart_ptr/detail/sp_counted_base.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/smart_ptr/detail/sp_has_sync.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/smart_ptr/detail/sp_counted_base_gcc_x86.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/detail/sp_typeinfo.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/smart_ptr/detail/sp_counted_impl.hpp \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/functional \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__functional_03 \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/utility/addressof.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/smart_ptr/detail/sp_convertible.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/smart_ptr/detail/sp_nullptr_t.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/smart_ptr/detail/spinlock_pool.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/smart_ptr/detail/spinlock.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/smart_ptr/detail/spinlock_sync.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/smart_ptr/detail/yield_k.hpp \
-  /usr/include/sched.h /usr/include/pthread_impl.h \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/memory_order.hpp \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/algorithm \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/smart_ptr/detail/operator_bool.hpp \
-  SgArray.h SgNbIterator.h SgPoint.h \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/climits \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/limits.h \
-  /usr/include/limits.h /usr/include/machine/limits.h \
-  /usr/include/i386/limits.h /usr/include/i386/_limits.h \
-  /usr/include/sys/syslimits.h \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cstdlib \
+  /usr/local/include/boost/checked_delete.hpp \
+  /usr/local/include/boost/core/checked_delete.hpp \
+  /usr/local/include/boost/throw_exception.hpp \
+  /usr/local/include/boost/detail/workaround.hpp \
+  /usr/local/include/boost/config/workaround.hpp \
+  /usr/local/include/boost/exception/exception.hpp \
+  /usr/local/include/boost/current_function.hpp \
+  /usr/local/include/boost/smart_ptr/detail/shared_count.hpp \
+  /usr/local/include/boost/smart_ptr/bad_weak_ptr.hpp \
+  /usr/local/include/boost/smart_ptr/detail/sp_counted_base.hpp \
+  /usr/local/include/boost/smart_ptr/detail/sp_has_sync.hpp \
+  /usr/local/include/boost/smart_ptr/detail/sp_counted_base_clang.hpp \
+  /usr/local/include/boost/detail/sp_typeinfo.hpp \
+  /usr/local/include/boost/core/typeinfo.hpp \
+  /usr/local/include/boost/core/demangle.hpp \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/string \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cstdio \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cwchar \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cwctype \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cctype \
   /usr/include/wctype.h /usr/include/_types/_wctrans_t.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/algorithm \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/stdexcept \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/static_assert.hpp \
-  SgMove.h SgUtil.h \
+  /usr/include/cxxabi.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cstdlib \
+  /usr/local/include/boost/cstdint.hpp \
+  /usr/local/include/boost/smart_ptr/detail/sp_counted_impl.hpp \
+  /usr/local/include/boost/core/addressof.hpp \
+  /usr/local/include/boost/smart_ptr/detail/sp_disable_deprecated.hpp \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/functional \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__functional_03 \
+  /usr/local/include/boost/smart_ptr/detail/sp_convertible.hpp \
+  /usr/local/include/boost/smart_ptr/detail/sp_nullptr_t.hpp \
+  /usr/local/include/boost/smart_ptr/detail/sp_noexcept.hpp \
+  /usr/local/include/boost/smart_ptr/detail/spinlock_pool.hpp \
+  /usr/local/include/boost/smart_ptr/detail/spinlock.hpp \
+  /usr/local/include/boost/smart_ptr/detail/spinlock_sync.hpp \
+  /usr/local/include/boost/smart_ptr/detail/yield_k.hpp \
+  /usr/local/include/boost/predef.h \
+  /usr/local/include/boost/predef/language.h \
+  /usr/local/include/boost/predef/language/stdc.h \
+  /usr/local/include/boost/predef/version_number.h \
+  /usr/local/include/boost/predef/make.h \
+  /usr/local/include/boost/predef/detail/test.h \
+  /usr/local/include/boost/predef/language/stdcpp.h \
+  /usr/local/include/boost/predef/language/objc.h \
+  /usr/local/include/boost/predef/architecture.h \
+  /usr/local/include/boost/predef/architecture/alpha.h \
+  /usr/local/include/boost/predef/architecture/arm.h \
+  /usr/local/include/boost/predef/architecture/blackfin.h \
+  /usr/local/include/boost/predef/architecture/convex.h \
+  /usr/local/include/boost/predef/architecture/ia64.h \
+  /usr/local/include/boost/predef/architecture/m68k.h \
+  /usr/local/include/boost/predef/architecture/mips.h \
+  /usr/local/include/boost/predef/architecture/parisc.h \
+  /usr/local/include/boost/predef/architecture/ppc.h \
+  /usr/local/include/boost/predef/architecture/pyramid.h \
+  /usr/local/include/boost/predef/architecture/rs6k.h \
+  /usr/local/include/boost/predef/architecture/sparc.h \
+  /usr/local/include/boost/predef/architecture/superh.h \
+  /usr/local/include/boost/predef/architecture/sys370.h \
+  /usr/local/include/boost/predef/architecture/sys390.h \
+  /usr/local/include/boost/predef/architecture/x86.h \
+  /usr/local/include/boost/predef/architecture/x86/32.h \
+  /usr/local/include/boost/predef/architecture/x86/64.h \
+  /usr/local/include/boost/predef/architecture/z.h \
+  /usr/local/include/boost/predef/compiler.h \
+  /usr/local/include/boost/predef/compiler/borland.h \
+  /usr/local/include/boost/predef/compiler/clang.h \
+  /usr/local/include/boost/predef/detail/comp_detected.h \
+  /usr/local/include/boost/predef/compiler/comeau.h \
+  /usr/local/include/boost/predef/compiler/compaq.h \
+  /usr/local/include/boost/predef/compiler/diab.h \
+  /usr/local/include/boost/predef/compiler/digitalmars.h \
+  /usr/local/include/boost/predef/compiler/dignus.h \
+  /usr/local/include/boost/predef/compiler/edg.h \
+  /usr/local/include/boost/predef/compiler/ekopath.h \
+  /usr/local/include/boost/predef/compiler/gcc_xml.h \
+  /usr/local/include/boost/predef/compiler/gcc.h \
+  /usr/local/include/boost/predef/compiler/greenhills.h \
+  /usr/local/include/boost/predef/compiler/hp_acc.h \
+  /usr/local/include/boost/predef/compiler/iar.h \
+  /usr/local/include/boost/predef/compiler/ibm.h \
+  /usr/local/include/boost/predef/compiler/intel.h \
+  /usr/local/include/boost/predef/compiler/kai.h \
+  /usr/local/include/boost/predef/compiler/llvm.h \
+  /usr/local/include/boost/predef/compiler/metaware.h \
+  /usr/local/include/boost/predef/compiler/metrowerks.h \
+  /usr/local/include/boost/predef/compiler/microtec.h \
+  /usr/local/include/boost/predef/compiler/mpw.h \
+  /usr/local/include/boost/predef/compiler/palm.h \
+  /usr/local/include/boost/predef/compiler/pgi.h \
+  /usr/local/include/boost/predef/compiler/sgi_mipspro.h \
+  /usr/local/include/boost/predef/compiler/sunpro.h \
+  /usr/local/include/boost/predef/compiler/tendra.h \
+  /usr/local/include/boost/predef/compiler/visualc.h \
+  /usr/local/include/boost/predef/compiler/watcom.h \
+  /usr/local/include/boost/predef/library.h \
+  /usr/local/include/boost/predef/library/c.h \
+  /usr/local/include/boost/predef/library/c/_prefix.h \
+  /usr/local/include/boost/predef/detail/_cassert.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cassert \
+  /usr/local/include/boost/predef/library/c/gnu.h \
+  /usr/local/include/boost/predef/library/c/uc.h \
+  /usr/local/include/boost/predef/library/c/vms.h \
+  /usr/local/include/boost/predef/library/c/zos.h \
+  /usr/local/include/boost/predef/library/std.h \
+  /usr/local/include/boost/predef/library/std/_prefix.h \
+  /usr/local/include/boost/predef/detail/_exception.h \
+  /usr/local/include/boost/predef/library/std/cxx.h \
+  /usr/local/include/boost/predef/library/std/dinkumware.h \
+  /usr/local/include/boost/predef/library/std/libcomo.h \
+  /usr/local/include/boost/predef/library/std/modena.h \
+  /usr/local/include/boost/predef/library/std/msl.h \
+  /usr/local/include/boost/predef/library/std/roguewave.h \
+  /usr/local/include/boost/predef/library/std/sgi.h \
+  /usr/local/include/boost/predef/library/std/stdcpp3.h \
+  /usr/local/include/boost/predef/library/std/stlport.h \
+  /usr/local/include/boost/predef/library/std/vacpp.h \
+  /usr/local/include/boost/predef/os.h \
+  /usr/local/include/boost/predef/os/aix.h \
+  /usr/local/include/boost/predef/os/amigaos.h \
+  /usr/local/include/boost/predef/os/android.h \
+  /usr/local/include/boost/predef/os/beos.h \
+  /usr/local/include/boost/predef/os/bsd.h \
+  /usr/local/include/boost/predef/os/macos.h \
+  /usr/local/include/boost/predef/os/ios.h \
+  /usr/local/include/boost/predef/detail/os_detected.h \
+  /usr/local/include/boost/predef/os/bsd/bsdi.h \
+  /usr/local/include/boost/predef/os/bsd/dragonfly.h \
+  /usr/local/include/boost/predef/os/bsd/free.h \
+  /usr/local/include/boost/predef/os/bsd/open.h \
+  /usr/local/include/boost/predef/os/bsd/net.h \
+  /usr/local/include/boost/predef/os/cygwin.h \
+  /usr/local/include/boost/predef/os/haiku.h \
+  /usr/local/include/boost/predef/os/hpux.h \
+  /usr/local/include/boost/predef/os/irix.h \
+  /usr/local/include/boost/predef/os/linux.h \
+  /usr/local/include/boost/predef/os/os400.h \
+  /usr/local/include/boost/predef/os/qnxnto.h \
+  /usr/local/include/boost/predef/os/solaris.h \
+  /usr/local/include/boost/predef/os/unix.h \
+  /usr/local/include/boost/predef/os/vms.h \
+  /usr/local/include/boost/predef/os/windows.h \
+  /usr/local/include/boost/predef/other.h \
+  /usr/local/include/boost/predef/other/endian.h \
+  /usr/local/include/boost/predef/platform.h \
+  /usr/local/include/boost/predef/platform/mingw.h \
+  /usr/local/include/boost/predef/platform/windows_desktop.h \
+  /usr/local/include/boost/predef/platform/windows_store.h \
+  /usr/local/include/boost/predef/platform/windows_phone.h \
+  /usr/local/include/boost/predef/platform/windows_runtime.h \
+  /usr/local/include/boost/predef/platform/ios.h \
+  /usr/local/include/boost/predef/hardware.h \
+  /usr/local/include/boost/predef/hardware/simd.h \
+  /usr/local/include/boost/predef/hardware/simd/x86.h \
+  /usr/local/include/boost/predef/hardware/simd/x86/versions.h \
+  /usr/local/include/boost/predef/hardware/simd/x86_amd.h \
+  /usr/local/include/boost/predef/hardware/simd/x86_amd/versions.h \
+  /usr/local/include/boost/predef/hardware/simd/arm.h \
+  /usr/local/include/boost/predef/hardware/simd/arm/versions.h \
+  /usr/local/include/boost/predef/hardware/simd/ppc.h \
+  /usr/local/include/boost/predef/hardware/simd/ppc/versions.h \
+  /usr/local/include/boost/predef/version.h /usr/include/sched.h \
+  /usr/include/pthread_impl.h \
+  /usr/local/include/boost/smart_ptr/detail/operator_bool.hpp \
+  /usr/local/include/boost/smart_ptr/detail/local_sp_deleter.hpp \
+  /usr/local/include/boost/smart_ptr/detail/local_counted_base.hpp \
+  SgArray.h SgNbIterator.h SgPoint.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/climits \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/limits.h \
+  /usr/include/limits.h /usr/include/machine/limits.h \
+  /usr/include/i386/limits.h /usr/include/i386/_limits.h \
+  /usr/include/sys/syslimits.h \
+  /usr/local/include/boost/static_assert.hpp SgMove.h SgUtil.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/iostream \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/ios \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__locale \
@@ -188,19 +319,19 @@ SgSystem.h:
 
 SgBoardConst.h:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/shared_ptr.hpp:
+/usr/local/include/boost/shared_ptr.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/smart_ptr/shared_ptr.hpp:
+/usr/local/include/boost/smart_ptr/shared_ptr.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config.hpp:
+/usr/local/include/boost/config.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/user.hpp:
+/usr/local/include/boost/config/user.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/select_compiler_config.hpp:
+/usr/local/include/boost/config/detail/select_compiler_config.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/compiler/clang.hpp:
+/usr/local/include/boost/config/compiler/clang.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/select_stdlib_config.hpp:
+/usr/local/include/boost/config/detail/select_stdlib_config.hpp:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cstddef:
 
@@ -208,21 +339,13 @@ SgBoardConst.h:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/stddef.h:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/no_tr1/utility.hpp:
+/usr/local/include/boost/config/stdlib/libcpp.hpp:
 
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/utility:
+/usr/local/include/boost/config/detail/select_platform_config.hpp:
 
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__tuple:
+/usr/local/include/boost/config/platform/macos.hpp:
 
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/type_traits:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/stdlib/libcpp.hpp:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/select_platform_config.hpp:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/platform/macos.hpp:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/posix_features.hpp:
+/usr/local/include/boost/config/detail/posix_features.hpp:
 
 /usr/include/unistd.h:
 
@@ -310,11 +433,13 @@ SgBoardConst.h:
 
 /usr/include/gethostuuid.h:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/suffix.hpp:
+/usr/local/include/boost/config/detail/suffix.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/no_tr1/memory.hpp:
+/usr/local/include/boost/config/no_tr1/memory.hpp:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/memory:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/type_traits:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/typeinfo:
 
@@ -349,6 +474,10 @@ SgBoardConst.h:
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/new:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__undef___deallocate:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/utility:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__tuple:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/limits:
 
@@ -410,7 +539,7 @@ SgBoardConst.h:
 
 /usr/include/strings.h:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/assert.hpp:
+/usr/local/include/boost/assert.hpp:
 
 /usr/include/assert.h:
 
@@ -456,59 +585,345 @@ SgBoardConst.h:
 
 /usr/include/i386/types.h:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/checked_delete.hpp:
+/usr/local/include/boost/checked_delete.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/throw_exception.hpp:
+/usr/local/include/boost/core/checked_delete.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/exception/detail/attribute_noreturn.hpp:
+/usr/local/include/boost/throw_exception.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/detail/workaround.hpp:
+/usr/local/include/boost/detail/workaround.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/exception/exception.hpp:
+/usr/local/include/boost/config/workaround.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/current_function.hpp:
+/usr/local/include/boost/exception/exception.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/smart_ptr/detail/shared_count.hpp:
+/usr/local/include/boost/current_function.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/smart_ptr/bad_weak_ptr.hpp:
+/usr/local/include/boost/smart_ptr/detail/shared_count.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/smart_ptr/detail/sp_counted_base.hpp:
+/usr/local/include/boost/smart_ptr/bad_weak_ptr.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/smart_ptr/detail/sp_has_sync.hpp:
+/usr/local/include/boost/smart_ptr/detail/sp_counted_base.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/smart_ptr/detail/sp_counted_base_gcc_x86.hpp:
+/usr/local/include/boost/smart_ptr/detail/sp_has_sync.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/detail/sp_typeinfo.hpp:
+/usr/local/include/boost/smart_ptr/detail/sp_counted_base_clang.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/smart_ptr/detail/sp_counted_impl.hpp:
+/usr/local/include/boost/detail/sp_typeinfo.hpp:
+
+/usr/local/include/boost/core/typeinfo.hpp:
+
+/usr/local/include/boost/core/demangle.hpp:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/string:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cstdio:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cwchar:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cwctype:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cctype:
+
+/usr/include/wctype.h:
+
+/usr/include/_types/_wctrans_t.h:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/algorithm:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/stdexcept:
+
+/usr/include/cxxabi.h:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cstdlib:
+
+/usr/local/include/boost/cstdint.hpp:
+
+/usr/local/include/boost/smart_ptr/detail/sp_counted_impl.hpp:
+
+/usr/local/include/boost/core/addressof.hpp:
+
+/usr/local/include/boost/smart_ptr/detail/sp_disable_deprecated.hpp:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/functional:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__functional_03:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/utility/addressof.hpp:
+/usr/local/include/boost/smart_ptr/detail/sp_convertible.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/smart_ptr/detail/sp_convertible.hpp:
+/usr/local/include/boost/smart_ptr/detail/sp_nullptr_t.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/smart_ptr/detail/sp_nullptr_t.hpp:
+/usr/local/include/boost/smart_ptr/detail/sp_noexcept.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/smart_ptr/detail/spinlock_pool.hpp:
+/usr/local/include/boost/smart_ptr/detail/spinlock_pool.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/smart_ptr/detail/spinlock.hpp:
+/usr/local/include/boost/smart_ptr/detail/spinlock.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/smart_ptr/detail/spinlock_sync.hpp:
+/usr/local/include/boost/smart_ptr/detail/spinlock_sync.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/smart_ptr/detail/yield_k.hpp:
+/usr/local/include/boost/smart_ptr/detail/yield_k.hpp:
+
+/usr/local/include/boost/predef.h:
+
+/usr/local/include/boost/predef/language.h:
+
+/usr/local/include/boost/predef/language/stdc.h:
+
+/usr/local/include/boost/predef/version_number.h:
+
+/usr/local/include/boost/predef/make.h:
+
+/usr/local/include/boost/predef/detail/test.h:
+
+/usr/local/include/boost/predef/language/stdcpp.h:
+
+/usr/local/include/boost/predef/language/objc.h:
+
+/usr/local/include/boost/predef/architecture.h:
+
+/usr/local/include/boost/predef/architecture/alpha.h:
+
+/usr/local/include/boost/predef/architecture/arm.h:
+
+/usr/local/include/boost/predef/architecture/blackfin.h:
+
+/usr/local/include/boost/predef/architecture/convex.h:
+
+/usr/local/include/boost/predef/architecture/ia64.h:
+
+/usr/local/include/boost/predef/architecture/m68k.h:
+
+/usr/local/include/boost/predef/architecture/mips.h:
+
+/usr/local/include/boost/predef/architecture/parisc.h:
+
+/usr/local/include/boost/predef/architecture/ppc.h:
+
+/usr/local/include/boost/predef/architecture/pyramid.h:
+
+/usr/local/include/boost/predef/architecture/rs6k.h:
+
+/usr/local/include/boost/predef/architecture/sparc.h:
+
+/usr/local/include/boost/predef/architecture/superh.h:
+
+/usr/local/include/boost/predef/architecture/sys370.h:
+
+/usr/local/include/boost/predef/architecture/sys390.h:
+
+/usr/local/include/boost/predef/architecture/x86.h:
+
+/usr/local/include/boost/predef/architecture/x86/32.h:
+
+/usr/local/include/boost/predef/architecture/x86/64.h:
+
+/usr/local/include/boost/predef/architecture/z.h:
+
+/usr/local/include/boost/predef/compiler.h:
+
+/usr/local/include/boost/predef/compiler/borland.h:
+
+/usr/local/include/boost/predef/compiler/clang.h:
+
+/usr/local/include/boost/predef/detail/comp_detected.h:
+
+/usr/local/include/boost/predef/compiler/comeau.h:
+
+/usr/local/include/boost/predef/compiler/compaq.h:
+
+/usr/local/include/boost/predef/compiler/diab.h:
+
+/usr/local/include/boost/predef/compiler/digitalmars.h:
+
+/usr/local/include/boost/predef/compiler/dignus.h:
+
+/usr/local/include/boost/predef/compiler/edg.h:
+
+/usr/local/include/boost/predef/compiler/ekopath.h:
+
+/usr/local/include/boost/predef/compiler/gcc_xml.h:
+
+/usr/local/include/boost/predef/compiler/gcc.h:
+
+/usr/local/include/boost/predef/compiler/greenhills.h:
+
+/usr/local/include/boost/predef/compiler/hp_acc.h:
+
+/usr/local/include/boost/predef/compiler/iar.h:
+
+/usr/local/include/boost/predef/compiler/ibm.h:
+
+/usr/local/include/boost/predef/compiler/intel.h:
+
+/usr/local/include/boost/predef/compiler/kai.h:
+
+/usr/local/include/boost/predef/compiler/llvm.h:
+
+/usr/local/include/boost/predef/compiler/metaware.h:
+
+/usr/local/include/boost/predef/compiler/metrowerks.h:
+
+/usr/local/include/boost/predef/compiler/microtec.h:
+
+/usr/local/include/boost/predef/compiler/mpw.h:
+
+/usr/local/include/boost/predef/compiler/palm.h:
+
+/usr/local/include/boost/predef/compiler/pgi.h:
+
+/usr/local/include/boost/predef/compiler/sgi_mipspro.h:
+
+/usr/local/include/boost/predef/compiler/sunpro.h:
+
+/usr/local/include/boost/predef/compiler/tendra.h:
+
+/usr/local/include/boost/predef/compiler/visualc.h:
+
+/usr/local/include/boost/predef/compiler/watcom.h:
+
+/usr/local/include/boost/predef/library.h:
+
+/usr/local/include/boost/predef/library/c.h:
+
+/usr/local/include/boost/predef/library/c/_prefix.h:
+
+/usr/local/include/boost/predef/detail/_cassert.h:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cassert:
+
+/usr/local/include/boost/predef/library/c/gnu.h:
+
+/usr/local/include/boost/predef/library/c/uc.h:
+
+/usr/local/include/boost/predef/library/c/vms.h:
+
+/usr/local/include/boost/predef/library/c/zos.h:
+
+/usr/local/include/boost/predef/library/std.h:
+
+/usr/local/include/boost/predef/library/std/_prefix.h:
+
+/usr/local/include/boost/predef/detail/_exception.h:
+
+/usr/local/include/boost/predef/library/std/cxx.h:
+
+/usr/local/include/boost/predef/library/std/dinkumware.h:
+
+/usr/local/include/boost/predef/library/std/libcomo.h:
+
+/usr/local/include/boost/predef/library/std/modena.h:
+
+/usr/local/include/boost/predef/library/std/msl.h:
+
+/usr/local/include/boost/predef/library/std/roguewave.h:
+
+/usr/local/include/boost/predef/library/std/sgi.h:
+
+/usr/local/include/boost/predef/library/std/stdcpp3.h:
+
+/usr/local/include/boost/predef/library/std/stlport.h:
+
+/usr/local/include/boost/predef/library/std/vacpp.h:
+
+/usr/local/include/boost/predef/os.h:
+
+/usr/local/include/boost/predef/os/aix.h:
+
+/usr/local/include/boost/predef/os/amigaos.h:
+
+/usr/local/include/boost/predef/os/android.h:
+
+/usr/local/include/boost/predef/os/beos.h:
+
+/usr/local/include/boost/predef/os/bsd.h:
+
+/usr/local/include/boost/predef/os/macos.h:
+
+/usr/local/include/boost/predef/os/ios.h:
+
+/usr/local/include/boost/predef/detail/os_detected.h:
+
+/usr/local/include/boost/predef/os/bsd/bsdi.h:
+
+/usr/local/include/boost/predef/os/bsd/dragonfly.h:
+
+/usr/local/include/boost/predef/os/bsd/free.h:
+
+/usr/local/include/boost/predef/os/bsd/open.h:
+
+/usr/local/include/boost/predef/os/bsd/net.h:
+
+/usr/local/include/boost/predef/os/cygwin.h:
+
+/usr/local/include/boost/predef/os/haiku.h:
+
+/usr/local/include/boost/predef/os/hpux.h:
+
+/usr/local/include/boost/predef/os/irix.h:
+
+/usr/local/include/boost/predef/os/linux.h:
+
+/usr/local/include/boost/predef/os/os400.h:
+
+/usr/local/include/boost/predef/os/qnxnto.h:
+
+/usr/local/include/boost/predef/os/solaris.h:
+
+/usr/local/include/boost/predef/os/unix.h:
+
+/usr/local/include/boost/predef/os/vms.h:
+
+/usr/local/include/boost/predef/os/windows.h:
+
+/usr/local/include/boost/predef/other.h:
+
+/usr/local/include/boost/predef/other/endian.h:
+
+/usr/local/include/boost/predef/platform.h:
+
+/usr/local/include/boost/predef/platform/mingw.h:
+
+/usr/local/include/boost/predef/platform/windows_desktop.h:
+
+/usr/local/include/boost/predef/platform/windows_store.h:
+
+/usr/local/include/boost/predef/platform/windows_phone.h:
+
+/usr/local/include/boost/predef/platform/windows_runtime.h:
+
+/usr/local/include/boost/predef/platform/ios.h:
+
+/usr/local/include/boost/predef/hardware.h:
+
+/usr/local/include/boost/predef/hardware/simd.h:
+
+/usr/local/include/boost/predef/hardware/simd/x86.h:
+
+/usr/local/include/boost/predef/hardware/simd/x86/versions.h:
+
+/usr/local/include/boost/predef/hardware/simd/x86_amd.h:
+
+/usr/local/include/boost/predef/hardware/simd/x86_amd/versions.h:
+
+/usr/local/include/boost/predef/hardware/simd/arm.h:
+
+/usr/local/include/boost/predef/hardware/simd/arm/versions.h:
+
+/usr/local/include/boost/predef/hardware/simd/ppc.h:
+
+/usr/local/include/boost/predef/hardware/simd/ppc/versions.h:
+
+/usr/local/include/boost/predef/version.h:
 
 /usr/include/sched.h:
 
 /usr/include/pthread_impl.h:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/memory_order.hpp:
+/usr/local/include/boost/smart_ptr/detail/operator_bool.hpp:
 
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/algorithm:
+/usr/local/include/boost/smart_ptr/detail/local_sp_deleter.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/smart_ptr/detail/operator_bool.hpp:
+/usr/local/include/boost/smart_ptr/detail/local_counted_base.hpp:
 
 SgArray.h:
 
@@ -530,25 +945,7 @@ SgPoint.h:
 
 /usr/include/sys/syslimits.h:
 
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cstdlib:
-
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/string:
-
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cstdio:
-
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cwchar:
-
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cwctype:
-
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cctype:
-
-/usr/include/wctype.h:
-
-/usr/include/_types/_wctrans_t.h:
-
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/stdexcept:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/static_assert.hpp:
+/usr/local/include/boost/static_assert.hpp:
 
 SgMove.h:
 

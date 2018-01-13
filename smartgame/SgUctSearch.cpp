@@ -1089,6 +1089,8 @@ SgUctValue SgUctSearch::Search(SgUctValue maxGames, double maxTime,
                                SgUctTree* initTree,
                                SgUctEarlyAbortParam* earlyAbort)
 {
+    SgDebug() << "Trying to search in SgUctSearch Class.\n";
+    
     m_timer.Start();
     m_rootFilter = rootFilter;
     if (m_logGames)
@@ -1112,10 +1114,16 @@ SgUctValue SgUctSearch::Search(SgUctValue maxGames, double maxTime,
     {
         m_isTreeOutOfMemory = false;
         SgSynchronizeThreadMemory();
+
+        SgDebug() << "Going to start all the threads to play. SuUctSearch. \n";
         for (size_t i = 0; i < m_threads.size(); ++i)
             m_threads[i]->StartPlay();
+
         for (size_t i = 0; i < m_threads.size(); ++i)
             m_threads[i]->WaitPlayFinished();
+
+        SgDebug() << "End of all threads. SgUctSearch. \n";
+
         if (m_aborted || ! m_pruneFullTree)
             break;
         else

@@ -342,6 +342,7 @@ GoUctPlayoutPolicy<BOARD>::CaptureGenerator::CaptureGenerator(const BOARD& bd)
 template<class BOARD>
 void GoUctPlayoutPolicy<BOARD>::CaptureGenerator::StartPlayout()
 {
+    SgDebug() << "Start Playout in CaptureGenerator in GoUctPlayoutPolicy. \n";
     m_candidates.clear();
     for (typename BOARD::Iterator it(m_bd); it; ++it)
     {
@@ -864,6 +865,7 @@ GoUctPlayoutPolicy<BOARD>::Statistics(SgBlackWhite color) const
 template<class BOARD>
 void GoUctPlayoutPolicy<BOARD>::StartPlayout()
 {
+    SgDebug() << "In the GoUctPlayoutPolicy: start playout\n";
     m_captureGenerator.StartPlayout();
     m_pureRandomGenerator.Start();
     m_nonRandLen = 0;

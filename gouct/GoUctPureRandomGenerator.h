@@ -149,6 +149,8 @@ inline SgPoint GoUctPureRandomGenerator<BOARD>::GenerateRawPoint() const
 template<class BOARD>
 inline SgPoint GoUctPureRandomGenerator<BOARD>::Generate()
 {
+    // SgDebug() << "in GoUctPureRandomGenerator.h: generating move\n";
+
     CheckConsistency();
     SgBlackWhite toPlay = m_bd.ToPlay();
     size_t i = m_candidates.size();

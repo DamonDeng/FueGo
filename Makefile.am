@@ -12,6 +12,7 @@ features \
 simpleplayers \
 fuegomain \
 fuegotest \
+dnnmain \
 unittestmain
 
 # TODO: This shouldn't include the non-portable makefile doc/Makefile
