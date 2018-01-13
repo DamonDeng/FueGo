@@ -1,6 +1,6 @@
 //----------------------------------------------------------------------------
-/** @file FuegoTestEngine.cpp
-    See FuegoTestEngine.h */
+/** @file DnnEngine.cpp
+    See DnnEngine.h */
 //----------------------------------------------------------------------------
 
 #include "SgSystem.h"
@@ -27,22 +27,21 @@ using boost::trim_copy;
 
 //----------------------------------------------------------------------------
 
-FuegoTestEngine::FuegoTestEngine(int fixedBoardSize, const char* programPath,
-                                 const string& player)
+DnnEngine::DnnEngine(int fixedBoardSize, const char* programPath)
     : GoGtpEngine(fixedBoardSize, programPath),
       m_extraCommands(Board()),
       m_safetyCommands(Board())
 {
-    Register("fuegotest_param", &FuegoTestEngine::CmdParam, this);
+    Register("fuegotest_param", &DnnEngine::CmdParam, this);
     m_extraCommands.Register(*this);
     m_safetyCommands.Register(*this);
-    SetPlayer(player);
+    SetPlayer();
 }
 
-FuegoTestEngine::~FuegoTestEngine()
+DnnEngine::~DnnEngine()
 { }
 
-void FuegoTestEngine::CmdAnalyzeCommands(GtpCommand& cmd)
+void DnnEngine::CmdAnalyzeCommands(GtpCommand& cmd)
 {
     GoGtpEngine::CmdAnalyzeCommands(cmd);
     m_extraCommands.AddGoGuiAnalyzeCommands(cmd);
@@ -53,7 +52,7 @@ void FuegoTestEngine::CmdAnalyzeCommands(GtpCommand& cmd)
     cmd.SetResponse(GoGtpCommandUtil::SortResponseAnalyzeCommands(response));
 }
 
-void FuegoTestEngine::CmdName(GtpCommand& cmd)
+void DnnEngine::CmdName(GtpCommand& cmd)
 {
     if (m_playerId == "")
         cmd << "FuegoTest";
@@ -65,8 +64,8 @@ void FuegoTestEngine::CmdName(GtpCommand& cmd)
     This command is compatible with the GoGui analyze command type "param".
 
     Parameters:
-    @arg @c player Player id as in FuegoTestEngine::SetPlayer */
-void FuegoTestEngine::CmdParam(GtpCommand& cmd)
+    @arg @c player Player id as in DnnEngine::SetPlayer */
+void DnnEngine::CmdParam(GtpCommand& cmd)
 {
     cmd.CheckNuArgLessEqual(2);
     if (cmd.NuArg() == 0)
@@ -83,10 +82,10 @@ void FuegoTestEngine::CmdParam(GtpCommand& cmd)
         {
             try
             {
-                string id = trim_copy(cmd.RemainingLine(0));
-                if (id == "<none>")
-                    id = "";
-                SetPlayer(id);
+                // string id = trim_copy(cmd.RemainingLine(0));
+                // if (id == "<none>")
+                //     id = "";
+                SetPlayer();
             }
             catch (const SgException& e)
             {
@@ -100,7 +99,7 @@ void FuegoTestEngine::CmdParam(GtpCommand& cmd)
         throw GtpFailure() << "need 0 or 2 arguments";
 }
 
-void FuegoTestEngine::CmdVersion(GtpCommand& cmd)
+void DnnEngine::CmdVersion(GtpCommand& cmd)
 {
 #ifdef VERSION
     cmd << BOOST_PP_STRINGIZE(VERSION);
@@ -112,7 +111,7 @@ void FuegoTestEngine::CmdVersion(GtpCommand& cmd)
 #endif
 }
 
-GoPlayer* FuegoTestEngine::CreatePlayer(const string& playerId)
+GoPlayer* DnnEngine::CreatePlayer(const string& playerId)
 {
     const GoBoard& bd = Board();
     if (playerId == "")
@@ -142,11 +141,24 @@ GoPlayer* FuegoTestEngine::CreatePlayer(const string& playerId)
     throw SgException("unknown player " + playerId);
 }
 
-void FuegoTestEngine::SetPlayer(const string& playerId)
+void DnnEngine::SetPlayer()
 {
-    GoPlayer* player = CreatePlayer(playerId);
-    GoGtpEngine::SetPlayer(player);
-    m_playerId = playerId;
+    // SgDebug() << "Going to create player:, player id: " << playerId << "\n";
+    // GoPlayer* player = CreatePlayer(playerId);
+    // GoGtpEngine::SetPlayer(player);
+    // m_playerId = playerId;
+
+    // Going to use UctPlayer directly.
+
+    // SgDebug() << "Got player id: " << playerId << ". But we wouldn't use it. \n";
+
+    GoUctPlayer<GoUctGlobalSearch<GoUctPlayoutPolicy<GoUctBoard>,
+                    GoUctPlayoutPolicyFactory<GoUctBoard> >,
+                    GoUctGlobalSearchState<GoUctPlayoutPolicy<GoUctBoard> > > *uctPlayer = new GoUctPlayer<GoUctGlobalSearch<GoUctPlayoutPolicy<GoUctBoard>,
+                    GoUctPlayoutPolicyFactory<GoUctBoard> >,
+                    GoUctGlobalSearchState<GoUctPlayoutPolicy<GoUctBoard> > >(Board());
+
+    GoGtpEngine::SetPlayer(uctPlayer);
 }
 
 //----------------------------------------------------------------------------

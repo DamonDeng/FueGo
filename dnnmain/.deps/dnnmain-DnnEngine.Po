@@ -978,7 +978,29 @@ dnnmain-DnnEngine.o: DnnEngine.cpp ../smartgame/SgSystem.h ../config.h \
   ../smartgame/SgTime.h ../smartgame/SgUctTree.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/stack \
   ../smartgame/SgFastLog.h ../go/GoGtpExtraCommands.h \
-  ../go/GoSafetyCommands.h /usr/local/include/boost/algorithm/string.hpp \
+  ../go/GoSafetyCommands.h ../gouct/GoUctPlayer.h \
+  ../go/GoBoardRestorer.h ../go/GoTimeControl.h \
+  ../smartgame/SgTimeControl.h ../gouct/GoUctDefaultMoveFilter.h \
+  ../go/GoLadder.h ../go/GoModBoard.h ../go/GoAssertBoardRestored.h \
+  ../gouct/GoUctMoveFilter.h ../gouct/GoUctFeatureKnowledge.h \
+  ../features/FeFeatureWeights.h ../go/GoAdditiveKnowledge.h \
+  ../go/GoEvalArray.h ../gouct/GoUctKnowledge.h \
+  ../gouct/GoUctPlayoutPolicy.h /usr/local/include/boost/array.hpp \
+  /usr/local/include/boost/swap.hpp ../go/GoEyeUtil.h \
+  ../gouct/GoUctPatterns.h ../go/GoPattern3x3.h ../go/GoPatternBase.h \
+  ../gouct/GoUctGlobalPatternData.h ../gouct/GoUctPatternData.h \
+  ../gouct/GoUctLocalPatternData.h ../gouct/GoUctPureRandomGenerator.h \
+  ../gouct/GoUctUtil.h ../gouct/GoUctBoard.h \
+  ../gouct/GoUctGammaMoveGenerator.h ../gouct/GoUctGlobalSearch.h \
+  ../go/GoRegionBoard.h ../go/GoRegion.h ../go/GoEyeCount.h \
+  ../smartgame/SgIncrementalStack.h ../smartgame/SgMiaiStrategy.h \
+  ../smartgame/SgStrategy.h ../go/GoSafetySolver.h \
+  ../go/GoStaticSafetySolver.h ../gouct/GoUctDefaultPriorKnowledge.h \
+  ../gouct/GoUctKnowledgeFactory.h \
+  ../gouct/GoUctAdditiveKnowledgeGreenpeep.h ../gouct/GoUctSearch.h \
+  ../go/GoBoardHistory.h ../gouct/GoUctObjectWithSearch.h \
+  ../smartgame/SgRestorer.h ../smartgame/SgUctTreeUtil.h \
+  /usr/local/include/boost/algorithm/string.hpp \
   /usr/local/include/boost/algorithm/string/std_containers_traits.hpp \
   /usr/local/include/boost/algorithm/string/std/string_traits.hpp \
   /usr/local/include/boost/algorithm/string/yes_no_type.hpp \
@@ -3252,6 +3274,96 @@ DnnEngine.h:
 ../go/GoGtpExtraCommands.h:
 
 ../go/GoSafetyCommands.h:
+
+../gouct/GoUctPlayer.h:
+
+../go/GoBoardRestorer.h:
+
+../go/GoTimeControl.h:
+
+../smartgame/SgTimeControl.h:
+
+../gouct/GoUctDefaultMoveFilter.h:
+
+../go/GoLadder.h:
+
+../go/GoModBoard.h:
+
+../go/GoAssertBoardRestored.h:
+
+../gouct/GoUctMoveFilter.h:
+
+../gouct/GoUctFeatureKnowledge.h:
+
+../features/FeFeatureWeights.h:
+
+../go/GoAdditiveKnowledge.h:
+
+../go/GoEvalArray.h:
+
+../gouct/GoUctKnowledge.h:
+
+../gouct/GoUctPlayoutPolicy.h:
+
+/usr/local/include/boost/array.hpp:
+
+/usr/local/include/boost/swap.hpp:
+
+../go/GoEyeUtil.h:
+
+../gouct/GoUctPatterns.h:
+
+../go/GoPattern3x3.h:
+
+../go/GoPatternBase.h:
+
+../gouct/GoUctGlobalPatternData.h:
+
+../gouct/GoUctPatternData.h:
+
+../gouct/GoUctLocalPatternData.h:
+
+../gouct/GoUctPureRandomGenerator.h:
+
+../gouct/GoUctUtil.h:
+
+../gouct/GoUctBoard.h:
+
+../gouct/GoUctGammaMoveGenerator.h:
+
+../gouct/GoUctGlobalSearch.h:
+
+../go/GoRegionBoard.h:
+
+../go/GoRegion.h:
+
+../go/GoEyeCount.h:
+
+../smartgame/SgIncrementalStack.h:
+
+../smartgame/SgMiaiStrategy.h:
+
+../smartgame/SgStrategy.h:
+
+../go/GoSafetySolver.h:
+
+../go/GoStaticSafetySolver.h:
+
+../gouct/GoUctDefaultPriorKnowledge.h:
+
+../gouct/GoUctKnowledgeFactory.h:
+
+../gouct/GoUctAdditiveKnowledgeGreenpeep.h:
+
+../gouct/GoUctSearch.h:
+
+../go/GoBoardHistory.h:
+
+../gouct/GoUctObjectWithSearch.h:
+
+../smartgame/SgRestorer.h:
+
+../smartgame/SgUctTreeUtil.h:
 
 /usr/local/include/boost/algorithm/string.hpp:
 

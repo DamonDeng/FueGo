@@ -1,20 +1,21 @@
 //----------------------------------------------------------------------------
-/** @file FuegoTestEngine.h */
+/** @file DnnEngine.h */
 //----------------------------------------------------------------------------
 
-#ifndef FUEGOTEST_ENGINE_H
-#define FUEGOTEST_ENGINE_H
+#ifndef DNN_ENGINE_H
+#define DNN_ENGINE_H
 
 #include "GoGtpEngine.h"
 #include "GoGtpExtraCommands.h"
 #include "GoSafetyCommands.h"
+#include "GoUctPlayer.h"
 
 //----------------------------------------------------------------------------
 
 /** GTP interface with commands for testing functionality of the Fuego
     libraries.
     @see @ref fuegotestoverview */
-class FuegoTestEngine
+class DnnEngine
     : public GoGtpEngine
 {
 public:
@@ -22,12 +23,11 @@ public:
         @param fixedBoardSize
         @param programPath
         @param player Player ID as in CreatePlayer() */
-    FuegoTestEngine(int fixedBoardSize, const char* programPath = 0,
-                    const std::string& player = "");
+    DnnEngine(int fixedBoardSize, const char* programPath = 0);
 
-    ~FuegoTestEngine();
+    ~DnnEngine();
 
-    /** @page fuegotestenginecommands FuegoTestEngine Commands
+    /** @page fuegotestenginecommands DnnEngine Commands
         - @link CmdParam() @c fuegotest_param @endlink */
     void CmdAnalyzeCommands(GtpCommand& cmd);
     void CmdName(GtpCommand& cmd);
@@ -44,7 +44,7 @@ private:
 
     GoPlayer* CreatePlayer(const std::string& name);
 
-    void SetPlayer(const std::string& playerId);
+    void SetPlayer();
 };
 
 //----------------------------------------------------------------------------
