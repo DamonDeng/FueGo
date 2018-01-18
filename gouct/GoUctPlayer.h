@@ -551,7 +551,7 @@ GoUctPlayer<SEARCH, THREAD>::GoUctPlayer(const GoBoard& bd)
     : GoPlayer(bd),
       m_searchMode(GOUCT_SEARCHMODE_UCT),
       m_autoParam(true),
-      m_forcedOpeningMoves(true),
+      m_forcedOpeningMoves(false), // setting the default value of forcedOpening Move to false.
       m_ignoreClock(false),
       m_enablePonder(false),
       m_useRootFilter(true),
@@ -843,6 +843,9 @@ SgPoint GoUctPlayer<SEARCH, THREAD>::DoSearch(SgBlackWhite toPlay,
 
     bool wasEarlyAbort = m_search.WasEarlyAbort();
     SgUctValue rootMoveCount = m_search.Tree().Root().MoveCount();
+
+    SgDebug() << "rootMoveCount: " << rootMoveCount << ". \n";
+    
     m_mpiSynchronizer->SynchronizeSearchStatus(value, wasEarlyAbort, rootMoveCount);
 
     if (m_writeDebugOutput)

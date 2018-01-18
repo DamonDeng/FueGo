@@ -63,7 +63,11 @@ Compute(const GoUctFeatureKnowledgeParam& param)
     m_param = param; // todo avoid copy? Lifetime?
     const GoBoard& bd = GoAdditiveKnowledge::Board();
     FeFullBoardFeatures features(bd);
+    
+    // SgDebug() << "Before Find all features. \n";
     GoUctFeatures::FindAllFeatures(bd, m_policy, features);
+    // SgDebug() << "After finding all features. \n";
+
     m_moveValue = features.EvaluateFeatures(m_weights);
     m_code = bd.GetHashCodeInclToPlay();
 }

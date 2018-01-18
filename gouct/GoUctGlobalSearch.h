@@ -539,31 +539,56 @@ GenerateAllMoves(SgUctValue count,
                  std::vector<SgUctMoveInfo>& moves,
                  SgUctProvenType& provenType)
 {
+    // SgDebug() << "Generating all move in GoUctGlobalSearchState . \n";
+
     const GoUctGlobalSearchStateParam& param = m_param.m_searchStateParam;
     const GoUctFeatureKnowledgeParam& feParam = m_param.m_featureParam;
     provenType = SG_NOT_PROVEN;
     moves.clear();  // FIXME: needed?
+    // SgDebug() << "Generaring Legal moves in GoUctGlobalSearch::GenerateAllMoves. \n";
+
     GenerateLegalMoves(moves);
+
+    // SgDebug() << "After generating legal moves. \n";
+
     if (! moves.empty() && count == 0) 
     {
         if (param.m_useTreeFilter)
             ApplyFilter(moves);
+
+        // SgDebug() << "After applying filter. \n";
+
         if (param.m_useDefaultPriorKnowledge)
         {
             m_priorKnowledge.SetPriorWeight(param.m_defaultPriorWeight);
             m_priorKnowledge.ProcessPosition(moves);
         }
+
+        // SgDebug() << "After process position. \n";
+
         if (  feParam.m_priorKnowledgeType != PRIOR_NONE
            || feParam.m_useAsAdditivePredictor
            )
         {
             SG_ASSERT(m_featureKnowledge);
+            // SgDebug() << "m_featureKnowledge -> compute. started. \n";
+
             m_featureKnowledge->Compute(feParam);
+            // SgDebug() << "end --------- m_featureKnowledge -> compute. started. \n";
+            
             if (feParam.m_priorKnowledgeType != PRIOR_NONE)
                 m_featureKnowledge->SetPriorKnowledge(moves);
+
+            // SgDebug() << "in the m_priorKnowledgeType. \n";
         }
+
+        // SgDebug() << "Before applying additive predictors. \n";
         ApplyAdditivePredictors(moves);
+        // SgDebug() << "End of applyAdditivePredictors. \n";
     }
+
+    //  SgDebug() << "End of ---------- Generating all move in GoUctGlobalSearchState. \n";
+
     return false;
 }
 
@@ -574,7 +599,14 @@ GeneratePlayoutMove(bool& skipRaveUpdate)
     SG_ASSERT(IsInPlayout());
     if (m_param.m_searchStateParam.m_mercyRule && CheckMercyRule())
         return SG_NULLMOVE;
+
+    // SgDebug() << "Before calling policy to generate move. \n";
+
     SgPoint move = m_policy->GenerateMove();
+    
+    // SgDebug() << "After calling policy to generate move. \n";
+    
+
     SG_ASSERT(move != SG_NULLMOVE);
 #ifndef NDEBUG
     // Check that policy generates pass only if no points are left for which
@@ -849,13 +881,16 @@ GoUctGlobalSearch<POLICY,FACTORY>::GoUctGlobalSearch(GoBoard& bd,
         unsigned int nuThreads = boost::thread::hardware_concurrency();
         if (nuThreads > 4)
             nuThreads = 4;
-        SgDebug() 
-            << "GoUctGlobalSearch: setting default number of threads to "
-            << nuThreads << '\n';
 
         // @todo, need to remove this, 
         // for debuging, setting the thread to 1 to simplify the code output.
         nuThreads = 1;
+
+
+        SgDebug() 
+            << "GoUctGlobalSearch: setting default number of threads to "
+            << nuThreads << '\n';
+
 
         SetNumberThreads(nuThreads);
     }

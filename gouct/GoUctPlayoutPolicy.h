@@ -342,7 +342,7 @@ GoUctPlayoutPolicy<BOARD>::CaptureGenerator::CaptureGenerator(const BOARD& bd)
 template<class BOARD>
 void GoUctPlayoutPolicy<BOARD>::CaptureGenerator::StartPlayout()
 {
-    SgDebug() << "Start Playout in CaptureGenerator in GoUctPlayoutPolicy. \n";
+    // SgDebug() << "Start Playout in CaptureGenerator in GoUctPlayoutPolicy. \n";
     m_candidates.clear();
     for (typename BOARD::Iterator it(m_bd); it; ++it)
     {
@@ -519,6 +519,8 @@ bool GoUctPlayoutPolicy<BOARD>::GenerateLowLibMove(SgPoint lastMove)
 template<class BOARD>
 SG_ATTR_FLATTEN SgPoint GoUctPlayoutPolicy<BOARD>::GenerateMove()
 {
+    // SgDebug() << "Generating move in GoUctPlayoutPolicy. \n";
+
     m_moves.Clear();
     m_checked = false;
     SgPoint mv = SG_NULLMOVE;
@@ -766,6 +768,9 @@ GetPolicyMoves(GoUctPlayoutPolicyType type)
     m_lastMove = m_bd.GetLastMove();
     bool hasLastMove = ! SgIsSpecialMove(m_lastMove)
                     && ! m_bd.IsEmpty(m_lastMove); // skip if move was suicide
+
+    // SgDebug() << "GetPolicyMove in GoUctPlayoutPolicy. type: " << type << ". \n";
+
     switch(type)
     {
         case GOUCT_FILLBOARD: SG_ASSERT(false); // changes the move list.
@@ -824,8 +829,13 @@ GoUctPlayoutPolicyType GoUctPlayoutPolicy<BOARD>::MoveType() const
 template<class BOARD>
 void GoUctPlayoutPolicy<BOARD>::OnPlay()
 {
+    // SgDebug() << "------------- GoUctPLayoutPolicy on play:\n";
+
     m_captureGenerator.OnPlay();
     m_pureRandomGenerator.OnPlay();
+    
+    // SgDebug() << "------------- end  ------- GoUctPLayoutPolicy on play:\n";
+    
 }
 
 template<class BOARD>
@@ -865,7 +875,7 @@ GoUctPlayoutPolicy<BOARD>::Statistics(SgBlackWhite color) const
 template<class BOARD>
 void GoUctPlayoutPolicy<BOARD>::StartPlayout()
 {
-    SgDebug() << "In the GoUctPlayoutPolicy: start playout\n";
+    // SgDebug() << "In the GoUctPlayoutPolicy: start playout\n";
     m_captureGenerator.StartPlayout();
     m_pureRandomGenerator.Start();
     m_nonRandLen = 0;

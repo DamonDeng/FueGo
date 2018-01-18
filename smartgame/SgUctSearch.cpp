@@ -32,7 +32,8 @@ using std::fixed;
 
 namespace {
 
-const bool DEBUG_THREADS = false;
+// const bool DEBUG_THREADS = false;
+const bool DEBUG_THREADS = true;
 
 /** Get a default value for lock-free mode.
     Lock-free mode works only on IA-32/Intel-64 architectures or if the macro
@@ -184,6 +185,7 @@ void SgUctSearch::Thread::operator()()
     if (DEBUG_THREADS)
         SgDebug() << "SgUctSearch::Thread: starting thread "
                   << m_state->m_threadId << '\n';
+
     mutex::scoped_lock lock(m_startPlayMutex);
     m_threadReady.wait();
     while (true)
@@ -194,6 +196,7 @@ void SgUctSearch::Thread::operator()()
         m_search.SearchLoop(*m_state, &m_globalLock);
         Notify(m_playFinishedMutex, m_playFinished);
     }
+
     if (DEBUG_THREADS)
         SgDebug() << "SgUctSearch::Thread: finishing thread "
                   << m_state->m_threadId << '\n';
@@ -552,12 +555,18 @@ void SgUctSearch::FindBestSequence(vector<SgMove>& sequence) const
 
 void SgUctSearch::GenerateAllMoves(std::vector<SgUctMoveInfo>& moves)
 {
+    SgDebug() << "Generateing all move in SgUctSearch***********************. \n";
+
     if (m_threads.size() == 0)
         CreateThreads();
     moves.clear();
     OnStartSearch();
     SgUctThreadState& state = ThreadState(0);
+    
+    SgDebug() << "Start search**********************. \n";
     state.StartSearch();
+    SgDebug() << "After start search******************. \n";
+
     SgUctProvenType type;
     state.GenerateAllMoves(0, moves, type);
 }
@@ -852,12 +861,37 @@ void SgUctSearch::OnSearchIteration(SgUctValue gameNumber,
 
 void SgUctSearch::PlayGame(SgUctThreadState& state, GlobalLock* lock)
 {
+    SgDebug() << "PlayGame in SgUctSearch -------------------------------------------------. \n";
+
     state.m_isTreeOutOfMem = false;
     state.GameStart();
+
+    // SgDebug() << "After state game start. \n";
+
     SgUctGameInfo& info = state.m_gameInfo;
     info.Clear(m_numberPlayouts);
     bool isTerminal;
+
+    // vector<SgMove>& debug_sequence = state.m_gameInfo.m_inTreeSequence;
+
+    // SgDebug() << "m_inTreeSequence: \n";
+    // for (auto iter = debug_sequence.cbegin(); iter != debug_sequence.cend(); iter++)
+    // {
+    //     SgDebug() << *iter << "|";
+    // }
+
+    // SgDebug() << "\n  end of inTreeSequence. \n";
+
     bool abortInTree = ! PlayInTree(state, isTerminal);
+
+    // SgDebug() << "After Play in Tree. The Nodes go through:\n";
+
+    // for (auto iter = state.m_gameInfo.m_nodes.cbegin(); iter != state.m_gameInfo.m_nodes.cend(); iter++){
+    //     SgDebug() << (*iter)->Move() << "|";
+    // }
+
+    // SgDebug() << "\n  end of nodes. \n";
+    
 
     // The playout phase is always unlocked
     if (lock != 0)
@@ -865,6 +899,8 @@ void SgUctSearch::PlayGame(SgUctThreadState& state, GlobalLock* lock)
 
     if (! info.m_nodes.empty() && isTerminal)
     {
+        SgDebug() << "info.m_nodes is not empty, and it is Terminal. \n";
+
         const SgUctNode& terminalNode = *info.m_nodes.back();
         SgUctValue eval = state.Evaluate();
         if (eval > 0.6) 
@@ -876,9 +912,24 @@ void SgUctSearch::PlayGame(SgUctThreadState& state, GlobalLock* lock)
 
     size_t nuMovesInTree = info.m_inTreeSequence.size();
 
+    if (nuMovesInTree > 0){
+        SgDebug() << "Have moves in tree, number of move in tree:" << nuMovesInTree << ". \n";
+
+        for (auto iter = info.m_inTreeSequence.cbegin(); iter != info.m_inTreeSequence.cend(); iter++){
+            SgDebug() << *iter << "|";
+        }
+
+        SgDebug() << "\n  end of inTree Sequence. \n";
+
+    }
+    
+
+    // SgDebug() << "Before fake or real playout. \n";
+
     // Play some "fake" playouts if node is a proven node
     if (! info.m_nodes.empty() && info.m_nodes.back()->IsProven())
     {
+        SgDebug() << "Playing fake playout. \n";
         for (size_t i = 0; i < m_numberPlayouts; ++i)
         {
             info.m_sequence[i] = info.m_inTreeSequence;
@@ -893,6 +944,7 @@ void SgUctSearch::PlayGame(SgUctThreadState& state, GlobalLock* lock)
     }
     else 
     {
+        SgDebug() << "trying to playout, number of playout: " << m_numberPlayouts << ". \n";
         state.StartPlayouts();
         for (size_t i = 0; i < m_numberPlayouts; ++i)
         {
@@ -901,13 +953,20 @@ void SgUctSearch::PlayGame(SgUctThreadState& state, GlobalLock* lock)
             // skipRaveUpdate only used in playout phase
             info.m_skipRaveUpdate[i].assign(nuMovesInTree, false);
             bool abort = abortInTree || state.m_isTreeOutOfMem;
-            if (! abort && ! isTerminal)
+
+            if (! abort && ! isTerminal){
+                SgDebug() << "Not abort, not terminal, trying to call PlayoutGame(). \n";
                 abort = ! PlayoutGame(state, i);
+            }
+            
             SgUctValue eval;
             if (abort)
                 eval = UnknownEval();
             else
                 eval = state.Evaluate();
+
+            SgDebug() << "Playout finished. eval is: " << eval << ". \n";
+
             size_t nuMoves = info.m_sequence[i].size();
             if (nuMoves % 2 != 0)
                 eval = InverseEval(eval);
@@ -927,6 +986,9 @@ void SgUctSearch::PlayGame(SgUctThreadState& state, GlobalLock* lock)
     if (m_rave)
         UpdateRaveValues(state);
     UpdateStatistics(info);
+
+    SgDebug() << "End of  ---------- PlayGame in SgUctSearch. ------------------------ \n";
+    
 }
 
 /** Backs up proven information. Last node of nodes is the newly
@@ -985,6 +1047,8 @@ bool SgUctSearch::PlayInTree(SgUctThreadState& state, bool& isTerminal)
     }
     while (true)
     {
+        // SgDebug() << "In the while loop of Play in tree. \n";
+
         if (m_biasTermDepth > 0 && sequence.size() == m_biasTermDepth)
             useBiasTerm = false;
         if (sequence.size() == m_maxGameLength)
@@ -993,9 +1057,15 @@ bool SgUctSearch::PlayInTree(SgUctThreadState& state, bool& isTerminal)
             break;
         if (! current->HasChildren())
         {
+            // SgDebug() << "not have Child. \n";
+
             state.m_moves.clear();
             SgUctProvenType provenType = SG_NOT_PROVEN;
+
+            // SgDebug() << "Before generaing all moves. \n";
             state.GenerateAllMoves(0, state.m_moves, provenType);
+            // SgDebug() << "After generating all moves. \n";
+
             if (current == root)
                 ApplyRootFilter(state.m_moves);
             if (provenType != SG_NOT_PROVEN)
@@ -1011,6 +1081,7 @@ bool SgUctSearch::PlayInTree(SgUctThreadState& state, bool& isTerminal)
             }
             if (current->MoveCount() >= m_expandThreshold)
             {
+                SgDebug() << "Planning to exanpd Node, threshold: " << m_expandThreshold << " current: " << current->Move() << ". \n";
                 ExpandNode(state, *current);
                 if (state.m_isTreeOutOfMem)
                     return true;
@@ -1025,9 +1096,14 @@ bool SgUctSearch::PlayInTree(SgUctThreadState& state, bool& isTerminal)
             m_statistics.m_knowledge++;
             state.m_moves.clear();
             SgUctProvenType provenType = SG_NOT_PROVEN;
+
+            // SgDebug() << "Before generating all Moves. \n";
             bool truncate = state.GenerateAllMoves(current->KnowledgeCount(), 
                                                    state.m_moves,
                                                    provenType);
+
+            // SgDebug() << "After generating all moves. \n";
+
             if (current == root)
                 ApplyRootFilter(state.m_moves);
             CreateChildren(state, *current, truncate);
@@ -1053,8 +1129,10 @@ bool SgUctSearch::PlayInTree(SgUctThreadState& state, bool& isTerminal)
         SgMove move = current->Move();
         state.Execute(move);
         sequence.push_back(move);
-        if (breakAfterSelect)
+        if (breakAfterSelect){
+            SgDebug() << "Going to stop play in tree. \n";
             break;
+        }
     }
     return true;
 }
@@ -1065,11 +1143,19 @@ bool SgUctSearch::PlayInTree(SgUctThreadState& state, bool& isTerminal)
     @return @c false if game was aborted */
 bool SgUctSearch::PlayoutGame(SgUctThreadState& state, std::size_t playout)
 {
+    SgDebug() << "In SgUctSearch:: playout game. \n";
+
     SgUctGameInfo& info = state.m_gameInfo;
     vector<SgMove>& sequence = info.m_sequence[playout];
     vector<bool>& skipRaveUpdate = info.m_skipRaveUpdate[playout];
+
+    int moveNumber = 0;
+
     while (true)
     {
+        // SgDebug() << "In the while loop of playout game. \n";
+        moveNumber ++;
+
         if (sequence.size() == m_maxGameLength)
             return false;
         bool skipRave = false;
@@ -1080,6 +1166,18 @@ bool SgUctSearch::PlayoutGame(SgUctThreadState& state, std::size_t playout)
         sequence.push_back(move);
         skipRaveUpdate.push_back(skipRave);
     }
+
+
+    SgDebug() << "sequence in PlayoutGame: \n";
+    for (auto iter = sequence.cbegin(); iter != sequence.cend(); iter++)
+    {
+        SgDebug() << *iter << "|";
+    }
+
+    SgDebug() << "\n  end of PlayoutGame. \n";
+
+    SgDebug() << "End of the playout game. move number generated: " << moveNumber << ". \n";
+
     return true;
 }
 
@@ -1174,7 +1272,10 @@ void SgUctSearch::SearchLoop(SgUctThreadState& state, GlobalLock* lock)
     state.m_isTreeOutOfMem = false;
     while (! state.m_isTreeOutOfMem)
     {
+        SgDebug() << "In Search loop, node number of m_tree: " << m_tree.NuNodes() << ". \n";
         PlayGame(state, lock);
+        SgDebug() << "In Search loop, after play game, node number of m_tree: " << m_tree.NuNodes() << ". \n";
+        
         OnSearchIteration(m_numberGames + 1, state.m_threadId,
                           state.m_gameInfo);
         if (m_logGames)
@@ -1210,6 +1311,8 @@ void SgUctSearch::OnThreadEndSearch(SgUctThreadState& state)
 SgPoint SgUctSearch::SearchOnePly(SgUctValue maxGames, double maxTime,
                                   SgUctValue& value)
 {
+    SgDebug() << "Search One Ply ##############################.\n";
+
     if (m_threads.size() == 0)
         CreateThreads();
     OnStartSearch();
