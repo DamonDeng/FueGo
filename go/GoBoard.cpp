@@ -39,11 +39,24 @@ GoBoard::GoBoard(int size, const GoSetup& setup, const GoRules& rules)
     : m_snapshot(new Snapshot()),
       m_const(size),
       m_blockList(new SgArrayList<Block,GO_MAX_NUM_MOVES>()),
-      m_moves(new SgArrayList<StackEntry,GO_MAX_NUM_MOVES>())
+      m_moves(new SgArrayList<StackEntry,GO_MAX_NUM_MOVES>())//,
+    //   m_historyData((GO_MAX_NUM_MOVES+m_historyLength+1)*2*19*19)
 
 {
+    // SgDebug() << "# Constructed GoBoard, value of m_historyData:" << m_historyData[100] << ". \n";
     GoInitCheck();
     Init(size, rules, setup);
+}
+
+GoBoard::GoBoard(const GoBoard & c)
+    : m_snapshot(new Snapshot()),
+      m_const(c.m_size),
+      m_blockList(new SgArrayList<Block,GO_MAX_NUM_MOVES>()),
+      m_moves(new SgArrayList<StackEntry,GO_MAX_NUM_MOVES>())
+{
+    SgDebug() << "Trying to copy GoBoard. \n";
+    // GoInitCheck();
+    // Init(c);
 }
 
 GoBoard::~GoBoard()
@@ -494,8 +507,13 @@ void GoBoard::Init(int size, const GoRules& rules, const GoSetup& setup)
         }
     }
     m_snapshot->m_moveNumber = -1;
+
+    // PrepareHistoryData(SG_BLACK);
+
     CheckConsistency();
 }
+
+
 
 void GoBoard::InitBlock(GoBoard::Block& block, SgBlackWhite c, SgPoint anchor)
 {
@@ -673,6 +691,10 @@ void GoBoard::KillBlock(const Block* block)
         AddLibToAdjBlocks(stn, opp);
         m_state.m_hash.XorStone(stn, c);
         RemoveStone(stn);
+        
+        //added by Damon, to remove the value in m_historyData
+        // HistoryRemoveStone(stn, c);
+
         m_capturedStones.PushBack(stn);
         m_state.m_block[stn] = 0;
     }
@@ -765,6 +787,12 @@ void GoBoard::Play(SgPoint p, SgBlackWhite player)
     m_capturedStones.Clear();
     m_moveInfo.reset();
     SgBlackWhite opp = SgOppBW(player);
+
+    //copy the historydata from last move to current move
+    //make sure that his function is called after m_moves->Resize()
+    // PrepareHistoryData(opp);
+
+
     if (IsPass(p))
     {
         m_state.m_toPlay = opp;
@@ -778,6 +806,10 @@ void GoBoard::Play(SgPoint p, SgBlackWhite player)
     m_state.m_isFirst[p] = false;
     m_state.m_hash.XorStone(p, player);
     AddStone(p, player);
+    
+    //Added by Damon for history data adding.
+    // HistoryAddStone(p, player);
+
     ++m_state.m_numStones[player];
     RemoveLibAndKill(p, opp, entry);
     if (! entry.m_killed.IsEmpty())
@@ -902,6 +934,126 @@ void GoBoard::RestoreSnapshot()
             *m_state.m_block[p] = m_snapshot->m_blockArray[p];
     }
     CheckConsistency();
+}
+
+void GoBoard::GetHistoryData(std::vector<float>& historyData, size_t dataSize){
+
+    int baseNumber = (MoveNumber())*2;
+
+    // SgDebug() << "Trying to copy data from historyData to output historyData vector. \n";
+    // SgDebug() << "BaseNumber: " << baseNumber << ". \n";
+
+    for (int i=0; i<dataSize; i++){
+        historyData[i] = m_historyData[baseNumber*361 + i];
+
+        // SgDebug() << historyData[i] << " ";
+
+        // if (i%19 == 18){
+        //     SgDebug() << ". \n";
+        // }
+        
+        // if (i%361 == 360){
+        //     SgDebug() << "\n";
+        // }
+    }
+    
+}
+
+
+// to prepare history data
+// if move number is 0, the game is not yet started, it is prepare for black
+
+// When the board is in playing, say black is playing
+// After move size was increased by 1, it start to prepare the history for the next move, which is white.
+
+void GoBoard::PrepareHistoryData(SgBlackWhite forColor){
+    
+    int baseNumber = (MoveNumber())*2;
+    int tagNumber = baseNumber + m_historyLength*2;
+    int headNumber = tagNumber -1;
+
+    // SgDebug() << "BaseNumber is:" << baseNumber << ".\n";
+
+    for (int row = 0; row < 19 ; row++){
+        for (int col = 0; col < 19; col++){
+            m_historyData[headNumber*361+row*19+col] = m_historyData[(headNumber-2) *361 + row *19 + col];
+            m_historyData[(headNumber-1)*361 + row*19 + col] = m_historyData[(headNumber-3) *361 + row*19+ col];
+        }
+    }
+
+    if (forColor == SG_BLACK){
+        for (int row = 0; row < 19 ; row++){
+            for (int col = 0; col < 19; col++){
+                m_historyData[tagNumber*361 +row*19 + col] = 1;
+            }
+        }
+    } else if (forColor == SG_WHITE){
+        for (int row = 0; row < 19 ; row++){
+            for (int col = 0; col < 19; col++){
+                m_historyData[tagNumber*361 + row*19 + col] = 0;
+            }
+        }
+    }
+
+    // SgDebug() << "After history data was prepared.\n";
+
+    // for (int f=0; f<(m_historyLength*2+1); f++){
+    //     for (int row = 0; row < 19 ; row++){
+    //         for (int col = 0; col < 19; col++){
+    //             SgDebug() << m_historyData[baseNumber+f][row][col] << " ";
+    //         }
+    //     SgDebug() << "\n";
+    //     }
+    // SgDebug() << "\n \n";
+    // }
+    
+}
+
+void GoBoard::HistoryAddStone(SgPoint p, SgBlackWhite c)
+{
+    
+
+    int baseNumber = (MoveNumber())*2;
+    int tagNumber = baseNumber + m_historyLength*2;
+    int headNumber = tagNumber -1;
+
+    SgGrid row = SgPointUtil::Row(p);
+    SgGrid col = SgPointUtil::Col(p);
+
+    // SgDebug() << "# Adding history stone, base number: " << baseNumber << "  tagNumber:  " << tagNumber << " . \n";
+    // SgDebug() << "# Adding history stone, head number: " << headNumber << " row:" << row << " col:"<< col <<". \n";
+
+    if (c == SG_BLACK){
+        // SgDebug() << "#it is black. \n";
+        // SgDebug() << "# The location to add stone: " << (headNumber*361 + (row-1)*19 +(col-1)) << ". \n";
+   
+        m_historyData[headNumber*361 + (row-1)*19 +(col-1)] = 1;
+    }else if(c == SG_WHITE){
+        // SgDebug() << "# it is white. \n";
+        // SgDebug() << "# The location to add stone: " << ((headNumber-1)*361 + (row-1)*19 +(col-1)) << ". \n";
+        m_historyData[(headNumber-1)*361 + (row-1)*19 + (col-1)] = 1;
+    }
+
+}
+
+
+
+void GoBoard::HistoryRemoveStone(SgPoint p, SgBlackWhite c)
+{
+    int baseNumber = (MoveNumber())*2;
+    int tagNumber = baseNumber + m_historyLength*2;
+    int headNumber = tagNumber -1;
+
+    SgGrid row = SgPointUtil::Row(p);
+    SgGrid col = SgPointUtil::Col(p);
+    
+    if (c == SG_BLACK){
+        // SgDebug() << "#it is black. \n";
+        m_historyData[headNumber*361 + (row-1)*19 +(col-1)] = 0;
+    }else if(c == SG_WHITE){
+        // SgDebug() << "# it is white. \n";
+        m_historyData[(headNumber-1)*361 + (row-1)*19 + (col-1)] = 0;
+    }
 }
 
 //----------------------------------------------------------------------------

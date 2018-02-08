@@ -60,6 +60,8 @@ $(BOOST_CPPFLAGS) \
 -I@top_srcdir@/features \
 -I@top_srcdir@/go \
 -I@top_srcdir@/gtpengine \
--I@top_srcdir@/smartgame
+-I@top_srcdir@/smartgame \
+-I@top_srcdir@/mxnet \
+-I@top_srcdir@/include
 
 DISTCLEANFILES = *~

@@ -5,25 +5,23 @@ libfuego_smartgame_a-SgFastLog.o: SgFastLog.cpp SgSystem.h ../config.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/type_traits \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cstddef \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/stddef.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/__stddef_max_align_t.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__undef_min_max \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cmath \
   /usr/include/math.h /usr/include/sys/cdefs.h \
   /usr/include/sys/_symbol_aliasing.h \
   /usr/include/sys/_posix_availability.h /usr/include/Availability.h \
   /usr/include/AvailabilityInternal.h \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/static_assert.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/user.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/select_compiler_config.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/compiler/clang.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/select_stdlib_config.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/no_tr1/utility.hpp \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/utility \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__tuple \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/stdlib/libcpp.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/select_platform_config.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/platform/macos.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/posix_features.hpp \
+  /usr/local/include/boost/static_assert.hpp \
+  /usr/local/include/boost/config.hpp \
+  /usr/local/include/boost/config/user.hpp \
+  /usr/local/include/boost/config/detail/select_compiler_config.hpp \
+  /usr/local/include/boost/config/compiler/clang.hpp \
+  /usr/local/include/boost/config/detail/select_stdlib_config.hpp \
+  /usr/local/include/boost/config/stdlib/libcpp.hpp \
+  /usr/local/include/boost/config/detail/select_platform_config.hpp \
+  /usr/local/include/boost/config/platform/macos.hpp \
+  /usr/local/include/boost/config/detail/posix_features.hpp \
   /usr/include/unistd.h /usr/include/_types.h /usr/include/sys/_types.h \
   /usr/include/machine/_types.h /usr/include/i386/_types.h \
   /usr/include/sys/_pthread/_pthread_types.h /usr/include/sys/unistd.h \
@@ -45,8 +43,9 @@ libfuego_smartgame_a-SgFastLog.o: SgFastLog.cpp SgSystem.h ../config.h \
   /usr/include/sys/_types/_fd_copy.h /usr/include/sys/_select.h \
   /usr/include/sys/_types/_dev_t.h /usr/include/sys/_types/_mode_t.h \
   /usr/include/sys/_types/_uuid_t.h /usr/include/gethostuuid.h \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/suffix.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/detail/workaround.hpp
+  /usr/local/include/boost/config/detail/suffix.hpp \
+  /usr/local/include/boost/detail/workaround.hpp \
+  /usr/local/include/boost/config/workaround.hpp
 
 SgSystem.h:
 
@@ -64,6 +63,8 @@ SgFastLog.h:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/stddef.h:
 
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/__stddef_max_align_t.h:
+
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__undef_min_max:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cmath:
@@ -80,31 +81,25 @@ SgFastLog.h:
 
 /usr/include/AvailabilityInternal.h:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/static_assert.hpp:
+/usr/local/include/boost/static_assert.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config.hpp:
+/usr/local/include/boost/config.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/user.hpp:
+/usr/local/include/boost/config/user.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/select_compiler_config.hpp:
+/usr/local/include/boost/config/detail/select_compiler_config.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/compiler/clang.hpp:
+/usr/local/include/boost/config/compiler/clang.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/select_stdlib_config.hpp:
+/usr/local/include/boost/config/detail/select_stdlib_config.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/no_tr1/utility.hpp:
+/usr/local/include/boost/config/stdlib/libcpp.hpp:
 
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/utility:
+/usr/local/include/boost/config/detail/select_platform_config.hpp:
 
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__tuple:
+/usr/local/include/boost/config/platform/macos.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/stdlib/libcpp.hpp:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/select_platform_config.hpp:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/platform/macos.hpp:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/posix_features.hpp:
+/usr/local/include/boost/config/detail/posix_features.hpp:
 
 /usr/include/unistd.h:
 
@@ -182,6 +177,8 @@ SgFastLog.h:
 
 /usr/include/gethostuuid.h:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/suffix.hpp:
+/usr/local/include/boost/config/detail/suffix.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/detail/workaround.hpp:
+/usr/local/include/boost/detail/workaround.hpp:
+
+/usr/local/include/boost/config/workaround.hpp:

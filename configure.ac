@@ -3,6 +3,7 @@ dnl Process this file with autoconf to produce a configure script.
 AC_INIT([fuego], [1.1.SVN])
 AC_PREREQ([2.59])
 AC_CONFIG_SRCDIR([go/GoBoard.cpp])
+CXXFLAGS="$CXXFLAGS -std=c++0x"
 AC_CONFIG_HEADERS(config.h)
 AM_INIT_AUTOMAKE
 AM_MAINTAINER_MODE
@@ -91,4 +92,4 @@ AC_CHECK_HEADERS([sys/sysctl.h])
 AX_CXXFLAGS_WARN_ALL
 AX_CXXFLAGS_GCC_OPTION(-Wextra)
 
-AC_OUTPUT([Makefile book/Makefile regression/Makefile misctests/Makefile fuegomain/Makefile fuegotest/Makefile go/Makefile gouct/Makefile gtpengine/Makefile features/Makefile simpleplayers/Makefile smartgame/Makefile unittestmain/Makefile])
+AC_OUTPUT([Makefile book/Makefile regression/Makefile misctests/Makefile fuegomain/Makefile fuegotest/Makefile go/Makefile gouct/Makefile gtpengine/Makefile features/Makefile simpleplayers/Makefile smartgame/Makefile unittestmain/Makefile mxnet/Makefile])

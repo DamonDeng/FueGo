@@ -30,6 +30,7 @@
 #include "SgPointArray.h"
 #include "SgPointIterator.h"
 #include "SgPointSet.h"
+#include "SgDebug.h"
 
 //----------------------------------------------------------------------------
 
@@ -124,9 +125,11 @@ public:
         Keeps old GoRules. */
     void Init(int size, const GoSetup& setup = GoSetup());
 
+
     /** Re-initializes the board with new size and rules. */
     void Init(int size, const GoRules& rules,
               const GoSetup& setup = GoSetup());
+
 
     /** Non-const access to current game rules.
         The game rules are attached to a GoBoard for convenient access
@@ -505,6 +508,25 @@ public:
         RestoreSnapshot() can used multiple times for the same snapshot.
         @see TakeSnapshot() */
     void RestoreSnapshot();
+
+    static const int m_historyLength = 2;
+
+    static const int HISTORY_SIZE = (GO_MAX_NUM_MOVES+m_historyLength+1)* 2 * 19 * 19;
+
+    
+
+    std::vector<float> m_historyData;
+
+    void GetHistoryData(std::vector<float>& historyData, size_t dataSize);
+
+    void PrepareHistoryData(SgBlackWhite forColor);
+
+    void HistoryAddStone(SgPoint p, SgBlackWhite c);
+
+    void HistoryRemoveStone(SgPoint p, SgBlackWhite c);
+
+    
+
 
 private:
     /** Data related to a block of stones on the board. */

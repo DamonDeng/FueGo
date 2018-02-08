@@ -6,6 +6,7 @@ regression \
 misctests \
 gtpengine \
 smartgame \
+mxnet \
 go \
 gouct \
 features \
@@ -13,6 +14,7 @@ simpleplayers \
 fuegomain \
 fuegotest \
 unittestmain
+
 
 # TODO: This shouldn't include the non-portable makefile doc/Makefile
 # Maybe use ax_prog_doxygen.m4 from the autoconf archive?

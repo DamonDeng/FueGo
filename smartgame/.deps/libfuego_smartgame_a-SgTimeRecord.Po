@@ -19,22 +19,19 @@ libfuego_smartgame_a-SgTimeRecord.o: SgTimeRecord.cpp SgSystem.h \
   /usr/include/sys/_types/_timespec.h /usr/include/_wctype.h \
   /usr/include/sys/_types/_wint_t.h /usr/include/_types/_wctype_t.h \
   /usr/include/ctype.h /usr/include/runetype.h SgBWArray.h \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/static_assert.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/user.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/select_compiler_config.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/compiler/clang.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/select_stdlib_config.hpp \
+  /usr/local/include/boost/static_assert.hpp \
+  /usr/local/include/boost/config.hpp \
+  /usr/local/include/boost/config/user.hpp \
+  /usr/local/include/boost/config/detail/select_compiler_config.hpp \
+  /usr/local/include/boost/config/compiler/clang.hpp \
+  /usr/local/include/boost/config/detail/select_stdlib_config.hpp \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cstddef \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/stddef.h \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/no_tr1/utility.hpp \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/utility \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__tuple \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/type_traits \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/stdlib/libcpp.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/select_platform_config.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/platform/macos.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/posix_features.hpp \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/__stddef_max_align_t.h \
+  /usr/local/include/boost/config/stdlib/libcpp.hpp \
+  /usr/local/include/boost/config/detail/select_platform_config.hpp \
+  /usr/local/include/boost/config/platform/macos.hpp \
+  /usr/local/include/boost/config/detail/posix_features.hpp \
   /usr/include/unistd.h /usr/include/sys/unistd.h \
   /usr/include/sys/_types/_posix_vdisable.h \
   /usr/include/sys/_types/_seek_set.h /usr/include/_types/_uint64_t.h \
@@ -51,9 +48,9 @@ libfuego_smartgame_a-SgTimeRecord.o: SgTimeRecord.cpp SgSystem.h \
   /usr/include/sys/_types/_fd_copy.h /usr/include/sys/_select.h \
   /usr/include/sys/_types/_dev_t.h /usr/include/sys/_types/_mode_t.h \
   /usr/include/sys/_types/_uuid_t.h /usr/include/gethostuuid.h \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/suffix.hpp \
-  /Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/detail/workaround.hpp \
-  SgBlackWhite.h \
+  /usr/local/include/boost/config/detail/suffix.hpp \
+  /usr/local/include/boost/detail/workaround.hpp \
+  /usr/local/include/boost/config/workaround.hpp SgBlackWhite.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/iomanip \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/istream \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/ostream \
@@ -61,8 +58,7 @@ libfuego_smartgame_a-SgTimeRecord.o: SgTimeRecord.cpp SgSystem.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__locale \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/string \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cstring \
-  /usr/include/string.h /usr/include/sys/_types/_rsize_t.h \
-  /usr/include/sys/_types/_errno_t.h /usr/include/strings.h \
+  /usr/include/string.h /usr/include/strings.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cstdio \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cwchar \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cwctype \
@@ -70,6 +66,9 @@ libfuego_smartgame_a-SgTimeRecord.o: SgTimeRecord.cpp SgSystem.h \
   /usr/include/wctype.h /usr/include/_types/_wctrans_t.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/algorithm \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/initializer_list \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/type_traits \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/utility \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__tuple \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/memory \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/typeinfo \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/exception \
@@ -87,9 +86,9 @@ libfuego_smartgame_a-SgTimeRecord.o: SgTimeRecord.cpp SgSystem.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__undef_min_max \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/iterator \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__functional_base \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__functional_base_03 \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__debug \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/tuple \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/atomic \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/stdexcept \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/mutex \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__mutex_base \
@@ -117,7 +116,6 @@ libfuego_smartgame_a-SgTimeRecord.o: SgTimeRecord.cpp SgSystem.h \
   /usr/include/sys/_pthread/_pthread_t.h /usr/include/pthread/qos.h \
   /usr/include/sys/qos.h /usr/include/sys/_types/_mach_port_t.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/functional \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__functional_03 \
   /usr/include/locale.h /usr/include/_locale.h /usr/include/xlocale.h \
   /usr/include/_xlocale.h /usr/include/xlocale/_ctype.h \
   /usr/include/xlocale/__wctype.h /usr/include/xlocale/_stdio.h \
@@ -143,7 +141,8 @@ libfuego_smartgame_a-SgTimeRecord.o: SgTimeRecord.cpp SgSystem.h \
   /usr/include/sys/_types/_in_addr_t.h \
   /usr/include/sys/_types/_in_port_t.h /usr/include/sys/_types/_ino_t.h \
   /usr/include/sys/_types/_ino64_t.h /usr/include/sys/_types/_key_t.h \
-  /usr/include/sys/_types/_nlink_t.h \
+  /usr/include/sys/_types/_nlink_t.h /usr/include/sys/_types/_rsize_t.h \
+  /usr/include/sys/_types/_errno_t.h \
   /usr/include/sys/_types/_fsblkcnt_t.h \
   /usr/include/sys/_types/_fsfilcnt_t.h /usr/include/_types/_nl_item.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/bitset \
@@ -233,37 +232,31 @@ SgTimeRecord.h:
 
 SgBWArray.h:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/static_assert.hpp:
+/usr/local/include/boost/static_assert.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config.hpp:
+/usr/local/include/boost/config.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/user.hpp:
+/usr/local/include/boost/config/user.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/select_compiler_config.hpp:
+/usr/local/include/boost/config/detail/select_compiler_config.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/compiler/clang.hpp:
+/usr/local/include/boost/config/compiler/clang.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/select_stdlib_config.hpp:
+/usr/local/include/boost/config/detail/select_stdlib_config.hpp:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cstddef:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/stddef.h:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/no_tr1/utility.hpp:
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/__stddef_max_align_t.h:
 
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/utility:
+/usr/local/include/boost/config/stdlib/libcpp.hpp:
 
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__tuple:
+/usr/local/include/boost/config/detail/select_platform_config.hpp:
 
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/type_traits:
+/usr/local/include/boost/config/platform/macos.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/stdlib/libcpp.hpp:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/select_platform_config.hpp:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/platform/macos.hpp:
-
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/posix_features.hpp:
+/usr/local/include/boost/config/detail/posix_features.hpp:
 
 /usr/include/unistd.h:
 
@@ -319,9 +312,11 @@ SgBWArray.h:
 
 /usr/include/gethostuuid.h:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/config/suffix.hpp:
+/usr/local/include/boost/config/detail/suffix.hpp:
 
-/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include/boost/detail/workaround.hpp:
+/usr/local/include/boost/detail/workaround.hpp:
+
+/usr/local/include/boost/config/workaround.hpp:
 
 SgBlackWhite.h:
 
@@ -341,10 +336,6 @@ SgBlackWhite.h:
 
 /usr/include/string.h:
 
-/usr/include/sys/_types/_rsize_t.h:
-
-/usr/include/sys/_types/_errno_t.h:
-
 /usr/include/strings.h:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cstdio:
@@ -362,6 +353,12 @@ SgBlackWhite.h:
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/algorithm:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/initializer_list:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/type_traits:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/utility:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__tuple:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/memory:
 
@@ -407,11 +404,11 @@ SgBlackWhite.h:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__functional_base:
 
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__functional_base_03:
-
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__debug:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/tuple:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/atomic:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/stdexcept:
 
@@ -480,8 +477,6 @@ SgBlackWhite.h:
 /usr/include/sys/_types/_mach_port_t.h:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/functional:
-
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__functional_03:
 
 /usr/include/locale.h:
 
@@ -572,6 +567,10 @@ SgBlackWhite.h:
 /usr/include/sys/_types/_key_t.h:
 
 /usr/include/sys/_types/_nlink_t.h:
+
+/usr/include/sys/_types/_rsize_t.h:
+
+/usr/include/sys/_types/_errno_t.h:
 
 /usr/include/sys/_types/_fsblkcnt_t.h:
 

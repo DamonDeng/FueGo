@@ -53,6 +53,8 @@ struct SgUctMoveInfo
         1. hold return value from one predictor's ProcessPosition.
         2. store final value combined across all predictors. */
     float m_predictorValue;
+
+    float m_prioProbability;
  
     SgUctMoveInfo();
 

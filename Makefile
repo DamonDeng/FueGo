@@ -211,21 +211,21 @@ distuninstallcheck_listfiles = find . -type f -print
 am__distuninstallcheck_listfiles = $(distuninstallcheck_listfiles) \
   | sed 's|^\./|$(prefix)/|' | grep -v '$(infodir)/dir$$'
 distcleancheck_listfiles = find . -type f -print
-ACLOCAL = ${SHELL} /Users/mingxuan/Desktop/workspace/go_game/fuego_svn/missing aclocal-1.15
+ACLOCAL = ${SHELL} /Users/mingxuan/Desktop/workspace/go_game/fuego_dev/missing aclocal-1.15
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 1
-AUTOCONF = ${SHELL} /Users/mingxuan/Desktop/workspace/go_game/fuego_svn/missing autoconf
-AUTOHEADER = ${SHELL} /Users/mingxuan/Desktop/workspace/go_game/fuego_svn/missing autoheader
-AUTOMAKE = ${SHELL} /Users/mingxuan/Desktop/workspace/go_game/fuego_svn/missing automake-1.15
+AUTOCONF = ${SHELL} /Users/mingxuan/Desktop/workspace/go_game/fuego_dev/missing autoconf
+AUTOHEADER = ${SHELL} /Users/mingxuan/Desktop/workspace/go_game/fuego_dev/missing autoheader
+AUTOMAKE = ${SHELL} /Users/mingxuan/Desktop/workspace/go_game/fuego_dev/missing automake-1.15
 AWK = awk
-BOOST_CPPFLAGS = -pthread -I/Users/mingxuan/Desktop/workspace/go_game/lib/boost/include
-BOOST_DATE_TIME_LIB = -lboost_date_time
+BOOST_CPPFLAGS = -pthread -I/usr/local/include
+BOOST_DATE_TIME_LIB = -lboost_date_time-mt
 BOOST_FILESYSTEM_LIB = -lboost_filesystem
-BOOST_LDFLAGS = -L/Users/mingxuan/Desktop/workspace/go_game/lib/boost/lib
-BOOST_PROGRAM_OPTIONS_LIB = -lboost_program_options
+BOOST_LDFLAGS = -L/usr/local/lib
+BOOST_PROGRAM_OPTIONS_LIB = -lboost_program_options-mt
 BOOST_SYSTEM_LIB = -lboost_system
-BOOST_THREAD_LIB = -lboost_thread
-BOOST_UNIT_TEST_FRAMEWORK_LIB = -lboost_unit_test_framework
+BOOST_THREAD_LIB = -lboost_thread-mt
+BOOST_UNIT_TEST_FRAMEWORK_LIB = -lboost_unit_test_framework-mt
 CC = gcc
 CCDEPMODE = depmode=gcc3
 CFLAGS = -g -O2
@@ -233,7 +233,7 @@ CPP = gcc -E
 CPPFLAGS = 
 CXX = g++
 CXXDEPMODE = depmode=gcc3
-CXXFLAGS = -g -O2 -DNDEBUG -Wall -Wextra
+CXXFLAGS =  -std=c++0x -DNDEBUG -Wall -Wextra
 CYGPATH_W = echo
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
@@ -253,7 +253,7 @@ LIBOBJS =
 LIBS = 
 LTLIBOBJS = 
 MAINT = #
-MAKEINFO = ${SHELL} /Users/mingxuan/Desktop/workspace/go_game/fuego_svn/missing makeinfo
+MAKEINFO = ${SHELL} /Users/mingxuan/Desktop/workspace/go_game/fuego_dev/missing makeinfo
 MKDIR_P = ./install-sh -c -d
 OBJEXT = o
 PACKAGE = fuego
@@ -269,10 +269,10 @@ SET_MAKE =
 SHELL = /bin/sh
 STRIP = 
 VERSION = 1.1.SVN
-abs_builddir = /Users/mingxuan/Desktop/workspace/go_game/fuego_svn
-abs_srcdir = /Users/mingxuan/Desktop/workspace/go_game/fuego_svn
-abs_top_builddir = /Users/mingxuan/Desktop/workspace/go_game/fuego_svn
-abs_top_srcdir = /Users/mingxuan/Desktop/workspace/go_game/fuego_svn
+abs_builddir = /Users/mingxuan/Desktop/workspace/go_game/fuego_dev
+abs_srcdir = /Users/mingxuan/Desktop/workspace/go_game/fuego_dev
+abs_top_builddir = /Users/mingxuan/Desktop/workspace/go_game/fuego_dev
+abs_top_srcdir = /Users/mingxuan/Desktop/workspace/go_game/fuego_dev
 ac_ct_CC = gcc
 ac_ct_CXX = g++
 am__include = include
@@ -300,7 +300,7 @@ host_vendor = apple
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /Users/mingxuan/Desktop/workspace/go_game/fuego_svn/install-sh
+install_sh = ${SHELL} /Users/mingxuan/Desktop/workspace/go_game/fuego_dev/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -327,6 +327,7 @@ regression \
 misctests \
 gtpengine \
 smartgame \
+mxnet \
 go \
 gouct \
 features \

@@ -26,6 +26,8 @@
 #include "GoUctSearch.h"
 #include "GoUctUtil.h"
 
+#include "MXNetModel.h"
+
 //----------------------------------------------------------------------------
 
 /** Enable the usage of the safety solver (currently not functional).
@@ -206,6 +208,9 @@ public:
 
     void ClearTerritoryStatistics();
 
+    /** MXNet model for CNN search */
+    // MXNetModel m_MXNetModel;
+
 private:
     const GoUctGlobalSearchAllParam m_param;
 
@@ -254,6 +259,10 @@ private:
     GoUctGlobalSearchState& operator=(const GoUctGlobalSearchState& search);
 
     void ApplyFilter(std::vector<SgUctMoveInfo>& moves);
+
+    /* Prio Probability code added by Damon */
+    void ApplyPrioProbability(std::vector<SgUctMoveInfo>& moves);
+
 
     void ApplyAdditivePredictors(std::vector<SgUctMoveInfo>& moves);
 
@@ -532,6 +541,18 @@ ApplyAdditivePredictors(std::vector<SgUctMoveInfo>& moves)
         }
     }
 }
+
+/* prioProbability applying code added by Damon */
+
+template<class POLICY>
+void GoUctGlobalSearchState<POLICY>::
+ApplyPrioProbability(std::vector<SgUctMoveInfo>& moves)
+{
+    // int moveNumber = Board().MoveNumber();
+
+    // m_MXNetModel.ApplyPrioProbability(moves, Board());
+}
+
 
 template<class POLICY>
 bool GoUctGlobalSearchState<POLICY>::
