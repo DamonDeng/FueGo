@@ -334,6 +334,7 @@ simpleplayers \
 mxnet \
 fuegomain \
 fuegotest \
+selfplay \
 unittestmain
 
 

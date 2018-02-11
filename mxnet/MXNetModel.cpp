@@ -169,6 +169,9 @@ void MXNetModel::ApplyPrioProbability(std::vector<SgUctMoveInfo>& moves, const G
       
     array = executor->outputs[0].Copy(global_ctx);
     NDArray::WaitAll();
+
+
+    delete executor;
     
     // for (int i = 0; i < 362; ++i) {
     //   curValue = array.At(0, i);
