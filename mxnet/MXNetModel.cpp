@@ -115,9 +115,9 @@ NDArray MXNetModel::generateSampleData(){
 }
 
 
-void MXNetModel::ApplyPrioProbability(std::vector<SgUctMoveInfo>& moves, GoBoard& bd)
+void MXNetModel::ApplyPrioProbability(std::vector<SgUctMoveInfo>& moves, const GoBoard& bd)
 {
-    SgDebug() << "Trying to call CNN to generate prio probability. \n";
+    // SgDebug() << "Trying to call CNN to generate prio probability. \n";
 
     int historyLength = 2;
     int arrayLength = historyLength*2 + 1;

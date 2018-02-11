@@ -6,11 +6,11 @@ regression \
 misctests \
 gtpengine \
 smartgame \
-mxnet \
 go \
 gouct \
 features \
 simpleplayers \
+mxnet \
 fuegomain \
 fuegotest \
 unittestmain

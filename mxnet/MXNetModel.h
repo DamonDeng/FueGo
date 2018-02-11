@@ -52,7 +52,7 @@ public:
 
     ~MXNetModel();
 
-    void ApplyPrioProbability(std::vector<SgUctMoveInfo>& moves, GoBoard& bd);
+    void ApplyPrioProbability(std::vector<SgUctMoveInfo>& moves, const GoBoard& bd);
 
 private:
 

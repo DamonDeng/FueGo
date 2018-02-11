@@ -579,17 +579,35 @@ SgUctValue SgUctSearch::GetBound(bool useRave, bool useBiasTerm,
                             const SgUctNode& child) const
 {
     SgUctValue value;
-    if (useRave)
+    if (useRave){
+        // SgDebug() << "# using rave. \n";
         value = GetValueEstimateRave(child);
-    else
+    }
+    else{
         value = GetValueEstimate(false, child);
-    if (m_biasTermConstant == 0.0 || ! useBiasTerm)
+    }
+
+    SgUctValue prioProbability = 0;
+    SgUctValue moveCount = SgUctValue(child.MoveCount());
+
+    prioProbability = child.GetPrioProbability()/(moveCount + 1);
+
+    value = value + prioProbability;
+
+    if (m_biasTermConstant == 0.0 || ! useBiasTerm){
+        // SgDebug() << "# not using bias.  \n";
         return value;
+    }
     else
     {
-        SgUctValue moveCount = SgUctValue(child.MoveCount());
+        
+        
         SgUctValue bound =
             value + m_biasTermConstant * sqrt(logPosCount / (moveCount + 1));
+
+        // SgDebug() << "# Using bias: value:" << value << "  logPosCount:" << logPosCount << "  moveCount:" << moveCount << ". \n";
+        // SgDebug() << "# sqart():" << sqrt(logPosCount / (moveCount + 1)) << " . \n"; 
+
         return bound;
     }
 }
@@ -827,6 +845,7 @@ void SgUctSearch::PrintSearchProgress(double currTime) const
             if (i == 0 || ! IsPartialMove(current->Move()))
                 out << " ";
             out << MoveString(current->Move());
+            out << "(" << ((float)(int)((current->GetPrioProbability()+0.005)*100))/100 << ")";
         }
         else
             out << " *";
@@ -995,7 +1014,16 @@ bool SgUctSearch::PlayInTree(SgUctThreadState& state, bool& isTerminal)
         {
             state.m_moves.clear();
             SgUctProvenType provenType = SG_NOT_PROVEN;
+
+            if (current == root || current->MoveCount() >= m_expandThreshold ){
+                state.m_needExpand = true;
+            }else{
+                state.m_needExpand = false;
+            }
+
+
             state.GenerateAllMoves(0, state.m_moves, provenType);
+
             if (current == root)
                 ApplyRootFilter(state.m_moves);
             if (provenType != SG_NOT_PROVEN)

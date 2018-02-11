@@ -517,7 +517,7 @@ public:
 
     std::vector<float> m_historyData;
 
-    void GetHistoryData(std::vector<float>& historyData, size_t dataSize);
+    void GetHistoryData(std::vector<float>& historyData, size_t dataSize) const;
 
     void PrepareHistoryData(SgBlackWhite forColor);
 

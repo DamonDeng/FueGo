@@ -75,7 +75,8 @@ inline SgUctMoveInfo::SgUctMoveInfo()
       m_count(0),
       m_raveValue(0),
       m_raveCount(0),
-      m_predictorValue(0.0)
+      m_predictorValue(0.0),
+      m_prioProbability(0.0)
 { }
 
 inline SgUctMoveInfo::SgUctMoveInfo(SgMove move)
@@ -84,7 +85,8 @@ inline SgUctMoveInfo::SgUctMoveInfo(SgMove move)
       m_count(0),
       m_raveValue(0),
       m_raveCount(0),
-      m_predictorValue(0.0)
+      m_predictorValue(0.0),
+      m_prioProbability(0.0)
 { }
 
 inline SgUctMoveInfo::SgUctMoveInfo(SgMove move, SgUctValue value, SgUctValue count,
@@ -94,7 +96,8 @@ inline SgUctMoveInfo::SgUctMoveInfo(SgMove move, SgUctValue value, SgUctValue co
       m_count(count),
       m_raveValue(raveValue),
       m_raveCount(raveCount),
-      m_predictorValue(0.0)
+      m_predictorValue(0.0),
+      m_prioProbability(0.0)
 { }
 
 inline void SgUctMoveInfo::Add(const SgUctValue mean, const SgUctValue count)
@@ -279,6 +282,11 @@ public:
 
     void SetProvenType(SgUctProvenType type);
 
+    SgUctValue GetPrioProbability() const;
+
+    bool m_childPrioProbabilityComputed = false;
+
+
 private:
     SgUctStatisticsVolatile m_statistics;
 
@@ -303,6 +311,9 @@ private:
     volatile SgUctProvenType m_provenType;
 
     volatile int m_virtualLossCount;
+
+    /* new prio probability added for neural network */
+    volatile SgUctValue m_prioProbability;
 };
 
 //----------------------------------------------------------------------------
@@ -319,7 +330,8 @@ inline SgUctNode::SgUctNode(const SgUctMoveInfo& info)
       m_posCount(0),
       m_knowledgeCount(0),
       m_provenType(SG_NOT_PROVEN),
-      m_virtualLossCount(0)
+      m_virtualLossCount(0),
+      m_prioProbability(info.m_prioProbability)
 {
     // m_firstChild is not initialized, only defined if m_nuChildren > 0
 }
@@ -377,6 +389,7 @@ inline void SgUctNode::CopyDataFrom(const SgUctNode& node)
     m_knowledgeCount = node.m_knowledgeCount;
     m_provenType = node.m_provenType;
     m_virtualLossCount = node.m_virtualLossCount;
+    m_prioProbability = node.m_prioProbability;
 }
 
 inline const SgUctNode* SgUctNode::FirstChild() const
@@ -566,6 +579,13 @@ inline SgUctProvenType SgUctNode::ProvenType() const
 inline void SgUctNode::SetProvenType(SgUctProvenType type)
 {
     m_provenType = type;
+}
+
+inline SgUctValue SgUctNode::GetPrioProbability() const
+{
+    
+    return m_prioProbability;
+    
 }
 
 //----------------------------------------------------------------------------

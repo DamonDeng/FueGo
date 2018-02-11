@@ -394,6 +394,10 @@ public:
         Default implementation does nothing. */
     virtual void EndPlayout();
 
+    /** flag indicating whther we need to expand children */
+    bool m_needExpand = false;
+    
+
     // @} // name
 };
 

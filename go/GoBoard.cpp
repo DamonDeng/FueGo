@@ -39,8 +39,8 @@ GoBoard::GoBoard(int size, const GoSetup& setup, const GoRules& rules)
     : m_snapshot(new Snapshot()),
       m_const(size),
       m_blockList(new SgArrayList<Block,GO_MAX_NUM_MOVES>()),
-      m_moves(new SgArrayList<StackEntry,GO_MAX_NUM_MOVES>())//,
-    //   m_historyData((GO_MAX_NUM_MOVES+m_historyLength+1)*2*19*19)
+      m_moves(new SgArrayList<StackEntry,GO_MAX_NUM_MOVES>()),
+      m_historyData((GO_MAX_NUM_MOVES+m_historyLength+1)*2*19*19)
 
 {
     // SgDebug() << "# Constructed GoBoard, value of m_historyData:" << m_historyData[100] << ". \n";
@@ -508,7 +508,7 @@ void GoBoard::Init(int size, const GoRules& rules, const GoSetup& setup)
     }
     m_snapshot->m_moveNumber = -1;
 
-    // PrepareHistoryData(SG_BLACK);
+    PrepareHistoryData(SG_BLACK);
 
     CheckConsistency();
 }
@@ -693,7 +693,7 @@ void GoBoard::KillBlock(const Block* block)
         RemoveStone(stn);
         
         //added by Damon, to remove the value in m_historyData
-        // HistoryRemoveStone(stn, c);
+        HistoryRemoveStone(stn, c);
 
         m_capturedStones.PushBack(stn);
         m_state.m_block[stn] = 0;
@@ -790,7 +790,7 @@ void GoBoard::Play(SgPoint p, SgBlackWhite player)
 
     //copy the historydata from last move to current move
     //make sure that his function is called after m_moves->Resize()
-    // PrepareHistoryData(opp);
+    PrepareHistoryData(opp);
 
 
     if (IsPass(p))
@@ -808,7 +808,7 @@ void GoBoard::Play(SgPoint p, SgBlackWhite player)
     AddStone(p, player);
     
     //Added by Damon for history data adding.
-    // HistoryAddStone(p, player);
+    HistoryAddStone(p, player);
 
     ++m_state.m_numStones[player];
     RemoveLibAndKill(p, opp, entry);
@@ -936,14 +936,14 @@ void GoBoard::RestoreSnapshot()
     CheckConsistency();
 }
 
-void GoBoard::GetHistoryData(std::vector<float>& historyData, size_t dataSize){
+void GoBoard::GetHistoryData(std::vector<float>& historyData, size_t dataSize) const{
 
     int baseNumber = (MoveNumber())*2;
 
     // SgDebug() << "Trying to copy data from historyData to output historyData vector. \n";
     // SgDebug() << "BaseNumber: " << baseNumber << ". \n";
 
-    for (int i=0; i<dataSize; i++){
+    for (size_t i=0; i<dataSize; i++){
         historyData[i] = m_historyData[baseNumber*361 + i];
 
         // SgDebug() << historyData[i] << " ";

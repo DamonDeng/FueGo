@@ -209,7 +209,7 @@ public:
     void ClearTerritoryStatistics();
 
     /** MXNet model for CNN search */
-    // MXNetModel m_MXNetModel;
+    MXNetModel m_MXNetModel;
 
 private:
     const GoUctGlobalSearchAllParam m_param;
@@ -288,7 +288,8 @@ GoUctGlobalSearchState<POLICY>::GoUctGlobalSearchState(unsigned int threadId,
       m_additivePredictor(0),
       m_featureKnowledge(0),
       m_policy(policy),
-      m_treeFilter(Board(), m_param.m_moveFilterParam)
+      m_treeFilter(Board(), m_param.m_moveFilterParam),
+      m_MXNetModel(threadId)
 {
     ClearTerritoryStatistics();
 }
@@ -550,7 +551,7 @@ ApplyPrioProbability(std::vector<SgUctMoveInfo>& moves)
 {
     // int moveNumber = Board().MoveNumber();
 
-    // m_MXNetModel.ApplyPrioProbability(moves, Board());
+    m_MXNetModel.ApplyPrioProbability(moves, Board());
 }
 
 
@@ -584,6 +585,11 @@ GenerateAllMoves(SgUctValue count,
                 m_featureKnowledge->SetPriorKnowledge(moves);
         }
         ApplyAdditivePredictors(moves);
+
+        if (m_needExpand){
+            ApplyPrioProbability(moves);
+        }
+
     }
     return false;
 }
@@ -872,6 +878,10 @@ GoUctGlobalSearch<POLICY,FACTORY>::GoUctGlobalSearch(GoBoard& bd,
         SgDebug() 
             << "GoUctGlobalSearch: setting default number of threads to "
             << nuThreads << '\n';
+
+        // setting the number of threads to 1, for debuging, by Damon.
+        nuThreads = 1;
+        
         SetNumberThreads(nuThreads);
     }
 }

@@ -575,6 +575,10 @@ GoUctPlayer<SEARCH, THREAD>::GoUctPlayer(const GoBoard& bd)
 {
     SetDefaultParameters(Board().Size());
     m_search.SetMpiSynchronizer(m_mpiSynchronizer);
+
+    //Setting the play out number, my Damon.
+    m_search.SetNumberPlayouts(30);
+
     m_treeFilterParam.SetCheckSafety(false);
 }
 
