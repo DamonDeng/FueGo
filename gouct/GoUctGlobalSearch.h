@@ -880,7 +880,7 @@ GoUctGlobalSearch<POLICY,FACTORY>::GoUctGlobalSearch(GoBoard& bd,
             << nuThreads << '\n';
 
         // setting the number of threads to 1, for debuging, by Damon.
-        nuThreads = 1;
+        // nuThreads = 1;
         
         SetNumberThreads(nuThreads);
     }
@@ -940,7 +940,13 @@ void GoUctGlobalSearch<POLICY,FACTORY>::SetDefaultParameters(int boardSize)
                        std::numeric_limits<SgUctValue>::epsilon());
     SetVirtualLoss(true);
     SetBiasTermConstant(0.0);
+
+    //Setting the expand threshold to a large number by Damon
+    
+    // SetExpandThreshold(12);
+
     SetExpandThreshold(3);
+
     if (boardSize < 15)
     {
         // These parameters were mainly tested on 9x9

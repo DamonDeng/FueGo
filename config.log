@@ -30,8 +30,8 @@ Kernel configured for up to 8 processors.
 Processor type: x86_64h (Intel x86-64h Haswell)
 Processors active: 0 1 2 3 4 5 6 7
 Primary memory available: 16.00 gigabytes
-Default processor set: 309 tasks, 1952 threads, 8 processors
-Load average: 2.10, Mach factor: 5.89
+Default processor set: 324 tasks, 2187 threads, 8 processors
+Load average: 2.83, Mach factor: 5.15
 /bin/machine           = unknown
 /usr/bin/oslevel       = unknown
 /bin/universe          = unknown
@@ -101,27 +101,27 @@ clang: error: unknown argument: '-qversion'
 clang: error: no input files
 configure:2972: $? = 1
 configure:2992: checking whether the C++ compiler works
-configure:3014: g++  -std=c++0x   conftest.cpp  >&5
+configure:3014: g++  -std=c++0x -O2   conftest.cpp  >&5
 configure:3018: $? = 0
 configure:3066: result: yes
 configure:3069: checking for C++ compiler default output file name
 configure:3071: result: a.out
 configure:3077: checking for suffix of executables
-configure:3084: g++ -o conftest  -std=c++0x   conftest.cpp  >&5
+configure:3084: g++ -o conftest  -std=c++0x -O2   conftest.cpp  >&5
 configure:3088: $? = 0
 configure:3110: result: 
 configure:3132: checking whether we are cross compiling
-configure:3140: g++ -o conftest  -std=c++0x   conftest.cpp  >&5
+configure:3140: g++ -o conftest  -std=c++0x -O2   conftest.cpp  >&5
 configure:3144: $? = 0
 configure:3151: ./conftest
 configure:3155: $? = 0
 configure:3170: result: no
 configure:3175: checking for suffix of object files
-configure:3197: g++ -c  -std=c++0x  conftest.cpp >&5
+configure:3197: g++ -c  -std=c++0x -O2  conftest.cpp >&5
 configure:3201: $? = 0
 configure:3222: result: o
 configure:3226: checking whether we are using the GNU C++ compiler
-configure:3245: g++ -c  -std=c++0x  conftest.cpp >&5
+configure:3245: g++ -c  -std=c++0x -O2  conftest.cpp >&5
 configure:3245: $? = 0
 configure:3254: result: yes
 configure:3263: checking whether g++ accepts -g
@@ -140,7 +140,7 @@ configure:3648: result: x86_64-apple-darwin15.6.0
 configure:3668: checking host system type
 configure:3681: result: x86_64-apple-darwin15.6.0
 configure:3750: checking for boostlib >= 1.50.0
-configure:3833: g++ -c  -std=c++0x  -I/usr/local/include conftest.cpp >&5
+configure:3833: g++ -c  -std=c++0x -O2  -I/usr/local/include conftest.cpp >&5
 configure:3833: $? = 0
 configure:3835: result: yes
 configure:4038: checking for gcc
@@ -190,7 +190,7 @@ configure:4571: result: yes
 configure:4590: checking dependency style of gcc
 configure:4701: result: gcc3
 configure:4749: checking whether the Boost::Thread library is available
-configure:4781: g++ -c -pthread  -std=c++0x  -I/usr/local/include conftest.cpp >&5
+configure:4781: g++ -c -pthread  -std=c++0x -O2  -I/usr/local/include conftest.cpp >&5
 configure:4781: $? = 0
 configure:4796: result: yes
 configure:4825: checking for exit in -lboost_thread-mt
@@ -216,7 +216,7 @@ conftest.c:21:6: note: 'exit' is a builtin with type 'void (int) __attribute__((
 configure:5100: $? = 0
 configure:5110: result: yes
 configure:5261: checking whether the Boost::Date_Time library is available
-configure:5285: g++ -c  -std=c++0x  -pthread -I/usr/local/include conftest.cpp >&5
+configure:5285: g++ -c  -std=c++0x -O2  -pthread -I/usr/local/include conftest.cpp >&5
 configure:5285: $? = 0
 configure:5299: result: yes
 configure:5310: checking for exit in -lboost_date_time-mt
@@ -229,7 +229,7 @@ conftest.c:22:6: note: 'exit' is a builtin with type 'void (int) __attribute__((
 configure:5335: $? = 0
 configure:5345: result: yes
 configure:5494: checking whether the Boost::Filesystem library is available
-configure:5518: g++ -c  -std=c++0x  -pthread -I/usr/local/include conftest.cpp >&5
+configure:5518: g++ -c  -std=c++0x -O2  -pthread -I/usr/local/include conftest.cpp >&5
 configure:5518: $? = 0
 configure:5532: result: yes
 configure:5543: checking for exit in -lboost_filesystem
@@ -242,7 +242,7 @@ conftest.c:23:6: note: 'exit' is a builtin with type 'void (int) __attribute__((
 configure:5568: $? = 0
 configure:5578: result: yes
 configure:5728: checking whether the Boost::Program_Options library is available
-configure:5752: g++ -c  -std=c++0x  -pthread -I/usr/local/include conftest.cpp >&5
+configure:5752: g++ -c  -std=c++0x -O2  -pthread -I/usr/local/include conftest.cpp >&5
 configure:5752: $? = 0
 configure:5766: result: yes
 configure:5777: checking for exit in -lboost_program_options-mt
@@ -255,7 +255,7 @@ conftest.c:24:6: note: 'exit' is a builtin with type 'void (int) __attribute__((
 configure:5802: $? = 0
 configure:5812: result: yes
 configure:5954: checking whether the Boost::Unit_Test_Framework library is available
-configure:5977: g++ -c  -std=c++0x  -pthread -I/usr/local/include conftest.cpp >&5
+configure:5977: g++ -c  -std=c++0x -O2  -pthread -I/usr/local/include conftest.cpp >&5
 configure:5977: $? = 0
 configure:5991: result: yes
 configure:6118: checking for __sync_synchronize
@@ -381,13 +381,13 @@ configure:6597: result: yes
 configure:6597: checking for sys/sysctl.h
 configure:6597: result: yes
 configure:6607: checking CXXFLAGS for maximum warnings
-configure:6633: g++ -c  -std=c++0x -DNDEBUG -pedantic  -Wall  conftest.cpp >&5
+configure:6633: g++ -c  -std=c++0x -O2 -DNDEBUG -pedantic  -Wall  conftest.cpp >&5
 configure:6633: $? = 0
 configure:6647: result: -Wall
 configure:6660: : CXXFLAGS="$CXXFLAGS $ax_cv_cxxflags_warn_all"
 configure:6663: $? = 0
 configure:6670: checking CXXFLAGS for gcc -Wextra
-configure:6697: g++ -c  -std=c++0x -DNDEBUG -Wall -pedantic -Werror  -Wextra  conftest.cpp >&5
+configure:6697: g++ -c  -std=c++0x -O2 -DNDEBUG -Wall -pedantic -Werror  -Wextra  conftest.cpp >&5
 configure:6697: $? = 0
 configure:6711: result: -Wextra
 configure:6724: : CXXFLAGS="$CXXFLAGS $var"
@@ -536,7 +536,7 @@ CPP='gcc -E'
 CPPFLAGS=''
 CXX='g++'
 CXXDEPMODE='depmode=gcc3'
-CXXFLAGS=' -std=c++0x -DNDEBUG -Wall -Wextra'
+CXXFLAGS=' -std=c++0x -O2 -DNDEBUG -Wall -Wextra'
 CYGPATH_W='echo'
 DEFS='-DHAVE_CONFIG_H'
 DEPDIR='.deps'

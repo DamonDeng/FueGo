@@ -68,7 +68,7 @@ void MXNetModel::LoadSymbol() {
 void MXNetModel::LoadParameters() {
     map<string, NDArray> paramters;
     // NDArray::Load("./model/Inception-BN-0126.params", 0, &paramters);
-    NDArray::Load("./model/new_zero_resnet-0003.params", 0, &paramters);
+    NDArray::Load("./model/new_zero_resnet-0005.params", 0, &paramters);
     // NDArray::Load("./model/zero_resnet-0003.params", 0, &paramters);
     
     // NDArray::Load("./model/zero_super_simple_cnn-0010.params", 0, &paramters);
