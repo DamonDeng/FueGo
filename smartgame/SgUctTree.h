@@ -170,6 +170,9 @@ public:
         knowledge initialization of the children is used. */
     SgUctValue PosCount() const;
 
+    /** the one used to record how many times this node with probability was visited */
+    SgUctValue ProbabilityMoveCount() const;
+
     /** Number of times the move leading to this position was chosen.
         This count will be different from PosCount(), if prior knowledge
         initialization is used. */
@@ -218,6 +221,26 @@ public:
     void DecPosCount(SgUctValue count);
 
     void SetPosCount(SgUctValue value);
+
+
+    /** Increment the Probability count.
+        See ProbabilityCount() */
+    void IncProbabilityCount();
+
+    /** Increment the Probability count.
+        See ProbabilityCount() */
+    void IncProbabilityCount(SgUctValue count);
+
+    /** Decrement the Probability count.
+        See ProbabilityCount() */
+    void DecProbabilityCount();
+
+    /** Decrement the Probability count.
+        See ProbabilityCount() */
+    void DecProbabilityCount(SgUctValue count);
+
+
+    
 
     /** Initialize value with prior knowledge. */
     void InitializeValue(SgUctValue value, SgUctValue count);
@@ -314,6 +337,8 @@ private:
 
     /* new prio probability added for neural network */
     volatile SgUctValue m_prioProbability;
+
+    volatile SgUctValue m_probabilityMoveCount;
 };
 
 //----------------------------------------------------------------------------
@@ -331,7 +356,8 @@ inline SgUctNode::SgUctNode(const SgUctMoveInfo& info)
       m_knowledgeCount(0),
       m_provenType(SG_NOT_PROVEN),
       m_virtualLossCount(0),
-      m_prioProbability(info.m_prioProbability)
+      m_prioProbability(info.m_prioProbability),
+      m_probabilityMoveCount(0)
 {
     // m_firstChild is not initialized, only defined if m_nuChildren > 0
 }
@@ -390,6 +416,7 @@ inline void SgUctNode::CopyDataFrom(const SgUctNode& node)
     m_provenType = node.m_provenType;
     m_virtualLossCount = node.m_virtualLossCount;
     m_prioProbability = node.m_prioProbability;
+    m_probabilityMoveCount = node.m_probabilityMoveCount;
 }
 
 inline const SgUctNode* SgUctNode::FirstChild() const
@@ -474,6 +501,34 @@ inline void SgUctNode::DecPosCount(SgUctValue count)
     }
 }
 
+inline void SgUctNode::IncProbabilityCount()
+{
+    ++m_probabilityMoveCount;
+}
+
+inline void SgUctNode::IncProbabilityCount(SgUctValue count)
+{
+    m_probabilityMoveCount += count;
+}
+
+inline void SgUctNode::DecProbabilityCount()
+{
+    SgUctValue posCount = m_probabilityMoveCount;
+    if (posCount > 0)
+    {
+        m_probabilityMoveCount = m_probabilityMoveCount - 1;
+    }
+}
+
+inline void SgUctNode::DecProbabilityCount(SgUctValue count)
+{
+    SgUctValue posCount = m_probabilityMoveCount;
+    if (posCount >= count)
+    {
+        m_probabilityMoveCount = m_probabilityMoveCount - count;
+    }
+}
+
 inline bool SgUctNode::HasMove() const
 {
     return m_move != SG_NULLMOVE;
@@ -513,6 +568,11 @@ inline int SgUctNode::NuChildren() const
 inline SgUctValue SgUctNode::PosCount() const
 {
     return m_posCount;
+}
+
+inline SgUctValue SgUctNode::ProbabilityMoveCount() const
+{
+    return m_probabilityMoveCount;
 }
 
 inline float SgUctNode::PredictorValue() const
@@ -954,8 +1014,10 @@ inline void SgUctTree::AddGameResult(const SgUctNode& node,
     SG_ASSERT(Contains(node));
     // Parameters are const-references, because only the tree is allowed
     // to modify nodes
-    if (father != 0)
+    if (father != 0){
         const_cast<SgUctNode*>(father)->IncPosCount();
+        const_cast<SgUctNode*>(father)->IncProbabilityCount();
+    }
     const_cast<SgUctNode&>(node).AddGameResult(eval);
 }
 
@@ -967,8 +1029,10 @@ inline void SgUctTree::AddGameResults(const SgUctNode& node,
     SG_ASSERT(Contains(node));
     // Parameters are const-references, because only the tree is allowed
     // to modify nodes
-    if (father != 0)
+    if (father != 0){
         const_cast<SgUctNode*>(father)->IncPosCount(count);
+        const_cast<SgUctNode*>(father)->IncProbabilityCount(count);
+    }
     const_cast<SgUctNode&>(node).AddGameResults(eval, count);
 }
 
@@ -1010,8 +1074,11 @@ inline void SgUctTree::RemoveGameResult(const SgUctNode& node,
     SG_ASSERT(Contains(node));
     // Parameters are const-references, because only the tree is allowed
     // to modify nodes
-    if (father != 0)
+    if (father != 0){
         const_cast<SgUctNode*>(father)->DecPosCount();
+        const_cast<SgUctNode*>(father)->DecProbabilityCount();
+    }
+    
     const_cast<SgUctNode&>(node).RemoveGameResult(eval);
 }
 
@@ -1022,8 +1089,10 @@ inline void SgUctTree::RemoveGameResults(const SgUctNode& node,
     SG_ASSERT(Contains(node));
     // Parameters are const-references, because only the tree is allowed
     // to modify nodes 
-    if (father != 0)
+    if (father != 0){
         const_cast<SgUctNode*>(father)->DecPosCount(count);
+        const_cast<SgUctNode*>(father)->DecProbabilityCount(count);
+    }
     const_cast<SgUctNode&>(node).RemoveGameResults(eval, count);
 }
 

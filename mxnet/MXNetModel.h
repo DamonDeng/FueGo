@@ -68,7 +68,7 @@ private:
 
     void LoadSymbol();
     void LoadParameters();
-    NDArray generateSampleData();
+   
     
 };
 

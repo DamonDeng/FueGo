@@ -578,7 +578,13 @@ SgUctValue SgUctSearch::GetBound(bool useRave, bool useBiasTerm,
                             SgUctValue logPosCount, 
                             const SgUctNode& child) const
 {
-    SgUctValue value;
+    // SgUctValue prioProbability = child.GetPrioProbability();
+
+    // return prioProbability;
+    
+    
+    SgUctValue value; 
+
     if (useRave){
         // SgDebug() << "# using rave. \n";
         value = GetValueEstimateRave(child);
@@ -588,9 +594,9 @@ SgUctValue SgUctSearch::GetBound(bool useRave, bool useBiasTerm,
     }
 
     SgUctValue prioProbability = 0;
-    SgUctValue moveCount = SgUctValue(child.MoveCount());
+    SgUctValue prioProbabilityMoveCount = SgUctValue(child.ProbabilityMoveCount());
 
-    prioProbability = child.GetPrioProbability()/(moveCount + 1);
+    prioProbability = child.GetPrioProbability()/(prioProbabilityMoveCount + 1);
 
     value = value + prioProbability;
 
@@ -600,7 +606,7 @@ SgUctValue SgUctSearch::GetBound(bool useRave, bool useBiasTerm,
     }
     else
     {
-        
+        SgUctValue moveCount = SgUctValue(child.MoveCount());
         
         SgUctValue bound =
             value + m_biasTermConstant * sqrt(logPosCount / (moveCount + 1));
@@ -1015,10 +1021,10 @@ bool SgUctSearch::PlayInTree(SgUctThreadState& state, bool& isTerminal)
             state.m_moves.clear();
             SgUctProvenType provenType = SG_NOT_PROVEN;
 
-            if (current == root || current->MoveCount() >= m_expandThreshold ){
-                state.m_needExpand = true;
+            if (current == root){
+                state.m_needPrioProbability = true;
             }else{
-                state.m_needExpand = false;
+                state.m_needPrioProbability = false;
             }
 
 
@@ -1026,6 +1032,7 @@ bool SgUctSearch::PlayInTree(SgUctThreadState& state, bool& isTerminal)
 
             if (current == root)
                 ApplyRootFilter(state.m_moves);
+
             if (provenType != SG_NOT_PROVEN)
             {
                 m_tree.SetProvenType(*current, provenType);
@@ -1037,7 +1044,7 @@ bool SgUctSearch::PlayInTree(SgUctThreadState& state, bool& isTerminal)
                 isTerminal = true;
                 break;
             }
-            if (current->MoveCount() >= m_expandThreshold)
+            if (current == root || current->MoveCount() >= m_expandThreshold)
             {
                 ExpandNode(state, *current);
                 if (state.m_isTreeOutOfMem)
@@ -1047,34 +1054,32 @@ bool SgUctSearch::PlayInTree(SgUctThreadState& state, bool& isTerminal)
             else
                 break;
         }
-        else if (state.m_threadId < m_maxKnowledgeThreads 
-                 && NeedToComputeKnowledge(current))
+        else 
         {
-            m_statistics.m_knowledge++;
-            state.m_moves.clear();
-            SgUctProvenType provenType = SG_NOT_PROVEN;
-            bool truncate = state.GenerateAllMoves(current->KnowledgeCount(), 
-                                                   state.m_moves,
-                                                   provenType);
-            if (current == root)
-                ApplyRootFilter(state.m_moves);
-            CreateChildren(state, *current, truncate);
-            if (provenType != SG_NOT_PROVEN)
-            {
-                m_tree.SetProvenType(*current, provenType);
-                PropagateProvenStatus(nodes);
-                break;
+            SgDebug() << "# using old nodes in tree. \n";
+
+            if (current->ProbabilityMoveCount() >= m_probabilityThreshold){
+                if (!current->m_childPrioProbabilityComputed){
+                    SgDebug() << "Need to apply probability for this node. -------------------------- \n";
+                }
+
             }
-            if (state.m_moves.empty())
-            {
-                isTerminal = true;
-                break;
-            }
-            if (state.m_isTreeOutOfMem)
-                return true;
-            breakAfterSelect = true;
+            
+            
         }
+
+
+
         current = &SelectChild(state.m_randomizeRaveCounter, useBiasTerm, *current);
+
+        // SgUctValue debugMoveCount = current->MoveCount();
+        // SgUctValue debugPrioProbability = current->GetPrioProbability();
+        // SgUctValue debugValue = GetValueEstimateRave(*current);
+
+        // SgDebug() << "Child selected: moveCount:" << debugMoveCount
+        //           << " PrioProbability:" << debugPrioProbability
+        //           << " Value:" << debugValue << ". \n";
+
         if (m_virtualLoss && m_numberThreads > 1)
             m_tree.AddVirtualLoss(*current);
         nodes.push_back(current);

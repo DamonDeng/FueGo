@@ -395,7 +395,7 @@ public:
     virtual void EndPlayout();
 
     /** flag indicating whther we need to expand children */
-    bool m_needExpand = false;
+    bool m_needPrioProbability = false;
     
 
     // @} // name
@@ -785,6 +785,12 @@ public:
     /** See ExpandThreshold() */
     void SetExpandThreshold(SgUctValue expandThreshold);
 
+
+    SgUctValue ProbabilityThreshold() const;
+
+    
+    void SetProbabilityThreshold(SgUctValue probabilityThreshold);
+
     /** The number of playouts per simulated game.
         Useful for multi-threading to increase the workload of the threads.
         Default is 1. */
@@ -1040,6 +1046,8 @@ private:
     /** See ExpandThreshold() */
     SgUctValue m_expandThreshold;
 
+    SgUctValue m_probabilityThreshold;
+
     /** Number of games limit for the current search. */
     SgUctValue m_maxGames;
 
@@ -1208,6 +1216,11 @@ inline SgUctValue SgUctSearch::ExpandThreshold() const
     return m_expandThreshold;
 }
 
+inline SgUctValue SgUctSearch::ProbabilityThreshold() const
+{
+    return m_probabilityThreshold;
+}
+
 inline int SgUctSearch::BiasTermFrequency() const
 {
     return m_biasTermFrequency;
@@ -1348,6 +1361,12 @@ inline void SgUctSearch::SetExpandThreshold(SgUctValue expandThreshold)
 {
     SG_ASSERT(expandThreshold >= 0);
     m_expandThreshold = expandThreshold;
+}
+
+inline void SgUctSearch::SetProbabilityThreshold(SgUctValue probabilityThreshold)
+{
+    SG_ASSERT(probabilityThreshold >= 0);
+    m_probabilityThreshold = probabilityThreshold;
 }
 
 inline void SgUctSearch::SetFirstPlayUrgency(SgUctValue firstPlayUrgency)

@@ -586,7 +586,7 @@ GenerateAllMoves(SgUctValue count,
         }
         ApplyAdditivePredictors(moves);
 
-        if (m_needExpand){
+        if (m_needPrioProbability){
             ApplyPrioProbability(moves);
         }
 
@@ -880,7 +880,7 @@ GoUctGlobalSearch<POLICY,FACTORY>::GoUctGlobalSearch(GoBoard& bd,
             << nuThreads << '\n';
 
         // setting the number of threads to 1, for debuging, by Damon.
-        // nuThreads = 1;
+        nuThreads = 1;
         
         SetNumberThreads(nuThreads);
     }
@@ -946,6 +946,8 @@ void GoUctGlobalSearch<POLICY,FACTORY>::SetDefaultParameters(int boardSize)
     // SetExpandThreshold(12);
 
     SetExpandThreshold(3);
+
+    SetProbabilityThreshold(30);
 
     if (boardSize < 15)
     {

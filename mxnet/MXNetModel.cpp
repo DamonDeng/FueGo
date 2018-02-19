@@ -87,53 +87,29 @@ void MXNetModel::LoadParameters() {
     NDArray::WaitAll();
   }
 
-NDArray MXNetModel::generateSampleData(){
-  NDArray ret(Shape(1, 17, 19, 19), global_ctx, false);
-  
-//   vector<float> data(1 * 17 * 19 * 19);
-//   // inf.read(reinterpret_cast<char *>(data.data()), 2 * 3 * 224 * 224 * sizeof(float));
-//   // inf.close();
-  
-//   for (int i=0; i < 19; i++){
-//     for (int j=0; j < 19; j++){
-//       data[16*(i+1)*(j+1)] = 1;
-//       // ret[0][16][i][j] = 1;
-//     }
-//   }
 
-//   ret.SyncCopyFromCPU(data.data(), 1 * 17 * 19 * 19);
-//   NDArray::WaitAll();
-//   return ret;
-
-
-  float testingData[17][19][19] = {0};
-  
-
-  ret.SyncCopyFromCPU(&testingData[0][0][0], 1 * 17 * 19 * 19);
-  NDArray::WaitAll();
-  return ret;
-}
 
 
 void MXNetModel::ApplyPrioProbability(std::vector<SgUctMoveInfo>& moves, const GoBoard& bd)
 {
-    // SgDebug() << "Trying to call CNN to generate prio probability. \n";
+    SgDebug() << "Trying to call CNN to generate prio probability. \n";
 
     int historyLength = 2;
     int arrayLength = historyLength*2 + 1;
 
-    NDArray ret(Shape(1, arrayLength, 19, 19), global_ctx, false);
+    int boardSize = 19;
 
-    std::vector<float> inputData(1*arrayLength*19*19);
+    int dataLength = 1*arrayLength*boardSize*boardSize;
 
-    bd.GetHistoryData(inputData, 1*arrayLength*19*19);
+
+    NDArray ret(Shape(1, arrayLength, boardSize, boardSize), global_ctx, false);
+
+    std::vector<float> inputData(dataLength);
+
+    bd.GetHistoryData(inputData, dataLength);
   
-    // GoUctBoard uctBoard = state.UctBoard();
-  
 
-    // ret.SyncCopyFromCPU(&uctBoard.historyData[0][0][0], 1 * 17 * 19 * 19);
-
-    ret.SyncCopyFromCPU(inputData.data(), 1 * arrayLength * 19 * 19);
+    ret.SyncCopyFromCPU(inputData.data(), dataLength);
     
     
     NDArray::WaitAll();
@@ -187,15 +163,17 @@ void MXNetModel::ApplyPrioProbability(std::vector<SgUctMoveInfo>& moves, const G
     SgGrid col;
     SgGrid row;
 
+    int stoneNumber = boardSize*boardSize;
+
     for (size_t j = 0; j < moves.size(); ++j)
         {
             if(moves[j].m_move == SG_PASS){
-                moves[j].m_prioProbability = array.At(0, 361);
+                moves[j].m_prioProbability = array.At(0, stoneNumber);
             } else{
                 row = SgPointUtil::Row(moves[j].m_move)-1;
                 col = SgPointUtil::Col(moves[j].m_move)-1;
 
-                moves[j].m_prioProbability = array.At(0, row*19 + col);
+                moves[j].m_prioProbability = array.At(0, row*boardSize + col);
 
             }
 
