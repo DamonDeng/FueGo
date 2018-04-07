@@ -73,6 +73,8 @@ public:
 
     void Dump(std::ostream& out) const;
 
+    const GoBoard* m_sharedBoard;
+
 private:
     /** Assertion handler to dump the state of a GoUctState. */
     class AssertionHandler

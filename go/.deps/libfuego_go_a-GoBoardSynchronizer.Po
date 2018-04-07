@@ -28,6 +28,7 @@ libfuego_go_a-GoBoardSynchronizer.o: GoBoardSynchronizer.cpp \
   /usr/local/include/boost/config/detail/select_stdlib_config.hpp \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cstddef \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/stddef.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/__stddef_max_align_t.h \
   /usr/local/include/boost/config/stdlib/libcpp.hpp \
   /usr/local/include/boost/config/detail/select_platform_config.hpp \
   /usr/local/include/boost/config/platform/macos.hpp \
@@ -78,8 +79,7 @@ libfuego_go_a-GoBoardSynchronizer.o: GoBoardSynchronizer.cpp \
   /usr/include/machine/types.h /usr/include/i386/types.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/string \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cstring \
-  /usr/include/string.h /usr/include/sys/_types/_rsize_t.h \
-  /usr/include/sys/_types/_errno_t.h /usr/include/strings.h \
+  /usr/include/string.h /usr/include/strings.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cstdio \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cwchar \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cwctype \
@@ -100,9 +100,9 @@ libfuego_go_a-GoBoardSynchronizer.o: GoBoardSynchronizer.cpp \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__undef_min_max \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/iterator \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__functional_base \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__functional_base_03 \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__debug \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/tuple \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/atomic \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/stdexcept \
   ../smartgame/SgArray.h ../smartgame/SgMove.h ../smartgame/SgUtil.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/iostream \
@@ -128,7 +128,6 @@ libfuego_go_a-GoBoardSynchronizer.o: GoBoardSynchronizer.cpp \
   /usr/include/sys/_pthread/_pthread_t.h /usr/include/pthread/qos.h \
   /usr/include/sys/qos.h /usr/include/sys/_types/_mach_port_t.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/functional \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__functional_03 \
   /usr/include/locale.h /usr/include/_locale.h /usr/include/xlocale.h \
   /usr/include/_xlocale.h /usr/include/xlocale/_ctype.h \
   /usr/include/xlocale/__wctype.h /usr/include/xlocale/_stdio.h \
@@ -145,13 +144,16 @@ libfuego_go_a-GoBoardSynchronizer.o: GoBoardSynchronizer.cpp \
   /usr/include/sys/_types/_in_addr_t.h \
   /usr/include/sys/_types/_in_port_t.h /usr/include/sys/_types/_ino_t.h \
   /usr/include/sys/_types/_ino64_t.h /usr/include/sys/_types/_key_t.h \
-  /usr/include/sys/_types/_nlink_t.h \
+  /usr/include/sys/_types/_nlink_t.h /usr/include/sys/_types/_rsize_t.h \
+  /usr/include/sys/_types/_errno_t.h \
   /usr/include/sys/_types/_fsblkcnt_t.h \
   /usr/include/sys/_types/_fsfilcnt_t.h /usr/include/_types/_nl_item.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/bitset \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__bit_reference \
-  ../smartgame/SgBWArray.h GoBoard.h GoRules.h GoKomi.h \
-  ../smartgame/SgException.h /usr/local/include/boost/format.hpp \
+  ../smartgame/SgBWArray.h GoBoard.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/sstream \
+  GoRules.h GoKomi.h ../smartgame/SgException.h \
+  /usr/local/include/boost/format.hpp \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__split_buffer \
   /usr/local/include/boost/format/detail/compat_workarounds.hpp \
@@ -181,6 +183,8 @@ libfuego_go_a-GoBoardSynchronizer.o: GoBoardSynchronizer.cpp \
   /usr/local/include/boost/type_traits/conditional.hpp \
   /usr/local/include/boost/type_traits/has_nothrow_constructor.hpp \
   /usr/local/include/boost/type_traits/is_default_constructible.hpp \
+  /usr/local/include/boost/type_traits/detail/yes_no_type.hpp \
+  /usr/local/include/boost/type_traits/type_with_alignment.hpp \
   /usr/local/include/boost/type_traits/is_pod.hpp \
   /usr/local/include/boost/type_traits/is_void.hpp \
   /usr/local/include/boost/type_traits/is_scalar.hpp \
@@ -193,7 +197,6 @@ libfuego_go_a-GoBoardSynchronizer.o: GoBoardSynchronizer.cpp \
   /usr/local/include/boost/type_traits/is_member_function_pointer.hpp \
   /usr/local/include/boost/type_traits/detail/is_mem_fun_pointer_impl.hpp \
   /usr/local/include/boost/type_traits/remove_cv.hpp \
-  /usr/local/include/boost/type_traits/type_with_alignment.hpp \
   /usr/local/include/boost/type_traits/remove_const.hpp \
   /usr/local/include/boost/type_traits/remove_reference.hpp \
   /usr/local/include/boost/type_traits/decay.hpp \
@@ -211,35 +214,27 @@ libfuego_go_a-GoBoardSynchronizer.o: GoBoardSynchronizer.cpp \
   /usr/local/include/boost/type_traits/is_same.hpp \
   /usr/local/include/boost/type_traits/is_class.hpp \
   /usr/local/include/boost/type_traits/is_constructible.hpp \
-  /usr/local/include/boost/type_traits/is_convertible.hpp \
+  /usr/local/include/boost/type_traits/is_destructible.hpp \
+  /usr/local/include/boost/type_traits/declval.hpp \
+  /usr/local/include/boost/type_traits/add_rvalue_reference.hpp \
   /usr/local/include/boost/type_traits/is_nothrow_move_assignable.hpp \
   /usr/local/include/boost/type_traits/has_trivial_move_assign.hpp \
   /usr/local/include/boost/type_traits/is_const.hpp \
   /usr/local/include/boost/type_traits/is_volatile.hpp \
   /usr/local/include/boost/type_traits/is_assignable.hpp \
-  /usr/local/include/boost/type_traits/has_trivial_assign.hpp \
   /usr/local/include/boost/type_traits/has_nothrow_assign.hpp \
   /usr/local/include/boost/utility/enable_if.hpp \
-  /usr/local/include/boost/type_traits/declval.hpp \
-  /usr/local/include/boost/type_traits/add_rvalue_reference.hpp \
   /usr/local/include/boost/type_traits/is_nothrow_move_constructible.hpp \
-  /usr/local/include/boost/type_traits/has_trivial_move_constructor.hpp \
-  /usr/local/include/boost/type_traits/has_nothrow_copy.hpp \
-  /usr/local/include/boost/type_traits/is_copy_constructible.hpp \
-  /usr/local/include/boost/type_traits/detail/yes_no_type.hpp \
-  /usr/local/include/boost/type_traits/add_reference.hpp \
-  /usr/local/include/boost/noncopyable.hpp \
-  /usr/local/include/boost/core/noncopyable.hpp \
   /usr/local/include/boost/move/utility.hpp \
   /usr/local/include/boost/move/detail/config_begin.hpp \
   /usr/local/include/boost/move/detail/workaround.hpp \
   /usr/local/include/boost/move/utility_core.hpp \
   /usr/local/include/boost/move/core.hpp \
-  /usr/local/include/boost/move/detail/type_traits.hpp \
+  /usr/local/include/boost/move/detail/config_end.hpp \
   /usr/local/include/boost/move/detail/meta_utils.hpp \
   /usr/local/include/boost/move/detail/meta_utils_core.hpp \
-  /usr/local/include/boost/move/detail/config_end.hpp \
   /usr/local/include/boost/move/traits.hpp \
+  /usr/local/include/boost/move/detail/type_traits.hpp \
   /usr/local/include/boost/none.hpp /usr/local/include/boost/none_t.hpp \
   /usr/local/include/boost/utility/compare_pointees.hpp \
   /usr/local/include/boost/optional/optional_fwd.hpp \
@@ -312,7 +307,7 @@ libfuego_go_a-GoBoardSynchronizer.o: GoBoardSynchronizer.cpp \
   /usr/local/include/boost/smart_ptr/detail/sp_noexcept.hpp \
   /usr/local/include/boost/smart_ptr/detail/spinlock_pool.hpp \
   /usr/local/include/boost/smart_ptr/detail/spinlock.hpp \
-  /usr/local/include/boost/smart_ptr/detail/spinlock_sync.hpp \
+  /usr/local/include/boost/smart_ptr/detail/spinlock_std_atomic.hpp \
   /usr/local/include/boost/smart_ptr/detail/yield_k.hpp \
   /usr/local/include/boost/predef.h \
   /usr/local/include/boost/predef/language.h \
@@ -458,7 +453,6 @@ libfuego_go_a-GoBoardSynchronizer.o: GoBoardSynchronizer.cpp \
   ../smartgame/SgArrayList.h ../smartgame/SgBoardConst.h \
   ../smartgame/SgNbIterator.h ../smartgame/SgPointArray.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/iomanip \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/sstream \
   ../smartgame/SgPointIterator.h ../smartgame/SgBoardColor.h \
   ../smartgame/SgMarker.h ../smartgame/SgHash.h ../smartgame/SgRandom.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/list \
@@ -537,7 +531,7 @@ libfuego_go_a-GoBoardSynchronizer.o: GoBoardSynchronizer.cpp \
   /usr/local/include/boost/random/detail/generator_bits.hpp \
   /usr/local/include/boost/random/detail/generator_seed_seq.hpp \
   /usr/local/include/boost/random/detail/polynomial.hpp \
-  /usr/local/include/boost/random/uniform_01.hpp
+  /usr/local/include/boost/random/uniform_01.hpp ../smartgame/SgDebug.h
 
 ../smartgame/SgSystem.h:
 
@@ -632,6 +626,8 @@ GoPlayerMove.h:
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cstddef:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/stddef.h:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/__stddef_max_align_t.h:
 
 /usr/local/include/boost/config/stdlib/libcpp.hpp:
 
@@ -791,10 +787,6 @@ GoPlayerMove.h:
 
 /usr/include/string.h:
 
-/usr/include/sys/_types/_rsize_t.h:
-
-/usr/include/sys/_types/_errno_t.h:
-
 /usr/include/strings.h:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cstdio:
@@ -839,11 +831,11 @@ GoPlayerMove.h:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__functional_base:
 
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__functional_base_03:
-
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__debug:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/tuple:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/atomic:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/stdexcept:
 
@@ -909,8 +901,6 @@ GoPlayerMove.h:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/functional:
 
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__functional_03:
-
 /usr/include/locale.h:
 
 /usr/include/_locale.h:
@@ -963,6 +953,10 @@ GoPlayerMove.h:
 
 /usr/include/sys/_types/_nlink_t.h:
 
+/usr/include/sys/_types/_rsize_t.h:
+
+/usr/include/sys/_types/_errno_t.h:
+
 /usr/include/sys/_types/_fsblkcnt_t.h:
 
 /usr/include/sys/_types/_fsfilcnt_t.h:
@@ -976,6 +970,8 @@ GoPlayerMove.h:
 ../smartgame/SgBWArray.h:
 
 GoBoard.h:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/sstream:
 
 GoRules.h:
 
@@ -1045,6 +1041,10 @@ GoKomi.h:
 
 /usr/local/include/boost/type_traits/is_default_constructible.hpp:
 
+/usr/local/include/boost/type_traits/detail/yes_no_type.hpp:
+
+/usr/local/include/boost/type_traits/type_with_alignment.hpp:
+
 /usr/local/include/boost/type_traits/is_pod.hpp:
 
 /usr/local/include/boost/type_traits/is_void.hpp:
@@ -1068,8 +1068,6 @@ GoKomi.h:
 /usr/local/include/boost/type_traits/detail/is_mem_fun_pointer_impl.hpp:
 
 /usr/local/include/boost/type_traits/remove_cv.hpp:
-
-/usr/local/include/boost/type_traits/type_with_alignment.hpp:
 
 /usr/local/include/boost/type_traits/remove_const.hpp:
 
@@ -1105,7 +1103,11 @@ GoKomi.h:
 
 /usr/local/include/boost/type_traits/is_constructible.hpp:
 
-/usr/local/include/boost/type_traits/is_convertible.hpp:
+/usr/local/include/boost/type_traits/is_destructible.hpp:
+
+/usr/local/include/boost/type_traits/declval.hpp:
+
+/usr/local/include/boost/type_traits/add_rvalue_reference.hpp:
 
 /usr/local/include/boost/type_traits/is_nothrow_move_assignable.hpp:
 
@@ -1117,31 +1119,11 @@ GoKomi.h:
 
 /usr/local/include/boost/type_traits/is_assignable.hpp:
 
-/usr/local/include/boost/type_traits/has_trivial_assign.hpp:
-
 /usr/local/include/boost/type_traits/has_nothrow_assign.hpp:
 
 /usr/local/include/boost/utility/enable_if.hpp:
 
-/usr/local/include/boost/type_traits/declval.hpp:
-
-/usr/local/include/boost/type_traits/add_rvalue_reference.hpp:
-
 /usr/local/include/boost/type_traits/is_nothrow_move_constructible.hpp:
-
-/usr/local/include/boost/type_traits/has_trivial_move_constructor.hpp:
-
-/usr/local/include/boost/type_traits/has_nothrow_copy.hpp:
-
-/usr/local/include/boost/type_traits/is_copy_constructible.hpp:
-
-/usr/local/include/boost/type_traits/detail/yes_no_type.hpp:
-
-/usr/local/include/boost/type_traits/add_reference.hpp:
-
-/usr/local/include/boost/noncopyable.hpp:
-
-/usr/local/include/boost/core/noncopyable.hpp:
 
 /usr/local/include/boost/move/utility.hpp:
 
@@ -1153,15 +1135,15 @@ GoKomi.h:
 
 /usr/local/include/boost/move/core.hpp:
 
-/usr/local/include/boost/move/detail/type_traits.hpp:
+/usr/local/include/boost/move/detail/config_end.hpp:
 
 /usr/local/include/boost/move/detail/meta_utils.hpp:
 
 /usr/local/include/boost/move/detail/meta_utils_core.hpp:
 
-/usr/local/include/boost/move/detail/config_end.hpp:
-
 /usr/local/include/boost/move/traits.hpp:
+
+/usr/local/include/boost/move/detail/type_traits.hpp:
 
 /usr/local/include/boost/none.hpp:
 
@@ -1311,7 +1293,7 @@ GoKomi.h:
 
 /usr/local/include/boost/smart_ptr/detail/spinlock.hpp:
 
-/usr/local/include/boost/smart_ptr/detail/spinlock_sync.hpp:
+/usr/local/include/boost/smart_ptr/detail/spinlock_std_atomic.hpp:
 
 /usr/local/include/boost/smart_ptr/detail/yield_k.hpp:
 
@@ -1615,8 +1597,6 @@ GoSetup.h:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/iomanip:
 
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/sstream:
-
 ../smartgame/SgPointIterator.h:
 
 ../smartgame/SgBoardColor.h:
@@ -1782,3 +1762,5 @@ GoSetup.h:
 /usr/local/include/boost/random/detail/polynomial.hpp:
 
 /usr/local/include/boost/random/uniform_01.hpp:
+
+../smartgame/SgDebug.h:

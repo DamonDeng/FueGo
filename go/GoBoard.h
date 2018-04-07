@@ -13,6 +13,10 @@
 #include <bitset>
 #include <cstring>
 #include <stdint.h>
+
+#include <iostream>
+#include <sstream>
+
 #include <boost/static_assert.hpp>
 #include "GoPlayerMove.h"
 #include "GoRules.h"
@@ -30,6 +34,7 @@
 #include "SgPointArray.h"
 #include "SgPointIterator.h"
 #include "SgPointSet.h"
+#include "SgDebug.h"
 
 //----------------------------------------------------------------------------
 
@@ -115,6 +120,8 @@ public:
 
     ~GoBoard();
 
+    // friend std::ostream& operator<<(std::ostream& out, const GoBoard& goBoard);
+
     const SgBoardConst& BoardConst() const;
 
     /** Number of calls to Play since creation of this board. */
@@ -124,9 +131,11 @@ public:
         Keeps old GoRules. */
     void Init(int size, const GoSetup& setup = GoSetup());
 
+
     /** Re-initializes the board with new size and rules. */
     void Init(int size, const GoRules& rules,
               const GoSetup& setup = GoSetup());
+
 
     /** Non-const access to current game rules.
         The game rules are attached to a GoBoard for convenient access
@@ -505,6 +514,30 @@ public:
         RestoreSnapshot() can used multiple times for the same snapshot.
         @see TakeSnapshot() */
     void RestoreSnapshot();
+
+    // static const int m_historyLength = 8;
+
+    // static const int HISTORY_SIZE = (GO_MAX_NUM_MOVES+m_historyLength+1)* 2 * 19 * 19;
+
+    // int m_historyLocationBlack;
+    // int m_historyLocationWhite;
+
+    // std::vector<float> m_historyDataBlack;
+    // std::vector<float> m_historyDataWhite;
+
+    // bool m_isSubscriber;
+    
+
+    void GetHistoryData(std::vector<float>& historyData, size_t dataSize) const;
+
+    void PrepareHistoryData(SgBlackWhite forColor);
+
+    void HistoryAddStone(SgPoint p, SgBlackWhite c);
+
+    void HistoryRemoveStone(SgPoint p, SgBlackWhite c);
+
+    
+
 
 private:
     /** Data related to a block of stones on the board. */

@@ -575,6 +575,10 @@ GoUctPlayer<SEARCH, THREAD>::GoUctPlayer(const GoBoard& bd)
 {
     SetDefaultParameters(Board().Size());
     m_search.SetMpiSynchronizer(m_mpiSynchronizer);
+
+    //Setting the play out number, my Damon.
+    //m_search.SetNumberPlayouts(30);
+
     m_treeFilterParam.SetCheckSafety(false);
 }
 
@@ -836,7 +840,7 @@ SgPoint GoUctPlayer<SEARCH, THREAD>::DoSearch(SgBlackWhite toPlay,
     earlyAbort.m_minGames = m_resignMinGames;
     earlyAbort.m_reductionFactor = 3;
 
-    SgDebug() << "Trying to call search function from m_search. \n";
+    // SgDebug() << "Trying to call search function from m_search. \n";
 
     SgUctValue value = m_search.Search(m_maxGames, maxTime, sequence, rootFilter,
                                   initTree, &earlyAbort);
@@ -844,7 +848,7 @@ SgPoint GoUctPlayer<SEARCH, THREAD>::DoSearch(SgBlackWhite toPlay,
     bool wasEarlyAbort = m_search.WasEarlyAbort();
     SgUctValue rootMoveCount = m_search.Tree().Root().MoveCount();
 
-    SgDebug() << "rootMoveCount: " << rootMoveCount << ". \n";
+    // SgDebug() << "rootMoveCount: " << rootMoveCount << ". \n";
     
     m_mpiSynchronizer->SynchronizeSearchStatus(value, wasEarlyAbort, rootMoveCount);
 
@@ -951,7 +955,7 @@ template <class SEARCH, class THREAD>
 SgPoint GoUctPlayer<SEARCH, THREAD>::GenMove(const SgTimeRecord& time,
                                              SgBlackWhite toPlay)
 {
-    SgDebug() << "Go Uct Player gen move function in .h file. \n";
+    // SgDebug() << "Go Uct Player gen move function in .h file. \n";
     ++m_statistics.m_nuGenMove;
     if (m_searchMode == GOUCT_SEARCHMODE_PLAYOUTPOLICY)
         return GenMovePlayoutPolicy(toPlay);
@@ -987,7 +991,7 @@ SgPoint GoUctPlayer<SEARCH, THREAD>::GenMove(const SgTimeRecord& time,
         }
         else
         {
-            SgDebug() << "Normal mode. \n";
+            // SgDebug() << "Normal mode. \n";
 
             SG_ASSERT(m_searchMode == GOUCT_SEARCHMODE_UCT);
             move = DoSearch(toPlay, maxTime, false);

@@ -25,6 +25,11 @@
 #include "GoUctKnowledgeFactory.h"
 #include "GoUctSearch.h"
 #include "GoUctUtil.h"
+#include "SgUctTree.h"
+
+#include <iomanip>  
+
+#include "MXNetModel.h"
 
 //----------------------------------------------------------------------------
 
@@ -181,6 +186,8 @@ public:
     bool GenerateAllMoves(SgUctValue count, std::vector<SgUctMoveInfo>& moves,
                           SgUctProvenType& provenType);
 
+    void GetPrioProbability(SgArray<SgUctValue, SG_MAX_MOVE_VALUE>& array);
+
     /** Generates all legal moves with no knowledge values. */
     void GenerateLegalMoves(std::vector<SgUctMoveInfo>& moves);
 
@@ -205,6 +212,9 @@ public:
     void SetPolicy(POLICY* policy);
 
     void ClearTerritoryStatistics();
+
+    /** MXNet model for CNN search */
+    MXNetModel m_MXNetModel;
 
 private:
     const GoUctGlobalSearchAllParam m_param;
@@ -255,6 +265,10 @@ private:
 
     void ApplyFilter(std::vector<SgUctMoveInfo>& moves);
 
+    /* Prio Probability code added by Damon */
+    void ApplyPrioProbability(std::vector<SgUctMoveInfo>& moves);
+
+
     void ApplyAdditivePredictors(std::vector<SgUctMoveInfo>& moves);
 
     bool CheckMercyRule();
@@ -279,7 +293,8 @@ GoUctGlobalSearchState<POLICY>::GoUctGlobalSearchState(unsigned int threadId,
       m_additivePredictor(0),
       m_featureKnowledge(0),
       m_policy(policy),
-      m_treeFilter(Board(), m_param.m_moveFilterParam)
+      m_treeFilter(Board(), m_param.m_moveFilterParam),
+      m_MXNetModel(threadId)
 {
     ClearTerritoryStatistics();
 }
@@ -533,62 +548,176 @@ ApplyAdditivePredictors(std::vector<SgUctMoveInfo>& moves)
     }
 }
 
+/* prioProbability applying code added by Damon */
+
+template<class POLICY>
+void GoUctGlobalSearchState<POLICY>::
+ApplyPrioProbability(std::vector<SgUctMoveInfo>& moves)
+{
+    // int moveNumber = Board().MoveNumber();
+    // if (m_threadId == 0){
+        // only let the first thread to call CNN with CPU
+        m_MXNetModel.ApplyPrioProbability(moves, Board());
+    // }
+
+    
+}
+
+template<class POLICY>
+void GoUctGlobalSearchState<POLICY>::GetPrioProbability(SgArray<SgUctValue, SG_MAX_MOVE_VALUE>& array){
+
+    SgDebug() << " Going to get PriProbability, the board is: \n";
+
+    GoBoard& currentBoard = const_cast<GoBoard&>(Board());
+
+    currentBoard.TakeSnapshot();
+
+    int historyLength = 8;
+    int arrayLength = historyLength*2 + 1;
+
+    int boardSize = 19;
+
+    int dataLength = arrayLength*boardSize*boardSize;
+
+    std::vector<float> historyData(dataLength);
+
+    SgBlackWhite currentColor = currentBoard.ToPlay();
+    SgBlackWhite enemyColor = SgOppBW(currentColor);
+
+    if (currentColor == SG_BLACK){
+        for (int row=0; row<19; row++){
+                for (int col=0; col<19; col++){
+                    historyData[historyLength*2*361 + row*19 + col] = 1;
+                                
+                }
+            }
+    } else if (currentColor == SG_WHITE){
+        for (int row=0; row<19; row++){
+                for (int col=0; col<19; col++){
+                    historyData[historyLength*2*361 + row*19 + col] = 0;
+                                
+                }
+            }
+    }
+
+    int historyDataLocation = (historyLength-1)*2 + 1;
+    SgPointSet currentPointSet = currentBoard.All(currentColor);
+
+    for (SgSetIterator it(currentPointSet); it; ++it){
+        int row = SgPointUtil::Row(*it)-1;
+        int col = SgPointUtil::Col(*it)-1;
+        historyData[historyDataLocation*361 + row*19 + col] = 1;
+
+    }
+
+    historyDataLocation = (historyLength-1)*2;
+    SgPointSet enemyPointSet = currentBoard.All(enemyColor);
+
+    for (SgSetIterator it(enemyPointSet); it; ++it){
+        int row = SgPointUtil::Row(*it)-1;
+        int col = SgPointUtil::Col(*it)-1;
+        historyData[historyDataLocation*361 + row*19 + col] = 1;
+
+    }
+
+    SgBlackWhite colorToGet = currentColor;
+    historyDataLocation--;
+
+    while(currentBoard.CanUndo() && historyDataLocation >= 0){
+        currentBoard.Undo();
+        SgPointSet setToGet = currentBoard.All(colorToGet);
+
+        for (SgSetIterator it(setToGet); it; ++it){
+            int row = SgPointUtil::Row(*it)-1;
+            int col = SgPointUtil::Col(*it)-1;
+            historyData[historyDataLocation*361 + row*19 + col] = 1;
+
+        }
+
+        colorToGet = SgOppBW(colorToGet);
+        historyDataLocation--;
+
+    }
+
+
+    currentBoard.RestoreSnapshot();
+
+    // for (int i=0; i<arrayLength; i++){
+    //     for (int row=18; row>=0; row--){
+    //         for (int col=0; col<19; col++){
+    //             int index = i*boardSize*boardSize + row*boardSize + col;
+    //             if (historyData[index] == 0){
+    //                 SgDebug() << ". ";
+    //             } else {
+    //                 SgDebug() << historyData[index] << " ";
+    //             }
+    //         }
+    //         SgDebug() << "\n";
+    //     }
+
+    //     SgDebug() << "------------------------- \n";
+    // }
+
+    // SgDebug() << *m_sharedBoard;
+    
+    m_MXNetModel.GetPrioProbability(array, historyData);
+
+
+    SgPoint point;
+
+    for (int row = 19; row >= 0; row--){
+
+        for (int col = 1; col <= boardSize; col++){
+
+            point = SgPointUtil::Pt(col, row);
+
+            SgDebug() << fixed << setprecision(2) << array[point] << " "; 
+        }
+
+        SgDebug() << "\n";
+        
+    }
+
+    SgDebug() << "\n";
+
+}
+
 template<class POLICY>
 bool GoUctGlobalSearchState<POLICY>::
 GenerateAllMoves(SgUctValue count,
                  std::vector<SgUctMoveInfo>& moves,
                  SgUctProvenType& provenType)
 {
-    // SgDebug() << "Generating all move in GoUctGlobalSearchState . \n";
-
     const GoUctGlobalSearchStateParam& param = m_param.m_searchStateParam;
     const GoUctFeatureKnowledgeParam& feParam = m_param.m_featureParam;
     provenType = SG_NOT_PROVEN;
     moves.clear();  // FIXME: needed?
-    // SgDebug() << "Generaring Legal moves in GoUctGlobalSearch::GenerateAllMoves. \n";
-
     GenerateLegalMoves(moves);
-
-    // SgDebug() << "After generating legal moves. \n";
-
     if (! moves.empty() && count == 0) 
     {
         if (param.m_useTreeFilter)
             ApplyFilter(moves);
-
-        // SgDebug() << "After applying filter. \n";
-
         if (param.m_useDefaultPriorKnowledge)
         {
             m_priorKnowledge.SetPriorWeight(param.m_defaultPriorWeight);
             m_priorKnowledge.ProcessPosition(moves);
         }
-
-        // SgDebug() << "After process position. \n";
-
         if (  feParam.m_priorKnowledgeType != PRIOR_NONE
            || feParam.m_useAsAdditivePredictor
            )
         {
             SG_ASSERT(m_featureKnowledge);
-            // SgDebug() << "m_featureKnowledge -> compute. started. \n";
-
             m_featureKnowledge->Compute(feParam);
-            // SgDebug() << "end --------- m_featureKnowledge -> compute. started. \n";
-            
             if (feParam.m_priorKnowledgeType != PRIOR_NONE)
                 m_featureKnowledge->SetPriorKnowledge(moves);
+        }
+        ApplyAdditivePredictors(moves);
 
-            // SgDebug() << "in the m_priorKnowledgeType. \n";
+        if (m_needPrioProbability){
+            ApplyPrioProbability(moves);
         }
 
-        // SgDebug() << "Before applying additive predictors. \n";
-        ApplyAdditivePredictors(moves);
-        // SgDebug() << "End of applyAdditivePredictors. \n";
     }
-
-    //  SgDebug() << "End of ---------- Generating all move in GoUctGlobalSearchState. \n";
-
     return false;
 }
 
@@ -599,14 +728,7 @@ GeneratePlayoutMove(bool& skipRaveUpdate)
     SG_ASSERT(IsInPlayout());
     if (m_param.m_searchStateParam.m_mercyRule && CheckMercyRule())
         return SG_NULLMOVE;
-
-    // SgDebug() << "Before calling policy to generate move. \n";
-
     SgPoint move = m_policy->GenerateMove();
-    
-    // SgDebug() << "After calling policy to generate move. \n";
-    
-
     SG_ASSERT(move != SG_NULLMOVE);
 #ifndef NDEBUG
     // Check that policy generates pass only if no points are left for which
@@ -680,7 +802,6 @@ void GoUctGlobalSearchState<POLICY>::SetPolicy(POLICY* policy)
 template<class POLICY>
 void GoUctGlobalSearchState<POLICY>::StartPlayout()
 {
-    // SgDebug() << "Start to Play out in GoUctGloblal Search. \n";
     GoUctState::StartPlayout();
     m_passMovesPlayoutPhase = 0;
     m_mercyRuleTriggered = false;
@@ -881,17 +1002,13 @@ GoUctGlobalSearch<POLICY,FACTORY>::GoUctGlobalSearch(GoBoard& bd,
         unsigned int nuThreads = boost::thread::hardware_concurrency();
         if (nuThreads > 4)
             nuThreads = 4;
-
-        // @todo, need to remove this, 
-        // for debuging, setting the thread to 1 to simplify the code output.
-        nuThreads = 1;
-
-
         SgDebug() 
             << "GoUctGlobalSearch: setting default number of threads to "
             << nuThreads << '\n';
 
-
+        // setting the number of threads to 1, for debuging, by Damon.
+        // nuThreads = 1;
+        
         SetNumberThreads(nuThreads);
     }
 }
@@ -950,7 +1067,15 @@ void GoUctGlobalSearch<POLICY,FACTORY>::SetDefaultParameters(int boardSize)
                        std::numeric_limits<SgUctValue>::epsilon());
     SetVirtualLoss(true);
     SetBiasTermConstant(0.0);
+
+    //Setting the expand threshold to a large number by Damon
+    
+    // SetExpandThreshold(12);
+
     SetExpandThreshold(3);
+
+    SetProbabilityThreshold(30);
+
     if (boardSize < 15)
     {
         // These parameters were mainly tested on 9x9

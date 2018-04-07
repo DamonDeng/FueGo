@@ -101,6 +101,7 @@ GoUtil.h
 libfuego_go_a_CPPFLAGS = \
 $(BOOST_CPPFLAGS) \
 -I@top_srcdir@/gtpengine \
--I@top_srcdir@/smartgame
+-I@top_srcdir@/smartgame \
+-I@top_srcdir@/include
 
 DISTCLEANFILES = *~

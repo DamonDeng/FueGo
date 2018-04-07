@@ -23,6 +23,8 @@
 #include "SgUctValue.h"
 #include "SgMpiSynchronizer.h"
 
+#include "GoBoard.h"
+
 #define SG_UCTFASTLOG 1
 #if SG_UCTFASTLOG
 #include "SgFastLog.h"
@@ -343,6 +345,11 @@ public:
                                   std::vector<SgUctMoveInfo>& moves,
                                   SgUctProvenType& provenType) = 0;
 
+
+    //added by Damon for applying priProbability
+
+    virtual void GetPrioProbability(SgArray<SgUctValue, SG_MAX_MOVE_VALUE>& array) = 0;
+
     /** Generate random move.
         Generate a random move in the play-out phase (outside the UCT tree).
         @param[out] skipRaveUpdate This value should be set to true, if the
@@ -393,6 +400,14 @@ public:
     /** Function that will be called after each playout.
         Default implementation does nothing. */
     virtual void EndPlayout();
+
+    /** flag indicating whther we need to expand children */
+    bool m_needPrioProbability = false;
+
+    //added by Damon, to get Board in SgSearch.
+    //although it is not a good pratice to add it here.
+    virtual const GoBoard& Board() const = 0;
+    
 
     // @} // name
 };
@@ -620,6 +635,12 @@ public:
     SgUctValue GetBound(bool useRave, const SgUctNode& node, 
                         const SgUctNode& child) const;
 
+    /** Return the bound of CNN and UCT
+     * 
+    */
+
+    SgUctValue GetCNNBound(const SgUctNode& child) const;
+
     // @} // name
 
 
@@ -780,6 +801,12 @@ public:
 
     /** See ExpandThreshold() */
     void SetExpandThreshold(SgUctValue expandThreshold);
+
+
+    SgUctValue ProbabilityThreshold() const;
+
+    
+    void SetProbabilityThreshold(SgUctValue probabilityThreshold);
 
     /** The number of playouts per simulated game.
         Useful for multi-threading to increase the workload of the threads.
@@ -1036,6 +1063,8 @@ private:
     /** See ExpandThreshold() */
     SgUctValue m_expandThreshold;
 
+    SgUctValue m_probabilityThreshold;
+
     /** Number of games limit for the current search. */
     SgUctValue m_maxGames;
 
@@ -1204,6 +1233,11 @@ inline SgUctValue SgUctSearch::ExpandThreshold() const
     return m_expandThreshold;
 }
 
+inline SgUctValue SgUctSearch::ProbabilityThreshold() const
+{
+    return m_probabilityThreshold;
+}
+
 inline int SgUctSearch::BiasTermFrequency() const
 {
     return m_biasTermFrequency;
@@ -1344,6 +1378,12 @@ inline void SgUctSearch::SetExpandThreshold(SgUctValue expandThreshold)
 {
     SG_ASSERT(expandThreshold >= 0);
     m_expandThreshold = expandThreshold;
+}
+
+inline void SgUctSearch::SetProbabilityThreshold(SgUctValue probabilityThreshold)
+{
+    SG_ASSERT(probabilityThreshold >= 0);
+    m_probabilityThreshold = probabilityThreshold;
 }
 
 inline void SgUctSearch::SetFirstPlayUrgency(SgUctValue firstPlayUrgency)

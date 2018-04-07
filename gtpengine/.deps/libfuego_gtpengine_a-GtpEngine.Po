@@ -2,6 +2,7 @@ libfuego_gtpengine_a-GtpEngine.o: GtpEngine.cpp GtpEngine.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cstddef \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__config \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/stddef.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/__stddef_max_align_t.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/iostream \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/ios \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/iosfwd \
@@ -25,8 +26,7 @@ libfuego_gtpengine_a-GtpEngine.o: GtpEngine.cpp GtpEngine.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__locale \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/string \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cstring \
-  /usr/include/string.h /usr/include/sys/_types/_rsize_t.h \
-  /usr/include/sys/_types/_errno_t.h /usr/include/strings.h \
+  /usr/include/string.h /usr/include/strings.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cstdio \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cwchar \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cwctype \
@@ -55,9 +55,9 @@ libfuego_gtpengine_a-GtpEngine.o: GtpEngine.cpp GtpEngine.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__undef_min_max \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/iterator \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__functional_base \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__functional_base_03 \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__debug \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/tuple \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/atomic \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/stdexcept \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/mutex \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__mutex_base \
@@ -86,7 +86,6 @@ libfuego_gtpengine_a-GtpEngine.o: GtpEngine.cpp GtpEngine.h \
   /usr/include/sys/qos.h /usr/include/sys/_types/_mach_port_t.h \
   /usr/include/sys/_types/_sigset_t.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/functional \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__functional_03 \
   /usr/include/locale.h /usr/include/_locale.h /usr/include/xlocale.h \
   /usr/include/_xlocale.h /usr/include/xlocale/_ctype.h \
   /usr/include/xlocale/__wctype.h /usr/include/xlocale/_stdio.h \
@@ -120,6 +119,7 @@ libfuego_gtpengine_a-GtpEngine.o: GtpEngine.cpp GtpEngine.h \
   /usr/include/sys/_types/_nlink_t.h \
   /usr/include/sys/_types/_useconds_t.h \
   /usr/include/sys/_types/_suseconds_t.h \
+  /usr/include/sys/_types/_rsize_t.h /usr/include/sys/_types/_errno_t.h \
   /usr/include/sys/_types/_fd_def.h \
   /usr/include/sys/_types/_fd_setsize.h \
   /usr/include/sys/_types/_fd_set.h /usr/include/sys/_types/_fd_clr.h \
@@ -219,12 +219,12 @@ libfuego_gtpengine_a-GtpEngine.o: GtpEngine.cpp GtpEngine.h \
   /usr/local/include/boost/move/detail/workaround.hpp \
   /usr/local/include/boost/move/utility_core.hpp \
   /usr/local/include/boost/move/core.hpp \
-  /usr/local/include/boost/move/detail/type_traits.hpp \
+  /usr/local/include/boost/move/detail/config_end.hpp \
   /usr/local/include/boost/move/detail/meta_utils.hpp \
   /usr/local/include/boost/move/detail/meta_utils_core.hpp \
-  /usr/local/include/boost/move/detail/config_end.hpp \
   /usr/local/include/boost/static_assert.hpp \
   /usr/local/include/boost/move/traits.hpp \
+  /usr/local/include/boost/move/detail/type_traits.hpp \
   /usr/local/include/boost/thread/lock_options.hpp \
   /usr/local/include/boost/thread/lockable_traits.hpp \
   /usr/local/include/boost/type_traits/is_class.hpp \
@@ -255,7 +255,7 @@ libfuego_gtpengine_a-GtpEngine.o: GtpEngine.cpp GtpEngine.h \
   /usr/local/include/boost/smart_ptr/detail/sp_noexcept.hpp \
   /usr/local/include/boost/smart_ptr/detail/spinlock_pool.hpp \
   /usr/local/include/boost/smart_ptr/detail/spinlock.hpp \
-  /usr/local/include/boost/smart_ptr/detail/spinlock_sync.hpp \
+  /usr/local/include/boost/smart_ptr/detail/spinlock_std_atomic.hpp \
   /usr/local/include/boost/smart_ptr/detail/yield_k.hpp \
   /usr/local/include/boost/predef.h \
   /usr/local/include/boost/predef/language.h \
@@ -539,22 +539,7 @@ libfuego_gtpengine_a-GtpEngine.o: GtpEngine.cpp GtpEngine.h \
   /usr/local/include/boost/type_traits/declval.hpp \
   /usr/local/include/boost/type_traits/add_rvalue_reference.hpp \
   /usr/local/include/boost/type_traits/is_void.hpp \
-  /usr/local/include/boost/type_traits/detail/common_type_impl.hpp \
-  /usr/local/include/boost/type_traits/detail/common_arithmetic_type.hpp \
-  /usr/local/include/boost/type_traits/detail/composite_pointer_type.hpp \
-  /usr/local/include/boost/type_traits/copy_cv.hpp \
-  /usr/local/include/boost/type_traits/is_const.hpp \
-  /usr/local/include/boost/type_traits/is_volatile.hpp \
-  /usr/local/include/boost/type_traits/add_const.hpp \
-  /usr/local/include/boost/type_traits/add_volatile.hpp \
-  /usr/local/include/boost/type_traits/detail/composite_member_pointer_type.hpp \
-  /usr/local/include/boost/type_traits/remove_pointer.hpp \
-  /usr/local/include/boost/type_traits/type_identity.hpp \
-  /usr/local/include/boost/type_traits/is_union.hpp \
-  /usr/local/include/boost/type_traits/is_pointer.hpp \
-  /usr/local/include/boost/type_traits/is_member_pointer.hpp \
-  /usr/local/include/boost/type_traits/is_member_function_pointer.hpp \
-  /usr/local/include/boost/type_traits/detail/is_mem_fun_pointer_impl.hpp \
+  /usr/local/include/boost/type_traits/detail/mp_defer.hpp \
   /usr/local/include/boost/type_traits/is_arithmetic.hpp \
   /usr/local/include/boost/type_traits/is_integral.hpp \
   /usr/local/include/boost/type_traits/is_floating_point.hpp \
@@ -585,55 +570,10 @@ libfuego_gtpengine_a-GtpEngine.o: GtpEngine.cpp GtpEngine.h \
   /usr/local/include/boost/thread/detail/memory.hpp \
   /usr/local/include/boost/thread/csbl/memory/pointer_traits.hpp \
   /usr/local/include/boost/thread/csbl/memory/config.hpp \
-  /usr/local/include/boost/intrusive/pointer_traits.hpp \
-  /usr/local/include/boost/intrusive/detail/config_begin.hpp \
-  /usr/local/include/boost/intrusive/detail/workaround.hpp \
-  /usr/local/include/boost/intrusive/pointer_rebind.hpp \
-  /usr/local/include/boost/move/detail/pointer_element.hpp \
-  /usr/local/include/boost/intrusive/detail/mpl.hpp \
-  /usr/local/include/boost/intrusive/detail/config_end.hpp \
   /usr/local/include/boost/thread/csbl/memory/allocator_arg.hpp \
-  /usr/local/include/boost/container/scoped_allocator.hpp \
-  /usr/local/include/boost/container/detail/config_begin.hpp \
-  /usr/local/include/boost/container/detail/workaround.hpp \
-  /usr/local/include/boost/container/allocator_traits.hpp \
-  /usr/local/include/boost/container/container_fwd.hpp \
-  /usr/local/include/boost/container/detail/std_fwd.hpp \
-  /usr/local/include/boost/move/detail/std_ns_begin.hpp \
-  /usr/local/include/boost/move/detail/std_ns_end.hpp \
-  /usr/local/include/boost/container/detail/mpl.hpp \
-  /usr/local/include/boost/container/detail/config_end.hpp \
-  /usr/local/include/boost/container/detail/type_traits.hpp \
-  /usr/local/include/boost/container/detail/placement_new.hpp \
-  /usr/local/include/boost/move/detail/fwd_macros.hpp \
-  /usr/local/include/boost/intrusive/detail/has_member_function_callable_with.hpp \
-  /usr/local/include/boost/container/scoped_allocator_fwd.hpp \
-  /usr/local/include/boost/container/uses_allocator_fwd.hpp \
-  /usr/local/include/boost/container/detail/dispatch_uses_allocator.hpp \
-  /usr/local/include/boost/container/uses_allocator.hpp \
-  /usr/local/include/boost/container/detail/addressof.hpp \
-  /usr/local/include/boost/container/detail/pair.hpp \
-  /usr/local/include/boost/move/adl_move_swap.hpp \
-  /usr/local/include/boost/intrusive/detail/minimal_pair_header.hpp \
-  /usr/local/include/boost/core/no_exceptions_support.hpp \
   /usr/local/include/boost/thread/csbl/memory/allocator_traits.hpp \
   /usr/local/include/boost/thread/csbl/memory/scoped_allocator.hpp \
   /usr/local/include/boost/thread/csbl/memory/shared_ptr.hpp \
-  /usr/local/include/boost/smart_ptr/make_shared.hpp \
-  /usr/local/include/boost/smart_ptr/make_shared_object.hpp \
-  /usr/local/include/boost/smart_ptr/detail/sp_forward.hpp \
-  /usr/local/include/boost/type_traits/type_with_alignment.hpp \
-  /usr/local/include/boost/type_traits/alignment_of.hpp \
-  /usr/local/include/boost/type_traits/is_pod.hpp \
-  /usr/local/include/boost/type_traits/is_scalar.hpp \
-  /usr/local/include/boost/smart_ptr/make_shared_array.hpp \
-  /usr/local/include/boost/smart_ptr/allocate_shared_array.hpp \
-  /usr/local/include/boost/type_traits/has_trivial_assign.hpp \
-  /usr/local/include/boost/type_traits/is_assignable.hpp \
-  /usr/local/include/boost/type_traits/has_trivial_constructor.hpp \
-  /usr/local/include/boost/type_traits/is_default_constructible.hpp \
-  /usr/local/include/boost/type_traits/has_trivial_destructor.hpp \
-  /usr/local/include/boost/type_traits/is_destructible.hpp \
   /usr/local/include/boost/utility/result_of.hpp \
   /usr/local/include/boost/preprocessor/iteration/iterate.hpp \
   /usr/local/include/boost/preprocessor/array/elem.hpp \
@@ -654,6 +594,9 @@ libfuego_gtpengine_a-GtpEngine.o: GtpEngine.cpp GtpEngine.h \
   /usr/local/include/boost/mpl/aux_/config/msvc_typename.hpp \
   /usr/local/include/boost/mpl/eval_if.hpp \
   /usr/local/include/boost/mpl/identity.hpp \
+  /usr/local/include/boost/type_traits/is_pointer.hpp \
+  /usr/local/include/boost/type_traits/is_member_function_pointer.hpp \
+  /usr/local/include/boost/type_traits/detail/is_mem_fun_pointer_impl.hpp \
   /usr/local/include/boost/utility/declval.hpp \
   /usr/local/include/boost/preprocessor/iteration/detail/iter/forward1.hpp \
   /usr/local/include/boost/preprocessor/iteration/detail/bounds/lower1.hpp \
@@ -684,7 +627,6 @@ libfuego_gtpengine_a-GtpEngine.o: GtpEngine.cpp GtpEngine.h \
   /usr/local/include/boost/visit_each.hpp \
   /usr/local/include/boost/core/is_same.hpp \
   /usr/local/include/boost/bind/storage.hpp \
-  /usr/local/include/boost/bind/bind_template.hpp \
   /usr/local/include/boost/bind/bind_cc.hpp \
   /usr/local/include/boost/bind/bind_mf_cc.hpp \
   /usr/local/include/boost/bind/bind_mf2_cc.hpp \
@@ -699,6 +641,7 @@ libfuego_gtpengine_a-GtpEngine.o: GtpEngine.cpp GtpEngine.h \
   /usr/local/include/boost/functional/hash/detail/limits.hpp \
   /usr/local/include/boost/integer/static_log2.hpp \
   /usr/local/include/boost/integer_fwd.hpp \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/typeindex \
   /usr/local/include/boost/functional/hash/extensions.hpp \
   /usr/local/include/boost/detail/container_fwd.hpp \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/deque \
@@ -713,6 +656,7 @@ libfuego_gtpengine_a-GtpEngine.o: GtpEngine.cpp GtpEngine.h \
   /usr/local/include/boost/move/unique_ptr.hpp \
   /usr/local/include/boost/move/detail/unique_ptr_meta_utils.hpp \
   /usr/local/include/boost/move/default_delete.hpp \
+  /usr/local/include/boost/move/adl_move_swap.hpp \
   /usr/local/include/boost/move/make_unique.hpp \
   /usr/local/include/boost/thread/shared_mutex.hpp \
   /usr/local/include/boost/thread/pthread/shared_mutex.hpp
@@ -724,6 +668,8 @@ GtpEngine.h:
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__config:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/stddef.h:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/__stddef_max_align_t.h:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/iostream:
 
@@ -803,10 +749,6 @@ GtpEngine.h:
 
 /usr/include/string.h:
 
-/usr/include/sys/_types/_rsize_t.h:
-
-/usr/include/sys/_types/_errno_t.h:
-
 /usr/include/strings.h:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cstdio:
@@ -879,11 +821,11 @@ GtpEngine.h:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__functional_base:
 
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__functional_base_03:
-
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__debug:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/tuple:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/atomic:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/stdexcept:
 
@@ -954,8 +896,6 @@ GtpEngine.h:
 /usr/include/sys/_types/_sigset_t.h:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/functional:
-
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__functional_03:
 
 /usr/include/locale.h:
 
@@ -1068,6 +1008,10 @@ GtpEngine.h:
 /usr/include/sys/_types/_useconds_t.h:
 
 /usr/include/sys/_types/_suseconds_t.h:
+
+/usr/include/sys/_types/_rsize_t.h:
+
+/usr/include/sys/_types/_errno_t.h:
 
 /usr/include/sys/_types/_fd_def.h:
 
@@ -1283,17 +1227,17 @@ GtpOutputStream.h:
 
 /usr/local/include/boost/move/core.hpp:
 
-/usr/local/include/boost/move/detail/type_traits.hpp:
+/usr/local/include/boost/move/detail/config_end.hpp:
 
 /usr/local/include/boost/move/detail/meta_utils.hpp:
 
 /usr/local/include/boost/move/detail/meta_utils_core.hpp:
 
-/usr/local/include/boost/move/detail/config_end.hpp:
-
 /usr/local/include/boost/static_assert.hpp:
 
 /usr/local/include/boost/move/traits.hpp:
+
+/usr/local/include/boost/move/detail/type_traits.hpp:
 
 /usr/local/include/boost/thread/lock_options.hpp:
 
@@ -1357,7 +1301,7 @@ GtpOutputStream.h:
 
 /usr/local/include/boost/smart_ptr/detail/spinlock.hpp:
 
-/usr/local/include/boost/smart_ptr/detail/spinlock_sync.hpp:
+/usr/local/include/boost/smart_ptr/detail/spinlock_std_atomic.hpp:
 
 /usr/local/include/boost/smart_ptr/detail/yield_k.hpp:
 
@@ -1925,37 +1869,7 @@ GtpOutputStream.h:
 
 /usr/local/include/boost/type_traits/is_void.hpp:
 
-/usr/local/include/boost/type_traits/detail/common_type_impl.hpp:
-
-/usr/local/include/boost/type_traits/detail/common_arithmetic_type.hpp:
-
-/usr/local/include/boost/type_traits/detail/composite_pointer_type.hpp:
-
-/usr/local/include/boost/type_traits/copy_cv.hpp:
-
-/usr/local/include/boost/type_traits/is_const.hpp:
-
-/usr/local/include/boost/type_traits/is_volatile.hpp:
-
-/usr/local/include/boost/type_traits/add_const.hpp:
-
-/usr/local/include/boost/type_traits/add_volatile.hpp:
-
-/usr/local/include/boost/type_traits/detail/composite_member_pointer_type.hpp:
-
-/usr/local/include/boost/type_traits/remove_pointer.hpp:
-
-/usr/local/include/boost/type_traits/type_identity.hpp:
-
-/usr/local/include/boost/type_traits/is_union.hpp:
-
-/usr/local/include/boost/type_traits/is_pointer.hpp:
-
-/usr/local/include/boost/type_traits/is_member_pointer.hpp:
-
-/usr/local/include/boost/type_traits/is_member_function_pointer.hpp:
-
-/usr/local/include/boost/type_traits/detail/is_mem_fun_pointer_impl.hpp:
+/usr/local/include/boost/type_traits/detail/mp_defer.hpp:
 
 /usr/local/include/boost/type_traits/is_arithmetic.hpp:
 
@@ -2017,103 +1931,13 @@ GtpOutputStream.h:
 
 /usr/local/include/boost/thread/csbl/memory/config.hpp:
 
-/usr/local/include/boost/intrusive/pointer_traits.hpp:
-
-/usr/local/include/boost/intrusive/detail/config_begin.hpp:
-
-/usr/local/include/boost/intrusive/detail/workaround.hpp:
-
-/usr/local/include/boost/intrusive/pointer_rebind.hpp:
-
-/usr/local/include/boost/move/detail/pointer_element.hpp:
-
-/usr/local/include/boost/intrusive/detail/mpl.hpp:
-
-/usr/local/include/boost/intrusive/detail/config_end.hpp:
-
 /usr/local/include/boost/thread/csbl/memory/allocator_arg.hpp:
-
-/usr/local/include/boost/container/scoped_allocator.hpp:
-
-/usr/local/include/boost/container/detail/config_begin.hpp:
-
-/usr/local/include/boost/container/detail/workaround.hpp:
-
-/usr/local/include/boost/container/allocator_traits.hpp:
-
-/usr/local/include/boost/container/container_fwd.hpp:
-
-/usr/local/include/boost/container/detail/std_fwd.hpp:
-
-/usr/local/include/boost/move/detail/std_ns_begin.hpp:
-
-/usr/local/include/boost/move/detail/std_ns_end.hpp:
-
-/usr/local/include/boost/container/detail/mpl.hpp:
-
-/usr/local/include/boost/container/detail/config_end.hpp:
-
-/usr/local/include/boost/container/detail/type_traits.hpp:
-
-/usr/local/include/boost/container/detail/placement_new.hpp:
-
-/usr/local/include/boost/move/detail/fwd_macros.hpp:
-
-/usr/local/include/boost/intrusive/detail/has_member_function_callable_with.hpp:
-
-/usr/local/include/boost/container/scoped_allocator_fwd.hpp:
-
-/usr/local/include/boost/container/uses_allocator_fwd.hpp:
-
-/usr/local/include/boost/container/detail/dispatch_uses_allocator.hpp:
-
-/usr/local/include/boost/container/uses_allocator.hpp:
-
-/usr/local/include/boost/container/detail/addressof.hpp:
-
-/usr/local/include/boost/container/detail/pair.hpp:
-
-/usr/local/include/boost/move/adl_move_swap.hpp:
-
-/usr/local/include/boost/intrusive/detail/minimal_pair_header.hpp:
-
-/usr/local/include/boost/core/no_exceptions_support.hpp:
 
 /usr/local/include/boost/thread/csbl/memory/allocator_traits.hpp:
 
 /usr/local/include/boost/thread/csbl/memory/scoped_allocator.hpp:
 
 /usr/local/include/boost/thread/csbl/memory/shared_ptr.hpp:
-
-/usr/local/include/boost/smart_ptr/make_shared.hpp:
-
-/usr/local/include/boost/smart_ptr/make_shared_object.hpp:
-
-/usr/local/include/boost/smart_ptr/detail/sp_forward.hpp:
-
-/usr/local/include/boost/type_traits/type_with_alignment.hpp:
-
-/usr/local/include/boost/type_traits/alignment_of.hpp:
-
-/usr/local/include/boost/type_traits/is_pod.hpp:
-
-/usr/local/include/boost/type_traits/is_scalar.hpp:
-
-/usr/local/include/boost/smart_ptr/make_shared_array.hpp:
-
-/usr/local/include/boost/smart_ptr/allocate_shared_array.hpp:
-
-/usr/local/include/boost/type_traits/has_trivial_assign.hpp:
-
-/usr/local/include/boost/type_traits/is_assignable.hpp:
-
-/usr/local/include/boost/type_traits/has_trivial_constructor.hpp:
-
-/usr/local/include/boost/type_traits/is_default_constructible.hpp:
-
-/usr/local/include/boost/type_traits/has_trivial_destructor.hpp:
-
-/usr/local/include/boost/type_traits/is_destructible.hpp:
 
 /usr/local/include/boost/utility/result_of.hpp:
 
@@ -2154,6 +1978,12 @@ GtpOutputStream.h:
 /usr/local/include/boost/mpl/eval_if.hpp:
 
 /usr/local/include/boost/mpl/identity.hpp:
+
+/usr/local/include/boost/type_traits/is_pointer.hpp:
+
+/usr/local/include/boost/type_traits/is_member_function_pointer.hpp:
+
+/usr/local/include/boost/type_traits/detail/is_mem_fun_pointer_impl.hpp:
 
 /usr/local/include/boost/utility/declval.hpp:
 
@@ -2217,8 +2047,6 @@ GtpOutputStream.h:
 
 /usr/local/include/boost/bind/storage.hpp:
 
-/usr/local/include/boost/bind/bind_template.hpp:
-
 /usr/local/include/boost/bind/bind_cc.hpp:
 
 /usr/local/include/boost/bind/bind_mf_cc.hpp:
@@ -2247,6 +2075,8 @@ GtpOutputStream.h:
 
 /usr/local/include/boost/integer_fwd.hpp:
 
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/typeindex:
+
 /usr/local/include/boost/functional/hash/extensions.hpp:
 
 /usr/local/include/boost/detail/container_fwd.hpp:
@@ -2274,6 +2104,8 @@ GtpOutputStream.h:
 /usr/local/include/boost/move/detail/unique_ptr_meta_utils.hpp:
 
 /usr/local/include/boost/move/default_delete.hpp:
+
+/usr/local/include/boost/move/adl_move_swap.hpp:
 
 /usr/local/include/boost/move/make_unique.hpp:
 

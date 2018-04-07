@@ -98,6 +98,9 @@ GoUctState::GoUctState(unsigned int threadId, const GoBoard& bd)
       m_uctBd(bd),
       m_synchronizer(bd)
 {
+    m_sharedBoard = &bd;
+
+    // m_bd.m_isSubscriber = true;
     m_synchronizer.SetSubscriber(m_bd);
     m_isInPlayout = false;
 }

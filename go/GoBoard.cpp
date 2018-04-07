@@ -40,11 +40,25 @@ GoBoard::GoBoard(int size, const GoSetup& setup, const GoRules& rules)
       m_const(size),
       m_blockList(new SgArrayList<Block,GO_MAX_NUM_MOVES>()),
       m_moves(new SgArrayList<StackEntry,GO_MAX_NUM_MOVES>())
+      
+      
 
 {
+    // SgDebug() << "# Constructed GoBoard, value of m_historyData:" << m_historyData[100] << ". \n";
     GoInitCheck();
     Init(size, rules, setup);
 }
+
+// GoBoard::GoBoard(const GoBoard & c)
+//     : m_snapshot(new Snapshot()),
+//       m_const(c.m_size),
+//       m_blockList(new SgArrayList<Block,GO_MAX_NUM_MOVES>()),
+//       m_moves(new SgArrayList<StackEntry,GO_MAX_NUM_MOVES>())
+// {
+//     SgDebug() << "Trying to copy GoBoard. \n";
+//     // GoInitCheck();
+//     // Init(c);
+// }
 
 GoBoard::~GoBoard()
 {
@@ -53,6 +67,11 @@ GoBoard::~GoBoard()
     delete m_moves;
     m_moves = 0;
 }
+
+// std::ostream& operator<<(std::ostream& out, const GoBoard& goBoard){
+//     return GoWriteBoard(out, goBoard);
+
+// }
 
 void GoBoard::CheckConsistency() const
 {
@@ -493,9 +512,21 @@ void GoBoard::Init(int size, const GoRules& rules, const GoSetup& setup)
             InitBlock(block, c, *it);
         }
     }
-    m_snapshot->m_moveNumber = -1;
+    // m_snapshot->m_moveNumber = -1;
+
+    // m_historyLocationBlack = m_historyLength;
+    // m_historyLocationWhite = m_historyLength;
+
+    PrepareHistoryData(SG_BLACK);
+
+    
+    
+    //m_isSubscriber = false;
+
     CheckConsistency();
 }
+
+
 
 void GoBoard::InitBlock(GoBoard::Block& block, SgBlackWhite c, SgPoint anchor)
 {
@@ -643,6 +674,18 @@ void GoBoard::AddStone(SgPoint p, SgBlackWhite c)
     ++nuNeighbors[p - SG_WE];
     ++nuNeighbors[p + SG_WE];
     ++nuNeighbors[p + SG_NS];
+
+    // if (!m_isSubscriber){
+    //     int row = SgPointUtil::Row(p) - 1;
+    //     int col = SgPointUtil::Col(p) - 1;
+    //     if (c == SG_BLACK){
+    //         m_historyDataBlack[m_historyLocationBlack*361 + row*19 + col] = 1;
+    //     } else if (c == SG_WHITE){
+    //         m_historyDataWhite[m_historyLocationWhite*361 + row*19 + col] = 1;
+    //     }
+    // }
+
+    
 }
 
 void GoBoard::RemoveStone(SgPoint p)
@@ -661,6 +704,18 @@ void GoBoard::RemoveStone(SgPoint p)
     --nuNeighbors[p - SG_WE];
     --nuNeighbors[p + SG_WE];
     --nuNeighbors[p + SG_NS];
+
+    // if (!m_isSubscriber){
+    //     int row = SgPointUtil::Row(p) - 1;
+    //     int col = SgPointUtil::Col(p) - 1;
+    //     if (c == SG_BLACK){
+    //         m_historyDataBlack[m_historyLocationBlack*361 + row*19 + col] = 0;
+    //     } else if (c == SG_WHITE){
+    //         m_historyDataWhite[m_historyLocationWhite*361 + row*19 + col] = 0;
+    //     }
+
+    // }
+
 }
 
 void GoBoard::KillBlock(const Block* block)
@@ -673,6 +728,10 @@ void GoBoard::KillBlock(const Block* block)
         AddLibToAdjBlocks(stn, opp);
         m_state.m_hash.XorStone(stn, c);
         RemoveStone(stn);
+        
+        //added by Damon, to remove the value in m_historyData
+        // HistoryRemoveStone(stn, c);
+
         m_capturedStones.PushBack(stn);
         m_state.m_block[stn] = 0;
     }
@@ -750,6 +809,8 @@ bool GoBoard::CheckSuicide(SgPoint p, StackEntry& entry)
 
 void GoBoard::Play(SgPoint p, SgBlackWhite player)
 {
+    
+
     SG_ASSERT(p != SG_NULLMOVE);
     SG_ASSERT_BW(player);
     SG_ASSERT(IsPass(p) || (IsValidPoint(p) && IsEmpty(p)));
@@ -765,6 +826,13 @@ void GoBoard::Play(SgPoint p, SgBlackWhite player)
     m_capturedStones.Clear();
     m_moveInfo.reset();
     SgBlackWhite opp = SgOppBW(player);
+
+    //copy the historydata from last move to current move
+    
+    PrepareHistoryData(opp);
+    // m_historyLocation++;
+
+
     if (IsPass(p))
     {
         m_state.m_toPlay = opp;
@@ -778,6 +846,10 @@ void GoBoard::Play(SgPoint p, SgBlackWhite player)
     m_state.m_isFirst[p] = false;
     m_state.m_hash.XorStone(p, player);
     AddStone(p, player);
+    
+    //Added by Damon for history data adding.
+    // HistoryAddStone(p, player);
+
     ++m_state.m_numStones[player];
     RemoveLibAndKill(p, opp, entry);
     if (! entry.m_killed.IsEmpty())
@@ -815,6 +887,17 @@ void GoBoard::Undo()
     CheckConsistency();
     const StackEntry& entry = m_moves->Last();
     RestoreState(entry);
+
+    // // decrease m_historyLocation to move the history pointer
+    // if (!m_isSubscriber){
+    //     if (entry.m_toPlay == SG_BLACK){
+
+    //         m_historyLocationWhite--;
+    //     } else if (entry.m_toPlay == SG_WHITE){
+    //         m_historyLocationBlack--;
+    //     }
+    // }
+
     UpdateBlocksAfterUndo(entry);
     m_moves->PopBack();
     CheckConsistency();
@@ -902,6 +985,207 @@ void GoBoard::RestoreSnapshot()
             *m_state.m_block[p] = m_snapshot->m_blockArray[p];
     }
     CheckConsistency();
+}
+
+void GoBoard::GetHistoryData(std::vector<float>& historyData, size_t dataSize) const{
+
+    // // int baseNumber = (MoveNumber())*2;
+
+    // SgBlackWhite currentColor = ToPlay();
+
+    // SgDebug() << "Trying to copy data from historyData to output historyData vector. \n";
+
+    // if (currentColor == SG_BLACK){
+    //     SgDebug() << "history location: " << m_historyLocationBlack << ".  for color: black \n";
+   
+    // } else if (currentColor == SG_WHITE){
+
+    //     SgDebug() << "history location: " << m_historyLocationWhite << ".  for color: white \n";
+    // }
+
+    // int startLocation;
+
+    // if (currentColor == SG_BLACK){
+    //     startLocation = m_historyLocationBlack - m_historyLength + 1;
+    // } else if (currentColor == SG_WHITE){
+    //     startLocation = m_historyLocationWhite - m_historyLength + 1;  
+    // }
+    
+    // // SgDebug() << "startLocation of history data: " << startLocation << ". \n";
+
+    // // SgDebug() << "data size:" << dataSize << ". \n";
+
+    // for (int i=0; i<m_historyLength; i++){
+
+    //     SgDebug() << "i is:" << i << " location is:"   <<  startLocation + i << " . \n";
+
+    //     if (currentColor == SG_BLACK){
+    //         for (int row=0; row<19; row++){
+    //             for (int col=0; col<19; col++){
+    //                 historyData[i*2*361 + row*19 + col] = m_historyDataWhite[(startLocation - 1 + i)*361 + row*19 + col];
+    //                 historyData[(i*2+1)*361 + row*19 + col] = m_historyDataBlack[(startLocation + i)*361 + row*19 + col];
+    //             }
+    //         }
+            
+    //     } else if (currentColor == SG_WHITE){
+    //         for (int row=0; row<19; row++){
+    //             for (int col=0; col<19; col++){
+                    
+    //                 historyData[i*2*361 + row*19 + col] = m_historyDataBlack[(startLocation + i)*361 + row*19 + col];
+    //                 historyData[(i*2+1)*361 + row*19 + col] = m_historyDataWhite[(startLocation + i)*361 + row*19 + col];
+    //             }
+    //         }
+    //     }
+
+    // }
+
+    // // SgDebug() << "before setting color. \n";
+
+    // if (currentColor == SG_BLACK){
+    //     for (int row=0; row<19; row++){
+    //             for (int col=0; col<19; col++){
+    //                 historyData[m_historyLength*2*361 + row*19 + col] = 1;
+                                
+    //             }
+    //         }
+    // } else if (currentColor == SG_WHITE){
+    //     for (int row=0; row<19; row++){
+    //             for (int col=0; col<19; col++){
+    //                 historyData[m_historyLength*2*361 + row*19 + col] = 0;
+                                
+    //             }
+    //         }
+    // }
+
+    // SgDebug() << "after setting color. \n";
+    
+    
+}
+
+
+// to prepare history data
+// if move number is 0, the game is not yet started, it is prepare for black
+
+// When the board is in playing, say black is playing
+// After move size was increased by 1, it start to prepare the history for the next move, which is white.
+
+void GoBoard::PrepareHistoryData(SgBlackWhite forColor){
+    
+    
+
+    // if (!m_isSubscriber){
+
+    //     if (forColor == SG_BLACK){
+            
+    //         int newHistoryLocation = m_historyLocationBlack + 1;
+
+    //         SgDebug() << "newHistoryLocation is:" << newHistoryLocation << ".\n";
+
+    //         for (int row = 0; row < 19 ; row++){
+    //             for (int col = 0; col < 19; col++){
+    //                 m_historyDataBlack[newHistoryLocation*361 + row*19 + col] = m_historyDataBlack[m_historyLocationBlack*361 + row*19 + col];
+                                                    
+    //             }
+    //         }
+
+    //         // debug code
+    //         m_historyDataBlack[newHistoryLocation*361 + 18*19 + 18] = newHistoryLocation;
+            
+            
+
+    //         m_historyLocationBlack = newHistoryLocation;
+
+    //     } else if (forColor == SG_WHITE){
+            
+    //         int newHistoryLocation = m_historyLocationWhite + 1;
+
+    //         SgDebug() << "newHistoryLocation is:" << newHistoryLocation << ".\n";
+
+    //         for (int row = 0; row < 19 ; row++){
+    //             for (int col = 0; col < 19; col++){
+
+    //                 m_historyDataWhite[newHistoryLocation*361 + row*19 + col] = m_historyDataWhite[m_historyLocationWhite*361 + row*19 + col];
+    //             }
+    //         }
+
+    //         // debug code
+          
+    //         m_historyDataWhite[newHistoryLocation*361 + 18*19 + 18] = newHistoryLocation;
+            
+
+    //         m_historyLocationWhite = newHistoryLocation;
+
+    //     }
+
+        
+    // }
+
+
+    
+    
+}
+
+void GoBoard::HistoryAddStone(SgPoint p, SgBlackWhite c)
+{
+    
+    // int row = SgPointUtil::Row(p) - 1;
+    // int col = SgPointUtil::Col(p) - 1;
+    // if (c == SG_BLACK){
+    //     m_historyDataBlack[m_historyLocationBlack*361 + row*19 + col] ++; //= 1;
+    // } else if (c == SG_WHITE){
+    //     m_historyDataWhite[m_historyLocationWhite*361 + row*19 + col] ++; //= 1;
+    // }
+
+
+    // int baseNumber = (MoveNumber())*2;
+    // int tagNumber = baseNumber + m_historyLength*2;
+    // int headNumber = tagNumber -1;
+
+    // SgGrid row = SgPointUtil::Row(p);
+    // SgGrid col = SgPointUtil::Col(p);
+
+    // // SgDebug() << "# Adding history stone, base number: " << baseNumber << "  tagNumber:  " << tagNumber << " . \n";
+    // // SgDebug() << "# Adding history stone, head number: " << headNumber << " row:" << row << " col:"<< col <<". \n";
+
+    // if (c == SG_BLACK){
+    //     // SgDebug() << "#it is black. \n";
+    //     // SgDebug() << "# The location to add stone: " << (headNumber*361 + (row-1)*19 +(col-1)) << ". \n";
+   
+    //     m_historyData[headNumber*361 + (row-1)*19 +(col-1)] = 1;
+    // }else if(c == SG_WHITE){
+    //     // SgDebug() << "# it is white. \n";
+    //     // SgDebug() << "# The location to add stone: " << ((headNumber-1)*361 + (row-1)*19 +(col-1)) << ". \n";
+    //     m_historyData[(headNumber-1)*361 + (row-1)*19 + (col-1)] = 1;
+    // }
+
+}
+
+
+
+void GoBoard::HistoryRemoveStone(SgPoint p, SgBlackWhite c)
+{
+    // int row = SgPointUtil::Row(p) - 1;
+    // int col = SgPointUtil::Col(p) - 1;
+    // if (c == SG_BLACK){
+    //     m_historyDataBlack[m_historyLocationBlack*361 + row*19 + col] --; //= 0;
+    // } else if (c == SG_WHITE){
+    //     m_historyDataWhite[m_historyLocationWhite*361 + row*19 + col] --; //= 0;
+    // }
+
+    // int baseNumber = (MoveNumber())*2;
+    // int tagNumber = baseNumber + m_historyLength*2;
+    // int headNumber = tagNumber -1;
+
+    // SgGrid row = SgPointUtil::Row(p);
+    // SgGrid col = SgPointUtil::Col(p);
+    
+    // if (c == SG_BLACK){
+    //     // SgDebug() << "#it is black. \n";
+    //     m_historyData[headNumber*361 + (row-1)*19 +(col-1)] = 0;
+    // }else if(c == SG_WHITE){
+    //     // SgDebug() << "# it is white. \n";
+    //     m_historyData[(headNumber-1)*361 + (row-1)*19 + (col-1)] = 0;
+    // }
 }
 
 //----------------------------------------------------------------------------

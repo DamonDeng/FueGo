@@ -90,13 +90,13 @@ GoGtpEngine::GoGtpEngine(int fixedBoardSize, const char* programPath,
       m_autoSave(false),
       m_autoShowBoard(false),
       m_debugToComment(false),
-      m_useBook(true),
+      m_useBook(false),
       m_isPonderPosition(true),
       m_fixedBoardSize(fixedBoardSize),
       m_maxClearBoard(-1),
       m_numberClearBoard(0),
       m_timeLastMove(0),
-      m_timeLimit(10),
+      m_timeLimit(5),
       m_overhead(0),
       m_game(fixedBoardSize > 0 ? fixedBoardSize : GO_DEFAULT_SIZE),
       m_sgCommands(*this, programPath),
@@ -1346,7 +1346,7 @@ SgPoint GoGtpEngine::GenBookMove(SgBlackWhite toPlay)
 
 SgPoint GoGtpEngine::GenMove(SgBlackWhite color, bool ignoreClock)
 {
-    SgDebug() << "GoGTPEngine is going to gen move\n";
+    // SgDebug() << "GoGTPEngine is going to gen move\n";
 
     SG_ASSERT_BW(color);
     CheckMoveStackOverflow();
@@ -1374,7 +1374,7 @@ SgPoint GoGtpEngine::GenMove(SgBlackWhite color, bool ignoreClock)
         AddStatistics("BOOK", 0);
     if (move == SG_NULLMOVE)
     {
-        SgDebug() << "Trying to call player's GenMove function to gen move.\n";
+        // SgDebug() << "Trying to call player's GenMove function to gen move.\n";
         player.ClearSearchTraces();
         move = player.GenMove(time, color);
         SgNode* searchTraces = player.TransferSearchTraces();

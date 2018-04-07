@@ -1183,6 +1183,34 @@ std::ostream& GoWriteBoard(std::ostream& out, const BOARD& bd)
 
 inline std::ostream& operator<<(std::ostream& out, const GoBoard& bd)
 {
+    // int historyLength = 8;
+    // int arrayLength = historyLength*2 + 1;
+
+    // int boardSize = 19;
+
+    // int dataLength = 1*arrayLength*boardSize*boardSize;
+
+
+    // std::vector<float> inputData(dataLength);
+
+    // bd.GetHistoryData(inputData, dataLength);
+
+    // for (int i=0; i<arrayLength; i++){
+    //     for (int row=18; row>=0; row--){
+    //         for (int col=0; col<19; col++){
+    //             int index = i*boardSize*boardSize + row*boardSize + col;
+    //             if (inputData[index] == 0){
+    //                 out << ". ";
+    //             } else {
+    //                 out << inputData[index] << " ";
+    //             }
+    //         }
+    //         out << "\n";
+    //     }
+
+    //     out << "------------------------- \n";
+    // }
+
     return GoWriteBoard(out, bd);
 }
 

@@ -2203,6 +2203,7 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
 
+CXXFLAGS="$CXXFLAGS -std=c++0x -O2"
 ac_config_headers="$ac_config_headers config.h"
 
 am__api_version='1.15'
@@ -6731,7 +6732,7 @@ case ".$var" in
 esac
 
 
-ac_config_files="$ac_config_files Makefile book/Makefile regression/Makefile misctests/Makefile fuegomain/Makefile fuegotest/Makefile go/Makefile gouct/Makefile gtpengine/Makefile features/Makefile simpleplayers/Makefile smartgame/Makefile unittestmain/Makefile dnnmain/Makefile"
+ac_config_files="$ac_config_files Makefile book/Makefile regression/Makefile misctests/Makefile fuegomain/Makefile fuegotest/Makefile go/Makefile gouct/Makefile gtpengine/Makefile features/Makefile simpleplayers/Makefile smartgame/Makefile unittestmain/Makefile mxnet/Makefile selfplay/Makefile"
 
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
@@ -7481,7 +7482,8 @@ do
     "simpleplayers/Makefile") CONFIG_FILES="$CONFIG_FILES simpleplayers/Makefile" ;;
     "smartgame/Makefile") CONFIG_FILES="$CONFIG_FILES smartgame/Makefile" ;;
     "unittestmain/Makefile") CONFIG_FILES="$CONFIG_FILES unittestmain/Makefile" ;;
-    "dnnmain/Makefile") CONFIG_FILES="$CONFIG_FILES dnnmain/Makefile" ;;
+    "mxnet/Makefile") CONFIG_FILES="$CONFIG_FILES mxnet/Makefile" ;;
+    "selfplay/Makefile") CONFIG_FILES="$CONFIG_FILES selfplay/Makefile" ;;
 
   *) as_fn_error $? "invalid argument: \`$ac_config_target'" "$LINENO" 5;;
   esac

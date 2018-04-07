@@ -232,12 +232,12 @@ ETAGS = etags
 CTAGS = ctags
 am__DIST_COMMON = $(srcdir)/Makefile.in $(top_srcdir)/depcomp
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /Users/mingxuan/Desktop/workspace/go_game/fuego_svn/missing aclocal-1.15
+ACLOCAL = ${SHELL} /Users/mingxuan/Desktop/workspace/go_game/fuego_dev/missing aclocal-1.15
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 1
-AUTOCONF = ${SHELL} /Users/mingxuan/Desktop/workspace/go_game/fuego_svn/missing autoconf
-AUTOHEADER = ${SHELL} /Users/mingxuan/Desktop/workspace/go_game/fuego_svn/missing autoheader
-AUTOMAKE = ${SHELL} /Users/mingxuan/Desktop/workspace/go_game/fuego_svn/missing automake-1.15
+AUTOCONF = ${SHELL} /Users/mingxuan/Desktop/workspace/go_game/fuego_dev/missing autoconf
+AUTOHEADER = ${SHELL} /Users/mingxuan/Desktop/workspace/go_game/fuego_dev/missing autoheader
+AUTOMAKE = ${SHELL} /Users/mingxuan/Desktop/workspace/go_game/fuego_dev/missing automake-1.15
 AWK = awk
 BOOST_CPPFLAGS = -pthread -I/usr/local/include
 BOOST_DATE_TIME_LIB = -lboost_date_time-mt
@@ -254,7 +254,7 @@ CPP = gcc -E
 CPPFLAGS = 
 CXX = g++
 CXXDEPMODE = depmode=gcc3
-CXXFLAGS = -g -O2 -DNDEBUG -Wall -Wextra
+CXXFLAGS =  -std=c++0x -O2 -DNDEBUG -Wall -Wextra
 CYGPATH_W = echo
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
@@ -274,7 +274,7 @@ LIBOBJS =
 LIBS = 
 LTLIBOBJS = 
 MAINT = #
-MAKEINFO = ${SHELL} /Users/mingxuan/Desktop/workspace/go_game/fuego_svn/missing makeinfo
+MAKEINFO = ${SHELL} /Users/mingxuan/Desktop/workspace/go_game/fuego_dev/missing makeinfo
 MKDIR_P = .././install-sh -c -d
 OBJEXT = o
 PACKAGE = fuego
@@ -290,10 +290,10 @@ SET_MAKE =
 SHELL = /bin/sh
 STRIP = 
 VERSION = 1.1.SVN
-abs_builddir = /Users/mingxuan/Desktop/workspace/go_game/fuego_svn/smartgame
-abs_srcdir = /Users/mingxuan/Desktop/workspace/go_game/fuego_svn/smartgame
-abs_top_builddir = /Users/mingxuan/Desktop/workspace/go_game/fuego_svn
-abs_top_srcdir = /Users/mingxuan/Desktop/workspace/go_game/fuego_svn
+abs_builddir = /Users/mingxuan/Desktop/workspace/go_game/fuego_dev/smartgame
+abs_srcdir = /Users/mingxuan/Desktop/workspace/go_game/fuego_dev/smartgame
+abs_top_builddir = /Users/mingxuan/Desktop/workspace/go_game/fuego_dev
+abs_top_srcdir = /Users/mingxuan/Desktop/workspace/go_game/fuego_dev
 ac_ct_CC = gcc
 ac_ct_CXX = g++
 am__include = include
@@ -321,7 +321,7 @@ host_vendor = apple
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /Users/mingxuan/Desktop/workspace/go_game/fuego_svn/install-sh
+install_sh = ${SHELL} /Users/mingxuan/Desktop/workspace/go_game/fuego_dev/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -474,7 +474,9 @@ SgWrite.h
 
 libfuego_smartgame_a_CPPFLAGS = \
 $(BOOST_CPPFLAGS) \
--I../gtpengine
+-I../gtpengine \
+-I../go \
+-I../include
 
 DISTCLEANFILES = *~
 all: all-am

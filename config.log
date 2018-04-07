@@ -14,7 +14,7 @@ hostname = f45c89a50c8f.ant.amazon.com
 uname -m = x86_64
 uname -r = 15.6.0
 uname -s = Darwin
-uname -v = Darwin Kernel Version 15.6.0: Mon Nov 13 21:58:35 PST 2017; root:xnu-3248.72.11~1/RELEASE_X86_64
+uname -v = Darwin Kernel Version 15.6.0: Tue Jan 30 11:45:51 PST 2018; root:xnu-3248.73.8~1/RELEASE_X86_64
 
 /usr/bin/uname -p = i386
 /bin/uname -X     = unknown
@@ -23,15 +23,15 @@ uname -v = Darwin Kernel Version 15.6.0: Mon Nov 13 21:58:35 PST 2017; root:xnu-
 /usr/bin/arch -k       = unknown
 /usr/convex/getsysinfo = unknown
 /usr/bin/hostinfo      = Mach kernel version:
-	 Darwin Kernel Version 15.6.0: Mon Nov 13 21:58:35 PST 2017; root:xnu-3248.72.11~1/RELEASE_X86_64
+	 Darwin Kernel Version 15.6.0: Tue Jan 30 11:45:51 PST 2018; root:xnu-3248.73.8~1/RELEASE_X86_64
 Kernel configured for up to 8 processors.
 4 processors are physically available.
 8 processors are logically available.
 Processor type: x86_64h (Intel x86-64h Haswell)
 Processors active: 0 1 2 3 4 5 6 7
 Primary memory available: 16.00 gigabytes
-Default processor set: 408 tasks, 2945 threads, 8 processors
-Load average: 3.30, Mach factor: 5.27
+Default processor set: 310 tasks, 2050 threads, 8 processors
+Load average: 2.44, Mach factor: 5.55
 /bin/machine           = unknown
 /usr/bin/oslevel       = unknown
 /bin/universe          = unknown
@@ -53,224 +53,224 @@ PATH: /usr/local/bin
 ## Core tests. ##
 ## ----------- ##
 
-configure:2253: checking for a BSD-compatible install
-configure:2321: result: /usr/bin/install -c
-configure:2332: checking whether build environment is sane
-configure:2387: result: yes
-configure:2538: checking for a thread-safe mkdir -p
-configure:2577: result: ./install-sh -c -d
-configure:2584: checking for gawk
-configure:2614: result: no
-configure:2584: checking for mawk
-configure:2614: result: no
-configure:2584: checking for nawk
-configure:2614: result: no
-configure:2584: checking for awk
-configure:2600: found /usr/bin/awk
-configure:2611: result: awk
-configure:2622: checking whether make sets $(MAKE)
-configure:2644: result: yes
-configure:2673: checking whether make supports nested variables
-configure:2690: result: yes
-configure:2817: checking whether to enable maintainer-specific portions of Makefiles
-configure:2826: result: no
-configure:2897: checking for g++
-configure:2913: found /usr/bin/g++
-configure:2924: result: g++
-configure:2951: checking for C++ compiler version
-configure:2960: g++ --version >&5
+configure:2254: checking for a BSD-compatible install
+configure:2322: result: /usr/bin/install -c
+configure:2333: checking whether build environment is sane
+configure:2388: result: yes
+configure:2539: checking for a thread-safe mkdir -p
+configure:2578: result: ./install-sh -c -d
+configure:2585: checking for gawk
+configure:2615: result: no
+configure:2585: checking for mawk
+configure:2615: result: no
+configure:2585: checking for nawk
+configure:2615: result: no
+configure:2585: checking for awk
+configure:2601: found /usr/bin/awk
+configure:2612: result: awk
+configure:2623: checking whether make sets $(MAKE)
+configure:2645: result: yes
+configure:2674: checking whether make supports nested variables
+configure:2691: result: yes
+configure:2818: checking whether to enable maintainer-specific portions of Makefiles
+configure:2827: result: no
+configure:2898: checking for g++
+configure:2914: found /usr/bin/g++
+configure:2925: result: g++
+configure:2952: checking for C++ compiler version
+configure:2961: g++ --version >&5
 Apple LLVM version 8.0.0 (clang-800.0.42.1)
 Target: x86_64-apple-darwin15.6.0
 Thread model: posix
 InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
 Configured with: --prefix=/Applications/Xcode.app/Contents/Developer/usr --with-gxx-include-dir=/usr/include/c++/4.2.1
-configure:2971: $? = 0
-configure:2960: g++ -v >&5
+configure:2972: $? = 0
+configure:2961: g++ -v >&5
 Configured with: --prefix=/Applications/Xcode.app/Contents/Developer/usr --with-gxx-include-dir=/usr/include/c++/4.2.1
 Apple LLVM version 8.0.0 (clang-800.0.42.1)
 Target: x86_64-apple-darwin15.6.0
 Thread model: posix
 InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
-configure:2971: $? = 0
-configure:2960: g++ -V >&5
+configure:2972: $? = 0
+configure:2961: g++ -V >&5
 clang: error: argument to '-V' is missing (expected 1 value)
 clang: error: no input files
-configure:2971: $? = 1
-configure:2960: g++ -qversion >&5
+configure:2972: $? = 1
+configure:2961: g++ -qversion >&5
 clang: error: unknown argument: '-qversion'
 clang: error: no input files
-configure:2971: $? = 1
-configure:2991: checking whether the C++ compiler works
-configure:3013: g++    conftest.cpp  >&5
-configure:3017: $? = 0
-configure:3065: result: yes
-configure:3068: checking for C++ compiler default output file name
-configure:3070: result: a.out
-configure:3076: checking for suffix of executables
-configure:3083: g++ -o conftest    conftest.cpp  >&5
-configure:3087: $? = 0
-configure:3109: result: 
-configure:3131: checking whether we are cross compiling
-configure:3139: g++ -o conftest    conftest.cpp  >&5
-configure:3143: $? = 0
-configure:3150: ./conftest
-configure:3154: $? = 0
-configure:3169: result: no
-configure:3174: checking for suffix of object files
-configure:3196: g++ -c   conftest.cpp >&5
-configure:3200: $? = 0
-configure:3221: result: o
-configure:3225: checking whether we are using the GNU C++ compiler
-configure:3244: g++ -c   conftest.cpp >&5
-configure:3244: $? = 0
-configure:3253: result: yes
-configure:3262: checking whether g++ accepts -g
-configure:3282: g++ -c -g  conftest.cpp >&5
-configure:3282: $? = 0
-configure:3323: result: yes
-configure:3357: checking for style of include used by make
-configure:3385: result: GNU
-configure:3411: checking dependency style of g++
-configure:3522: result: gcc3
-configure:3580: checking for ranlib
-configure:3596: found /usr/bin/ranlib
-configure:3607: result: ranlib
-configure:3633: checking build system type
-configure:3647: result: x86_64-apple-darwin15.6.0
-configure:3667: checking host system type
-configure:3680: result: x86_64-apple-darwin15.6.0
-configure:3749: checking for boostlib >= 1.50.0
-configure:3832: g++ -c -g -O2  -I/usr/local/include conftest.cpp >&5
-configure:3832: $? = 0
-configure:3834: result: yes
-configure:4037: checking for gcc
-configure:4053: found /usr/bin/gcc
-configure:4064: result: gcc
-configure:4293: checking for C compiler version
-configure:4302: gcc --version >&5
+configure:2972: $? = 1
+configure:2992: checking whether the C++ compiler works
+configure:3014: g++  -std=c++0x -O2   conftest.cpp  >&5
+configure:3018: $? = 0
+configure:3066: result: yes
+configure:3069: checking for C++ compiler default output file name
+configure:3071: result: a.out
+configure:3077: checking for suffix of executables
+configure:3084: g++ -o conftest  -std=c++0x -O2   conftest.cpp  >&5
+configure:3088: $? = 0
+configure:3110: result: 
+configure:3132: checking whether we are cross compiling
+configure:3140: g++ -o conftest  -std=c++0x -O2   conftest.cpp  >&5
+configure:3144: $? = 0
+configure:3151: ./conftest
+configure:3155: $? = 0
+configure:3170: result: no
+configure:3175: checking for suffix of object files
+configure:3197: g++ -c  -std=c++0x -O2  conftest.cpp >&5
+configure:3201: $? = 0
+configure:3222: result: o
+configure:3226: checking whether we are using the GNU C++ compiler
+configure:3245: g++ -c  -std=c++0x -O2  conftest.cpp >&5
+configure:3245: $? = 0
+configure:3254: result: yes
+configure:3263: checking whether g++ accepts -g
+configure:3283: g++ -c -g  conftest.cpp >&5
+configure:3283: $? = 0
+configure:3324: result: yes
+configure:3358: checking for style of include used by make
+configure:3386: result: GNU
+configure:3412: checking dependency style of g++
+configure:3523: result: gcc3
+configure:3581: checking for ranlib
+configure:3597: found /usr/bin/ranlib
+configure:3608: result: ranlib
+configure:3634: checking build system type
+configure:3648: result: x86_64-apple-darwin15.6.0
+configure:3668: checking host system type
+configure:3681: result: x86_64-apple-darwin15.6.0
+configure:3750: checking for boostlib >= 1.50.0
+configure:3833: g++ -c  -std=c++0x -O2  -I/usr/local/include conftest.cpp >&5
+configure:3833: $? = 0
+configure:3835: result: yes
+configure:4038: checking for gcc
+configure:4054: found /usr/bin/gcc
+configure:4065: result: gcc
+configure:4294: checking for C compiler version
+configure:4303: gcc --version >&5
 Apple LLVM version 8.0.0 (clang-800.0.42.1)
 Target: x86_64-apple-darwin15.6.0
 Thread model: posix
 InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
 Configured with: --prefix=/Applications/Xcode.app/Contents/Developer/usr --with-gxx-include-dir=/usr/include/c++/4.2.1
-configure:4313: $? = 0
-configure:4302: gcc -v >&5
+configure:4314: $? = 0
+configure:4303: gcc -v >&5
 Configured with: --prefix=/Applications/Xcode.app/Contents/Developer/usr --with-gxx-include-dir=/usr/include/c++/4.2.1
 Apple LLVM version 8.0.0 (clang-800.0.42.1)
 Target: x86_64-apple-darwin15.6.0
 Thread model: posix
 InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
-configure:4313: $? = 0
-configure:4302: gcc -V >&5
+configure:4314: $? = 0
+configure:4303: gcc -V >&5
 clang: error: argument to '-V' is missing (expected 1 value)
 clang: error: no input files
-configure:4313: $? = 1
-configure:4302: gcc -qversion >&5
+configure:4314: $? = 1
+configure:4303: gcc -qversion >&5
 clang: error: unknown argument: '-qversion'
 clang: error: no input files
-configure:4313: $? = 1
-configure:4317: checking whether we are using the GNU C compiler
-configure:4336: gcc -c   conftest.c >&5
-configure:4336: $? = 0
-configure:4345: result: yes
-configure:4354: checking whether gcc accepts -g
-configure:4374: gcc -c -g  conftest.c >&5
-configure:4374: $? = 0
-configure:4415: result: yes
-configure:4432: checking for gcc option to accept ISO C89
-configure:4495: gcc  -c -g -O2  conftest.c >&5
-configure:4495: $? = 0
-configure:4508: result: none needed
-configure:4533: checking whether gcc understands -c and -o together
-configure:4555: gcc -c conftest.c -o conftest2.o
-configure:4558: $? = 0
-configure:4555: gcc -c conftest.c -o conftest2.o
-configure:4558: $? = 0
-configure:4570: result: yes
-configure:4589: checking dependency style of gcc
-configure:4700: result: gcc3
-configure:4748: checking whether the Boost::Thread library is available
-configure:4780: g++ -c -pthread -g -O2  -I/usr/local/include conftest.cpp >&5
-configure:4780: $? = 0
-configure:4795: result: yes
-configure:4824: checking for exit in -lboost_thread-mt
-configure:4849: gcc -o conftest -g -O2  -I/usr/local/include  -L/usr/local/lib conftest.c -lboost_thread-mt   >&5
+configure:4314: $? = 1
+configure:4318: checking whether we are using the GNU C compiler
+configure:4337: gcc -c   conftest.c >&5
+configure:4337: $? = 0
+configure:4346: result: yes
+configure:4355: checking whether gcc accepts -g
+configure:4375: gcc -c -g  conftest.c >&5
+configure:4375: $? = 0
+configure:4416: result: yes
+configure:4433: checking for gcc option to accept ISO C89
+configure:4496: gcc  -c -g -O2  conftest.c >&5
+configure:4496: $? = 0
+configure:4509: result: none needed
+configure:4534: checking whether gcc understands -c and -o together
+configure:4556: gcc -c conftest.c -o conftest2.o
+configure:4559: $? = 0
+configure:4556: gcc -c conftest.c -o conftest2.o
+configure:4559: $? = 0
+configure:4571: result: yes
+configure:4590: checking dependency style of gcc
+configure:4701: result: gcc3
+configure:4749: checking whether the Boost::Thread library is available
+configure:4781: g++ -c -pthread  -std=c++0x -O2  -I/usr/local/include conftest.cpp >&5
+configure:4781: $? = 0
+configure:4796: result: yes
+configure:4825: checking for exit in -lboost_thread-mt
+configure:4850: gcc -o conftest -g -O2  -I/usr/local/include  -L/usr/local/lib conftest.c -lboost_thread-mt   >&5
 conftest.c:20:6: warning: incompatible redeclaration of library function 'exit' [-Wincompatible-library-redeclaration]
 char exit ();
      ^
 conftest.c:20:6: note: 'exit' is a builtin with type 'void (int) __attribute__((noreturn))'
 1 warning generated.
-configure:4849: $? = 0
-configure:4859: result: yes
-configure:5019: checking whether the Boost::System library is available
-configure:5044: g++ -c   -pthread -I/usr/local/include conftest.cpp >&5
-configure:5044: $? = 0
-configure:5059: result: yes
-configure:5074: checking for exit in -lboost_system
-configure:5099: gcc -o conftest -g -O2  -pthread -I/usr/local/include  -L/usr/local/lib conftest.c -lboost_system   >&5
+configure:4850: $? = 0
+configure:4860: result: yes
+configure:5020: checking whether the Boost::System library is available
+configure:5045: g++ -c   -pthread -I/usr/local/include conftest.cpp >&5
+configure:5045: $? = 0
+configure:5060: result: yes
+configure:5075: checking for exit in -lboost_system
+configure:5100: gcc -o conftest -g -O2  -pthread -I/usr/local/include  -L/usr/local/lib conftest.c -lboost_system   >&5
 conftest.c:21:6: warning: incompatible redeclaration of library function 'exit' [-Wincompatible-library-redeclaration]
 char exit ();
      ^
 conftest.c:21:6: note: 'exit' is a builtin with type 'void (int) __attribute__((noreturn))'
 1 warning generated.
-configure:5099: $? = 0
-configure:5109: result: yes
-configure:5260: checking whether the Boost::Date_Time library is available
-configure:5284: g++ -c -g -O2  -pthread -I/usr/local/include conftest.cpp >&5
-configure:5284: $? = 0
-configure:5298: result: yes
-configure:5309: checking for exit in -lboost_date_time-mt
-configure:5334: gcc -o conftest -g -O2  -pthread -I/usr/local/include  -L/usr/local/lib conftest.c -lboost_date_time-mt   >&5
+configure:5100: $? = 0
+configure:5110: result: yes
+configure:5261: checking whether the Boost::Date_Time library is available
+configure:5285: g++ -c  -std=c++0x -O2  -pthread -I/usr/local/include conftest.cpp >&5
+configure:5285: $? = 0
+configure:5299: result: yes
+configure:5310: checking for exit in -lboost_date_time-mt
+configure:5335: gcc -o conftest -g -O2  -pthread -I/usr/local/include  -L/usr/local/lib conftest.c -lboost_date_time-mt   >&5
 conftest.c:22:6: warning: incompatible redeclaration of library function 'exit' [-Wincompatible-library-redeclaration]
 char exit ();
      ^
 conftest.c:22:6: note: 'exit' is a builtin with type 'void (int) __attribute__((noreturn))'
 1 warning generated.
-configure:5334: $? = 0
-configure:5344: result: yes
-configure:5493: checking whether the Boost::Filesystem library is available
-configure:5517: g++ -c -g -O2  -pthread -I/usr/local/include conftest.cpp >&5
-configure:5517: $? = 0
-configure:5531: result: yes
-configure:5542: checking for exit in -lboost_filesystem
-configure:5567: gcc -o conftest -g -O2  -pthread -I/usr/local/include  -L/usr/local/lib conftest.c -lboost_filesystem   -lboost_system >&5
+configure:5335: $? = 0
+configure:5345: result: yes
+configure:5494: checking whether the Boost::Filesystem library is available
+configure:5518: g++ -c  -std=c++0x -O2  -pthread -I/usr/local/include conftest.cpp >&5
+configure:5518: $? = 0
+configure:5532: result: yes
+configure:5543: checking for exit in -lboost_filesystem
+configure:5568: gcc -o conftest -g -O2  -pthread -I/usr/local/include  -L/usr/local/lib conftest.c -lboost_filesystem   -lboost_system >&5
 conftest.c:23:6: warning: incompatible redeclaration of library function 'exit' [-Wincompatible-library-redeclaration]
 char exit ();
      ^
 conftest.c:23:6: note: 'exit' is a builtin with type 'void (int) __attribute__((noreturn))'
 1 warning generated.
-configure:5567: $? = 0
-configure:5577: result: yes
-configure:5727: checking whether the Boost::Program_Options library is available
-configure:5751: g++ -c -g -O2  -pthread -I/usr/local/include conftest.cpp >&5
-configure:5751: $? = 0
-configure:5765: result: yes
-configure:5776: checking for exit in -lboost_program_options-mt
-configure:5801: gcc -o conftest -g -O2  -pthread -I/usr/local/include  -L/usr/local/lib conftest.c -lboost_program_options-mt   >&5
+configure:5568: $? = 0
+configure:5578: result: yes
+configure:5728: checking whether the Boost::Program_Options library is available
+configure:5752: g++ -c  -std=c++0x -O2  -pthread -I/usr/local/include conftest.cpp >&5
+configure:5752: $? = 0
+configure:5766: result: yes
+configure:5777: checking for exit in -lboost_program_options-mt
+configure:5802: gcc -o conftest -g -O2  -pthread -I/usr/local/include  -L/usr/local/lib conftest.c -lboost_program_options-mt   >&5
 conftest.c:24:6: warning: incompatible redeclaration of library function 'exit' [-Wincompatible-library-redeclaration]
 char exit ();
      ^
 conftest.c:24:6: note: 'exit' is a builtin with type 'void (int) __attribute__((noreturn))'
 1 warning generated.
-configure:5801: $? = 0
-configure:5811: result: yes
-configure:5953: checking whether the Boost::Unit_Test_Framework library is available
-configure:5976: g++ -c -g -O2  -pthread -I/usr/local/include conftest.cpp >&5
-configure:5976: $? = 0
-configure:5990: result: yes
-configure:6117: checking for __sync_synchronize
-configure:6123: gcc -o conftest -g -O2   conftest.c  >&5
-configure:6123: $? = 0
-configure:6130: result: yes
-configure:6202: checking how to run the C preprocessor
-configure:6233: gcc -E  conftest.c
-configure:6233: $? = 0
-configure:6247: gcc -E  conftest.c
+configure:5802: $? = 0
+configure:5812: result: yes
+configure:5954: checking whether the Boost::Unit_Test_Framework library is available
+configure:5977: g++ -c  -std=c++0x -O2  -pthread -I/usr/local/include conftest.cpp >&5
+configure:5977: $? = 0
+configure:5991: result: yes
+configure:6118: checking for __sync_synchronize
+configure:6124: gcc -o conftest -g -O2   conftest.c  >&5
+configure:6124: $? = 0
+configure:6131: result: yes
+configure:6203: checking how to run the C preprocessor
+configure:6234: gcc -E  conftest.c
+configure:6234: $? = 0
+configure:6248: gcc -E  conftest.c
 conftest.c:20:10: fatal error: 'ac_nonexistent.h' file not found
 #include <ac_nonexistent.h>
          ^
 1 error generated.
-configure:6247: $? = 1
+configure:6248: $? = 1
 configure: failed program was:
 | /* confdefs.h */
 | #define PACKAGE_NAME "fuego"
@@ -292,15 +292,15 @@ configure: failed program was:
 | #define HOST_CPU "x86_64"
 | /* end confdefs.h.  */
 | #include <ac_nonexistent.h>
-configure:6272: result: gcc -E
-configure:6292: gcc -E  conftest.c
-configure:6292: $? = 0
-configure:6306: gcc -E  conftest.c
+configure:6273: result: gcc -E
+configure:6293: gcc -E  conftest.c
+configure:6293: $? = 0
+configure:6307: gcc -E  conftest.c
 conftest.c:20:10: fatal error: 'ac_nonexistent.h' file not found
 #include <ac_nonexistent.h>
          ^
 1 error generated.
-configure:6306: $? = 1
+configure:6307: $? = 1
 configure: failed program was:
 | /* confdefs.h */
 | #define PACKAGE_NAME "fuego"
@@ -322,79 +322,79 @@ configure: failed program was:
 | #define HOST_CPU "x86_64"
 | /* end confdefs.h.  */
 | #include <ac_nonexistent.h>
-configure:6335: checking for grep that handles long lines and -e
-configure:6393: result: /usr/bin/grep
-configure:6398: checking for egrep
-configure:6460: result: /usr/bin/grep -E
-configure:6465: checking for ANSI C header files
-configure:6485: gcc -c -g -O2  conftest.c >&5
-configure:6485: $? = 0
-configure:6558: gcc -o conftest -g -O2   conftest.c  >&5
-configure:6558: $? = 0
-configure:6558: ./conftest
-configure:6558: $? = 0
-configure:6569: result: yes
-configure:6582: checking for sys/types.h
-configure:6582: gcc -c -g -O2  conftest.c >&5
-configure:6582: $? = 0
-configure:6582: result: yes
-configure:6582: checking for sys/stat.h
-configure:6582: gcc -c -g -O2  conftest.c >&5
-configure:6582: $? = 0
-configure:6582: result: yes
-configure:6582: checking for stdlib.h
-configure:6582: gcc -c -g -O2  conftest.c >&5
-configure:6582: $? = 0
-configure:6582: result: yes
-configure:6582: checking for string.h
-configure:6582: gcc -c -g -O2  conftest.c >&5
-configure:6582: $? = 0
-configure:6582: result: yes
-configure:6582: checking for memory.h
-configure:6582: gcc -c -g -O2  conftest.c >&5
-configure:6582: $? = 0
-configure:6582: result: yes
-configure:6582: checking for strings.h
-configure:6582: gcc -c -g -O2  conftest.c >&5
-configure:6582: $? = 0
-configure:6582: result: yes
-configure:6582: checking for inttypes.h
-configure:6582: gcc -c -g -O2  conftest.c >&5
-configure:6582: $? = 0
-configure:6582: result: yes
-configure:6582: checking for stdint.h
-configure:6582: gcc -c -g -O2  conftest.c >&5
-configure:6582: $? = 0
-configure:6582: result: yes
-configure:6582: checking for unistd.h
-configure:6582: gcc -c -g -O2  conftest.c >&5
-configure:6582: $? = 0
-configure:6582: result: yes
-configure:6596: checking sys/sysctl.h usability
-configure:6596: gcc -c -g -O2  conftest.c >&5
-configure:6596: $? = 0
-configure:6596: result: yes
-configure:6596: checking sys/sysctl.h presence
-configure:6596: gcc -E  conftest.c
-configure:6596: $? = 0
-configure:6596: result: yes
-configure:6596: checking for sys/sysctl.h
-configure:6596: result: yes
-configure:6606: checking CXXFLAGS for maximum warnings
-configure:6632: g++ -c -g -O2 -DNDEBUG -pedantic  -Wall  conftest.cpp >&5
-configure:6632: $? = 0
-configure:6646: result: -Wall
-configure:6659: : CXXFLAGS="$CXXFLAGS $ax_cv_cxxflags_warn_all"
-configure:6662: $? = 0
-configure:6669: checking CXXFLAGS for gcc -Wextra
-configure:6696: g++ -c -g -O2 -DNDEBUG -Wall -pedantic -Werror  -Wextra  conftest.cpp >&5
-configure:6696: $? = 0
-configure:6710: result: -Wextra
-configure:6723: : CXXFLAGS="$CXXFLAGS $var"
-configure:6726: $? = 0
-configure:6845: checking that generated files are newer than configure
-configure:6851: result: done
-configure:6882: creating ./config.status
+configure:6336: checking for grep that handles long lines and -e
+configure:6394: result: /usr/bin/grep
+configure:6399: checking for egrep
+configure:6461: result: /usr/bin/grep -E
+configure:6466: checking for ANSI C header files
+configure:6486: gcc -c -g -O2  conftest.c >&5
+configure:6486: $? = 0
+configure:6559: gcc -o conftest -g -O2   conftest.c  >&5
+configure:6559: $? = 0
+configure:6559: ./conftest
+configure:6559: $? = 0
+configure:6570: result: yes
+configure:6583: checking for sys/types.h
+configure:6583: gcc -c -g -O2  conftest.c >&5
+configure:6583: $? = 0
+configure:6583: result: yes
+configure:6583: checking for sys/stat.h
+configure:6583: gcc -c -g -O2  conftest.c >&5
+configure:6583: $? = 0
+configure:6583: result: yes
+configure:6583: checking for stdlib.h
+configure:6583: gcc -c -g -O2  conftest.c >&5
+configure:6583: $? = 0
+configure:6583: result: yes
+configure:6583: checking for string.h
+configure:6583: gcc -c -g -O2  conftest.c >&5
+configure:6583: $? = 0
+configure:6583: result: yes
+configure:6583: checking for memory.h
+configure:6583: gcc -c -g -O2  conftest.c >&5
+configure:6583: $? = 0
+configure:6583: result: yes
+configure:6583: checking for strings.h
+configure:6583: gcc -c -g -O2  conftest.c >&5
+configure:6583: $? = 0
+configure:6583: result: yes
+configure:6583: checking for inttypes.h
+configure:6583: gcc -c -g -O2  conftest.c >&5
+configure:6583: $? = 0
+configure:6583: result: yes
+configure:6583: checking for stdint.h
+configure:6583: gcc -c -g -O2  conftest.c >&5
+configure:6583: $? = 0
+configure:6583: result: yes
+configure:6583: checking for unistd.h
+configure:6583: gcc -c -g -O2  conftest.c >&5
+configure:6583: $? = 0
+configure:6583: result: yes
+configure:6597: checking sys/sysctl.h usability
+configure:6597: gcc -c -g -O2  conftest.c >&5
+configure:6597: $? = 0
+configure:6597: result: yes
+configure:6597: checking sys/sysctl.h presence
+configure:6597: gcc -E  conftest.c
+configure:6597: $? = 0
+configure:6597: result: yes
+configure:6597: checking for sys/sysctl.h
+configure:6597: result: yes
+configure:6607: checking CXXFLAGS for maximum warnings
+configure:6633: g++ -c  -std=c++0x -O2 -DNDEBUG -pedantic  -Wall  conftest.cpp >&5
+configure:6633: $? = 0
+configure:6647: result: -Wall
+configure:6660: : CXXFLAGS="$CXXFLAGS $ax_cv_cxxflags_warn_all"
+configure:6663: $? = 0
+configure:6670: checking CXXFLAGS for gcc -Wextra
+configure:6697: g++ -c  -std=c++0x -O2 -DNDEBUG -Wall -pedantic -Werror  -Wextra  conftest.cpp >&5
+configure:6697: $? = 0
+configure:6711: result: -Wextra
+configure:6724: : CXXFLAGS="$CXXFLAGS $var"
+configure:6727: $? = 0
+configure:6846: checking that generated files are newer than configure
+configure:6852: result: done
+configure:6883: creating ./config.status
 
 ## ---------------------- ##
 ## Running config.status. ##
@@ -411,23 +411,24 @@ generated by GNU Autoconf 2.69.  Invocation command line was
 
 on f45c89a50c8f.ant.amazon.com
 
-config.status:901: creating Makefile
-config.status:901: creating book/Makefile
-config.status:901: creating regression/Makefile
-config.status:901: creating misctests/Makefile
-config.status:901: creating fuegomain/Makefile
-config.status:901: creating fuegotest/Makefile
-config.status:901: creating go/Makefile
-config.status:901: creating gouct/Makefile
-config.status:901: creating gtpengine/Makefile
-config.status:901: creating features/Makefile
-config.status:901: creating simpleplayers/Makefile
-config.status:901: creating smartgame/Makefile
-config.status:901: creating unittestmain/Makefile
-config.status:901: creating dnnmain/Makefile
-config.status:901: creating config.h
-config.status:1082: config.h is unchanged
-config.status:1130: executing depfiles commands
+config.status:902: creating Makefile
+config.status:902: creating book/Makefile
+config.status:902: creating regression/Makefile
+config.status:902: creating misctests/Makefile
+config.status:902: creating fuegomain/Makefile
+config.status:902: creating fuegotest/Makefile
+config.status:902: creating go/Makefile
+config.status:902: creating gouct/Makefile
+config.status:902: creating gtpengine/Makefile
+config.status:902: creating features/Makefile
+config.status:902: creating simpleplayers/Makefile
+config.status:902: creating smartgame/Makefile
+config.status:902: creating unittestmain/Makefile
+config.status:902: creating mxnet/Makefile
+config.status:902: creating selfplay/Makefile
+config.status:902: creating config.h
+config.status:1083: config.h is unchanged
+config.status:1131: executing depfiles commands
 
 ## ---------------- ##
 ## Cache variables. ##
@@ -507,7 +508,7 @@ ax_cv_cxxflags_warn_all=-Wall
 ## Output variables. ##
 ## ----------------- ##
 
-ACLOCAL='${SHELL} /Users/mingxuan/Desktop/workspace/go_game/fuego_svn/missing aclocal-1.15'
+ACLOCAL='${SHELL} /Users/mingxuan/Desktop/workspace/go_game/fuego_dev/missing aclocal-1.15'
 AMDEPBACKSLASH='\'
 AMDEP_FALSE='#'
 AMDEP_TRUE=''
@@ -516,9 +517,9 @@ AM_BACKSLASH='\'
 AM_DEFAULT_V='$(AM_DEFAULT_VERBOSITY)'
 AM_DEFAULT_VERBOSITY='1'
 AM_V='$(V)'
-AUTOCONF='${SHELL} /Users/mingxuan/Desktop/workspace/go_game/fuego_svn/missing autoconf'
-AUTOHEADER='${SHELL} /Users/mingxuan/Desktop/workspace/go_game/fuego_svn/missing autoheader'
-AUTOMAKE='${SHELL} /Users/mingxuan/Desktop/workspace/go_game/fuego_svn/missing automake-1.15'
+AUTOCONF='${SHELL} /Users/mingxuan/Desktop/workspace/go_game/fuego_dev/missing autoconf'
+AUTOHEADER='${SHELL} /Users/mingxuan/Desktop/workspace/go_game/fuego_dev/missing autoheader'
+AUTOMAKE='${SHELL} /Users/mingxuan/Desktop/workspace/go_game/fuego_dev/missing automake-1.15'
 AWK='awk'
 BOOST_CPPFLAGS='-pthread -I/usr/local/include'
 BOOST_DATE_TIME_LIB='-lboost_date_time-mt'
@@ -535,7 +536,7 @@ CPP='gcc -E'
 CPPFLAGS=''
 CXX='g++'
 CXXDEPMODE='depmode=gcc3'
-CXXFLAGS='-g -O2 -DNDEBUG -Wall -Wextra'
+CXXFLAGS=' -std=c++0x -O2 -DNDEBUG -Wall -Wextra'
 CYGPATH_W='echo'
 DEFS='-DHAVE_CONFIG_H'
 DEPDIR='.deps'
@@ -556,7 +557,7 @@ LTLIBOBJS=''
 MAINT='#'
 MAINTAINER_MODE_FALSE=''
 MAINTAINER_MODE_TRUE='#'
-MAKEINFO='${SHELL} /Users/mingxuan/Desktop/workspace/go_game/fuego_svn/missing makeinfo'
+MAKEINFO='${SHELL} /Users/mingxuan/Desktop/workspace/go_game/fuego_dev/missing makeinfo'
 MKDIR_P='./install-sh -c -d'
 OBJEXT='o'
 PACKAGE='fuego'
@@ -606,7 +607,7 @@ host_vendor='apple'
 htmldir='${docdir}'
 includedir='${prefix}/include'
 infodir='${datarootdir}/info'
-install_sh='${SHELL} /Users/mingxuan/Desktop/workspace/go_game/fuego_svn/install-sh'
+install_sh='${SHELL} /Users/mingxuan/Desktop/workspace/go_game/fuego_dev/install-sh'
 libdir='${exec_prefix}/lib'
 libexecdir='${exec_prefix}/libexec'
 localedir='${datarootdir}/locale'
@@ -658,21 +659,3 @@ target_alias=''
 #define HAVE_SYS_SYSCTL_H 1
 
 configure: exit 0
-
-## ---------------------- ##
-## Running config.status. ##
-## ---------------------- ##
-
-This file was extended by fuego config.status 1.1.SVN, which was
-generated by GNU Autoconf 2.69.  Invocation command line was
-
-  CONFIG_FILES    = 
-  CONFIG_HEADERS  = 
-  CONFIG_LINKS    = 
-  CONFIG_COMMANDS = 
-  $ ./config.status config.h
-
-on f45c89a50c8f.ant.amazon.com
-
-config.status:901: creating config.h
-config.status:1082: config.h is unchanged

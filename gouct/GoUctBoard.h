@@ -477,6 +477,7 @@ public:
 
 inline std::ostream& operator<<(std::ostream& out, const GoUctBoard& bd)
 {
+    out << "UctBoard: \n";
     return GoWriteBoard(out, bd);
 }
 

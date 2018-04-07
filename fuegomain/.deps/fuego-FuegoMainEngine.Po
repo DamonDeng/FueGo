@@ -25,8 +25,7 @@ fuego-FuegoMainEngine.o: FuegoMainEngine.cpp ../smartgame/SgSystem.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__locale \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/string \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cstring \
-  /usr/include/string.h /usr/include/sys/_types/_rsize_t.h \
-  /usr/include/sys/_types/_errno_t.h /usr/include/strings.h \
+  /usr/include/string.h /usr/include/strings.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cstdio \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cwchar \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cwctype \
@@ -36,6 +35,7 @@ fuego-FuegoMainEngine.o: FuegoMainEngine.cpp ../smartgame/SgSystem.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/initializer_list \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cstddef \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/stddef.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/__stddef_max_align_t.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/type_traits \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/utility \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__tuple \
@@ -57,9 +57,9 @@ fuego-FuegoMainEngine.o: FuegoMainEngine.cpp ../smartgame/SgSystem.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__undef_min_max \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/iterator \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__functional_base \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__functional_base_03 \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__debug \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/tuple \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/atomic \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/stdexcept \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/mutex \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__mutex_base \
@@ -88,7 +88,6 @@ fuego-FuegoMainEngine.o: FuegoMainEngine.cpp ../smartgame/SgSystem.h \
   /usr/include/sys/qos.h /usr/include/sys/_types/_mach_port_t.h \
   /usr/include/sys/_types/_sigset_t.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/functional \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__functional_03 \
   /usr/include/locale.h /usr/include/_locale.h /usr/include/xlocale.h \
   /usr/include/_xlocale.h /usr/include/xlocale/_ctype.h \
   /usr/include/xlocale/__wctype.h /usr/include/xlocale/_stdio.h \
@@ -120,6 +119,7 @@ fuego-FuegoMainEngine.o: FuegoMainEngine.cpp ../smartgame/SgSystem.h \
   /usr/include/sys/_types/_nlink_t.h \
   /usr/include/sys/_types/_useconds_t.h \
   /usr/include/sys/_types/_suseconds_t.h \
+  /usr/include/sys/_types/_rsize_t.h /usr/include/sys/_types/_errno_t.h \
   /usr/include/sys/_types/_fd_def.h \
   /usr/include/sys/_types/_fd_setsize.h \
   /usr/include/sys/_types/_fd_set.h /usr/include/sys/_types/_fd_clr.h \
@@ -400,7 +400,7 @@ fuego-FuegoMainEngine.o: FuegoMainEngine.cpp ../smartgame/SgSystem.h \
   /usr/local/include/boost/smart_ptr/detail/sp_noexcept.hpp \
   /usr/local/include/boost/smart_ptr/detail/spinlock_pool.hpp \
   /usr/local/include/boost/smart_ptr/detail/spinlock.hpp \
-  /usr/local/include/boost/smart_ptr/detail/spinlock_sync.hpp \
+  /usr/local/include/boost/smart_ptr/detail/spinlock_std_atomic.hpp \
   /usr/local/include/boost/smart_ptr/detail/yield_k.hpp \
   /usr/local/include/boost/predef.h \
   /usr/local/include/boost/predef/language.h \
@@ -525,12 +525,12 @@ fuego-FuegoMainEngine.o: FuegoMainEngine.cpp ../smartgame/SgSystem.h \
   /usr/local/include/boost/functional/hash/hash_fwd.hpp \
   /usr/local/include/boost/scoped_ptr.hpp \
   /usr/local/include/boost/smart_ptr/scoped_ptr.hpp ../go/GoBoard.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/iostream \
   ../go/GoPlayerMove.h ../smartgame/SgBlackWhite.h \
   ../smartgame/SgPoint.h ../smartgame/SgArray.h ../smartgame/SgMove.h \
-  ../smartgame/SgUtil.h \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/iostream \
-  ../smartgame/SgBWArray.h ../go/GoRules.h ../go/GoKomi.h \
-  ../smartgame/SgException.h /usr/local/include/boost/format.hpp \
+  ../smartgame/SgUtil.h ../smartgame/SgBWArray.h ../go/GoRules.h \
+  ../go/GoKomi.h ../smartgame/SgException.h \
+  /usr/local/include/boost/format.hpp \
   /usr/local/include/boost/format/detail/compat_workarounds.hpp \
   /usr/local/include/boost/format/detail/config_macros.hpp \
   /usr/local/include/boost/format/detail/workarounds_gcc-2_95.hpp \
@@ -548,32 +548,29 @@ fuego-FuegoMainEngine.o: FuegoMainEngine.cpp ../smartgame/SgSystem.h \
   /usr/local/include/boost/type_traits/conditional.hpp \
   /usr/local/include/boost/type_traits/has_nothrow_constructor.hpp \
   /usr/local/include/boost/type_traits/is_default_constructible.hpp \
+  /usr/local/include/boost/type_traits/detail/yes_no_type.hpp \
   /usr/local/include/boost/type_traits/type_with_alignment.hpp \
   /usr/local/include/boost/type_traits/is_base_of.hpp \
   /usr/local/include/boost/type_traits/is_base_and_derived.hpp \
   /usr/local/include/boost/type_traits/is_constructible.hpp \
+  /usr/local/include/boost/type_traits/is_destructible.hpp \
+  /usr/local/include/boost/type_traits/declval.hpp \
+  /usr/local/include/boost/type_traits/add_rvalue_reference.hpp \
   /usr/local/include/boost/type_traits/is_nothrow_move_assignable.hpp \
   /usr/local/include/boost/type_traits/has_trivial_move_assign.hpp \
   /usr/local/include/boost/type_traits/is_assignable.hpp \
-  /usr/local/include/boost/type_traits/has_trivial_assign.hpp \
   /usr/local/include/boost/type_traits/has_nothrow_assign.hpp \
-  /usr/local/include/boost/type_traits/declval.hpp \
-  /usr/local/include/boost/type_traits/add_rvalue_reference.hpp \
   /usr/local/include/boost/type_traits/is_nothrow_move_constructible.hpp \
-  /usr/local/include/boost/type_traits/has_trivial_move_constructor.hpp \
-  /usr/local/include/boost/type_traits/has_nothrow_copy.hpp \
-  /usr/local/include/boost/type_traits/is_copy_constructible.hpp \
-  /usr/local/include/boost/type_traits/detail/yes_no_type.hpp \
   /usr/local/include/boost/move/utility.hpp \
   /usr/local/include/boost/move/detail/config_begin.hpp \
   /usr/local/include/boost/move/detail/workaround.hpp \
   /usr/local/include/boost/move/utility_core.hpp \
   /usr/local/include/boost/move/core.hpp \
-  /usr/local/include/boost/move/detail/type_traits.hpp \
+  /usr/local/include/boost/move/detail/config_end.hpp \
   /usr/local/include/boost/move/detail/meta_utils.hpp \
   /usr/local/include/boost/move/detail/meta_utils_core.hpp \
-  /usr/local/include/boost/move/detail/config_end.hpp \
   /usr/local/include/boost/move/traits.hpp \
+  /usr/local/include/boost/move/detail/type_traits.hpp \
   /usr/local/include/boost/none.hpp /usr/local/include/boost/none_t.hpp \
   /usr/local/include/boost/utility/compare_pointees.hpp \
   /usr/local/include/boost/optional/optional_fwd.hpp \
@@ -634,7 +631,8 @@ fuego-FuegoMainEngine.o: FuegoMainEngine.cpp ../smartgame/SgSystem.h \
   /usr/local/include/boost/random/detail/generator_bits.hpp \
   /usr/local/include/boost/random/detail/generator_seed_seq.hpp \
   /usr/local/include/boost/random/detail/polynomial.hpp \
-  /usr/local/include/boost/random/uniform_01.hpp ../go/GoBook.h \
+  /usr/local/include/boost/random/uniform_01.hpp ../smartgame/SgDebug.h \
+  ../go/GoBook.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/map \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__tree \
   ../gtpengine/GtpEngine.h ../gtpengine/GtpInputStream.h \
@@ -642,7 +640,7 @@ fuego-FuegoMainEngine.o: FuegoMainEngine.cpp ../smartgame/SgSystem.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/fstream \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/set \
   ../smartgame/SgBookBuilder.h ../smartgame/SgThreadedWorker.h \
-  ../smartgame/SgDebug.h /usr/local/include/boost/thread.hpp \
+  /usr/local/include/boost/thread.hpp \
   /usr/local/include/boost/thread/thread.hpp \
   /usr/local/include/boost/thread/thread_only.hpp \
   /usr/local/include/boost/thread/detail/platform.hpp \
@@ -726,13 +724,7 @@ fuego-FuegoMainEngine.o: FuegoMainEngine.cpp ../smartgame/SgSystem.h \
   /usr/local/include/boost/ratio/ratio_fwd.hpp \
   /usr/local/include/boost/ratio/detail/overflow_helpers.hpp \
   /usr/local/include/boost/type_traits/common_type.hpp \
-  /usr/local/include/boost/type_traits/detail/common_type_impl.hpp \
-  /usr/local/include/boost/type_traits/detail/common_arithmetic_type.hpp \
-  /usr/local/include/boost/type_traits/detail/composite_pointer_type.hpp \
-  /usr/local/include/boost/type_traits/copy_cv.hpp \
-  /usr/local/include/boost/type_traits/detail/composite_member_pointer_type.hpp \
-  /usr/local/include/boost/type_traits/type_identity.hpp \
-  /usr/local/include/boost/type_traits/is_union.hpp \
+  /usr/local/include/boost/type_traits/detail/mp_defer.hpp \
   /usr/local/include/boost/chrono/detail/is_evenly_divisible_by.hpp \
   /usr/local/include/boost/thread/mutex.hpp \
   /usr/local/include/boost/thread/pthread/mutex.hpp \
@@ -771,7 +763,6 @@ fuego-FuegoMainEngine.o: FuegoMainEngine.cpp ../smartgame/SgSystem.h \
   /usr/local/include/boost/visit_each.hpp \
   /usr/local/include/boost/core/is_same.hpp \
   /usr/local/include/boost/bind/storage.hpp \
-  /usr/local/include/boost/bind/bind_template.hpp \
   /usr/local/include/boost/bind/bind_cc.hpp \
   /usr/local/include/boost/bind/bind_mf_cc.hpp \
   /usr/local/include/boost/bind/bind_mf2_cc.hpp \
@@ -781,6 +772,7 @@ fuego-FuegoMainEngine.o: FuegoMainEngine.cpp ../smartgame/SgSystem.h \
   /usr/local/include/boost/functional/hash/detail/hash_float.hpp \
   /usr/local/include/boost/functional/hash/detail/float_functions.hpp \
   /usr/local/include/boost/functional/hash/detail/limits.hpp \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/typeindex \
   /usr/local/include/boost/functional/hash/extensions.hpp \
   /usr/local/include/boost/detail/container_fwd.hpp \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/deque \
@@ -798,7 +790,6 @@ fuego-FuegoMainEngine.o: FuegoMainEngine.cpp ../smartgame/SgSystem.h \
   /usr/local/include/boost/move/default_delete.hpp \
   /usr/local/include/boost/move/adl_move_swap.hpp \
   /usr/local/include/boost/move/make_unique.hpp \
-  /usr/local/include/boost/move/detail/fwd_macros.hpp \
   /usr/local/include/boost/thread/shared_mutex.hpp \
   /usr/local/include/boost/thread/pthread/shared_mutex.hpp \
   /usr/local/include/boost/thread/once.hpp \
@@ -841,45 +832,10 @@ fuego-FuegoMainEngine.o: FuegoMainEngine.cpp ../smartgame/SgSystem.h \
   /usr/local/include/boost/thread/detail/nullary_function.hpp \
   /usr/local/include/boost/thread/detail/memory.hpp \
   /usr/local/include/boost/thread/csbl/memory/pointer_traits.hpp \
-  /usr/local/include/boost/intrusive/pointer_traits.hpp \
-  /usr/local/include/boost/intrusive/detail/config_begin.hpp \
-  /usr/local/include/boost/intrusive/detail/workaround.hpp \
-  /usr/local/include/boost/intrusive/pointer_rebind.hpp \
-  /usr/local/include/boost/move/detail/pointer_element.hpp \
-  /usr/local/include/boost/intrusive/detail/mpl.hpp \
-  /usr/local/include/boost/intrusive/detail/config_end.hpp \
   /usr/local/include/boost/thread/csbl/memory/allocator_arg.hpp \
-  /usr/local/include/boost/container/scoped_allocator.hpp \
-  /usr/local/include/boost/container/detail/config_begin.hpp \
-  /usr/local/include/boost/container/detail/workaround.hpp \
-  /usr/local/include/boost/container/allocator_traits.hpp \
-  /usr/local/include/boost/container/container_fwd.hpp \
-  /usr/local/include/boost/container/detail/std_fwd.hpp \
-  /usr/local/include/boost/move/detail/std_ns_begin.hpp \
-  /usr/local/include/boost/move/detail/std_ns_end.hpp \
-  /usr/local/include/boost/container/detail/mpl.hpp \
-  /usr/local/include/boost/container/detail/config_end.hpp \
-  /usr/local/include/boost/container/detail/type_traits.hpp \
-  /usr/local/include/boost/container/detail/placement_new.hpp \
-  /usr/local/include/boost/intrusive/detail/has_member_function_callable_with.hpp \
-  /usr/local/include/boost/container/scoped_allocator_fwd.hpp \
-  /usr/local/include/boost/container/uses_allocator_fwd.hpp \
-  /usr/local/include/boost/container/detail/dispatch_uses_allocator.hpp \
-  /usr/local/include/boost/container/uses_allocator.hpp \
-  /usr/local/include/boost/container/detail/addressof.hpp \
-  /usr/local/include/boost/container/detail/pair.hpp \
-  /usr/local/include/boost/intrusive/detail/minimal_pair_header.hpp \
   /usr/local/include/boost/thread/csbl/memory/allocator_traits.hpp \
   /usr/local/include/boost/thread/csbl/memory/scoped_allocator.hpp \
   /usr/local/include/boost/thread/csbl/memory/shared_ptr.hpp \
-  /usr/local/include/boost/smart_ptr/make_shared.hpp \
-  /usr/local/include/boost/smart_ptr/make_shared_object.hpp \
-  /usr/local/include/boost/smart_ptr/detail/sp_forward.hpp \
-  /usr/local/include/boost/smart_ptr/make_shared_array.hpp \
-  /usr/local/include/boost/smart_ptr/allocate_shared_array.hpp \
-  /usr/local/include/boost/type_traits/has_trivial_constructor.hpp \
-  /usr/local/include/boost/type_traits/has_trivial_destructor.hpp \
-  /usr/local/include/boost/type_traits/is_destructible.hpp \
   /usr/local/include/boost/utility/result_of.hpp \
   /usr/local/include/boost/preprocessor/iteration/iterate.hpp \
   /usr/local/include/boost/preprocessor/slot/slot.hpp \
@@ -942,6 +898,8 @@ fuego-FuegoMainEngine.o: FuegoMainEngine.cpp ../smartgame/SgSystem.h \
   /usr/local/include/boost/thread/executors/executor.hpp \
   /usr/local/include/boost/thread/executors/work.hpp \
   /usr/local/include/boost/thread/csbl/functional.hpp \
+  /usr/local/include/boost/thread/executors/executor_adaptor.hpp \
+  /usr/local/include/boost/thread/executors/generic_executor_ref.hpp \
   /usr/local/include/boost/function.hpp \
   /usr/local/include/boost/preprocessor/iterate.hpp \
   /usr/local/include/boost/function/detail/prologue.hpp \
@@ -951,7 +909,10 @@ fuego-FuegoMainEngine.o: FuegoMainEngine.cpp ../smartgame/SgSystem.h \
   /usr/local/include/boost/type_index/stl_type_index.hpp \
   /usr/local/include/boost/type_index/type_index_facade.hpp \
   /usr/local/include/boost/type_traits/has_trivial_copy.hpp \
+  /usr/local/include/boost/type_traits/is_copy_constructible.hpp \
+  /usr/local/include/boost/type_traits/has_trivial_destructor.hpp \
   /usr/local/include/boost/type_traits/composite_traits.hpp \
+  /usr/local/include/boost/type_traits/is_union.hpp \
   /usr/local/include/boost/function_equal.hpp \
   /usr/local/include/boost/function/function_fwd.hpp \
   /usr/local/include/boost/preprocessor/enum.hpp \
@@ -961,8 +922,13 @@ fuego-FuegoMainEngine.o: FuegoMainEngine.cpp ../smartgame/SgSystem.h \
   /usr/local/include/boost/function/detail/maybe_include.hpp \
   /usr/local/include/boost/function/function_template.hpp \
   /usr/local/include/boost/detail/no_exceptions_support.hpp \
-  /usr/local/include/boost/thread/executors/executor_adaptor.hpp \
-  /usr/local/include/boost/thread/executors/generic_executor_ref.hpp \
+  /usr/local/include/boost/smart_ptr/make_shared.hpp \
+  /usr/local/include/boost/smart_ptr/make_shared_object.hpp \
+  /usr/local/include/boost/smart_ptr/detail/sp_forward.hpp \
+  /usr/local/include/boost/smart_ptr/make_shared_array.hpp \
+  /usr/local/include/boost/smart_ptr/allocate_shared_array.hpp \
+  /usr/local/include/boost/type_traits/has_trivial_assign.hpp \
+  /usr/local/include/boost/type_traits/has_trivial_constructor.hpp \
   /usr/local/include/boost/detail/atomic_undef_macros.hpp \
   /usr/local/include/boost/detail/atomic_redef_macros.hpp \
   ../go/GoBoardSynchronizer.h ../go/GoGame.h ../go/GoBoardUpdater.h \
@@ -977,10 +943,33 @@ fuego-FuegoMainEngine.o: FuegoMainEngine.cpp ../smartgame/SgSystem.h \
   ../smartgame/SgAdditiveKnowledge.h ../smartgame/SgTimer.h \
   ../smartgame/SgTime.h ../smartgame/SgUctTree.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/stack \
-  ../smartgame/SgFastLog.h ../go/GoSafetyCommands.h \
-  ../gouct/GoUctBookBuilderCommands.h ../gouct/GoUctGlobalSearch.h \
-  ../go/GoEyeUtil.h ../go/GoRegionBoard.h ../go/GoRegion.h \
-  ../go/GoEyeCount.h ../smartgame/SgIncrementalStack.h \
+  ../include/mxnet-cpp/MxNetCpp.h ../include/mxnet-cpp/executor.hpp \
+  ../include/mxnet-cpp/executor.h ../include/mxnet-cpp/base.h \
+  ../include/mxnet/c_api.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/stdbool.h \
+  ../include/nnvm/c_api.h ../include/mxnet-cpp/symbol.h \
+  ../include/mxnet-cpp/ndarray.h ../include/mxnet-cpp/shape.h \
+  ../include/mxnet-cpp/op_map.h ../include/dmlc/logging.h \
+  ../include/dmlc/./base.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/inttypes.h \
+  /usr/include/inttypes.h /usr/include/xlocale/_inttypes.h \
+  /usr/include/execinfo.h ../include/mxnet-cpp/optimizer.h \
+  ../include/mxnet-cpp/lr_scheduler.h ../include/mxnet-cpp/symbol.hpp \
+  ../include/mxnet-cpp/op_suppl.h ../include/mxnet-cpp/operator.h \
+  ../include/mxnet-cpp/ndarray.hpp ../include/mxnet-cpp/monitor.hpp \
+  ../include/mxnet-cpp/monitor.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/regex \
+  ../include/mxnet-cpp/operator.hpp ../include/mxnet-cpp/optimizer.hpp \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/numeric \
+  ../include/mxnet-cpp/op.h ../include/mxnet-cpp/op_util.h \
+  ../include/dmlc/optional.h ../include/dmlc/./common.h \
+  ../include/dmlc/./type_traits.h ../include/mxnet-cpp/kvstore.hpp \
+  ../include/mxnet-cpp/kvstore.h ../include/mxnet-cpp/io.hpp \
+  ../include/mxnet-cpp/io.h ../include/mxnet-cpp/metric.h \
+  ../include/mxnet-cpp/initializer.h ../smartgame/SgFastLog.h \
+  ../go/GoSafetyCommands.h ../gouct/GoUctBookBuilderCommands.h \
+  ../gouct/GoUctGlobalSearch.h ../go/GoEyeUtil.h ../go/GoRegionBoard.h \
+  ../go/GoRegion.h ../go/GoEyeCount.h ../smartgame/SgIncrementalStack.h \
   ../smartgame/SgMiaiStrategy.h ../smartgame/SgStrategy.h \
   ../go/GoSafetySolver.h ../go/GoStaticSafetySolver.h \
   ../go/GoAdditiveKnowledge.h ../gouct/GoUctDefaultMoveFilter.h \
@@ -996,13 +985,294 @@ fuego-FuegoMainEngine.o: FuegoMainEngine.cpp ../smartgame/SgSystem.h \
   ../features/FeFeatureWeights.h ../go/GoEvalArray.h \
   ../gouct/GoUctKnowledgeFactory.h \
   ../gouct/GoUctAdditiveKnowledgeGreenpeep.h ../gouct/GoUctSearch.h \
-  ../go/GoBoardHistory.h ../gouct/GoUctPlayer.h ../go/GoBoardRestorer.h \
-  ../go/GoTimeControl.h ../smartgame/SgTimeControl.h \
-  ../gouct/GoUctObjectWithSearch.h ../smartgame/SgRestorer.h \
-  ../smartgame/SgUctTreeUtil.h ../gouct/GoUctBookBuilder.h \
-  ../smartgame/SgGameReader.h ../gouct/GoUctCommands.h \
-  ../gouct/GoUctFeatureCommands.h ../features/FeBasicFeatures.h \
-  FuegoMainUtil.h ../go/GoGtpCommandUtil.h ../smartgame/SgGtpUtil.h
+  ../go/GoBoardHistory.h ../mxnet/MXNetModel.h \
+  /usr/local/include/boost/utility.hpp \
+  /usr/local/include/boost/utility/binary.hpp \
+  /usr/local/include/boost/preprocessor/control/deduce_d.hpp \
+  /usr/local/include/boost/preprocessor/seq/cat.hpp \
+  /usr/local/include/boost/preprocessor/seq/fold_left.hpp \
+  /usr/local/include/boost/preprocessor/seq/seq.hpp \
+  /usr/local/include/boost/preprocessor/seq/elem.hpp \
+  /usr/local/include/boost/preprocessor/seq/size.hpp \
+  /usr/local/include/boost/preprocessor/seq/transform.hpp \
+  /usr/local/include/boost/preprocessor/arithmetic/mod.hpp \
+  /usr/local/include/boost/preprocessor/arithmetic/detail/div_base.hpp \
+  /usr/local/include/boost/preprocessor/comparison/less_equal.hpp \
+  /usr/local/include/boost/preprocessor/logical/not.hpp \
+  /usr/local/include/boost/utility/identity_type.hpp \
+  /usr/local/include/boost/program_options/options_description.hpp \
+  /usr/local/include/boost/program_options/config.hpp \
+  /usr/local/include/boost/program_options/errors.hpp \
+  /usr/local/include/boost/program_options/value_semantic.hpp \
+  /usr/local/include/boost/any.hpp \
+  /usr/local/include/boost/function/function1.hpp \
+  /usr/local/include/boost/lexical_cast.hpp \
+  /usr/local/include/boost/range/iterator_range_core.hpp \
+  /usr/local/include/boost/type_traits/is_abstract.hpp \
+  /usr/local/include/boost/range/functions.hpp \
+  /usr/local/include/boost/range/begin.hpp \
+  /usr/local/include/boost/range/config.hpp \
+  /usr/local/include/boost/range/iterator.hpp \
+  /usr/local/include/boost/range/range_fwd.hpp \
+  /usr/local/include/boost/range/mutable_iterator.hpp \
+  /usr/local/include/boost/range/detail/extract_optional_type.hpp \
+  /usr/local/include/boost/range/detail/msvc_has_iterator_workaround.hpp \
+  /usr/local/include/boost/range/const_iterator.hpp \
+  /usr/local/include/boost/range/end.hpp \
+  /usr/local/include/boost/range/detail/implementation_help.hpp \
+  /usr/local/include/boost/range/detail/common.hpp \
+  /usr/local/include/boost/range/detail/sfinae.hpp \
+  /usr/local/include/boost/range/size.hpp \
+  /usr/local/include/boost/range/size_type.hpp \
+  /usr/local/include/boost/range/difference_type.hpp \
+  /usr/local/include/boost/range/has_range_iterator.hpp \
+  /usr/local/include/boost/range/concepts.hpp \
+  /usr/local/include/boost/concept_check.hpp \
+  /usr/local/include/boost/concept/assert.hpp \
+  /usr/local/include/boost/concept/detail/general.hpp \
+  /usr/local/include/boost/concept/detail/backward_compatibility.hpp \
+  /usr/local/include/boost/concept/detail/has_constraints.hpp \
+  /usr/local/include/boost/type_traits/conversion_traits.hpp \
+  /usr/local/include/boost/concept/usage.hpp \
+  /usr/local/include/boost/concept/detail/concept_def.hpp \
+  /usr/local/include/boost/preprocessor/seq/for_each_i.hpp \
+  /usr/local/include/boost/preprocessor/repetition/for.hpp \
+  /usr/local/include/boost/preprocessor/repetition/detail/for.hpp \
+  /usr/local/include/boost/preprocessor/seq/detail/is_empty.hpp \
+  /usr/local/include/boost/preprocessor/seq/enum.hpp \
+  /usr/local/include/boost/concept/detail/concept_undef.hpp \
+  /usr/local/include/boost/iterator/iterator_concepts.hpp \
+  /usr/local/include/boost/range/value_type.hpp \
+  /usr/local/include/boost/range/detail/misc_concept.hpp \
+  /usr/local/include/boost/range/detail/has_member_size.hpp \
+  /usr/local/include/boost/range/distance.hpp \
+  /usr/local/include/boost/range/empty.hpp \
+  /usr/local/include/boost/range/rbegin.hpp \
+  /usr/local/include/boost/range/reverse_iterator.hpp \
+  /usr/local/include/boost/range/rend.hpp \
+  /usr/local/include/boost/range/algorithm/equal.hpp \
+  /usr/local/include/boost/range/detail/safe_bool.hpp \
+  /usr/local/include/boost/lexical_cast/bad_lexical_cast.hpp \
+  /usr/local/include/boost/lexical_cast/try_lexical_convert.hpp \
+  /usr/local/include/boost/lexical_cast/detail/is_character.hpp \
+  /usr/local/include/boost/lexical_cast/detail/converter_numeric.hpp \
+  /usr/local/include/boost/type_traits/is_float.hpp \
+  /usr/local/include/boost/numeric/conversion/cast.hpp \
+  /usr/local/include/boost/numeric/conversion/converter.hpp \
+  /usr/local/include/boost/numeric/conversion/conversion_traits.hpp \
+  /usr/local/include/boost/numeric/conversion/detail/conversion_traits.hpp \
+  /usr/local/include/boost/numeric/conversion/detail/meta.hpp \
+  /usr/local/include/boost/mpl/equal_to.hpp \
+  /usr/local/include/boost/mpl/aux_/comparison_op.hpp \
+  /usr/local/include/boost/mpl/aux_/numeric_op.hpp \
+  /usr/local/include/boost/mpl/numeric_cast.hpp \
+  /usr/local/include/boost/mpl/tag.hpp \
+  /usr/local/include/boost/mpl/aux_/has_tag.hpp \
+  /usr/local/include/boost/mpl/aux_/numeric_cast_utils.hpp \
+  /usr/local/include/boost/mpl/aux_/config/forwarding.hpp \
+  /usr/local/include/boost/mpl/aux_/msvc_eti_base.hpp \
+  /usr/local/include/boost/mpl/aux_/is_msvc_eti_arg.hpp \
+  /usr/local/include/boost/mpl/aux_/preprocessed/gcc/equal_to.hpp \
+  /usr/local/include/boost/numeric/conversion/detail/int_float_mixture.hpp \
+  /usr/local/include/boost/numeric/conversion/int_float_mixture_enum.hpp \
+  /usr/local/include/boost/numeric/conversion/detail/sign_mixture.hpp \
+  /usr/local/include/boost/numeric/conversion/sign_mixture_enum.hpp \
+  /usr/local/include/boost/numeric/conversion/detail/udt_builtin_mixture.hpp \
+  /usr/local/include/boost/numeric/conversion/udt_builtin_mixture_enum.hpp \
+  /usr/local/include/boost/numeric/conversion/detail/is_subranged.hpp \
+  /usr/local/include/boost/mpl/multiplies.hpp \
+  /usr/local/include/boost/mpl/times.hpp \
+  /usr/local/include/boost/mpl/aux_/arithmetic_op.hpp \
+  /usr/local/include/boost/mpl/aux_/preprocessed/gcc/times.hpp \
+  /usr/local/include/boost/mpl/less.hpp \
+  /usr/local/include/boost/mpl/aux_/preprocessed/gcc/less.hpp \
+  /usr/local/include/boost/numeric/conversion/converter_policies.hpp \
+  /usr/local/include/boost/numeric/conversion/detail/converter.hpp \
+  /usr/local/include/boost/numeric/conversion/bounds.hpp \
+  /usr/local/include/boost/numeric/conversion/detail/bounds.hpp \
+  /usr/local/include/boost/numeric/conversion/numeric_cast_traits.hpp \
+  /usr/local/include/boost/numeric/conversion/detail/numeric_cast_traits.hpp \
+  /usr/local/include/boost/numeric/conversion/detail/preprocessed/numeric_cast_traits_common.hpp \
+  /usr/local/include/boost/numeric/conversion/detail/preprocessed/numeric_cast_traits_long_long.hpp \
+  /usr/local/include/boost/lexical_cast/detail/converter_lexical.hpp \
+  /usr/local/include/boost/type_traits/has_left_shift.hpp \
+  /usr/local/include/boost/type_traits/has_right_shift.hpp \
+  /usr/local/include/boost/detail/lcast_precision.hpp \
+  /usr/local/include/boost/lexical_cast/detail/widest_char.hpp \
+  /usr/local/include/boost/container/container_fwd.hpp \
+  /usr/local/include/boost/container/detail/std_fwd.hpp \
+  /usr/local/include/boost/move/detail/std_ns_begin.hpp \
+  /usr/local/include/boost/move/detail/std_ns_end.hpp \
+  /usr/local/include/boost/lexical_cast/detail/converter_lexical_streams.hpp \
+  /usr/local/include/boost/lexical_cast/detail/lcast_char_constants.hpp \
+  /usr/local/include/boost/lexical_cast/detail/lcast_unsigned_converters.hpp \
+  /usr/local/include/boost/lexical_cast/detail/inf_nan.hpp \
+  /usr/local/include/boost/math/special_functions/sign.hpp \
+  /usr/local/include/boost/math/tools/config.hpp \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cfloat \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/float.h \
+  /usr/local/include/boost/math/tools/user.hpp \
+  /usr/local/include/boost/math/special_functions/math_fwd.hpp \
+  /usr/local/include/boost/math/special_functions/detail/round_fwd.hpp \
+  /usr/local/include/boost/math/tools/promotion.hpp \
+  /usr/local/include/boost/math/policies/policy.hpp \
+  /usr/local/include/boost/mpl/list.hpp \
+  /usr/local/include/boost/mpl/limits/list.hpp \
+  /usr/local/include/boost/mpl/list/list20.hpp \
+  /usr/local/include/boost/mpl/list/list10.hpp \
+  /usr/local/include/boost/mpl/list/list0.hpp \
+  /usr/local/include/boost/mpl/long.hpp \
+  /usr/local/include/boost/mpl/long_fwd.hpp \
+  /usr/local/include/boost/mpl/list/aux_/push_front.hpp \
+  /usr/local/include/boost/mpl/push_front_fwd.hpp \
+  /usr/local/include/boost/mpl/list/aux_/item.hpp \
+  /usr/local/include/boost/mpl/list/aux_/tag.hpp \
+  /usr/local/include/boost/mpl/list/aux_/pop_front.hpp \
+  /usr/local/include/boost/mpl/pop_front_fwd.hpp \
+  /usr/local/include/boost/mpl/list/aux_/push_back.hpp \
+  /usr/local/include/boost/mpl/push_back_fwd.hpp \
+  /usr/local/include/boost/mpl/list/aux_/front.hpp \
+  /usr/local/include/boost/mpl/front_fwd.hpp \
+  /usr/local/include/boost/mpl/list/aux_/clear.hpp \
+  /usr/local/include/boost/mpl/clear_fwd.hpp \
+  /usr/local/include/boost/mpl/list/aux_/O1_size.hpp \
+  /usr/local/include/boost/mpl/O1_size_fwd.hpp \
+  /usr/local/include/boost/mpl/list/aux_/size.hpp \
+  /usr/local/include/boost/mpl/size_fwd.hpp \
+  /usr/local/include/boost/mpl/list/aux_/empty.hpp \
+  /usr/local/include/boost/mpl/empty_fwd.hpp \
+  /usr/local/include/boost/mpl/list/aux_/begin_end.hpp \
+  /usr/local/include/boost/mpl/begin_end_fwd.hpp \
+  /usr/local/include/boost/mpl/list/aux_/iterator.hpp \
+  /usr/local/include/boost/mpl/iterator_tags.hpp \
+  /usr/local/include/boost/mpl/deref.hpp \
+  /usr/local/include/boost/mpl/aux_/msvc_type.hpp \
+  /usr/local/include/boost/mpl/aux_/lambda_spec.hpp \
+  /usr/local/include/boost/mpl/list/aux_/include_preprocessed.hpp \
+  /usr/local/include/boost/mpl/list/aux_/preprocessed/plain/list10.hpp \
+  /usr/local/include/boost/mpl/list/aux_/preprocessed/plain/list20.hpp \
+  /usr/local/include/boost/mpl/aux_/preprocessed/gcc/list.hpp \
+  /usr/local/include/boost/mpl/contains.hpp \
+  /usr/local/include/boost/mpl/contains_fwd.hpp \
+  /usr/local/include/boost/mpl/sequence_tag.hpp \
+  /usr/local/include/boost/mpl/sequence_tag_fwd.hpp \
+  /usr/local/include/boost/mpl/aux_/has_begin.hpp \
+  /usr/local/include/boost/mpl/aux_/contains_impl.hpp \
+  /usr/local/include/boost/mpl/begin_end.hpp \
+  /usr/local/include/boost/mpl/aux_/begin_end_impl.hpp \
+  /usr/local/include/boost/mpl/aux_/traits_lambda_spec.hpp \
+  /usr/local/include/boost/mpl/find.hpp \
+  /usr/local/include/boost/mpl/find_if.hpp \
+  /usr/local/include/boost/mpl/aux_/find_if_pred.hpp \
+  /usr/local/include/boost/mpl/aux_/iter_apply.hpp \
+  /usr/local/include/boost/mpl/iter_fold_if.hpp \
+  /usr/local/include/boost/mpl/pair.hpp \
+  /usr/local/include/boost/mpl/aux_/iter_fold_if_impl.hpp \
+  /usr/local/include/boost/mpl/aux_/preprocessed/gcc/iter_fold_if_impl.hpp \
+  /usr/local/include/boost/mpl/same_as.hpp \
+  /usr/local/include/boost/mpl/remove_if.hpp \
+  /usr/local/include/boost/mpl/fold.hpp \
+  /usr/local/include/boost/mpl/O1_size.hpp \
+  /usr/local/include/boost/mpl/aux_/O1_size_impl.hpp \
+  /usr/local/include/boost/mpl/aux_/has_size.hpp \
+  /usr/local/include/boost/mpl/aux_/fold_impl.hpp \
+  /usr/local/include/boost/mpl/aux_/preprocessed/gcc/fold_impl.hpp \
+  /usr/local/include/boost/mpl/reverse_fold.hpp \
+  /usr/local/include/boost/mpl/aux_/reverse_fold_impl.hpp \
+  /usr/local/include/boost/mpl/aux_/preprocessed/gcc/reverse_fold_impl.hpp \
+  /usr/local/include/boost/mpl/aux_/inserter_algorithm.hpp \
+  /usr/local/include/boost/mpl/back_inserter.hpp \
+  /usr/local/include/boost/mpl/push_back.hpp \
+  /usr/local/include/boost/mpl/aux_/push_back_impl.hpp \
+  /usr/local/include/boost/mpl/inserter.hpp \
+  /usr/local/include/boost/mpl/front_inserter.hpp \
+  /usr/local/include/boost/mpl/push_front.hpp \
+  /usr/local/include/boost/mpl/aux_/push_front_impl.hpp \
+  /usr/local/include/boost/mpl/clear.hpp \
+  /usr/local/include/boost/mpl/aux_/clear_impl.hpp \
+  /usr/local/include/boost/mpl/vector.hpp \
+  /usr/local/include/boost/mpl/limits/vector.hpp \
+  /usr/local/include/boost/mpl/vector/vector20.hpp \
+  /usr/local/include/boost/mpl/vector/vector10.hpp \
+  /usr/local/include/boost/mpl/vector/vector0.hpp \
+  /usr/local/include/boost/mpl/vector/aux_/at.hpp \
+  /usr/local/include/boost/mpl/at_fwd.hpp \
+  /usr/local/include/boost/mpl/vector/aux_/tag.hpp \
+  /usr/local/include/boost/mpl/aux_/config/typeof.hpp \
+  /usr/local/include/boost/mpl/vector/aux_/front.hpp \
+  /usr/local/include/boost/mpl/vector/aux_/push_front.hpp \
+  /usr/local/include/boost/mpl/vector/aux_/item.hpp \
+  /usr/local/include/boost/mpl/vector/aux_/pop_front.hpp \
+  /usr/local/include/boost/mpl/vector/aux_/push_back.hpp \
+  /usr/local/include/boost/mpl/vector/aux_/pop_back.hpp \
+  /usr/local/include/boost/mpl/pop_back_fwd.hpp \
+  /usr/local/include/boost/mpl/vector/aux_/back.hpp \
+  /usr/local/include/boost/mpl/back_fwd.hpp \
+  /usr/local/include/boost/mpl/vector/aux_/clear.hpp \
+  /usr/local/include/boost/mpl/vector/aux_/vector0.hpp \
+  /usr/local/include/boost/mpl/vector/aux_/iterator.hpp \
+  /usr/local/include/boost/mpl/plus.hpp \
+  /usr/local/include/boost/mpl/aux_/preprocessed/gcc/plus.hpp \
+  /usr/local/include/boost/mpl/minus.hpp \
+  /usr/local/include/boost/mpl/aux_/preprocessed/gcc/minus.hpp \
+  /usr/local/include/boost/mpl/advance_fwd.hpp \
+  /usr/local/include/boost/mpl/distance_fwd.hpp \
+  /usr/local/include/boost/mpl/prior.hpp \
+  /usr/local/include/boost/mpl/vector/aux_/O1_size.hpp \
+  /usr/local/include/boost/mpl/vector/aux_/size.hpp \
+  /usr/local/include/boost/mpl/vector/aux_/empty.hpp \
+  /usr/local/include/boost/mpl/vector/aux_/begin_end.hpp \
+  /usr/local/include/boost/mpl/vector/aux_/include_preprocessed.hpp \
+  /usr/local/include/boost/mpl/vector/aux_/preprocessed/typeof_based/vector10.hpp \
+  /usr/local/include/boost/mpl/vector/aux_/preprocessed/typeof_based/vector20.hpp \
+  /usr/local/include/boost/mpl/aux_/preprocessed/gcc/vector.hpp \
+  /usr/local/include/boost/mpl/at.hpp \
+  /usr/local/include/boost/mpl/aux_/at_impl.hpp \
+  /usr/local/include/boost/mpl/advance.hpp \
+  /usr/local/include/boost/mpl/negate.hpp \
+  /usr/local/include/boost/mpl/aux_/advance_forward.hpp \
+  /usr/local/include/boost/mpl/aux_/preprocessed/gcc/advance_forward.hpp \
+  /usr/local/include/boost/mpl/aux_/advance_backward.hpp \
+  /usr/local/include/boost/mpl/aux_/preprocessed/gcc/advance_backward.hpp \
+  /usr/local/include/boost/mpl/size.hpp \
+  /usr/local/include/boost/mpl/aux_/size_impl.hpp \
+  /usr/local/include/boost/mpl/distance.hpp \
+  /usr/local/include/boost/mpl/iter_fold.hpp \
+  /usr/local/include/boost/mpl/aux_/iter_fold_impl.hpp \
+  /usr/local/include/boost/mpl/aux_/preprocessed/gcc/iter_fold_impl.hpp \
+  /usr/local/include/boost/mpl/iterator_range.hpp \
+  /usr/local/include/boost/mpl/comparison.hpp \
+  /usr/local/include/boost/mpl/not_equal_to.hpp \
+  /usr/local/include/boost/mpl/aux_/preprocessed/gcc/not_equal_to.hpp \
+  /usr/local/include/boost/mpl/greater.hpp \
+  /usr/local/include/boost/mpl/aux_/preprocessed/gcc/greater.hpp \
+  /usr/local/include/boost/mpl/less_equal.hpp \
+  /usr/local/include/boost/mpl/aux_/preprocessed/gcc/less_equal.hpp \
+  /usr/local/include/boost/mpl/greater_equal.hpp \
+  /usr/local/include/boost/mpl/aux_/preprocessed/gcc/greater_equal.hpp \
+  /usr/local/include/boost/config/no_tr1/complex.hpp \
+  /usr/local/include/boost/math/special_functions/detail/fp_traits.hpp \
+  /usr/local/include/boost/detail/endian.hpp \
+  /usr/local/include/boost/predef/detail/endian_compat.h \
+  /usr/local/include/boost/math/special_functions/fpclassify.hpp \
+  /usr/local/include/boost/math/tools/real_cast.hpp \
+  /usr/local/include/boost/detail/basic_pointerbuf.hpp \
+  /usr/local/include/boost/program_options/detail/value_semantic.hpp \
+  /usr/local/include/boost/program_options/cmdline.hpp \
+  /usr/local/include/boost/program_options/variables_map.hpp \
+  /usr/local/include/boost/program_options/parsers.hpp \
+  /usr/local/include/boost/program_options/option.hpp \
+  /usr/local/include/boost/program_options/detail/cmdline.hpp \
+  /usr/local/include/boost/program_options/positional_options.hpp \
+  /usr/local/include/boost/program_options/detail/parsers.hpp \
+  /usr/local/include/boost/program_options/detail/convert.hpp \
+  ../gouct/GoUctPlayer.h ../go/GoBoardRestorer.h ../go/GoTimeControl.h \
+  ../smartgame/SgTimeControl.h ../gouct/GoUctObjectWithSearch.h \
+  ../smartgame/SgRestorer.h ../smartgame/SgUctTreeUtil.h \
+  ../gouct/GoUctBookBuilder.h ../smartgame/SgGameReader.h \
+  ../gouct/GoUctCommands.h ../gouct/GoUctFeatureCommands.h \
+  ../features/FeBasicFeatures.h FuegoMainUtil.h ../go/GoGtpCommandUtil.h \
+  ../smartgame/SgGtpUtil.h
 
 ../smartgame/SgSystem.h:
 
@@ -1094,10 +1364,6 @@ FuegoMainEngine.h:
 
 /usr/include/string.h:
 
-/usr/include/sys/_types/_rsize_t.h:
-
-/usr/include/sys/_types/_errno_t.h:
-
 /usr/include/strings.h:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cstdio:
@@ -1119,6 +1385,8 @@ FuegoMainEngine.h:
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cstddef:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/stddef.h:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/__stddef_max_align_t.h:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/type_traits:
 
@@ -1174,11 +1442,11 @@ FuegoMainEngine.h:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__functional_base:
 
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__functional_base_03:
-
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__debug:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/tuple:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/atomic:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/stdexcept:
 
@@ -1249,8 +1517,6 @@ FuegoMainEngine.h:
 /usr/include/sys/_types/_sigset_t.h:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/functional:
-
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__functional_03:
 
 /usr/include/locale.h:
 
@@ -1359,6 +1625,10 @@ FuegoMainEngine.h:
 /usr/include/sys/_types/_useconds_t.h:
 
 /usr/include/sys/_types/_suseconds_t.h:
+
+/usr/include/sys/_types/_rsize_t.h:
+
+/usr/include/sys/_types/_errno_t.h:
 
 /usr/include/sys/_types/_fd_def.h:
 
@@ -1936,7 +2206,7 @@ FuegoMainEngine.h:
 
 /usr/local/include/boost/smart_ptr/detail/spinlock.hpp:
 
-/usr/local/include/boost/smart_ptr/detail/spinlock_sync.hpp:
+/usr/local/include/boost/smart_ptr/detail/spinlock_std_atomic.hpp:
 
 /usr/local/include/boost/smart_ptr/detail/yield_k.hpp:
 
@@ -2188,6 +2458,8 @@ FuegoMainEngine.h:
 
 ../go/GoBoard.h:
 
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/iostream:
+
 ../go/GoPlayerMove.h:
 
 ../smartgame/SgBlackWhite.h:
@@ -2199,8 +2471,6 @@ FuegoMainEngine.h:
 ../smartgame/SgMove.h:
 
 ../smartgame/SgUtil.h:
-
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/iostream:
 
 ../smartgame/SgBWArray.h:
 
@@ -2246,6 +2516,8 @@ FuegoMainEngine.h:
 
 /usr/local/include/boost/type_traits/is_default_constructible.hpp:
 
+/usr/local/include/boost/type_traits/detail/yes_no_type.hpp:
+
 /usr/local/include/boost/type_traits/type_with_alignment.hpp:
 
 /usr/local/include/boost/type_traits/is_base_of.hpp:
@@ -2254,29 +2526,21 @@ FuegoMainEngine.h:
 
 /usr/local/include/boost/type_traits/is_constructible.hpp:
 
+/usr/local/include/boost/type_traits/is_destructible.hpp:
+
+/usr/local/include/boost/type_traits/declval.hpp:
+
+/usr/local/include/boost/type_traits/add_rvalue_reference.hpp:
+
 /usr/local/include/boost/type_traits/is_nothrow_move_assignable.hpp:
 
 /usr/local/include/boost/type_traits/has_trivial_move_assign.hpp:
 
 /usr/local/include/boost/type_traits/is_assignable.hpp:
 
-/usr/local/include/boost/type_traits/has_trivial_assign.hpp:
-
 /usr/local/include/boost/type_traits/has_nothrow_assign.hpp:
 
-/usr/local/include/boost/type_traits/declval.hpp:
-
-/usr/local/include/boost/type_traits/add_rvalue_reference.hpp:
-
 /usr/local/include/boost/type_traits/is_nothrow_move_constructible.hpp:
-
-/usr/local/include/boost/type_traits/has_trivial_move_constructor.hpp:
-
-/usr/local/include/boost/type_traits/has_nothrow_copy.hpp:
-
-/usr/local/include/boost/type_traits/is_copy_constructible.hpp:
-
-/usr/local/include/boost/type_traits/detail/yes_no_type.hpp:
 
 /usr/local/include/boost/move/utility.hpp:
 
@@ -2288,15 +2552,15 @@ FuegoMainEngine.h:
 
 /usr/local/include/boost/move/core.hpp:
 
-/usr/local/include/boost/move/detail/type_traits.hpp:
+/usr/local/include/boost/move/detail/config_end.hpp:
 
 /usr/local/include/boost/move/detail/meta_utils.hpp:
 
 /usr/local/include/boost/move/detail/meta_utils_core.hpp:
 
-/usr/local/include/boost/move/detail/config_end.hpp:
-
 /usr/local/include/boost/move/traits.hpp:
+
+/usr/local/include/boost/move/detail/type_traits.hpp:
 
 /usr/local/include/boost/none.hpp:
 
@@ -2440,6 +2704,8 @@ FuegoMainEngine.h:
 
 /usr/local/include/boost/random/uniform_01.hpp:
 
+../smartgame/SgDebug.h:
+
 ../go/GoBook.h:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/map:
@@ -2461,8 +2727,6 @@ FuegoMainEngine.h:
 ../smartgame/SgBookBuilder.h:
 
 ../smartgame/SgThreadedWorker.h:
-
-../smartgame/SgDebug.h:
 
 /usr/local/include/boost/thread.hpp:
 
@@ -2634,19 +2898,7 @@ FuegoMainEngine.h:
 
 /usr/local/include/boost/type_traits/common_type.hpp:
 
-/usr/local/include/boost/type_traits/detail/common_type_impl.hpp:
-
-/usr/local/include/boost/type_traits/detail/common_arithmetic_type.hpp:
-
-/usr/local/include/boost/type_traits/detail/composite_pointer_type.hpp:
-
-/usr/local/include/boost/type_traits/copy_cv.hpp:
-
-/usr/local/include/boost/type_traits/detail/composite_member_pointer_type.hpp:
-
-/usr/local/include/boost/type_traits/type_identity.hpp:
-
-/usr/local/include/boost/type_traits/is_union.hpp:
+/usr/local/include/boost/type_traits/detail/mp_defer.hpp:
 
 /usr/local/include/boost/chrono/detail/is_evenly_divisible_by.hpp:
 
@@ -2726,8 +2978,6 @@ FuegoMainEngine.h:
 
 /usr/local/include/boost/bind/storage.hpp:
 
-/usr/local/include/boost/bind/bind_template.hpp:
-
 /usr/local/include/boost/bind/bind_cc.hpp:
 
 /usr/local/include/boost/bind/bind_mf_cc.hpp:
@@ -2745,6 +2995,8 @@ FuegoMainEngine.h:
 /usr/local/include/boost/functional/hash/detail/float_functions.hpp:
 
 /usr/local/include/boost/functional/hash/detail/limits.hpp:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/typeindex:
 
 /usr/local/include/boost/functional/hash/extensions.hpp:
 
@@ -2779,8 +3031,6 @@ FuegoMainEngine.h:
 /usr/local/include/boost/move/adl_move_swap.hpp:
 
 /usr/local/include/boost/move/make_unique.hpp:
-
-/usr/local/include/boost/move/detail/fwd_macros.hpp:
 
 /usr/local/include/boost/thread/shared_mutex.hpp:
 
@@ -2866,83 +3116,13 @@ FuegoMainEngine.h:
 
 /usr/local/include/boost/thread/csbl/memory/pointer_traits.hpp:
 
-/usr/local/include/boost/intrusive/pointer_traits.hpp:
-
-/usr/local/include/boost/intrusive/detail/config_begin.hpp:
-
-/usr/local/include/boost/intrusive/detail/workaround.hpp:
-
-/usr/local/include/boost/intrusive/pointer_rebind.hpp:
-
-/usr/local/include/boost/move/detail/pointer_element.hpp:
-
-/usr/local/include/boost/intrusive/detail/mpl.hpp:
-
-/usr/local/include/boost/intrusive/detail/config_end.hpp:
-
 /usr/local/include/boost/thread/csbl/memory/allocator_arg.hpp:
-
-/usr/local/include/boost/container/scoped_allocator.hpp:
-
-/usr/local/include/boost/container/detail/config_begin.hpp:
-
-/usr/local/include/boost/container/detail/workaround.hpp:
-
-/usr/local/include/boost/container/allocator_traits.hpp:
-
-/usr/local/include/boost/container/container_fwd.hpp:
-
-/usr/local/include/boost/container/detail/std_fwd.hpp:
-
-/usr/local/include/boost/move/detail/std_ns_begin.hpp:
-
-/usr/local/include/boost/move/detail/std_ns_end.hpp:
-
-/usr/local/include/boost/container/detail/mpl.hpp:
-
-/usr/local/include/boost/container/detail/config_end.hpp:
-
-/usr/local/include/boost/container/detail/type_traits.hpp:
-
-/usr/local/include/boost/container/detail/placement_new.hpp:
-
-/usr/local/include/boost/intrusive/detail/has_member_function_callable_with.hpp:
-
-/usr/local/include/boost/container/scoped_allocator_fwd.hpp:
-
-/usr/local/include/boost/container/uses_allocator_fwd.hpp:
-
-/usr/local/include/boost/container/detail/dispatch_uses_allocator.hpp:
-
-/usr/local/include/boost/container/uses_allocator.hpp:
-
-/usr/local/include/boost/container/detail/addressof.hpp:
-
-/usr/local/include/boost/container/detail/pair.hpp:
-
-/usr/local/include/boost/intrusive/detail/minimal_pair_header.hpp:
 
 /usr/local/include/boost/thread/csbl/memory/allocator_traits.hpp:
 
 /usr/local/include/boost/thread/csbl/memory/scoped_allocator.hpp:
 
 /usr/local/include/boost/thread/csbl/memory/shared_ptr.hpp:
-
-/usr/local/include/boost/smart_ptr/make_shared.hpp:
-
-/usr/local/include/boost/smart_ptr/make_shared_object.hpp:
-
-/usr/local/include/boost/smart_ptr/detail/sp_forward.hpp:
-
-/usr/local/include/boost/smart_ptr/make_shared_array.hpp:
-
-/usr/local/include/boost/smart_ptr/allocate_shared_array.hpp:
-
-/usr/local/include/boost/type_traits/has_trivial_constructor.hpp:
-
-/usr/local/include/boost/type_traits/has_trivial_destructor.hpp:
-
-/usr/local/include/boost/type_traits/is_destructible.hpp:
 
 /usr/local/include/boost/utility/result_of.hpp:
 
@@ -3068,6 +3248,10 @@ FuegoMainEngine.h:
 
 /usr/local/include/boost/thread/csbl/functional.hpp:
 
+/usr/local/include/boost/thread/executors/executor_adaptor.hpp:
+
+/usr/local/include/boost/thread/executors/generic_executor_ref.hpp:
+
 /usr/local/include/boost/function.hpp:
 
 /usr/local/include/boost/preprocessor/iterate.hpp:
@@ -3086,7 +3270,13 @@ FuegoMainEngine.h:
 
 /usr/local/include/boost/type_traits/has_trivial_copy.hpp:
 
+/usr/local/include/boost/type_traits/is_copy_constructible.hpp:
+
+/usr/local/include/boost/type_traits/has_trivial_destructor.hpp:
+
 /usr/local/include/boost/type_traits/composite_traits.hpp:
+
+/usr/local/include/boost/type_traits/is_union.hpp:
 
 /usr/local/include/boost/function_equal.hpp:
 
@@ -3106,9 +3296,19 @@ FuegoMainEngine.h:
 
 /usr/local/include/boost/detail/no_exceptions_support.hpp:
 
-/usr/local/include/boost/thread/executors/executor_adaptor.hpp:
+/usr/local/include/boost/smart_ptr/make_shared.hpp:
 
-/usr/local/include/boost/thread/executors/generic_executor_ref.hpp:
+/usr/local/include/boost/smart_ptr/make_shared_object.hpp:
+
+/usr/local/include/boost/smart_ptr/detail/sp_forward.hpp:
+
+/usr/local/include/boost/smart_ptr/make_shared_array.hpp:
+
+/usr/local/include/boost/smart_ptr/allocate_shared_array.hpp:
+
+/usr/local/include/boost/type_traits/has_trivial_assign.hpp:
+
+/usr/local/include/boost/type_traits/has_trivial_constructor.hpp:
 
 /usr/local/include/boost/detail/atomic_undef_macros.hpp:
 
@@ -3161,6 +3361,86 @@ FuegoMainEngine.h:
 ../smartgame/SgUctTree.h:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/stack:
+
+../include/mxnet-cpp/MxNetCpp.h:
+
+../include/mxnet-cpp/executor.hpp:
+
+../include/mxnet-cpp/executor.h:
+
+../include/mxnet-cpp/base.h:
+
+../include/mxnet/c_api.h:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/stdbool.h:
+
+../include/nnvm/c_api.h:
+
+../include/mxnet-cpp/symbol.h:
+
+../include/mxnet-cpp/ndarray.h:
+
+../include/mxnet-cpp/shape.h:
+
+../include/mxnet-cpp/op_map.h:
+
+../include/dmlc/logging.h:
+
+../include/dmlc/./base.h:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/inttypes.h:
+
+/usr/include/inttypes.h:
+
+/usr/include/xlocale/_inttypes.h:
+
+/usr/include/execinfo.h:
+
+../include/mxnet-cpp/optimizer.h:
+
+../include/mxnet-cpp/lr_scheduler.h:
+
+../include/mxnet-cpp/symbol.hpp:
+
+../include/mxnet-cpp/op_suppl.h:
+
+../include/mxnet-cpp/operator.h:
+
+../include/mxnet-cpp/ndarray.hpp:
+
+../include/mxnet-cpp/monitor.hpp:
+
+../include/mxnet-cpp/monitor.h:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/regex:
+
+../include/mxnet-cpp/operator.hpp:
+
+../include/mxnet-cpp/optimizer.hpp:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/numeric:
+
+../include/mxnet-cpp/op.h:
+
+../include/mxnet-cpp/op_util.h:
+
+../include/dmlc/optional.h:
+
+../include/dmlc/./common.h:
+
+../include/dmlc/./type_traits.h:
+
+../include/mxnet-cpp/kvstore.hpp:
+
+../include/mxnet-cpp/kvstore.h:
+
+../include/mxnet-cpp/io.hpp:
+
+../include/mxnet-cpp/io.h:
+
+../include/mxnet-cpp/metric.h:
+
+../include/mxnet-cpp/initializer.h:
 
 ../smartgame/SgFastLog.h:
 
@@ -3243,6 +3523,568 @@ FuegoMainEngine.h:
 ../gouct/GoUctSearch.h:
 
 ../go/GoBoardHistory.h:
+
+../mxnet/MXNetModel.h:
+
+/usr/local/include/boost/utility.hpp:
+
+/usr/local/include/boost/utility/binary.hpp:
+
+/usr/local/include/boost/preprocessor/control/deduce_d.hpp:
+
+/usr/local/include/boost/preprocessor/seq/cat.hpp:
+
+/usr/local/include/boost/preprocessor/seq/fold_left.hpp:
+
+/usr/local/include/boost/preprocessor/seq/seq.hpp:
+
+/usr/local/include/boost/preprocessor/seq/elem.hpp:
+
+/usr/local/include/boost/preprocessor/seq/size.hpp:
+
+/usr/local/include/boost/preprocessor/seq/transform.hpp:
+
+/usr/local/include/boost/preprocessor/arithmetic/mod.hpp:
+
+/usr/local/include/boost/preprocessor/arithmetic/detail/div_base.hpp:
+
+/usr/local/include/boost/preprocessor/comparison/less_equal.hpp:
+
+/usr/local/include/boost/preprocessor/logical/not.hpp:
+
+/usr/local/include/boost/utility/identity_type.hpp:
+
+/usr/local/include/boost/program_options/options_description.hpp:
+
+/usr/local/include/boost/program_options/config.hpp:
+
+/usr/local/include/boost/program_options/errors.hpp:
+
+/usr/local/include/boost/program_options/value_semantic.hpp:
+
+/usr/local/include/boost/any.hpp:
+
+/usr/local/include/boost/function/function1.hpp:
+
+/usr/local/include/boost/lexical_cast.hpp:
+
+/usr/local/include/boost/range/iterator_range_core.hpp:
+
+/usr/local/include/boost/type_traits/is_abstract.hpp:
+
+/usr/local/include/boost/range/functions.hpp:
+
+/usr/local/include/boost/range/begin.hpp:
+
+/usr/local/include/boost/range/config.hpp:
+
+/usr/local/include/boost/range/iterator.hpp:
+
+/usr/local/include/boost/range/range_fwd.hpp:
+
+/usr/local/include/boost/range/mutable_iterator.hpp:
+
+/usr/local/include/boost/range/detail/extract_optional_type.hpp:
+
+/usr/local/include/boost/range/detail/msvc_has_iterator_workaround.hpp:
+
+/usr/local/include/boost/range/const_iterator.hpp:
+
+/usr/local/include/boost/range/end.hpp:
+
+/usr/local/include/boost/range/detail/implementation_help.hpp:
+
+/usr/local/include/boost/range/detail/common.hpp:
+
+/usr/local/include/boost/range/detail/sfinae.hpp:
+
+/usr/local/include/boost/range/size.hpp:
+
+/usr/local/include/boost/range/size_type.hpp:
+
+/usr/local/include/boost/range/difference_type.hpp:
+
+/usr/local/include/boost/range/has_range_iterator.hpp:
+
+/usr/local/include/boost/range/concepts.hpp:
+
+/usr/local/include/boost/concept_check.hpp:
+
+/usr/local/include/boost/concept/assert.hpp:
+
+/usr/local/include/boost/concept/detail/general.hpp:
+
+/usr/local/include/boost/concept/detail/backward_compatibility.hpp:
+
+/usr/local/include/boost/concept/detail/has_constraints.hpp:
+
+/usr/local/include/boost/type_traits/conversion_traits.hpp:
+
+/usr/local/include/boost/concept/usage.hpp:
+
+/usr/local/include/boost/concept/detail/concept_def.hpp:
+
+/usr/local/include/boost/preprocessor/seq/for_each_i.hpp:
+
+/usr/local/include/boost/preprocessor/repetition/for.hpp:
+
+/usr/local/include/boost/preprocessor/repetition/detail/for.hpp:
+
+/usr/local/include/boost/preprocessor/seq/detail/is_empty.hpp:
+
+/usr/local/include/boost/preprocessor/seq/enum.hpp:
+
+/usr/local/include/boost/concept/detail/concept_undef.hpp:
+
+/usr/local/include/boost/iterator/iterator_concepts.hpp:
+
+/usr/local/include/boost/range/value_type.hpp:
+
+/usr/local/include/boost/range/detail/misc_concept.hpp:
+
+/usr/local/include/boost/range/detail/has_member_size.hpp:
+
+/usr/local/include/boost/range/distance.hpp:
+
+/usr/local/include/boost/range/empty.hpp:
+
+/usr/local/include/boost/range/rbegin.hpp:
+
+/usr/local/include/boost/range/reverse_iterator.hpp:
+
+/usr/local/include/boost/range/rend.hpp:
+
+/usr/local/include/boost/range/algorithm/equal.hpp:
+
+/usr/local/include/boost/range/detail/safe_bool.hpp:
+
+/usr/local/include/boost/lexical_cast/bad_lexical_cast.hpp:
+
+/usr/local/include/boost/lexical_cast/try_lexical_convert.hpp:
+
+/usr/local/include/boost/lexical_cast/detail/is_character.hpp:
+
+/usr/local/include/boost/lexical_cast/detail/converter_numeric.hpp:
+
+/usr/local/include/boost/type_traits/is_float.hpp:
+
+/usr/local/include/boost/numeric/conversion/cast.hpp:
+
+/usr/local/include/boost/numeric/conversion/converter.hpp:
+
+/usr/local/include/boost/numeric/conversion/conversion_traits.hpp:
+
+/usr/local/include/boost/numeric/conversion/detail/conversion_traits.hpp:
+
+/usr/local/include/boost/numeric/conversion/detail/meta.hpp:
+
+/usr/local/include/boost/mpl/equal_to.hpp:
+
+/usr/local/include/boost/mpl/aux_/comparison_op.hpp:
+
+/usr/local/include/boost/mpl/aux_/numeric_op.hpp:
+
+/usr/local/include/boost/mpl/numeric_cast.hpp:
+
+/usr/local/include/boost/mpl/tag.hpp:
+
+/usr/local/include/boost/mpl/aux_/has_tag.hpp:
+
+/usr/local/include/boost/mpl/aux_/numeric_cast_utils.hpp:
+
+/usr/local/include/boost/mpl/aux_/config/forwarding.hpp:
+
+/usr/local/include/boost/mpl/aux_/msvc_eti_base.hpp:
+
+/usr/local/include/boost/mpl/aux_/is_msvc_eti_arg.hpp:
+
+/usr/local/include/boost/mpl/aux_/preprocessed/gcc/equal_to.hpp:
+
+/usr/local/include/boost/numeric/conversion/detail/int_float_mixture.hpp:
+
+/usr/local/include/boost/numeric/conversion/int_float_mixture_enum.hpp:
+
+/usr/local/include/boost/numeric/conversion/detail/sign_mixture.hpp:
+
+/usr/local/include/boost/numeric/conversion/sign_mixture_enum.hpp:
+
+/usr/local/include/boost/numeric/conversion/detail/udt_builtin_mixture.hpp:
+
+/usr/local/include/boost/numeric/conversion/udt_builtin_mixture_enum.hpp:
+
+/usr/local/include/boost/numeric/conversion/detail/is_subranged.hpp:
+
+/usr/local/include/boost/mpl/multiplies.hpp:
+
+/usr/local/include/boost/mpl/times.hpp:
+
+/usr/local/include/boost/mpl/aux_/arithmetic_op.hpp:
+
+/usr/local/include/boost/mpl/aux_/preprocessed/gcc/times.hpp:
+
+/usr/local/include/boost/mpl/less.hpp:
+
+/usr/local/include/boost/mpl/aux_/preprocessed/gcc/less.hpp:
+
+/usr/local/include/boost/numeric/conversion/converter_policies.hpp:
+
+/usr/local/include/boost/numeric/conversion/detail/converter.hpp:
+
+/usr/local/include/boost/numeric/conversion/bounds.hpp:
+
+/usr/local/include/boost/numeric/conversion/detail/bounds.hpp:
+
+/usr/local/include/boost/numeric/conversion/numeric_cast_traits.hpp:
+
+/usr/local/include/boost/numeric/conversion/detail/numeric_cast_traits.hpp:
+
+/usr/local/include/boost/numeric/conversion/detail/preprocessed/numeric_cast_traits_common.hpp:
+
+/usr/local/include/boost/numeric/conversion/detail/preprocessed/numeric_cast_traits_long_long.hpp:
+
+/usr/local/include/boost/lexical_cast/detail/converter_lexical.hpp:
+
+/usr/local/include/boost/type_traits/has_left_shift.hpp:
+
+/usr/local/include/boost/type_traits/has_right_shift.hpp:
+
+/usr/local/include/boost/detail/lcast_precision.hpp:
+
+/usr/local/include/boost/lexical_cast/detail/widest_char.hpp:
+
+/usr/local/include/boost/container/container_fwd.hpp:
+
+/usr/local/include/boost/container/detail/std_fwd.hpp:
+
+/usr/local/include/boost/move/detail/std_ns_begin.hpp:
+
+/usr/local/include/boost/move/detail/std_ns_end.hpp:
+
+/usr/local/include/boost/lexical_cast/detail/converter_lexical_streams.hpp:
+
+/usr/local/include/boost/lexical_cast/detail/lcast_char_constants.hpp:
+
+/usr/local/include/boost/lexical_cast/detail/lcast_unsigned_converters.hpp:
+
+/usr/local/include/boost/lexical_cast/detail/inf_nan.hpp:
+
+/usr/local/include/boost/math/special_functions/sign.hpp:
+
+/usr/local/include/boost/math/tools/config.hpp:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cfloat:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/float.h:
+
+/usr/local/include/boost/math/tools/user.hpp:
+
+/usr/local/include/boost/math/special_functions/math_fwd.hpp:
+
+/usr/local/include/boost/math/special_functions/detail/round_fwd.hpp:
+
+/usr/local/include/boost/math/tools/promotion.hpp:
+
+/usr/local/include/boost/math/policies/policy.hpp:
+
+/usr/local/include/boost/mpl/list.hpp:
+
+/usr/local/include/boost/mpl/limits/list.hpp:
+
+/usr/local/include/boost/mpl/list/list20.hpp:
+
+/usr/local/include/boost/mpl/list/list10.hpp:
+
+/usr/local/include/boost/mpl/list/list0.hpp:
+
+/usr/local/include/boost/mpl/long.hpp:
+
+/usr/local/include/boost/mpl/long_fwd.hpp:
+
+/usr/local/include/boost/mpl/list/aux_/push_front.hpp:
+
+/usr/local/include/boost/mpl/push_front_fwd.hpp:
+
+/usr/local/include/boost/mpl/list/aux_/item.hpp:
+
+/usr/local/include/boost/mpl/list/aux_/tag.hpp:
+
+/usr/local/include/boost/mpl/list/aux_/pop_front.hpp:
+
+/usr/local/include/boost/mpl/pop_front_fwd.hpp:
+
+/usr/local/include/boost/mpl/list/aux_/push_back.hpp:
+
+/usr/local/include/boost/mpl/push_back_fwd.hpp:
+
+/usr/local/include/boost/mpl/list/aux_/front.hpp:
+
+/usr/local/include/boost/mpl/front_fwd.hpp:
+
+/usr/local/include/boost/mpl/list/aux_/clear.hpp:
+
+/usr/local/include/boost/mpl/clear_fwd.hpp:
+
+/usr/local/include/boost/mpl/list/aux_/O1_size.hpp:
+
+/usr/local/include/boost/mpl/O1_size_fwd.hpp:
+
+/usr/local/include/boost/mpl/list/aux_/size.hpp:
+
+/usr/local/include/boost/mpl/size_fwd.hpp:
+
+/usr/local/include/boost/mpl/list/aux_/empty.hpp:
+
+/usr/local/include/boost/mpl/empty_fwd.hpp:
+
+/usr/local/include/boost/mpl/list/aux_/begin_end.hpp:
+
+/usr/local/include/boost/mpl/begin_end_fwd.hpp:
+
+/usr/local/include/boost/mpl/list/aux_/iterator.hpp:
+
+/usr/local/include/boost/mpl/iterator_tags.hpp:
+
+/usr/local/include/boost/mpl/deref.hpp:
+
+/usr/local/include/boost/mpl/aux_/msvc_type.hpp:
+
+/usr/local/include/boost/mpl/aux_/lambda_spec.hpp:
+
+/usr/local/include/boost/mpl/list/aux_/include_preprocessed.hpp:
+
+/usr/local/include/boost/mpl/list/aux_/preprocessed/plain/list10.hpp:
+
+/usr/local/include/boost/mpl/list/aux_/preprocessed/plain/list20.hpp:
+
+/usr/local/include/boost/mpl/aux_/preprocessed/gcc/list.hpp:
+
+/usr/local/include/boost/mpl/contains.hpp:
+
+/usr/local/include/boost/mpl/contains_fwd.hpp:
+
+/usr/local/include/boost/mpl/sequence_tag.hpp:
+
+/usr/local/include/boost/mpl/sequence_tag_fwd.hpp:
+
+/usr/local/include/boost/mpl/aux_/has_begin.hpp:
+
+/usr/local/include/boost/mpl/aux_/contains_impl.hpp:
+
+/usr/local/include/boost/mpl/begin_end.hpp:
+
+/usr/local/include/boost/mpl/aux_/begin_end_impl.hpp:
+
+/usr/local/include/boost/mpl/aux_/traits_lambda_spec.hpp:
+
+/usr/local/include/boost/mpl/find.hpp:
+
+/usr/local/include/boost/mpl/find_if.hpp:
+
+/usr/local/include/boost/mpl/aux_/find_if_pred.hpp:
+
+/usr/local/include/boost/mpl/aux_/iter_apply.hpp:
+
+/usr/local/include/boost/mpl/iter_fold_if.hpp:
+
+/usr/local/include/boost/mpl/pair.hpp:
+
+/usr/local/include/boost/mpl/aux_/iter_fold_if_impl.hpp:
+
+/usr/local/include/boost/mpl/aux_/preprocessed/gcc/iter_fold_if_impl.hpp:
+
+/usr/local/include/boost/mpl/same_as.hpp:
+
+/usr/local/include/boost/mpl/remove_if.hpp:
+
+/usr/local/include/boost/mpl/fold.hpp:
+
+/usr/local/include/boost/mpl/O1_size.hpp:
+
+/usr/local/include/boost/mpl/aux_/O1_size_impl.hpp:
+
+/usr/local/include/boost/mpl/aux_/has_size.hpp:
+
+/usr/local/include/boost/mpl/aux_/fold_impl.hpp:
+
+/usr/local/include/boost/mpl/aux_/preprocessed/gcc/fold_impl.hpp:
+
+/usr/local/include/boost/mpl/reverse_fold.hpp:
+
+/usr/local/include/boost/mpl/aux_/reverse_fold_impl.hpp:
+
+/usr/local/include/boost/mpl/aux_/preprocessed/gcc/reverse_fold_impl.hpp:
+
+/usr/local/include/boost/mpl/aux_/inserter_algorithm.hpp:
+
+/usr/local/include/boost/mpl/back_inserter.hpp:
+
+/usr/local/include/boost/mpl/push_back.hpp:
+
+/usr/local/include/boost/mpl/aux_/push_back_impl.hpp:
+
+/usr/local/include/boost/mpl/inserter.hpp:
+
+/usr/local/include/boost/mpl/front_inserter.hpp:
+
+/usr/local/include/boost/mpl/push_front.hpp:
+
+/usr/local/include/boost/mpl/aux_/push_front_impl.hpp:
+
+/usr/local/include/boost/mpl/clear.hpp:
+
+/usr/local/include/boost/mpl/aux_/clear_impl.hpp:
+
+/usr/local/include/boost/mpl/vector.hpp:
+
+/usr/local/include/boost/mpl/limits/vector.hpp:
+
+/usr/local/include/boost/mpl/vector/vector20.hpp:
+
+/usr/local/include/boost/mpl/vector/vector10.hpp:
+
+/usr/local/include/boost/mpl/vector/vector0.hpp:
+
+/usr/local/include/boost/mpl/vector/aux_/at.hpp:
+
+/usr/local/include/boost/mpl/at_fwd.hpp:
+
+/usr/local/include/boost/mpl/vector/aux_/tag.hpp:
+
+/usr/local/include/boost/mpl/aux_/config/typeof.hpp:
+
+/usr/local/include/boost/mpl/vector/aux_/front.hpp:
+
+/usr/local/include/boost/mpl/vector/aux_/push_front.hpp:
+
+/usr/local/include/boost/mpl/vector/aux_/item.hpp:
+
+/usr/local/include/boost/mpl/vector/aux_/pop_front.hpp:
+
+/usr/local/include/boost/mpl/vector/aux_/push_back.hpp:
+
+/usr/local/include/boost/mpl/vector/aux_/pop_back.hpp:
+
+/usr/local/include/boost/mpl/pop_back_fwd.hpp:
+
+/usr/local/include/boost/mpl/vector/aux_/back.hpp:
+
+/usr/local/include/boost/mpl/back_fwd.hpp:
+
+/usr/local/include/boost/mpl/vector/aux_/clear.hpp:
+
+/usr/local/include/boost/mpl/vector/aux_/vector0.hpp:
+
+/usr/local/include/boost/mpl/vector/aux_/iterator.hpp:
+
+/usr/local/include/boost/mpl/plus.hpp:
+
+/usr/local/include/boost/mpl/aux_/preprocessed/gcc/plus.hpp:
+
+/usr/local/include/boost/mpl/minus.hpp:
+
+/usr/local/include/boost/mpl/aux_/preprocessed/gcc/minus.hpp:
+
+/usr/local/include/boost/mpl/advance_fwd.hpp:
+
+/usr/local/include/boost/mpl/distance_fwd.hpp:
+
+/usr/local/include/boost/mpl/prior.hpp:
+
+/usr/local/include/boost/mpl/vector/aux_/O1_size.hpp:
+
+/usr/local/include/boost/mpl/vector/aux_/size.hpp:
+
+/usr/local/include/boost/mpl/vector/aux_/empty.hpp:
+
+/usr/local/include/boost/mpl/vector/aux_/begin_end.hpp:
+
+/usr/local/include/boost/mpl/vector/aux_/include_preprocessed.hpp:
+
+/usr/local/include/boost/mpl/vector/aux_/preprocessed/typeof_based/vector10.hpp:
+
+/usr/local/include/boost/mpl/vector/aux_/preprocessed/typeof_based/vector20.hpp:
+
+/usr/local/include/boost/mpl/aux_/preprocessed/gcc/vector.hpp:
+
+/usr/local/include/boost/mpl/at.hpp:
+
+/usr/local/include/boost/mpl/aux_/at_impl.hpp:
+
+/usr/local/include/boost/mpl/advance.hpp:
+
+/usr/local/include/boost/mpl/negate.hpp:
+
+/usr/local/include/boost/mpl/aux_/advance_forward.hpp:
+
+/usr/local/include/boost/mpl/aux_/preprocessed/gcc/advance_forward.hpp:
+
+/usr/local/include/boost/mpl/aux_/advance_backward.hpp:
+
+/usr/local/include/boost/mpl/aux_/preprocessed/gcc/advance_backward.hpp:
+
+/usr/local/include/boost/mpl/size.hpp:
+
+/usr/local/include/boost/mpl/aux_/size_impl.hpp:
+
+/usr/local/include/boost/mpl/distance.hpp:
+
+/usr/local/include/boost/mpl/iter_fold.hpp:
+
+/usr/local/include/boost/mpl/aux_/iter_fold_impl.hpp:
+
+/usr/local/include/boost/mpl/aux_/preprocessed/gcc/iter_fold_impl.hpp:
+
+/usr/local/include/boost/mpl/iterator_range.hpp:
+
+/usr/local/include/boost/mpl/comparison.hpp:
+
+/usr/local/include/boost/mpl/not_equal_to.hpp:
+
+/usr/local/include/boost/mpl/aux_/preprocessed/gcc/not_equal_to.hpp:
+
+/usr/local/include/boost/mpl/greater.hpp:
+
+/usr/local/include/boost/mpl/aux_/preprocessed/gcc/greater.hpp:
+
+/usr/local/include/boost/mpl/less_equal.hpp:
+
+/usr/local/include/boost/mpl/aux_/preprocessed/gcc/less_equal.hpp:
+
+/usr/local/include/boost/mpl/greater_equal.hpp:
+
+/usr/local/include/boost/mpl/aux_/preprocessed/gcc/greater_equal.hpp:
+
+/usr/local/include/boost/config/no_tr1/complex.hpp:
+
+/usr/local/include/boost/math/special_functions/detail/fp_traits.hpp:
+
+/usr/local/include/boost/detail/endian.hpp:
+
+/usr/local/include/boost/predef/detail/endian_compat.h:
+
+/usr/local/include/boost/math/special_functions/fpclassify.hpp:
+
+/usr/local/include/boost/math/tools/real_cast.hpp:
+
+/usr/local/include/boost/detail/basic_pointerbuf.hpp:
+
+/usr/local/include/boost/program_options/detail/value_semantic.hpp:
+
+/usr/local/include/boost/program_options/cmdline.hpp:
+
+/usr/local/include/boost/program_options/variables_map.hpp:
+
+/usr/local/include/boost/program_options/parsers.hpp:
+
+/usr/local/include/boost/program_options/option.hpp:
+
+/usr/local/include/boost/program_options/detail/cmdline.hpp:
+
+/usr/local/include/boost/program_options/positional_options.hpp:
+
+/usr/local/include/boost/program_options/detail/parsers.hpp:
+
+/usr/local/include/boost/program_options/detail/convert.hpp:
 
 ../gouct/GoUctPlayer.h:
 

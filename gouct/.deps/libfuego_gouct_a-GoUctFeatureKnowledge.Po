@@ -26,10 +26,10 @@ libfuego_gouct_a-GoUctFeatureKnowledge.o: GoUctFeatureKnowledge.cpp \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/initializer_list \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cstddef \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/stddef.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/__stddef_max_align_t.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/type_traits \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cstring \
-  /usr/include/string.h /usr/include/sys/_types/_rsize_t.h \
-  /usr/include/sys/_types/_errno_t.h /usr/include/strings.h \
+  /usr/include/string.h /usr/include/strings.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/utility \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__tuple \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/memory \
@@ -50,9 +50,9 @@ libfuego_gouct_a-GoUctFeatureKnowledge.o: GoUctFeatureKnowledge.cpp \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__undef_min_max \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/iterator \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__functional_base \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__functional_base_03 \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__debug \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/tuple \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/atomic \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/climits \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/limits.h \
   /usr/include/limits.h /usr/include/machine/limits.h \
@@ -93,7 +93,6 @@ libfuego_gouct_a-GoUctFeatureKnowledge.o: GoUctFeatureKnowledge.cpp \
   /usr/include/sys/qos.h /usr/include/sys/_types/_mach_port_t.h \
   /usr/include/sys/_types/_sigset_t.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/functional \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__functional_03 \
   /usr/include/locale.h /usr/include/_locale.h /usr/include/xlocale.h \
   /usr/include/_xlocale.h /usr/include/xlocale/_ctype.h \
   /usr/include/xlocale/__wctype.h /usr/include/xlocale/_stdio.h \
@@ -125,6 +124,7 @@ libfuego_gouct_a-GoUctFeatureKnowledge.o: GoUctFeatureKnowledge.cpp \
   /usr/include/sys/_types/_nlink_t.h \
   /usr/include/sys/_types/_useconds_t.h \
   /usr/include/sys/_types/_suseconds_t.h \
+  /usr/include/sys/_types/_rsize_t.h /usr/include/sys/_types/_errno_t.h \
   /usr/include/sys/_types/_fd_def.h \
   /usr/include/sys/_types/_fd_setsize.h \
   /usr/include/sys/_types/_fd_set.h /usr/include/sys/_types/_fd_clr.h \
@@ -135,6 +135,7 @@ libfuego_gouct_a-GoUctFeatureKnowledge.o: GoUctFeatureKnowledge.cpp \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/bitset \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/istream \
   ../go/GoAdditiveKnowledge.h ../go/GoBoard.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/iostream \
   /usr/local/include/boost/static_assert.hpp \
   /usr/local/include/boost/config.hpp \
   /usr/local/include/boost/config/user.hpp \
@@ -155,7 +156,6 @@ libfuego_gouct_a-GoUctFeatureKnowledge.o: GoUctFeatureKnowledge.cpp \
   /usr/local/include/boost/config/workaround.hpp ../go/GoPlayerMove.h \
   ../smartgame/SgBlackWhite.h ../smartgame/SgPoint.h \
   ../smartgame/SgArray.h ../smartgame/SgMove.h ../smartgame/SgUtil.h \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/iostream \
   ../smartgame/SgBWArray.h ../go/GoRules.h ../go/GoKomi.h \
   ../smartgame/SgException.h /usr/local/include/boost/format.hpp \
   /usr/local/include/boost/format/detail/compat_workarounds.hpp \
@@ -185,6 +185,8 @@ libfuego_gouct_a-GoUctFeatureKnowledge.o: GoUctFeatureKnowledge.cpp \
   /usr/local/include/boost/type_traits/conditional.hpp \
   /usr/local/include/boost/type_traits/has_nothrow_constructor.hpp \
   /usr/local/include/boost/type_traits/is_default_constructible.hpp \
+  /usr/local/include/boost/type_traits/detail/yes_no_type.hpp \
+  /usr/local/include/boost/type_traits/type_with_alignment.hpp \
   /usr/local/include/boost/type_traits/is_pod.hpp \
   /usr/local/include/boost/type_traits/is_void.hpp \
   /usr/local/include/boost/type_traits/is_scalar.hpp \
@@ -197,7 +199,6 @@ libfuego_gouct_a-GoUctFeatureKnowledge.o: GoUctFeatureKnowledge.cpp \
   /usr/local/include/boost/type_traits/is_member_function_pointer.hpp \
   /usr/local/include/boost/type_traits/detail/is_mem_fun_pointer_impl.hpp \
   /usr/local/include/boost/type_traits/remove_cv.hpp \
-  /usr/local/include/boost/type_traits/type_with_alignment.hpp \
   /usr/local/include/boost/type_traits/remove_const.hpp \
   /usr/local/include/boost/type_traits/remove_reference.hpp \
   /usr/local/include/boost/type_traits/decay.hpp \
@@ -215,35 +216,27 @@ libfuego_gouct_a-GoUctFeatureKnowledge.o: GoUctFeatureKnowledge.cpp \
   /usr/local/include/boost/type_traits/is_same.hpp \
   /usr/local/include/boost/type_traits/is_class.hpp \
   /usr/local/include/boost/type_traits/is_constructible.hpp \
-  /usr/local/include/boost/type_traits/is_convertible.hpp \
+  /usr/local/include/boost/type_traits/is_destructible.hpp \
+  /usr/local/include/boost/type_traits/declval.hpp \
+  /usr/local/include/boost/type_traits/add_rvalue_reference.hpp \
   /usr/local/include/boost/type_traits/is_nothrow_move_assignable.hpp \
   /usr/local/include/boost/type_traits/has_trivial_move_assign.hpp \
   /usr/local/include/boost/type_traits/is_const.hpp \
   /usr/local/include/boost/type_traits/is_volatile.hpp \
   /usr/local/include/boost/type_traits/is_assignable.hpp \
-  /usr/local/include/boost/type_traits/has_trivial_assign.hpp \
   /usr/local/include/boost/type_traits/has_nothrow_assign.hpp \
   /usr/local/include/boost/utility/enable_if.hpp \
-  /usr/local/include/boost/type_traits/declval.hpp \
-  /usr/local/include/boost/type_traits/add_rvalue_reference.hpp \
   /usr/local/include/boost/type_traits/is_nothrow_move_constructible.hpp \
-  /usr/local/include/boost/type_traits/has_trivial_move_constructor.hpp \
-  /usr/local/include/boost/type_traits/has_nothrow_copy.hpp \
-  /usr/local/include/boost/type_traits/is_copy_constructible.hpp \
-  /usr/local/include/boost/type_traits/detail/yes_no_type.hpp \
-  /usr/local/include/boost/type_traits/add_reference.hpp \
-  /usr/local/include/boost/noncopyable.hpp \
-  /usr/local/include/boost/core/noncopyable.hpp \
   /usr/local/include/boost/move/utility.hpp \
   /usr/local/include/boost/move/detail/config_begin.hpp \
   /usr/local/include/boost/move/detail/workaround.hpp \
   /usr/local/include/boost/move/utility_core.hpp \
   /usr/local/include/boost/move/core.hpp \
-  /usr/local/include/boost/move/detail/type_traits.hpp \
+  /usr/local/include/boost/move/detail/config_end.hpp \
   /usr/local/include/boost/move/detail/meta_utils.hpp \
   /usr/local/include/boost/move/detail/meta_utils_core.hpp \
-  /usr/local/include/boost/move/detail/config_end.hpp \
   /usr/local/include/boost/move/traits.hpp \
+  /usr/local/include/boost/move/detail/type_traits.hpp \
   /usr/local/include/boost/none.hpp /usr/local/include/boost/none_t.hpp \
   /usr/local/include/boost/utility/compare_pointees.hpp \
   /usr/local/include/boost/optional/optional_fwd.hpp \
@@ -316,7 +309,7 @@ libfuego_gouct_a-GoUctFeatureKnowledge.o: GoUctFeatureKnowledge.cpp \
   /usr/local/include/boost/smart_ptr/detail/sp_noexcept.hpp \
   /usr/local/include/boost/smart_ptr/detail/spinlock_pool.hpp \
   /usr/local/include/boost/smart_ptr/detail/spinlock.hpp \
-  /usr/local/include/boost/smart_ptr/detail/spinlock_sync.hpp \
+  /usr/local/include/boost/smart_ptr/detail/spinlock_std_atomic.hpp \
   /usr/local/include/boost/smart_ptr/detail/yield_k.hpp \
   /usr/local/include/boost/predef.h \
   /usr/local/include/boost/predef/language.h \
@@ -560,11 +553,14 @@ libfuego_gouct_a-GoUctFeatureKnowledge.o: GoUctFeatureKnowledge.cpp \
   /usr/local/include/boost/system/error_code.hpp \
   /usr/local/include/boost/system/config.hpp \
   /usr/local/include/boost/system/api_config.hpp \
+  /usr/local/include/boost/noncopyable.hpp \
+  /usr/local/include/boost/core/noncopyable.hpp \
   /usr/local/include/boost/cerrno.hpp \
   /usr/local/include/boost/config/abi_prefix.hpp \
   /usr/local/include/boost/config/abi_suffix.hpp \
   /usr/local/include/boost/thread/lock_types.hpp \
   /usr/local/include/boost/thread/detail/move.hpp \
+  /usr/local/include/boost/type_traits/is_convertible.hpp \
   /usr/local/include/boost/thread/lock_options.hpp \
   /usr/local/include/boost/thread/lockable_traits.hpp \
   /usr/local/include/boost/thread/thread_time.hpp \
@@ -648,14 +644,7 @@ libfuego_gouct_a-GoUctFeatureKnowledge.o: GoUctFeatureKnowledge.cpp \
   /usr/local/include/boost/ratio/ratio_fwd.hpp \
   /usr/local/include/boost/ratio/detail/overflow_helpers.hpp \
   /usr/local/include/boost/type_traits/common_type.hpp \
-  /usr/local/include/boost/type_traits/detail/common_type_impl.hpp \
-  /usr/local/include/boost/type_traits/detail/common_arithmetic_type.hpp \
-  /usr/local/include/boost/type_traits/detail/composite_pointer_type.hpp \
-  /usr/local/include/boost/type_traits/copy_cv.hpp \
-  /usr/local/include/boost/type_traits/detail/composite_member_pointer_type.hpp \
-  /usr/local/include/boost/type_traits/remove_pointer.hpp \
-  /usr/local/include/boost/type_traits/type_identity.hpp \
-  /usr/local/include/boost/type_traits/is_union.hpp \
+  /usr/local/include/boost/type_traits/detail/mp_defer.hpp \
   /usr/local/include/boost/chrono/detail/is_evenly_divisible_by.hpp \
   /usr/local/include/boost/thread/xtime.hpp \
   /usr/local/include/boost/date_time/posix_time/conversion.hpp \
@@ -681,48 +670,10 @@ libfuego_gouct_a-GoUctFeatureKnowledge.o: GoUctFeatureKnowledge.cpp \
   /usr/local/include/boost/thread/detail/memory.hpp \
   /usr/local/include/boost/thread/csbl/memory/pointer_traits.hpp \
   /usr/local/include/boost/thread/csbl/memory/config.hpp \
-  /usr/local/include/boost/intrusive/pointer_traits.hpp \
-  /usr/local/include/boost/intrusive/detail/config_begin.hpp \
-  /usr/local/include/boost/intrusive/detail/workaround.hpp \
-  /usr/local/include/boost/intrusive/pointer_rebind.hpp \
-  /usr/local/include/boost/move/detail/pointer_element.hpp \
-  /usr/local/include/boost/intrusive/detail/mpl.hpp \
-  /usr/local/include/boost/intrusive/detail/config_end.hpp \
   /usr/local/include/boost/thread/csbl/memory/allocator_arg.hpp \
-  /usr/local/include/boost/container/scoped_allocator.hpp \
-  /usr/local/include/boost/container/detail/config_begin.hpp \
-  /usr/local/include/boost/container/detail/workaround.hpp \
-  /usr/local/include/boost/container/allocator_traits.hpp \
-  /usr/local/include/boost/container/container_fwd.hpp \
-  /usr/local/include/boost/container/detail/std_fwd.hpp \
-  /usr/local/include/boost/move/detail/std_ns_begin.hpp \
-  /usr/local/include/boost/move/detail/std_ns_end.hpp \
-  /usr/local/include/boost/container/detail/mpl.hpp \
-  /usr/local/include/boost/container/detail/config_end.hpp \
-  /usr/local/include/boost/container/detail/type_traits.hpp \
-  /usr/local/include/boost/container/detail/placement_new.hpp \
-  /usr/local/include/boost/move/detail/fwd_macros.hpp \
-  /usr/local/include/boost/intrusive/detail/has_member_function_callable_with.hpp \
-  /usr/local/include/boost/container/scoped_allocator_fwd.hpp \
-  /usr/local/include/boost/container/uses_allocator_fwd.hpp \
-  /usr/local/include/boost/container/detail/dispatch_uses_allocator.hpp \
-  /usr/local/include/boost/container/uses_allocator.hpp \
-  /usr/local/include/boost/container/detail/addressof.hpp \
-  /usr/local/include/boost/container/detail/pair.hpp \
-  /usr/local/include/boost/move/adl_move_swap.hpp \
-  /usr/local/include/boost/intrusive/detail/minimal_pair_header.hpp \
-  /usr/local/include/boost/core/no_exceptions_support.hpp \
   /usr/local/include/boost/thread/csbl/memory/allocator_traits.hpp \
   /usr/local/include/boost/thread/csbl/memory/scoped_allocator.hpp \
   /usr/local/include/boost/thread/csbl/memory/shared_ptr.hpp \
-  /usr/local/include/boost/smart_ptr/make_shared.hpp \
-  /usr/local/include/boost/smart_ptr/make_shared_object.hpp \
-  /usr/local/include/boost/smart_ptr/detail/sp_forward.hpp \
-  /usr/local/include/boost/smart_ptr/make_shared_array.hpp \
-  /usr/local/include/boost/smart_ptr/allocate_shared_array.hpp \
-  /usr/local/include/boost/type_traits/has_trivial_constructor.hpp \
-  /usr/local/include/boost/type_traits/has_trivial_destructor.hpp \
-  /usr/local/include/boost/type_traits/is_destructible.hpp \
   /usr/local/include/boost/utility/result_of.hpp \
   /usr/local/include/boost/preprocessor/iteration/iterate.hpp \
   /usr/local/include/boost/preprocessor/array/elem.hpp \
@@ -771,7 +722,6 @@ libfuego_gouct_a-GoUctFeatureKnowledge.o: GoUctFeatureKnowledge.cpp \
   /usr/local/include/boost/visit_each.hpp \
   /usr/local/include/boost/core/is_same.hpp \
   /usr/local/include/boost/bind/storage.hpp \
-  /usr/local/include/boost/bind/bind_template.hpp \
   /usr/local/include/boost/bind/bind_cc.hpp \
   /usr/local/include/boost/bind/bind_mf_cc.hpp \
   /usr/local/include/boost/bind/bind_mf2_cc.hpp \
@@ -784,6 +734,7 @@ libfuego_gouct_a-GoUctFeatureKnowledge.o: GoUctFeatureKnowledge.cpp \
   /usr/local/include/boost/functional/hash/detail/hash_float.hpp \
   /usr/local/include/boost/functional/hash/detail/float_functions.hpp \
   /usr/local/include/boost/functional/hash/detail/limits.hpp \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/typeindex \
   /usr/local/include/boost/functional/hash/extensions.hpp \
   /usr/local/include/boost/detail/container_fwd.hpp \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/deque \
@@ -797,6 +748,7 @@ libfuego_gouct_a-GoUctFeatureKnowledge.o: GoUctFeatureKnowledge.cpp \
   /usr/local/include/boost/move/unique_ptr.hpp \
   /usr/local/include/boost/move/detail/unique_ptr_meta_utils.hpp \
   /usr/local/include/boost/move/default_delete.hpp \
+  /usr/local/include/boost/move/adl_move_swap.hpp \
   /usr/local/include/boost/move/make_unique.hpp \
   /usr/local/include/boost/thread/shared_mutex.hpp \
   /usr/local/include/boost/thread/pthread/shared_mutex.hpp \
@@ -805,9 +757,33 @@ libfuego_gouct_a-GoUctFeatureKnowledge.o: GoUctFeatureKnowledge.cpp \
   ../smartgame/SgStatisticsVlt.h ../smartgame/SgTimer.h \
   ../smartgame/SgTime.h ../smartgame/SgUctTree.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/stack \
-  ../smartgame/SgMpiSynchronizer.h ../smartgame/SgFastLog.h \
-  ../go/GoEvalArray.h GoUctKnowledge.h GoUctPlayoutPolicy.h \
-  /usr/local/include/boost/array.hpp /usr/local/include/boost/swap.hpp \
+  ../include/mxnet-cpp/MxNetCpp.h ../include/mxnet-cpp/executor.hpp \
+  ../include/mxnet-cpp/executor.h ../include/mxnet-cpp/base.h \
+  ../include/mxnet/c_api.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/stdbool.h \
+  ../include/nnvm/c_api.h ../include/mxnet-cpp/symbol.h \
+  ../include/mxnet-cpp/ndarray.h ../include/mxnet-cpp/shape.h \
+  ../include/mxnet-cpp/op_map.h ../include/dmlc/logging.h \
+  ../include/dmlc/./base.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/inttypes.h \
+  /usr/include/inttypes.h /usr/include/xlocale/_inttypes.h \
+  /usr/include/execinfo.h ../include/mxnet-cpp/optimizer.h \
+  ../include/mxnet-cpp/lr_scheduler.h ../include/mxnet-cpp/symbol.hpp \
+  ../include/mxnet-cpp/op_suppl.h ../include/mxnet-cpp/operator.h \
+  ../include/mxnet-cpp/ndarray.hpp ../include/mxnet-cpp/monitor.hpp \
+  ../include/mxnet-cpp/monitor.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/regex \
+  ../include/mxnet-cpp/operator.hpp ../include/mxnet-cpp/optimizer.hpp \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/numeric \
+  ../include/mxnet-cpp/op.h ../include/mxnet-cpp/op_util.h \
+  ../include/dmlc/optional.h ../include/dmlc/./common.h \
+  ../include/dmlc/./type_traits.h ../include/mxnet-cpp/kvstore.hpp \
+  ../include/mxnet-cpp/kvstore.h ../include/mxnet-cpp/io.hpp \
+  ../include/mxnet-cpp/io.h ../include/mxnet-cpp/metric.h \
+  ../include/mxnet-cpp/initializer.h ../smartgame/SgMpiSynchronizer.h \
+  ../smartgame/SgFastLog.h ../go/GoEvalArray.h GoUctKnowledge.h \
+  GoUctPlayoutPolicy.h /usr/local/include/boost/array.hpp \
+  /usr/local/include/boost/swap.hpp \
   /usr/local/include/boost/detail/iterator.hpp ../go/GoBoardUtil.h \
   ../smartgame/SgStack.h ../go/GoEyeUtil.h GoUctPatterns.h \
   ../go/GoPattern3x3.h ../go/GoPatternBase.h GoUctGlobalPatternData.h \
@@ -904,15 +880,13 @@ GoUctFeatureKnowledge.h:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/stddef.h:
 
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/__stddef_max_align_t.h:
+
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/type_traits:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cstring:
 
 /usr/include/string.h:
-
-/usr/include/sys/_types/_rsize_t.h:
-
-/usr/include/sys/_types/_errno_t.h:
 
 /usr/include/strings.h:
 
@@ -968,11 +942,11 @@ GoUctFeatureKnowledge.h:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__functional_base:
 
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__functional_base_03:
-
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__debug:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/tuple:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/atomic:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/climits:
 
@@ -1069,8 +1043,6 @@ GoUctFeatureKnowledge.h:
 /usr/include/sys/_types/_sigset_t.h:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/functional:
-
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__functional_03:
 
 /usr/include/locale.h:
 
@@ -1180,6 +1152,10 @@ GoUctFeatureKnowledge.h:
 
 /usr/include/sys/_types/_suseconds_t.h:
 
+/usr/include/sys/_types/_rsize_t.h:
+
+/usr/include/sys/_types/_errno_t.h:
+
 /usr/include/sys/_types/_fd_def.h:
 
 /usr/include/sys/_types/_fd_setsize.h:
@@ -1207,6 +1183,8 @@ GoUctFeatureKnowledge.h:
 ../go/GoAdditiveKnowledge.h:
 
 ../go/GoBoard.h:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/iostream:
 
 /usr/local/include/boost/static_assert.hpp:
 
@@ -1261,8 +1239,6 @@ GoUctFeatureKnowledge.h:
 ../smartgame/SgMove.h:
 
 ../smartgame/SgUtil.h:
-
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/iostream:
 
 ../smartgame/SgBWArray.h:
 
@@ -1330,6 +1306,10 @@ GoUctFeatureKnowledge.h:
 
 /usr/local/include/boost/type_traits/is_default_constructible.hpp:
 
+/usr/local/include/boost/type_traits/detail/yes_no_type.hpp:
+
+/usr/local/include/boost/type_traits/type_with_alignment.hpp:
+
 /usr/local/include/boost/type_traits/is_pod.hpp:
 
 /usr/local/include/boost/type_traits/is_void.hpp:
@@ -1353,8 +1333,6 @@ GoUctFeatureKnowledge.h:
 /usr/local/include/boost/type_traits/detail/is_mem_fun_pointer_impl.hpp:
 
 /usr/local/include/boost/type_traits/remove_cv.hpp:
-
-/usr/local/include/boost/type_traits/type_with_alignment.hpp:
 
 /usr/local/include/boost/type_traits/remove_const.hpp:
 
@@ -1390,7 +1368,11 @@ GoUctFeatureKnowledge.h:
 
 /usr/local/include/boost/type_traits/is_constructible.hpp:
 
-/usr/local/include/boost/type_traits/is_convertible.hpp:
+/usr/local/include/boost/type_traits/is_destructible.hpp:
+
+/usr/local/include/boost/type_traits/declval.hpp:
+
+/usr/local/include/boost/type_traits/add_rvalue_reference.hpp:
 
 /usr/local/include/boost/type_traits/is_nothrow_move_assignable.hpp:
 
@@ -1402,31 +1384,11 @@ GoUctFeatureKnowledge.h:
 
 /usr/local/include/boost/type_traits/is_assignable.hpp:
 
-/usr/local/include/boost/type_traits/has_trivial_assign.hpp:
-
 /usr/local/include/boost/type_traits/has_nothrow_assign.hpp:
 
 /usr/local/include/boost/utility/enable_if.hpp:
 
-/usr/local/include/boost/type_traits/declval.hpp:
-
-/usr/local/include/boost/type_traits/add_rvalue_reference.hpp:
-
 /usr/local/include/boost/type_traits/is_nothrow_move_constructible.hpp:
-
-/usr/local/include/boost/type_traits/has_trivial_move_constructor.hpp:
-
-/usr/local/include/boost/type_traits/has_nothrow_copy.hpp:
-
-/usr/local/include/boost/type_traits/is_copy_constructible.hpp:
-
-/usr/local/include/boost/type_traits/detail/yes_no_type.hpp:
-
-/usr/local/include/boost/type_traits/add_reference.hpp:
-
-/usr/local/include/boost/noncopyable.hpp:
-
-/usr/local/include/boost/core/noncopyable.hpp:
 
 /usr/local/include/boost/move/utility.hpp:
 
@@ -1438,15 +1400,15 @@ GoUctFeatureKnowledge.h:
 
 /usr/local/include/boost/move/core.hpp:
 
-/usr/local/include/boost/move/detail/type_traits.hpp:
+/usr/local/include/boost/move/detail/config_end.hpp:
 
 /usr/local/include/boost/move/detail/meta_utils.hpp:
 
 /usr/local/include/boost/move/detail/meta_utils_core.hpp:
 
-/usr/local/include/boost/move/detail/config_end.hpp:
-
 /usr/local/include/boost/move/traits.hpp:
+
+/usr/local/include/boost/move/detail/type_traits.hpp:
 
 /usr/local/include/boost/none.hpp:
 
@@ -1596,7 +1558,7 @@ GoUctFeatureKnowledge.h:
 
 /usr/local/include/boost/smart_ptr/detail/spinlock.hpp:
 
-/usr/local/include/boost/smart_ptr/detail/spinlock_sync.hpp:
+/usr/local/include/boost/smart_ptr/detail/spinlock_std_atomic.hpp:
 
 /usr/local/include/boost/smart_ptr/detail/yield_k.hpp:
 
@@ -2102,6 +2064,10 @@ GoUctFeatureKnowledge.h:
 
 /usr/local/include/boost/system/api_config.hpp:
 
+/usr/local/include/boost/noncopyable.hpp:
+
+/usr/local/include/boost/core/noncopyable.hpp:
+
 /usr/local/include/boost/cerrno.hpp:
 
 /usr/local/include/boost/config/abi_prefix.hpp:
@@ -2111,6 +2077,8 @@ GoUctFeatureKnowledge.h:
 /usr/local/include/boost/thread/lock_types.hpp:
 
 /usr/local/include/boost/thread/detail/move.hpp:
+
+/usr/local/include/boost/type_traits/is_convertible.hpp:
 
 /usr/local/include/boost/thread/lock_options.hpp:
 
@@ -2280,21 +2248,7 @@ GoUctFeatureKnowledge.h:
 
 /usr/local/include/boost/type_traits/common_type.hpp:
 
-/usr/local/include/boost/type_traits/detail/common_type_impl.hpp:
-
-/usr/local/include/boost/type_traits/detail/common_arithmetic_type.hpp:
-
-/usr/local/include/boost/type_traits/detail/composite_pointer_type.hpp:
-
-/usr/local/include/boost/type_traits/copy_cv.hpp:
-
-/usr/local/include/boost/type_traits/detail/composite_member_pointer_type.hpp:
-
-/usr/local/include/boost/type_traits/remove_pointer.hpp:
-
-/usr/local/include/boost/type_traits/type_identity.hpp:
-
-/usr/local/include/boost/type_traits/is_union.hpp:
+/usr/local/include/boost/type_traits/detail/mp_defer.hpp:
 
 /usr/local/include/boost/chrono/detail/is_evenly_divisible_by.hpp:
 
@@ -2346,89 +2300,13 @@ GoUctFeatureKnowledge.h:
 
 /usr/local/include/boost/thread/csbl/memory/config.hpp:
 
-/usr/local/include/boost/intrusive/pointer_traits.hpp:
-
-/usr/local/include/boost/intrusive/detail/config_begin.hpp:
-
-/usr/local/include/boost/intrusive/detail/workaround.hpp:
-
-/usr/local/include/boost/intrusive/pointer_rebind.hpp:
-
-/usr/local/include/boost/move/detail/pointer_element.hpp:
-
-/usr/local/include/boost/intrusive/detail/mpl.hpp:
-
-/usr/local/include/boost/intrusive/detail/config_end.hpp:
-
 /usr/local/include/boost/thread/csbl/memory/allocator_arg.hpp:
-
-/usr/local/include/boost/container/scoped_allocator.hpp:
-
-/usr/local/include/boost/container/detail/config_begin.hpp:
-
-/usr/local/include/boost/container/detail/workaround.hpp:
-
-/usr/local/include/boost/container/allocator_traits.hpp:
-
-/usr/local/include/boost/container/container_fwd.hpp:
-
-/usr/local/include/boost/container/detail/std_fwd.hpp:
-
-/usr/local/include/boost/move/detail/std_ns_begin.hpp:
-
-/usr/local/include/boost/move/detail/std_ns_end.hpp:
-
-/usr/local/include/boost/container/detail/mpl.hpp:
-
-/usr/local/include/boost/container/detail/config_end.hpp:
-
-/usr/local/include/boost/container/detail/type_traits.hpp:
-
-/usr/local/include/boost/container/detail/placement_new.hpp:
-
-/usr/local/include/boost/move/detail/fwd_macros.hpp:
-
-/usr/local/include/boost/intrusive/detail/has_member_function_callable_with.hpp:
-
-/usr/local/include/boost/container/scoped_allocator_fwd.hpp:
-
-/usr/local/include/boost/container/uses_allocator_fwd.hpp:
-
-/usr/local/include/boost/container/detail/dispatch_uses_allocator.hpp:
-
-/usr/local/include/boost/container/uses_allocator.hpp:
-
-/usr/local/include/boost/container/detail/addressof.hpp:
-
-/usr/local/include/boost/container/detail/pair.hpp:
-
-/usr/local/include/boost/move/adl_move_swap.hpp:
-
-/usr/local/include/boost/intrusive/detail/minimal_pair_header.hpp:
-
-/usr/local/include/boost/core/no_exceptions_support.hpp:
 
 /usr/local/include/boost/thread/csbl/memory/allocator_traits.hpp:
 
 /usr/local/include/boost/thread/csbl/memory/scoped_allocator.hpp:
 
 /usr/local/include/boost/thread/csbl/memory/shared_ptr.hpp:
-
-/usr/local/include/boost/smart_ptr/make_shared.hpp:
-
-/usr/local/include/boost/smart_ptr/make_shared_object.hpp:
-
-/usr/local/include/boost/smart_ptr/detail/sp_forward.hpp:
-
-/usr/local/include/boost/smart_ptr/make_shared_array.hpp:
-
-/usr/local/include/boost/smart_ptr/allocate_shared_array.hpp:
-
-/usr/local/include/boost/type_traits/has_trivial_constructor.hpp:
-
-/usr/local/include/boost/type_traits/has_trivial_destructor.hpp:
-
-/usr/local/include/boost/type_traits/is_destructible.hpp:
 
 /usr/local/include/boost/utility/result_of.hpp:
 
@@ -2528,8 +2406,6 @@ GoUctFeatureKnowledge.h:
 
 /usr/local/include/boost/bind/storage.hpp:
 
-/usr/local/include/boost/bind/bind_template.hpp:
-
 /usr/local/include/boost/bind/bind_cc.hpp:
 
 /usr/local/include/boost/bind/bind_mf_cc.hpp:
@@ -2553,6 +2429,8 @@ GoUctFeatureKnowledge.h:
 /usr/local/include/boost/functional/hash/detail/float_functions.hpp:
 
 /usr/local/include/boost/functional/hash/detail/limits.hpp:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/typeindex:
 
 /usr/local/include/boost/functional/hash/extensions.hpp:
 
@@ -2580,6 +2458,8 @@ GoUctFeatureKnowledge.h:
 
 /usr/local/include/boost/move/default_delete.hpp:
 
+/usr/local/include/boost/move/adl_move_swap.hpp:
+
 /usr/local/include/boost/move/make_unique.hpp:
 
 /usr/local/include/boost/thread/shared_mutex.hpp:
@@ -2603,6 +2483,86 @@ GoUctFeatureKnowledge.h:
 ../smartgame/SgUctTree.h:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/stack:
+
+../include/mxnet-cpp/MxNetCpp.h:
+
+../include/mxnet-cpp/executor.hpp:
+
+../include/mxnet-cpp/executor.h:
+
+../include/mxnet-cpp/base.h:
+
+../include/mxnet/c_api.h:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/stdbool.h:
+
+../include/nnvm/c_api.h:
+
+../include/mxnet-cpp/symbol.h:
+
+../include/mxnet-cpp/ndarray.h:
+
+../include/mxnet-cpp/shape.h:
+
+../include/mxnet-cpp/op_map.h:
+
+../include/dmlc/logging.h:
+
+../include/dmlc/./base.h:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/inttypes.h:
+
+/usr/include/inttypes.h:
+
+/usr/include/xlocale/_inttypes.h:
+
+/usr/include/execinfo.h:
+
+../include/mxnet-cpp/optimizer.h:
+
+../include/mxnet-cpp/lr_scheduler.h:
+
+../include/mxnet-cpp/symbol.hpp:
+
+../include/mxnet-cpp/op_suppl.h:
+
+../include/mxnet-cpp/operator.h:
+
+../include/mxnet-cpp/ndarray.hpp:
+
+../include/mxnet-cpp/monitor.hpp:
+
+../include/mxnet-cpp/monitor.h:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/regex:
+
+../include/mxnet-cpp/operator.hpp:
+
+../include/mxnet-cpp/optimizer.hpp:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/numeric:
+
+../include/mxnet-cpp/op.h:
+
+../include/mxnet-cpp/op_util.h:
+
+../include/dmlc/optional.h:
+
+../include/dmlc/./common.h:
+
+../include/dmlc/./type_traits.h:
+
+../include/mxnet-cpp/kvstore.hpp:
+
+../include/mxnet-cpp/kvstore.h:
+
+../include/mxnet-cpp/io.hpp:
+
+../include/mxnet-cpp/io.h:
+
+../include/mxnet-cpp/metric.h:
+
+../include/mxnet-cpp/initializer.h:
 
 ../smartgame/SgMpiSynchronizer.h:
 

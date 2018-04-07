@@ -134,6 +134,11 @@ const SgPoint SG_NULLPOINT = SG_NULLMOVE;
    conflict with the integer range for describing moves in those games. */
 const SgMove SG_PASS = SG_MAXPOINT + 1;
 
+
+/* Added by Damon, to define an array to store all moves in position indentify by it's value.
+*/
+const SgMove SG_MAX_MOVE_VALUE = SG_MAXPOINT + 1;
+
 /** Test if move is not a point.
     Returns true for special moves with negative values as defined in SgMove.h
     (e.g. SG_NULLMOVE) and for SG_PASS. */

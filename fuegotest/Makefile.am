@@ -15,6 +15,8 @@ fuego_test_LDADD = \
 ../go/libfuego_go.a \
 ../smartgame/libfuego_smartgame.a \
 ../gtpengine/libfuego_gtpengine.a \
+../lib/libmxnet.so \
+../mxnet/lib_mxnetmodel.a \
 $(BOOST_PROGRAM_OPTIONS_LIB) \
 $(BOOST_SYSTEM_LIB) \
 $(BOOST_FILESYSTEM_LIB) \
@@ -33,6 +35,7 @@ $(BOOST_CPPFLAGS) \
 -I@top_srcdir@/smartgame \
 -I@top_srcdir@/go \
 -I@top_srcdir@/simpleplayers \
--I@top_srcdir@/gouct
+-I@top_srcdir@/gouct \
+-I@top_srcdir@/include
 
 DISTCLEANFILES = *~

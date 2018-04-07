@@ -20,8 +20,7 @@ libfuego_smartgame_a-SgTime.o: SgTime.cpp SgSystem.h ../config.h SgTime.h \
   /usr/include/sys/_types/_wint_t.h /usr/include/_types/_wctype_t.h \
   /usr/include/ctype.h /usr/include/runetype.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cstring \
-  /usr/include/string.h /usr/include/sys/_types/_rsize_t.h \
-  /usr/include/sys/_types/_errno_t.h /usr/include/strings.h \
+  /usr/include/string.h /usr/include/strings.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cstdio \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cwchar \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cwctype \
@@ -31,6 +30,7 @@ libfuego_smartgame_a-SgTime.o: SgTime.cpp SgSystem.h ../config.h SgTime.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/initializer_list \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cstddef \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/stddef.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/__stddef_max_align_t.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/type_traits \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/utility \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__tuple \
@@ -52,9 +52,9 @@ libfuego_smartgame_a-SgTime.o: SgTime.cpp SgSystem.h ../config.h SgTime.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__undef_min_max \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/iterator \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__functional_base \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__functional_base_03 \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__debug \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/tuple \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/atomic \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/stdexcept \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/ctime \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/iomanip \
@@ -88,7 +88,6 @@ libfuego_smartgame_a-SgTime.o: SgTime.cpp SgSystem.h ../config.h SgTime.h \
   /usr/include/sys/qos.h /usr/include/sys/_types/_mach_port_t.h \
   /usr/include/sys/_types/_sigset_t.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/functional \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__functional_03 \
   /usr/include/locale.h /usr/include/_locale.h /usr/include/xlocale.h \
   /usr/include/_xlocale.h /usr/include/xlocale/_ctype.h \
   /usr/include/xlocale/__wctype.h /usr/include/xlocale/_stdio.h \
@@ -120,6 +119,7 @@ libfuego_smartgame_a-SgTime.o: SgTime.cpp SgSystem.h ../config.h SgTime.h \
   /usr/include/sys/_types/_nlink_t.h \
   /usr/include/sys/_types/_useconds_t.h \
   /usr/include/sys/_types/_suseconds_t.h \
+  /usr/include/sys/_types/_rsize_t.h /usr/include/sys/_types/_errno_t.h \
   /usr/include/sys/_types/_fd_def.h \
   /usr/include/sys/_types/_fd_setsize.h \
   /usr/include/sys/_types/_fd_set.h /usr/include/sys/_types/_fd_clr.h \
@@ -298,7 +298,7 @@ libfuego_smartgame_a-SgTime.o: SgTime.cpp SgSystem.h ../config.h SgTime.h \
   /usr/local/include/boost/smart_ptr/detail/sp_noexcept.hpp \
   /usr/local/include/boost/smart_ptr/detail/spinlock_pool.hpp \
   /usr/local/include/boost/smart_ptr/detail/spinlock.hpp \
-  /usr/local/include/boost/smart_ptr/detail/spinlock_sync.hpp \
+  /usr/local/include/boost/smart_ptr/detail/spinlock_std_atomic.hpp \
   /usr/local/include/boost/smart_ptr/detail/yield_k.hpp \
   /usr/local/include/boost/predef.h \
   /usr/local/include/boost/predef/language.h \
@@ -958,25 +958,22 @@ libfuego_smartgame_a-SgTime.o: SgTime.cpp SgSystem.h ../config.h SgTime.h \
   /usr/local/include/boost/type_traits/remove_bounds.hpp \
   /usr/local/include/boost/type_traits/remove_extent.hpp \
   /usr/local/include/boost/type_traits/is_constructible.hpp \
+  /usr/local/include/boost/type_traits/is_destructible.hpp \
   /usr/local/include/boost/type_traits/is_nothrow_move_assignable.hpp \
   /usr/local/include/boost/type_traits/has_trivial_move_assign.hpp \
   /usr/local/include/boost/type_traits/is_assignable.hpp \
-  /usr/local/include/boost/type_traits/has_trivial_assign.hpp \
   /usr/local/include/boost/type_traits/has_nothrow_assign.hpp \
   /usr/local/include/boost/type_traits/is_nothrow_move_constructible.hpp \
-  /usr/local/include/boost/type_traits/has_trivial_move_constructor.hpp \
-  /usr/local/include/boost/type_traits/has_nothrow_copy.hpp \
-  /usr/local/include/boost/type_traits/is_copy_constructible.hpp \
   /usr/local/include/boost/move/utility.hpp \
   /usr/local/include/boost/move/detail/config_begin.hpp \
   /usr/local/include/boost/move/detail/workaround.hpp \
   /usr/local/include/boost/move/utility_core.hpp \
   /usr/local/include/boost/move/core.hpp \
-  /usr/local/include/boost/move/detail/type_traits.hpp \
+  /usr/local/include/boost/move/detail/config_end.hpp \
   /usr/local/include/boost/move/detail/meta_utils.hpp \
   /usr/local/include/boost/move/detail/meta_utils_core.hpp \
-  /usr/local/include/boost/move/detail/config_end.hpp \
   /usr/local/include/boost/move/traits.hpp \
+  /usr/local/include/boost/move/detail/type_traits.hpp \
   /usr/local/include/boost/none.hpp /usr/local/include/boost/none_t.hpp \
   /usr/local/include/boost/utility/compare_pointees.hpp \
   /usr/local/include/boost/optional/optional_fwd.hpp \
@@ -1078,10 +1075,6 @@ SgTime.h:
 
 /usr/include/string.h:
 
-/usr/include/sys/_types/_rsize_t.h:
-
-/usr/include/sys/_types/_errno_t.h:
-
 /usr/include/strings.h:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cstdio:
@@ -1103,6 +1096,8 @@ SgTime.h:
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/cstddef:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/stddef.h:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/__stddef_max_align_t.h:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/type_traits:
 
@@ -1158,11 +1153,11 @@ SgTime.h:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__functional_base:
 
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__functional_base_03:
-
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__debug:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/tuple:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/atomic:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/stdexcept:
 
@@ -1243,8 +1238,6 @@ SgTime.h:
 /usr/include/sys/_types/_sigset_t.h:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/functional:
-
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__functional_03:
 
 /usr/include/locale.h:
 
@@ -1353,6 +1346,10 @@ SgTime.h:
 /usr/include/sys/_types/_useconds_t.h:
 
 /usr/include/sys/_types/_suseconds_t.h:
+
+/usr/include/sys/_types/_rsize_t.h:
+
+/usr/include/sys/_types/_errno_t.h:
 
 /usr/include/sys/_types/_fd_def.h:
 
@@ -1728,7 +1725,7 @@ SgTime.h:
 
 /usr/local/include/boost/smart_ptr/detail/spinlock.hpp:
 
-/usr/local/include/boost/smart_ptr/detail/spinlock_sync.hpp:
+/usr/local/include/boost/smart_ptr/detail/spinlock_std_atomic.hpp:
 
 /usr/local/include/boost/smart_ptr/detail/yield_k.hpp:
 
@@ -3054,23 +3051,17 @@ SgException.h:
 
 /usr/local/include/boost/type_traits/is_constructible.hpp:
 
+/usr/local/include/boost/type_traits/is_destructible.hpp:
+
 /usr/local/include/boost/type_traits/is_nothrow_move_assignable.hpp:
 
 /usr/local/include/boost/type_traits/has_trivial_move_assign.hpp:
 
 /usr/local/include/boost/type_traits/is_assignable.hpp:
 
-/usr/local/include/boost/type_traits/has_trivial_assign.hpp:
-
 /usr/local/include/boost/type_traits/has_nothrow_assign.hpp:
 
 /usr/local/include/boost/type_traits/is_nothrow_move_constructible.hpp:
-
-/usr/local/include/boost/type_traits/has_trivial_move_constructor.hpp:
-
-/usr/local/include/boost/type_traits/has_nothrow_copy.hpp:
-
-/usr/local/include/boost/type_traits/is_copy_constructible.hpp:
 
 /usr/local/include/boost/move/utility.hpp:
 
@@ -3082,15 +3073,15 @@ SgException.h:
 
 /usr/local/include/boost/move/core.hpp:
 
-/usr/local/include/boost/move/detail/type_traits.hpp:
+/usr/local/include/boost/move/detail/config_end.hpp:
 
 /usr/local/include/boost/move/detail/meta_utils.hpp:
 
 /usr/local/include/boost/move/detail/meta_utils_core.hpp:
 
-/usr/local/include/boost/move/detail/config_end.hpp:
-
 /usr/local/include/boost/move/traits.hpp:
+
+/usr/local/include/boost/move/detail/type_traits.hpp:
 
 /usr/local/include/boost/none.hpp:
 

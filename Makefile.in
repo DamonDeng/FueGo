@@ -331,9 +331,10 @@ go \
 gouct \
 features \
 simpleplayers \
+mxnet \
 fuegomain \
 fuegotest \
-dnnmain \
+selfplay \
 unittestmain
 
 

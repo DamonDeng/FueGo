@@ -10,10 +10,12 @@ go \
 gouct \
 features \
 simpleplayers \
+mxnet \
 fuegomain \
 fuegotest \
-dnnmain \
+selfplay \
 unittestmain
+
 
 # TODO: This shouldn't include the non-portable makefile doc/Makefile
 # Maybe use ax_prog_doxygen.m4 from the autoconf archive?

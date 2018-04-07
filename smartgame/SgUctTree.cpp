@@ -112,7 +112,8 @@ std::ostream& operator<<(std::ostream& stream, const SgUctProvenType& type)
 
 SgUctTree::SgUctTree()
     : m_maxNodes(0),
-      m_root(SG_NULLMOVE)
+      m_root(SG_NULLMOVE),
+      global_ctx(kCPU, 0)
 { }
 
 void SgUctTree::ApplyFilter(std::size_t allocatorId,
@@ -452,6 +453,64 @@ void SgUctTree::MergeChildren(std::size_t allocatorId, const SgUctNode& node,
     }
 }
 
+void SgUctTree::ApplyPrioProbabilityToChilddren(std::size_t allocatorId, const SgUctNode& node, SgArray<SgUctValue, SG_MAX_MOVE_VALUE>& array, int threadID){
+
+    if (threadID == 0){
+
+        SgDebug() << "Applying PrioProbabilityToChildren in thread 0." << std::endl;
+
+
+        
+    
+       
+
+        SG_ASSERT(Contains(node));
+    
+        if (! node.HasChildren())
+            return;
+
+        SgUctAllocator& allocator = Allocator(allocatorId);
+        const SgUctNode* firstChild = allocator.Finish();
+
+        int nuChildren = 0;
+        for (SgUctChildIterator it(*this, node); it; ++it)
+        {
+            // SgDebug() << "in the loop." << std::endl;
+
+            SgUctNode* child = allocator.CreateOne((*it).Move());
+            child->CopyDataFrom(*it);
+            int childNuChildren = (*it).NuChildren();
+            child->SetNuChildren(childNuChildren);
+            if (childNuChildren > 0)
+                child->SetFirstChild((*it).FirstChild());
+            ++nuChildren;
+            
+            if ((*it).Move() == SG_PASS){
+                child->m_prioProbability = array[SG_MAX_MOVES-1];
+            } else {
+
+                child->m_prioProbability = array[(*it).Move()];
+            }
+            child->m_hasPrioProbability = true;
+
+        }
+
+        SgUctNode& nonConstNode = const_cast<SgUctNode&>(node);
+        // Write order dependency: SgUctSearch in lock-free mode assumes that
+        // m_firstChild is valid if m_nuChildren is greater zero
+        
+        nonConstNode.m_childPrioProbabilityComputed = true;
+
+        SgSynchronizeThreadMemory();
+        nonConstNode.SetFirstChild(firstChild);
+        SgSynchronizeThreadMemory();
+        nonConstNode.SetNuChildren(nuChildren);
+
+
+    }
+
+}
+
 std::size_t SgUctTree::NuNodes() const
 {
     size_t nuNodes = 1; // Count root node
@@ -490,6 +549,48 @@ void SgUctTree::ThrowConsistencyError(const std::string& message) const
     DumpDebugInfo(SgDebug());
     throw SgException("SgUctTree::ThrowConsistencyError: " + message);
 }
+
+void SgUctTree::LoadSymbol() {
+
+    // net = Symbol::Load("./model/zero_super_simple_cnn-symbol.json")
+    //           .GetInternals()["softmax_output"];
+    
+    // net = Symbol::Load("./model/zero_resnet-symbol.json")
+    //           .GetInternals()["softmax_output"];
+
+    net = Symbol::Load("./model/new_zero_resnet-symbol.json")
+    .GetInternals()["softmax_output"];
+
+
+              
+              
+  }
+
+void SgUctTree::LoadParameters() {
+    std::map<std::string, NDArray> paramters;
+    // NDArray::Load("./model/Inception-BN-0126.params", 0, &paramters);
+    NDArray::Load("./model/new_zero_resnet-0003.params", 0, &paramters);
+    // NDArray::Load("./model/new_zero_resnet-0005.params", 0, &paramters);
+    
+    // NDArray::Load("./model/zero_resnet-0003.params", 0, &paramters);
+    
+    // NDArray::Load("./model/zero_super_simple_cnn-0010.params", 0, &paramters);
+
+    for (const auto &k : paramters) {
+      if (k.first.substr(0, 4) == "aux:") {
+        auto name = k.first.substr(4, k.first.size() - 4);
+        aux_map[name] = k.second.Copy(global_ctx);
+      }
+      if (k.first.substr(0, 4) == "arg:") {
+        auto name = k.first.substr(4, k.first.size() - 4);
+        args_map[name] = k.second.Copy(global_ctx);
+      }
+    }
+    /*WaitAll is need when we copy data between GPU and the main memory*/
+    NDArray::WaitAll();
+  }
+
+
 
 //----------------------------------------------------------------------------
 
