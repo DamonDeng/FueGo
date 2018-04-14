@@ -249,7 +249,7 @@ void MXNetModel::GetPrioProbability(SgArray<SgUctValue, SG_MAX_MOVE_VALUE>& outp
    
 
 
-    outputArray[SG_MAX_MOVES-1] = array.At(0, stoneNumber);
+    outputArray[SG_MAX_MOVE_VALUE-1] = array.At(0, stoneNumber);
 
     SgPoint point;
 
@@ -265,7 +265,7 @@ void MXNetModel::GetPrioProbability(SgArray<SgUctValue, SG_MAX_MOVE_VALUE>& outp
         
     }
 
-     delete executor;
+    delete executor;
 
 
 

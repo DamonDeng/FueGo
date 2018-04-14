@@ -39,7 +39,9 @@ GoBoard::GoBoard(int size, const GoSetup& setup, const GoRules& rules)
     : m_snapshot(new Snapshot()),
       m_const(size),
       m_blockList(new SgArrayList<Block,GO_MAX_NUM_MOVES>()),
-      m_moves(new SgArrayList<StackEntry,GO_MAX_NUM_MOVES>())
+      m_moves(new SgArrayList<StackEntry,GO_MAX_NUM_MOVES>()),
+      m_historyDataBlack(GO_MAX_NUM_MOVES),
+      m_historyDataWhite(GO_MAX_NUM_MOVES)
       
       
 
@@ -517,11 +519,13 @@ void GoBoard::Init(int size, const GoRules& rules, const GoSetup& setup)
     // m_historyLocationBlack = m_historyLength;
     // m_historyLocationWhite = m_historyLength;
 
-    PrepareHistoryData(SG_BLACK);
+    // PrepareHistoryData(SG_BLACK);
 
     
     
     //m_isSubscriber = false;
+
+    m_historyLocation = 0;
 
     CheckConsistency();
 }
@@ -829,13 +833,14 @@ void GoBoard::Play(SgPoint p, SgBlackWhite player)
 
     //copy the historydata from last move to current move
     
-    PrepareHistoryData(opp);
+    // PrepareHistoryData(opp);
     // m_historyLocation++;
 
 
     if (IsPass(p))
     {
         m_state.m_toPlay = opp;
+        RecordHistoryData();
         return;
     }
     bool isLegal = true;
@@ -879,6 +884,9 @@ void GoBoard::Play(SgPoint p, SgBlackWhite player)
         SgPoint firstCapturedStone = m_capturedStones[0];
         m_state.m_hash.XorCaptured(MoveNumber(), firstCapturedStone);
     }
+
+    RecordHistoryData();
+
     CheckConsistency();
 }
 
@@ -900,6 +908,9 @@ void GoBoard::Undo()
 
     UpdateBlocksAfterUndo(entry);
     m_moves->PopBack();
+
+    UndoHistoryData();
+
     CheckConsistency();
 }
 
@@ -987,77 +998,96 @@ void GoBoard::RestoreSnapshot()
     CheckConsistency();
 }
 
-void GoBoard::GetHistoryData(std::vector<float>& historyData, size_t dataSize) const{
+void GoBoard::RecordHistoryData(){
 
-    // // int baseNumber = (MoveNumber())*2;
+    // SgDebug() << "Location: " << m_historyLocation << "\n";
 
-    // SgBlackWhite currentColor = ToPlay();
+    // SgDebug() << "SG_MAXPOINT: " << SG_MAXPOINT << "\n";
 
-    // SgDebug() << "Trying to copy data from historyData to output historyData vector. \n";
+    m_historyDataBlack[m_historyLocation].reset();
+    m_historyDataWhite[m_historyLocation].reset();
 
-    // if (currentColor == SG_BLACK){
-    //     SgDebug() << "history location: " << m_historyLocationBlack << ".  for color: black \n";
-   
-    // } else if (currentColor == SG_WHITE){
 
-    //     SgDebug() << "history location: " << m_historyLocationWhite << ".  for color: white \n";
-    // }
 
-    // int startLocation;
+    for (SgSetIterator it(m_state.m_all[SG_BLACK]); it; ++it){
+        m_historyDataBlack[m_historyLocation].set((*it));
+    }
 
-    // if (currentColor == SG_BLACK){
-    //     startLocation = m_historyLocationBlack - m_historyLength + 1;
-    // } else if (currentColor == SG_WHITE){
-    //     startLocation = m_historyLocationWhite - m_historyLength + 1;  
-    // }
+    for (SgSetIterator it(m_state.m_all[SG_WHITE]); it; ++it){
+        m_historyDataWhite[m_historyLocation].set((*it));
+    }
     
-    // // SgDebug() << "startLocation of history data: " << startLocation << ". \n";
+    m_historyLocation++;
+    
+}
 
-    // // SgDebug() << "data size:" << dataSize << ". \n";
+void GoBoard::UndoHistoryData(){
+    if (m_historyLocation > 0){
 
-    // for (int i=0; i<m_historyLength; i++){
+        m_historyLocation--;
+    }
+}
 
-    //     SgDebug() << "i is:" << i << " location is:"   <<  startLocation + i << " . \n";
+void GoBoard::GetHistoryData(std::vector<float>& historyData, int historyLength) const{
 
-    //     if (currentColor == SG_BLACK){
-    //         for (int row=0; row<19; row++){
-    //             for (int col=0; col<19; col++){
-    //                 historyData[i*2*361 + row*19 + col] = m_historyDataWhite[(startLocation - 1 + i)*361 + row*19 + col];
-    //                 historyData[(i*2+1)*361 + row*19 + col] = m_historyDataBlack[(startLocation + i)*361 + row*19 + col];
-    //             }
-    //         }
-            
-    //     } else if (currentColor == SG_WHITE){
-    //         for (int row=0; row<19; row++){
-    //             for (int col=0; col<19; col++){
-                    
-    //                 historyData[i*2*361 + row*19 + col] = m_historyDataBlack[(startLocation + i)*361 + row*19 + col];
-    //                 historyData[(i*2+1)*361 + row*19 + col] = m_historyDataWhite[(startLocation + i)*361 + row*19 + col];
-    //             }
-    //         }
-    //     }
+    int arrayLength = historyLength*2 + 1;
 
-    // }
+    SgBlackWhite currentColor = ToPlay();
+    SgBlackWhite enemyColor = SgOppBW(currentColor);
 
-    // // SgDebug() << "before setting color. \n";
-
-    // if (currentColor == SG_BLACK){
-    //     for (int row=0; row<19; row++){
-    //             for (int col=0; col<19; col++){
-    //                 historyData[m_historyLength*2*361 + row*19 + col] = 1;
+    if (currentColor == SG_BLACK){
+        for (int row=0; row<19; row++){
+                for (int col=0; col<19; col++){
+                    historyData[historyLength*2*361 + row*19 + col] = 1;
                                 
-    //             }
-    //         }
-    // } else if (currentColor == SG_WHITE){
-    //     for (int row=0; row<19; row++){
-    //             for (int col=0; col<19; col++){
-    //                 historyData[m_historyLength*2*361 + row*19 + col] = 0;
+                }
+            }
+    } else if (currentColor == SG_WHITE){
+        for (int row=0; row<19; row++){
+                for (int col=0; col<19; col++){
+                    historyData[historyLength*2*361 + row*19 + col] = 0;
                                 
-    //             }
-    //         }
-    // }
+                }
+            }
+    }
 
-    // SgDebug() << "after setting color. \n";
+    for ( int targetLocation=0; targetLocation<historyLength; targetLocation++){
+        int sourceLocation = m_historyLocation - historyLength + targetLocation;
+
+        if ( sourceLocation >= 0 ){
+            if (currentColor == SG_BLACK){
+                for ( int row = 0; row < 19; row++){
+                    for (int col = 0; col < 19; col++){
+                        SgPoint sourcePoint = SgPointUtil::Pt(col+1, row+1);
+                        if (m_historyDataWhite[sourceLocation][sourcePoint]){
+                            historyData[targetLocation*2*361 + row*19 + col] = 1;
+                        }
+                        if (m_historyDataBlack[sourceLocation][sourcePoint]){
+                            historyData[(targetLocation*2+1)*361 + row*19 + col] = 1;
+                        }
+                    }
+                }
+                
+            } else if (currentColor == SG_WHITE){
+                for ( int row = 0; row < 19; row++){
+                    for (int col = 0; col < 19; col++){
+                        SgPoint sourcePoint = SgPointUtil::Pt(col+1, row+1);
+                        if (m_historyDataBlack[sourceLocation][sourcePoint]){
+                            historyData[targetLocation*2*361 + row*19 + col] = 1;
+                        }
+                        if (m_historyDataWhite[sourceLocation][sourcePoint]){
+                            historyData[(targetLocation*2+1)*361 + row*19 + col] = 1;
+                        }
+                    }
+                }
+                
+            }
+
+        }
+
+    }
+
+    
     
     
 }
@@ -1069,123 +1099,123 @@ void GoBoard::GetHistoryData(std::vector<float>& historyData, size_t dataSize) c
 // When the board is in playing, say black is playing
 // After move size was increased by 1, it start to prepare the history for the next move, which is white.
 
-void GoBoard::PrepareHistoryData(SgBlackWhite forColor){
+// void GoBoard::PrepareHistoryData(SgBlackWhite forColor){
     
     
 
-    // if (!m_isSubscriber){
+//     // if (!m_isSubscriber){
 
-    //     if (forColor == SG_BLACK){
+//     //     if (forColor == SG_BLACK){
             
-    //         int newHistoryLocation = m_historyLocationBlack + 1;
+//     //         int newHistoryLocation = m_historyLocationBlack + 1;
 
-    //         SgDebug() << "newHistoryLocation is:" << newHistoryLocation << ".\n";
+//     //         SgDebug() << "newHistoryLocation is:" << newHistoryLocation << ".\n";
 
-    //         for (int row = 0; row < 19 ; row++){
-    //             for (int col = 0; col < 19; col++){
-    //                 m_historyDataBlack[newHistoryLocation*361 + row*19 + col] = m_historyDataBlack[m_historyLocationBlack*361 + row*19 + col];
+//     //         for (int row = 0; row < 19 ; row++){
+//     //             for (int col = 0; col < 19; col++){
+//     //                 m_historyDataBlack[newHistoryLocation*361 + row*19 + col] = m_historyDataBlack[m_historyLocationBlack*361 + row*19 + col];
                                                     
-    //             }
-    //         }
+//     //             }
+//     //         }
 
-    //         // debug code
-    //         m_historyDataBlack[newHistoryLocation*361 + 18*19 + 18] = newHistoryLocation;
+//     //         // debug code
+//     //         m_historyDataBlack[newHistoryLocation*361 + 18*19 + 18] = newHistoryLocation;
             
             
 
-    //         m_historyLocationBlack = newHistoryLocation;
+//     //         m_historyLocationBlack = newHistoryLocation;
 
-    //     } else if (forColor == SG_WHITE){
+//     //     } else if (forColor == SG_WHITE){
             
-    //         int newHistoryLocation = m_historyLocationWhite + 1;
+//     //         int newHistoryLocation = m_historyLocationWhite + 1;
 
-    //         SgDebug() << "newHistoryLocation is:" << newHistoryLocation << ".\n";
+//     //         SgDebug() << "newHistoryLocation is:" << newHistoryLocation << ".\n";
 
-    //         for (int row = 0; row < 19 ; row++){
-    //             for (int col = 0; col < 19; col++){
+//     //         for (int row = 0; row < 19 ; row++){
+//     //             for (int col = 0; col < 19; col++){
 
-    //                 m_historyDataWhite[newHistoryLocation*361 + row*19 + col] = m_historyDataWhite[m_historyLocationWhite*361 + row*19 + col];
-    //             }
-    //         }
+//     //                 m_historyDataWhite[newHistoryLocation*361 + row*19 + col] = m_historyDataWhite[m_historyLocationWhite*361 + row*19 + col];
+//     //             }
+//     //         }
 
-    //         // debug code
+//     //         // debug code
           
-    //         m_historyDataWhite[newHistoryLocation*361 + 18*19 + 18] = newHistoryLocation;
+//     //         m_historyDataWhite[newHistoryLocation*361 + 18*19 + 18] = newHistoryLocation;
             
 
-    //         m_historyLocationWhite = newHistoryLocation;
+//     //         m_historyLocationWhite = newHistoryLocation;
 
-    //     }
+//     //     }
 
         
-    // }
+//     // }
 
 
     
     
-}
+// }
 
-void GoBoard::HistoryAddStone(SgPoint p, SgBlackWhite c)
-{
+// void GoBoard::HistoryAddStone(SgPoint p, SgBlackWhite c)
+// {
     
-    // int row = SgPointUtil::Row(p) - 1;
-    // int col = SgPointUtil::Col(p) - 1;
-    // if (c == SG_BLACK){
-    //     m_historyDataBlack[m_historyLocationBlack*361 + row*19 + col] ++; //= 1;
-    // } else if (c == SG_WHITE){
-    //     m_historyDataWhite[m_historyLocationWhite*361 + row*19 + col] ++; //= 1;
-    // }
+//     // int row = SgPointUtil::Row(p) - 1;
+//     // int col = SgPointUtil::Col(p) - 1;
+//     // if (c == SG_BLACK){
+//     //     m_historyDataBlack[m_historyLocationBlack*361 + row*19 + col] ++; //= 1;
+//     // } else if (c == SG_WHITE){
+//     //     m_historyDataWhite[m_historyLocationWhite*361 + row*19 + col] ++; //= 1;
+//     // }
 
 
-    // int baseNumber = (MoveNumber())*2;
-    // int tagNumber = baseNumber + m_historyLength*2;
-    // int headNumber = tagNumber -1;
+//     // int baseNumber = (MoveNumber())*2;
+//     // int tagNumber = baseNumber + m_historyLength*2;
+//     // int headNumber = tagNumber -1;
 
-    // SgGrid row = SgPointUtil::Row(p);
-    // SgGrid col = SgPointUtil::Col(p);
+//     // SgGrid row = SgPointUtil::Row(p);
+//     // SgGrid col = SgPointUtil::Col(p);
 
-    // // SgDebug() << "# Adding history stone, base number: " << baseNumber << "  tagNumber:  " << tagNumber << " . \n";
-    // // SgDebug() << "# Adding history stone, head number: " << headNumber << " row:" << row << " col:"<< col <<". \n";
+//     // // SgDebug() << "# Adding history stone, base number: " << baseNumber << "  tagNumber:  " << tagNumber << " . \n";
+//     // // SgDebug() << "# Adding history stone, head number: " << headNumber << " row:" << row << " col:"<< col <<". \n";
 
-    // if (c == SG_BLACK){
-    //     // SgDebug() << "#it is black. \n";
-    //     // SgDebug() << "# The location to add stone: " << (headNumber*361 + (row-1)*19 +(col-1)) << ". \n";
+//     // if (c == SG_BLACK){
+//     //     // SgDebug() << "#it is black. \n";
+//     //     // SgDebug() << "# The location to add stone: " << (headNumber*361 + (row-1)*19 +(col-1)) << ". \n";
    
-    //     m_historyData[headNumber*361 + (row-1)*19 +(col-1)] = 1;
-    // }else if(c == SG_WHITE){
-    //     // SgDebug() << "# it is white. \n";
-    //     // SgDebug() << "# The location to add stone: " << ((headNumber-1)*361 + (row-1)*19 +(col-1)) << ". \n";
-    //     m_historyData[(headNumber-1)*361 + (row-1)*19 + (col-1)] = 1;
-    // }
+//     //     m_historyData[headNumber*361 + (row-1)*19 +(col-1)] = 1;
+//     // }else if(c == SG_WHITE){
+//     //     // SgDebug() << "# it is white. \n";
+//     //     // SgDebug() << "# The location to add stone: " << ((headNumber-1)*361 + (row-1)*19 +(col-1)) << ". \n";
+//     //     m_historyData[(headNumber-1)*361 + (row-1)*19 + (col-1)] = 1;
+//     // }
 
-}
+// }
 
 
 
-void GoBoard::HistoryRemoveStone(SgPoint p, SgBlackWhite c)
-{
-    // int row = SgPointUtil::Row(p) - 1;
-    // int col = SgPointUtil::Col(p) - 1;
-    // if (c == SG_BLACK){
-    //     m_historyDataBlack[m_historyLocationBlack*361 + row*19 + col] --; //= 0;
-    // } else if (c == SG_WHITE){
-    //     m_historyDataWhite[m_historyLocationWhite*361 + row*19 + col] --; //= 0;
-    // }
+// void GoBoard::HistoryRemoveStone(SgPoint p, SgBlackWhite c)
+// {
+//     // int row = SgPointUtil::Row(p) - 1;
+//     // int col = SgPointUtil::Col(p) - 1;
+//     // if (c == SG_BLACK){
+//     //     m_historyDataBlack[m_historyLocationBlack*361 + row*19 + col] --; //= 0;
+//     // } else if (c == SG_WHITE){
+//     //     m_historyDataWhite[m_historyLocationWhite*361 + row*19 + col] --; //= 0;
+//     // }
 
-    // int baseNumber = (MoveNumber())*2;
-    // int tagNumber = baseNumber + m_historyLength*2;
-    // int headNumber = tagNumber -1;
+//     // int baseNumber = (MoveNumber())*2;
+//     // int tagNumber = baseNumber + m_historyLength*2;
+//     // int headNumber = tagNumber -1;
 
-    // SgGrid row = SgPointUtil::Row(p);
-    // SgGrid col = SgPointUtil::Col(p);
+//     // SgGrid row = SgPointUtil::Row(p);
+//     // SgGrid col = SgPointUtil::Col(p);
     
-    // if (c == SG_BLACK){
-    //     // SgDebug() << "#it is black. \n";
-    //     m_historyData[headNumber*361 + (row-1)*19 +(col-1)] = 0;
-    // }else if(c == SG_WHITE){
-    //     // SgDebug() << "# it is white. \n";
-    //     m_historyData[(headNumber-1)*361 + (row-1)*19 + (col-1)] = 0;
-    // }
-}
+//     // if (c == SG_BLACK){
+//     //     // SgDebug() << "#it is black. \n";
+//     //     m_historyData[headNumber*361 + (row-1)*19 +(col-1)] = 0;
+//     // }else if(c == SG_WHITE){
+//     //     // SgDebug() << "# it is white. \n";
+//     //     m_historyData[(headNumber-1)*361 + (row-1)*19 + (col-1)] = 0;
+//     // }
+// }
 
 //----------------------------------------------------------------------------

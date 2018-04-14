@@ -566,11 +566,11 @@ ApplyPrioProbability(std::vector<SgUctMoveInfo>& moves)
 template<class POLICY>
 void GoUctGlobalSearchState<POLICY>::GetPrioProbability(SgArray<SgUctValue, SG_MAX_MOVE_VALUE>& array){
 
-    SgDebug() << " Going to get PriProbability, the board is: \n";
+    // SgDebug() << " Going to get PriProbability, the board is: \n";
 
-    GoBoard& currentBoard = const_cast<GoBoard&>(Board());
+    const GoBoard& currentBoard = Board();
 
-    currentBoard.TakeSnapshot();
+    // currentBoard.TakeSnapshot();
 
     int historyLength = 8;
     int arrayLength = historyLength*2 + 1;
@@ -581,66 +581,51 @@ void GoUctGlobalSearchState<POLICY>::GetPrioProbability(SgArray<SgUctValue, SG_M
 
     std::vector<float> historyData(dataLength);
 
-    SgBlackWhite currentColor = currentBoard.ToPlay();
-    SgBlackWhite enemyColor = SgOppBW(currentColor);
+    currentBoard.GetHistoryData(historyData, historyLength);
 
-    if (currentColor == SG_BLACK){
-        for (int row=0; row<19; row++){
-                for (int col=0; col<19; col++){
-                    historyData[historyLength*2*361 + row*19 + col] = 1;
-                                
-                }
-            }
-    } else if (currentColor == SG_WHITE){
-        for (int row=0; row<19; row++){
-                for (int col=0; col<19; col++){
-                    historyData[historyLength*2*361 + row*19 + col] = 0;
-                                
-                }
-            }
-    }
+    // int historyDataLocation = (historyLength-1)*2 + 1;
+    // SgPointSet currentPointSet = currentBoard.All(currentColor);
 
-    int historyDataLocation = (historyLength-1)*2 + 1;
-    SgPointSet currentPointSet = currentBoard.All(currentColor);
+    // for (SgSetIterator it(currentPointSet); it; ++it){
+    //     int row = SgPointUtil::Row(*it)-1;
+    //     int col = SgPointUtil::Col(*it)-1;
+    //     historyData[historyDataLocation*361 + row*19 + col] = 1;
 
-    for (SgSetIterator it(currentPointSet); it; ++it){
-        int row = SgPointUtil::Row(*it)-1;
-        int col = SgPointUtil::Col(*it)-1;
-        historyData[historyDataLocation*361 + row*19 + col] = 1;
+    // }
 
-    }
+    // historyDataLocation = (historyLength-1)*2;
+    // SgPointSet enemyPointSet = currentBoard.All(enemyColor);
 
-    historyDataLocation = (historyLength-1)*2;
-    SgPointSet enemyPointSet = currentBoard.All(enemyColor);
+    // for (SgSetIterator it(enemyPointSet); it; ++it){
+    //     int row = SgPointUtil::Row(*it)-1;
+    //     int col = SgPointUtil::Col(*it)-1;
+    //     historyData[historyDataLocation*361 + row*19 + col] = 1;
 
-    for (SgSetIterator it(enemyPointSet); it; ++it){
-        int row = SgPointUtil::Row(*it)-1;
-        int col = SgPointUtil::Col(*it)-1;
-        historyData[historyDataLocation*361 + row*19 + col] = 1;
+    // }
 
-    }
+    // SgBlackWhite colorToGet = currentColor;
+    // historyDataLocation--;
 
-    SgBlackWhite colorToGet = currentColor;
-    historyDataLocation--;
+    // while(currentBoard.CanUndo() && historyDataLocation >= 0){
+    //     currentBoard.Undo();
+    //     SgPointSet setToGet = currentBoard.All(colorToGet);
 
-    while(currentBoard.CanUndo() && historyDataLocation >= 0){
-        currentBoard.Undo();
-        SgPointSet setToGet = currentBoard.All(colorToGet);
+    //     for (SgSetIterator it(setToGet); it; ++it){
+    //         int row = SgPointUtil::Row(*it)-1;
+    //         int col = SgPointUtil::Col(*it)-1;
+    //         historyData[historyDataLocation*361 + row*19 + col] = 1;
 
-        for (SgSetIterator it(setToGet); it; ++it){
-            int row = SgPointUtil::Row(*it)-1;
-            int col = SgPointUtil::Col(*it)-1;
-            historyData[historyDataLocation*361 + row*19 + col] = 1;
+    //     }
 
-        }
+    //     colorToGet = SgOppBW(colorToGet);
+    //     historyDataLocation--;
 
-        colorToGet = SgOppBW(colorToGet);
-        historyDataLocation--;
-
-    }
+    // }
 
 
-    currentBoard.RestoreSnapshot();
+    // currentBoard.RestoreSnapshot();
+
+    // SgDebug() << fixed << setprecision(0);
 
     // for (int i=0; i<arrayLength; i++){
     //     for (int row=18; row>=0; row--){
@@ -661,25 +646,7 @@ void GoUctGlobalSearchState<POLICY>::GetPrioProbability(SgArray<SgUctValue, SG_M
     // SgDebug() << *m_sharedBoard;
     
     m_MXNetModel.GetPrioProbability(array, historyData);
-
-
-    SgPoint point;
-
-    for (int row = 19; row >= 0; row--){
-
-        for (int col = 1; col <= boardSize; col++){
-
-            point = SgPointUtil::Pt(col, row);
-
-            SgDebug() << fixed << setprecision(2) << array[point] << " "; 
-        }
-
-        SgDebug() << "\n";
-        
-    }
-
-    SgDebug() << "\n";
-
+    
 }
 
 template<class POLICY>

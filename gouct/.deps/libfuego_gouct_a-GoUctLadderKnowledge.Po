@@ -541,32 +541,7 @@ libfuego_gouct_a-GoUctLadderKnowledge.o: GoUctLadderKnowledge.cpp \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/map \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__tree \
   ../smartgame/SgWrite.h ../smartgame/SgStatisticsVlt.h \
-  ../smartgame/SgUctValue.h ../include/mxnet-cpp/MxNetCpp.h \
-  ../include/mxnet-cpp/executor.hpp ../include/mxnet-cpp/executor.h \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/set \
-  ../include/mxnet-cpp/base.h ../include/mxnet/c_api.h \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/stdbool.h \
-  ../include/nnvm/c_api.h ../include/mxnet-cpp/symbol.h \
-  ../include/mxnet-cpp/ndarray.h ../include/mxnet-cpp/shape.h \
-  ../include/mxnet-cpp/op_map.h ../include/dmlc/logging.h \
-  ../include/dmlc/./base.h \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/inttypes.h \
-  /usr/include/inttypes.h /usr/include/xlocale/_inttypes.h \
-  /usr/include/execinfo.h ../include/mxnet-cpp/optimizer.h \
-  ../include/mxnet-cpp/lr_scheduler.h ../include/mxnet-cpp/symbol.hpp \
-  ../include/mxnet-cpp/op_suppl.h ../include/mxnet-cpp/operator.h \
-  ../include/mxnet-cpp/ndarray.hpp ../include/mxnet-cpp/monitor.hpp \
-  ../include/mxnet-cpp/monitor.h \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/regex \
-  ../include/mxnet-cpp/operator.hpp ../include/mxnet-cpp/optimizer.hpp \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/numeric \
-  ../include/mxnet-cpp/op.h ../include/mxnet-cpp/op_util.h \
-  ../include/dmlc/optional.h ../include/dmlc/./common.h \
-  ../include/dmlc/./type_traits.h ../include/mxnet-cpp/kvstore.hpp \
-  ../include/mxnet-cpp/kvstore.h ../include/mxnet-cpp/io.hpp \
-  ../include/mxnet-cpp/io.h ../include/mxnet-cpp/metric.h \
-  ../include/mxnet-cpp/initializer.h ../go/GoBoardUtil.h \
-  ../smartgame/SgStack.h
+  ../smartgame/SgUctValue.h ../go/GoBoardUtil.h ../smartgame/SgStack.h
 
 ../smartgame/SgSystem.h:
 
@@ -1825,88 +1800,6 @@ GoUctKnowledge.h:
 ../smartgame/SgStatisticsVlt.h:
 
 ../smartgame/SgUctValue.h:
-
-../include/mxnet-cpp/MxNetCpp.h:
-
-../include/mxnet-cpp/executor.hpp:
-
-../include/mxnet-cpp/executor.h:
-
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/set:
-
-../include/mxnet-cpp/base.h:
-
-../include/mxnet/c_api.h:
-
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/stdbool.h:
-
-../include/nnvm/c_api.h:
-
-../include/mxnet-cpp/symbol.h:
-
-../include/mxnet-cpp/ndarray.h:
-
-../include/mxnet-cpp/shape.h:
-
-../include/mxnet-cpp/op_map.h:
-
-../include/dmlc/logging.h:
-
-../include/dmlc/./base.h:
-
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include/inttypes.h:
-
-/usr/include/inttypes.h:
-
-/usr/include/xlocale/_inttypes.h:
-
-/usr/include/execinfo.h:
-
-../include/mxnet-cpp/optimizer.h:
-
-../include/mxnet-cpp/lr_scheduler.h:
-
-../include/mxnet-cpp/symbol.hpp:
-
-../include/mxnet-cpp/op_suppl.h:
-
-../include/mxnet-cpp/operator.h:
-
-../include/mxnet-cpp/ndarray.hpp:
-
-../include/mxnet-cpp/monitor.hpp:
-
-../include/mxnet-cpp/monitor.h:
-
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/regex:
-
-../include/mxnet-cpp/operator.hpp:
-
-../include/mxnet-cpp/optimizer.hpp:
-
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/numeric:
-
-../include/mxnet-cpp/op.h:
-
-../include/mxnet-cpp/op_util.h:
-
-../include/dmlc/optional.h:
-
-../include/dmlc/./common.h:
-
-../include/dmlc/./type_traits.h:
-
-../include/mxnet-cpp/kvstore.hpp:
-
-../include/mxnet-cpp/kvstore.h:
-
-../include/mxnet-cpp/io.hpp:
-
-../include/mxnet-cpp/io.h:
-
-../include/mxnet-cpp/metric.h:
-
-../include/mxnet-cpp/initializer.h:
 
 ../go/GoBoardUtil.h:
 

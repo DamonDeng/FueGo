@@ -760,6 +760,19 @@ libfuego_gouct_a-GoUctGlobalSearch.o: GoUctGlobalSearch.cpp \
   ../smartgame/SgStatisticsVlt.h ../smartgame/SgTimer.h \
   ../smartgame/SgTime.h ../smartgame/SgUctTree.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/stack \
+  ../smartgame/SgMpiSynchronizer.h ../smartgame/SgFastLog.h \
+  GoUctDefaultMoveFilter.h ../go/GoLadder.h ../go/GoModBoard.h \
+  ../go/GoAssertBoardRestored.h GoUctMoveFilter.h \
+  GoUctDefaultPriorKnowledge.h GoUctKnowledge.h GoUctPlayoutPolicy.h \
+  /usr/local/include/boost/array.hpp /usr/local/include/boost/swap.hpp \
+  /usr/local/include/boost/detail/iterator.hpp GoUctPatterns.h \
+  ../go/GoPattern3x3.h ../go/GoPatternBase.h GoUctGlobalPatternData.h \
+  GoUctPatternData.h GoUctLocalPatternData.h GoUctPureRandomGenerator.h \
+  GoUctUtil.h GoUctBoard.h GoUctGammaMoveGenerator.h \
+  GoUctFeatureKnowledge.h ../features/FeFeatureWeights.h \
+  ../go/GoEvalArray.h GoUctKnowledgeFactory.h \
+  GoUctAdditiveKnowledgeGreenpeep.h GoUctSearch.h ../go/GoBoardHistory.h \
+  ../go/GoBoardSynchronizer.h ../mxnet/MXNetModel.h \
   ../include/mxnet-cpp/MxNetCpp.h ../include/mxnet-cpp/executor.hpp \
   ../include/mxnet-cpp/executor.h ../include/mxnet-cpp/base.h \
   ../include/mxnet/c_api.h \
@@ -783,19 +796,7 @@ libfuego_gouct_a-GoUctGlobalSearch.o: GoUctGlobalSearch.cpp \
   ../include/dmlc/./type_traits.h ../include/mxnet-cpp/kvstore.hpp \
   ../include/mxnet-cpp/kvstore.h ../include/mxnet-cpp/io.hpp \
   ../include/mxnet-cpp/io.h ../include/mxnet-cpp/metric.h \
-  ../include/mxnet-cpp/initializer.h ../smartgame/SgMpiSynchronizer.h \
-  ../smartgame/SgFastLog.h GoUctDefaultMoveFilter.h ../go/GoLadder.h \
-  ../go/GoModBoard.h ../go/GoAssertBoardRestored.h GoUctMoveFilter.h \
-  GoUctDefaultPriorKnowledge.h GoUctKnowledge.h GoUctPlayoutPolicy.h \
-  /usr/local/include/boost/array.hpp /usr/local/include/boost/swap.hpp \
-  /usr/local/include/boost/detail/iterator.hpp GoUctPatterns.h \
-  ../go/GoPattern3x3.h ../go/GoPatternBase.h GoUctGlobalPatternData.h \
-  GoUctPatternData.h GoUctLocalPatternData.h GoUctPureRandomGenerator.h \
-  GoUctUtil.h GoUctBoard.h GoUctGammaMoveGenerator.h \
-  GoUctFeatureKnowledge.h ../features/FeFeatureWeights.h \
-  ../go/GoEvalArray.h GoUctKnowledgeFactory.h \
-  GoUctAdditiveKnowledgeGreenpeep.h GoUctSearch.h ../go/GoBoardHistory.h \
-  ../go/GoBoardSynchronizer.h ../mxnet/MXNetModel.h \
+  ../include/mxnet-cpp/initializer.h \
   /usr/local/include/boost/utility.hpp \
   /usr/local/include/boost/utility/addressof.hpp \
   /usr/local/include/boost/utility/binary.hpp \
@@ -2882,6 +2883,70 @@ GoUctGlobalSearch.h:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/stack:
 
+../smartgame/SgMpiSynchronizer.h:
+
+../smartgame/SgFastLog.h:
+
+GoUctDefaultMoveFilter.h:
+
+../go/GoLadder.h:
+
+../go/GoModBoard.h:
+
+../go/GoAssertBoardRestored.h:
+
+GoUctMoveFilter.h:
+
+GoUctDefaultPriorKnowledge.h:
+
+GoUctKnowledge.h:
+
+GoUctPlayoutPolicy.h:
+
+/usr/local/include/boost/array.hpp:
+
+/usr/local/include/boost/swap.hpp:
+
+/usr/local/include/boost/detail/iterator.hpp:
+
+GoUctPatterns.h:
+
+../go/GoPattern3x3.h:
+
+../go/GoPatternBase.h:
+
+GoUctGlobalPatternData.h:
+
+GoUctPatternData.h:
+
+GoUctLocalPatternData.h:
+
+GoUctPureRandomGenerator.h:
+
+GoUctUtil.h:
+
+GoUctBoard.h:
+
+GoUctGammaMoveGenerator.h:
+
+GoUctFeatureKnowledge.h:
+
+../features/FeFeatureWeights.h:
+
+../go/GoEvalArray.h:
+
+GoUctKnowledgeFactory.h:
+
+GoUctAdditiveKnowledgeGreenpeep.h:
+
+GoUctSearch.h:
+
+../go/GoBoardHistory.h:
+
+../go/GoBoardSynchronizer.h:
+
+../mxnet/MXNetModel.h:
+
 ../include/mxnet-cpp/MxNetCpp.h:
 
 ../include/mxnet-cpp/executor.hpp:
@@ -2961,70 +3026,6 @@ GoUctGlobalSearch.h:
 ../include/mxnet-cpp/metric.h:
 
 ../include/mxnet-cpp/initializer.h:
-
-../smartgame/SgMpiSynchronizer.h:
-
-../smartgame/SgFastLog.h:
-
-GoUctDefaultMoveFilter.h:
-
-../go/GoLadder.h:
-
-../go/GoModBoard.h:
-
-../go/GoAssertBoardRestored.h:
-
-GoUctMoveFilter.h:
-
-GoUctDefaultPriorKnowledge.h:
-
-GoUctKnowledge.h:
-
-GoUctPlayoutPolicy.h:
-
-/usr/local/include/boost/array.hpp:
-
-/usr/local/include/boost/swap.hpp:
-
-/usr/local/include/boost/detail/iterator.hpp:
-
-GoUctPatterns.h:
-
-../go/GoPattern3x3.h:
-
-../go/GoPatternBase.h:
-
-GoUctGlobalPatternData.h:
-
-GoUctPatternData.h:
-
-GoUctLocalPatternData.h:
-
-GoUctPureRandomGenerator.h:
-
-GoUctUtil.h:
-
-GoUctBoard.h:
-
-GoUctGammaMoveGenerator.h:
-
-GoUctFeatureKnowledge.h:
-
-../features/FeFeatureWeights.h:
-
-../go/GoEvalArray.h:
-
-GoUctKnowledgeFactory.h:
-
-GoUctAdditiveKnowledgeGreenpeep.h:
-
-GoUctSearch.h:
-
-../go/GoBoardHistory.h:
-
-../go/GoBoardSynchronizer.h:
-
-../mxnet/MXNetModel.h:
 
 /usr/local/include/boost/utility.hpp:
 

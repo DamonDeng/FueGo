@@ -522,19 +522,26 @@ public:
     // int m_historyLocationBlack;
     // int m_historyLocationWhite;
 
-    // std::vector<float> m_historyDataBlack;
-    // std::vector<float> m_historyDataWhite;
+    int m_historyLocation;
+
+    std::vector< std::bitset<SG_MAXPOINT> > m_historyDataBlack;
+    std::vector< std::bitset<SG_MAXPOINT> > m_historyDataWhite;
 
     // bool m_isSubscriber;
     
+    void RecordHistoryData();
 
-    void GetHistoryData(std::vector<float>& historyData, size_t dataSize) const;
+    void UndoHistoryData();
 
-    void PrepareHistoryData(SgBlackWhite forColor);
+    void GetHistoryData(std::vector<float>& historyData, int historyLength) const;
 
-    void HistoryAddStone(SgPoint p, SgBlackWhite c);
+    
 
-    void HistoryRemoveStone(SgPoint p, SgBlackWhite c);
+    // void PrepareHistoryData(SgBlackWhite forColor);
+
+    // void HistoryAddStone(SgPoint p, SgBlackWhite c);
+
+    // void HistoryRemoveStone(SgPoint p, SgBlackWhite c);
 
     
 

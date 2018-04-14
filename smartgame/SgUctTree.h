@@ -15,12 +15,6 @@
 #include "SgStatisticsVlt.h"
 #include "SgUctValue.h"
 
-#include "mxnet-cpp/MxNetCpp.h"
-
-#include "GoBoard.h"
-
-using namespace mxnet::cpp;
-
 
 class SgTimer;
 
@@ -269,9 +263,9 @@ public:
         Requires: HasMove() */
     SgMove Move() const;
 
-    int Row() const;
+    // int Row() const;
 
-    int Col() const;
+    // int Col() const;
 
     /** Get RAVE count.
         @see SgUctSearch::Rave(). */
@@ -323,13 +317,17 @@ public:
 
     SgUctValue GetPrioProbability() const;
 
-    bool m_childPrioProbabilityComputed = false;
+    volatile bool m_childPrioProbabilityComputed = false;
 
     volatile SgUctValue m_prioProbability;
 
     volatile SgUctValue m_probabilityMoveCount;
 
-    bool m_hasPrioProbability = false;
+    volatile bool m_hasPrioProbability = false;
+
+    volatile int m_probabilityLostCount;
+
+    static constexpr SgUctValue m_lostValue = 0.65;
 
 
 
@@ -345,8 +343,8 @@ private:
 
     //added by Damon, to record the row and col of current node.
 
-    int m_col;
-    int m_row;
+    // int m_col;
+    // int m_row;
 
     /* Value of additive predictor */
     volatile float m_predictorValue;
@@ -379,6 +377,7 @@ inline SgUctNode::SgUctNode(const SgUctMoveInfo& info)
     : m_prioProbability(info.m_prioProbability),
       m_probabilityMoveCount(0),
       m_hasPrioProbability(info.m_hasPrioProbability),
+      m_probabilityLostCount(0),
       m_statistics(info.m_value, info.m_count),
       m_nuChildren(0),
       m_move(info.m_move),
@@ -393,18 +392,29 @@ inline SgUctNode::SgUctNode(const SgUctMoveInfo& info)
 
     // Compute the row and col here, for future use
 
-    m_col = SgPointUtil::Col(m_move);
-    m_row = SgPointUtil::Row(m_move);
+    // m_col = SgPointUtil::Col(m_move);
+    // m_row = SgPointUtil::Row(m_move);
 }
 
 inline void SgUctNode::AddGameResult(SgUctValue eval)
 {
     m_statistics.Add(eval);
+
+    if (m_hasPrioProbability && eval < m_lostValue){
+        m_probabilityLostCount++;
+    }
 }
 
 inline void SgUctNode::AddGameResults(SgUctValue eval, SgUctValue count)
 {
     m_statistics.Add(eval, count);
+
+    
+    // SgDebug() << "eval: " << eval << ".\n";
+
+    if (m_hasPrioProbability && eval < m_lostValue){
+        m_probabilityLostCount = m_probabilityLostCount + count;
+    }
 }
 
 inline void SgUctNode::MergeResults(const SgUctNode& node)
@@ -413,16 +423,26 @@ inline void SgUctNode::MergeResults(const SgUctNode& node)
         m_statistics.Add(node.m_statistics.Mean(), node.m_statistics.Count());
     if (node.m_raveValue.IsDefined())
         m_raveValue.Add(node.m_raveValue.Mean(), node.m_raveValue.Count());
+
+    m_probabilityLostCount = m_probabilityLostCount + node.m_probabilityLostCount;
 }
 
 inline void SgUctNode::RemoveGameResult(SgUctValue eval)
 {
     m_statistics.Remove(eval);
+
+    if (m_hasPrioProbability && eval < m_lostValue){
+        m_probabilityLostCount--;
+    }
 }
 
 inline void SgUctNode::RemoveGameResults(SgUctValue eval, SgUctValue count)
 {
     m_statistics.Remove(eval, count);
+
+    if (m_hasPrioProbability && eval < m_lostValue){
+        m_probabilityLostCount = m_probabilityLostCount - count;
+    }
 }
 
 inline void SgUctNode::AddRaveValue(SgUctValue value, SgUctValue weight)
@@ -453,6 +473,7 @@ inline void SgUctNode::CopyDataFrom(const SgUctNode& node)
     m_prioProbability = node.m_prioProbability;
     m_probabilityMoveCount = node.m_probabilityMoveCount;
     m_hasPrioProbability = node.m_hasPrioProbability;
+    m_probabilityLostCount = node.m_probabilityLostCount;
 }
 
 inline const SgUctNode* SgUctNode::FirstChild() const
@@ -591,13 +612,13 @@ inline SgMove SgUctNode::Move() const
     return m_move;
 }
 
-inline int SgUctNode::Col() const{
-    return m_col;
-}
+// inline int SgUctNode::Col() const{
+//     return m_col;
+// }
 
-inline int SgUctNode::Row() const{
-    return m_row;
-}
+// inline int SgUctNode::Row() const{
+//     return m_row;
+// }
 
 inline SgUctValue SgUctNode::MoveCount() const
 {
@@ -926,7 +947,7 @@ public:
                        bool deleteChildTrees);
 
 
-    void ApplyPrioProbabilityToChilddren(std::size_t allocatorId, const SgUctNode& node, SgArray<SgUctValue, SG_MAX_MOVE_VALUE>& array, int threadID);
+    void ApplyPrioProbabilityToChildren(std::size_t allocatorId, const SgUctNode& node, SgArray<SgUctValue, SG_MAX_MOVE_VALUE>& array, int threadID);
 
     /** Extract subtree to a different tree.
         The tree will be truncated if one of the allocators overflows (can
@@ -1055,22 +1076,6 @@ private:
     void ThrowConsistencyError(const std::string& message) const;
 
 
-    // moving the MXNet model into SgUctTree
-    // @todo need to find a right place to make MXNet call.
-
-    std::map<std::string, NDArray> args_map;
-    std::map<std::string, NDArray> aux_map;
-    Symbol net;
-    Executor *executor;
-
-    // Context global_ctx(kCPU, 0);
-
-    Context global_ctx;
-    
-
-    void LoadSymbol();
-    void LoadParameters();
-
 };
 
 inline void SgUctTree::AddGameResult(const SgUctNode& node,
@@ -1082,7 +1087,7 @@ inline void SgUctTree::AddGameResult(const SgUctNode& node,
     if (father != 0){
         const_cast<SgUctNode*>(father)->IncPosCount();
         if (father->m_hasPrioProbability){
-            const_cast<SgUctNode*>(father)->IncProbabilityCount();
+           const_cast<SgUctNode*>(father)->IncProbabilityCount();
         }
     }
     const_cast<SgUctNode&>(node).AddGameResult(eval);
@@ -1099,7 +1104,7 @@ inline void SgUctTree::AddGameResults(const SgUctNode& node,
     if (father != 0){
         const_cast<SgUctNode*>(father)->IncPosCount(count);
         if (father->m_hasPrioProbability){
-            const_cast<SgUctNode*>(father)->IncProbabilityCount(count);
+           const_cast<SgUctNode*>(father)->IncProbabilityCount(count);
         }
     }
     const_cast<SgUctNode&>(node).AddGameResults(eval, count);
@@ -1146,7 +1151,7 @@ inline void SgUctTree::RemoveGameResult(const SgUctNode& node,
     if (father != 0){
         const_cast<SgUctNode*>(father)->DecPosCount();
         if (father->m_hasPrioProbability){
-            const_cast<SgUctNode*>(father)->DecProbabilityCount();
+           const_cast<SgUctNode*>(father)->DecProbabilityCount();
         }
         
     }
@@ -1164,7 +1169,7 @@ inline void SgUctTree::RemoveGameResults(const SgUctNode& node,
     if (father != 0){
         const_cast<SgUctNode*>(father)->DecPosCount(count);
         if (father->m_hasPrioProbability){
-            const_cast<SgUctNode*>(father)->DecProbabilityCount(count);
+           const_cast<SgUctNode*>(father)->DecProbabilityCount(count);
         }
     }
     const_cast<SgUctNode&>(node).RemoveGameResults(eval, count);
