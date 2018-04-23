@@ -124,7 +124,7 @@ void MXNetModel::LoadParameters() {
 
 void MXNetModel::ApplyPrioProbability(std::vector<SgUctMoveInfo>& moves, const GoBoard& bd)
 {
-    SgDebug() << "Trying to call CNN to generate prio probability. \n";
+    // SgDebug() << "Trying to call CNN to generate prio probability. \n";
 
     int historyLength = 2;
     int arrayLength = historyLength*2 + 1;
@@ -226,7 +226,7 @@ void MXNetModel::ApplyPrioProbability(std::vector<SgUctMoveInfo>& moves, const G
 
 void MXNetModel::GetPrioProbability(SgArray<SgUctValue, SG_MAX_MOVE_VALUE>& outputArray, SgUctValue& outputValue, const std::vector<float>& inputData){
 
-    SgDebug() << "Trying to call CNN to get prio probability. \n";
+    // SgDebug() << "Trying to call CNN to get prio probability. \n";
 
     int historyLength = 8;
     int arrayLength = historyLength*2 + 1;

@@ -456,7 +456,7 @@ void SgUctTree::ApplyPrioProbabilityToChildren(std::size_t allocatorId, const Sg
 
     if (threadID == 0){
 
-        SgDebug() << "Applying PrioProbabilityToChildren in thread:" << threadID << " .\n";  
+        // SgDebug() << "Applying PrioProbabilityToChildren in thread:" << threadID << " .\n";  
 
         SG_ASSERT(Contains(node));
         SG_ASSERT(Allocator(allocatorId).HasCapacity(node.NuChildren()));

@@ -1085,7 +1085,7 @@ void SgUctSearch::PlayGame(SgUctThreadState& state, GlobalLock* lock)
 
     bool abortInTree = ! PlayInTree(state, leafValue, isTerminal);
 
-    SgDebug() << "After playing in tree.\n";
+    // SgDebug() << "After playing in tree.\n";
 
     // The playout phase is always unlocked
     if (lock != 0)
@@ -1948,7 +1948,7 @@ void SgUctSearch::UpdateTree(const SgUctGameInfo& info, SgUctValue leafValue)
 
     eval = leafValue;
 
-    SgDebug() << "Updating tree, the value is: " << eval << "    .\n";
+    // SgDebug() << "Updating tree, the value is: " << eval << "    .\n";
 
     SgUctValue inverseEval = InverseEval(eval);
     const vector<const SgUctNode*>& nodes = info.m_nodes;
