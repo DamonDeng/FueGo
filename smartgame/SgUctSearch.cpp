@@ -532,11 +532,11 @@ SgUctSearch::FindBestChild(const SgUctNode& node,
             value = InverseEstimate(SgUctValue(child.Mean()));
             break;
         case SG_UCTMOVESELECT_COUNT:
-            if (child.m_hasPrioProbability){
-                value = child.ProbabilityMoveCount();
-            } else {
+            // if (child.m_hasPrioProbability){
+            //     value = child.ProbabilityMoveCount();
+            // } else {
                 value = child.MoveCount();
-            }
+            // }
             break;
         case SG_UCTMOVESELECT_BOUND:
             value = GetBound(m_rave, node, child);
@@ -546,11 +546,11 @@ SgUctSearch::FindBestChild(const SgUctNode& node,
             break;
         default:
             SG_ASSERT(false);
-            if (child.m_hasPrioProbability){
-                value = child.ProbabilityMoveCount();
-            } else {
+            // if (child.m_hasPrioProbability){
+            //     value = child.ProbabilityMoveCount();
+            // } else {
                 value = child.MoveCount();
-            }
+            // }
 
             
         }
@@ -597,10 +597,10 @@ void SgUctSearch::FindBestSequence(vector<SgMove>& sequence) const
             SgDebug() << "Move " << debugCount << " :";
             SgDebug() << "  prioProbability:";
             SgDebug() << current->m_prioProbability;  
-            SgDebug() << "  probabilityCount:";
-            SgDebug() << current->m_probabilityMoveCount;  
-            SgDebug() << "  probabilityLostCount:";
-            SgDebug() << current->m_probabilityLostCount;  
+            // SgDebug() << "  probabilityCount:";
+            // SgDebug() << current->m_probabilityMoveCount;  
+            // SgDebug() << "  probabilityLostCount:";
+            // SgDebug() << current->m_probabilityLostCount;  
             
               
             SgDebug() << "  MoveCount:";
@@ -644,6 +644,7 @@ void SgUctSearch::GenerateAllMoves(std::vector<SgUctMoveInfo>& moves)
 SgUctValue SgUctSearch::GetBound(bool useRave, const SgUctNode& node,
                                  const SgUctNode& child) const
 {
+    // SgDebug() << "Getting bound of move        : .\n";
     SgUctValue posCount = node.PosCount();
     int virtualLossCount = node.VirtualLossCount();
     if (virtualLossCount > 0)
@@ -662,15 +663,21 @@ SgUctValue SgUctSearch::GetBound(bool useRave, bool useBiasTerm,
     // in_start_time = timer.GetTime(); 
 
     SgUctValue value;
-    if (useRave){
-        // SgDebug() << "# using rave. \n";
-        value = GetValueEstimateRave(child);
-    }
-        
-    else{
-        value = GetValueEstimate(false, child);
 
-    }
+    // value = child.Mean();
+
+    // for the model with scaled value output:
+    value = child.Mean();
+
+    // if (useRave){
+    //     // SgDebug() << "# using rave. \n";
+    //     value = GetValueEstimateRave(child);
+    // }
+        
+    // else{
+    //     value = GetValueEstimate(false, child);
+
+    // }
         
 
     // double in_end_time;
@@ -679,13 +686,18 @@ SgUctValue SgUctSearch::GetBound(bool useRave, bool useBiasTerm,
 
     SgUctValue prioProbability = 0;
 
-    if (child.m_hasPrioProbability){
+    // if (child.m_hasPrioProbability){
 
-        prioProbability = child.GetPrioProbability();
+    prioProbability = child.GetPrioProbability();
 
         // prioProbability = 0.1 * prioProbability/Log(child.m_probabilityLostCount);
         //prioProbability = prioProbability/(child.m_probabilityLostCount+1);
-        prioProbability = prioProbability/(child.ProbabilityMoveCount()+1);
+    prioProbability = prioProbability/(child.MoveCount()+1);
+
+    // SgDebug() << "Getting bound of move:" << child.Move() << " value: " << value  << " PrioProbability:" << prioProbability << " . \n";
+
+    return value + prioProbability;
+
 
         // if (prioProbability < 0.03){
         //     prioProbability = - 0.4;
@@ -698,7 +710,7 @@ SgUctValue SgUctSearch::GetBound(bool useRave, bool useBiasTerm,
         //     prioProbability = 0;
         // }
 
-    }
+    // }
 
 
 
@@ -710,15 +722,15 @@ SgUctValue SgUctSearch::GetBound(bool useRave, bool useBiasTerm,
 
 
     
-    if (m_biasTermConstant == 0.0 || ! useBiasTerm)
-        return value + prioProbability;
-    else
-    {
-        SgUctValue moveCount = SgUctValue(child.MoveCount());
-        SgUctValue bound =
-            value + m_biasTermConstant * sqrt(logPosCount / (moveCount + 1));
-        return bound + prioProbability;
-    }
+    // if (m_biasTermConstant == 0.0 || ! useBiasTerm)
+    //     return value + prioProbability;
+    // else
+    // {
+    //     SgUctValue moveCount = SgUctValue(child.MoveCount());
+    //     SgUctValue bound =
+    //         value + m_biasTermConstant * sqrt(logPosCount / (moveCount + 1));
+    //     return bound + prioProbability;
+    // }
 }
 
 // SgUctValue SgUctSearch::GetBound(bool useRave, bool useBiasTerm,
@@ -1068,7 +1080,12 @@ void SgUctSearch::PlayGame(SgUctThreadState& state, GlobalLock* lock)
     SgUctGameInfo& info = state.m_gameInfo;
     info.Clear(m_numberPlayouts);
     bool isTerminal;
-    bool abortInTree = ! PlayInTree(state, isTerminal);
+
+    SgUctValue leafValue = 0.0;
+
+    bool abortInTree = ! PlayInTree(state, leafValue, isTerminal);
+
+    SgDebug() << "After playing in tree.\n";
 
     // The playout phase is always unlocked
     if (lock != 0)
@@ -1088,53 +1105,54 @@ void SgUctSearch::PlayGame(SgUctThreadState& state, GlobalLock* lock)
     size_t nuMovesInTree = info.m_inTreeSequence.size();
 
     // Play some "fake" playouts if node is a proven node
-    if (! info.m_nodes.empty() && info.m_nodes.back()->IsProven())
-    {
-        for (size_t i = 0; i < m_numberPlayouts; ++i)
-        {
-            info.m_sequence[i] = info.m_inTreeSequence;
-            info.m_skipRaveUpdate[i].assign(nuMovesInTree, false);
-            SgUctValue eval = info.m_nodes.back()->IsProvenWin() ? 1 : 0;
-            size_t nuMoves = info.m_sequence[i].size();
-            if (nuMoves % 2 != 0)
-                eval = InverseEval(eval);
-            info.m_aborted[i] = abortInTree || state.m_isTreeOutOfMem;
-            info.m_eval[i] = eval;
-        }
-    }
-    else 
-    {
-        state.StartPlayouts();
-        for (size_t i = 0; i < m_numberPlayouts; ++i)
-        {
-            state.StartPlayout();
-            info.m_sequence[i] = info.m_inTreeSequence;
-            // skipRaveUpdate only used in playout phase
-            info.m_skipRaveUpdate[i].assign(nuMovesInTree, false);
-            bool abort = abortInTree || state.m_isTreeOutOfMem;
-            if (! abort && ! isTerminal)
-                abort = ! PlayoutGame(state, i);
-            SgUctValue eval;
-            if (abort)
-                eval = UnknownEval();
-            else
-                eval = state.Evaluate();
-            size_t nuMoves = info.m_sequence[i].size();
-            if (nuMoves % 2 != 0)
-                eval = InverseEval(eval);
-            info.m_aborted[i] = abort;
-            info.m_eval[i] = eval;
-            state.EndPlayout();
-            state.TakeBackPlayout(nuMoves - nuMovesInTree);
-        }
-    }
+    // if (! info.m_nodes.empty() && info.m_nodes.back()->IsProven())
+    // {
+    //     for (size_t i = 0; i < m_numberPlayouts; ++i)
+    //     {
+    //         info.m_sequence[i] = info.m_inTreeSequence;
+    //         info.m_skipRaveUpdate[i].assign(nuMovesInTree, false);
+    //         SgUctValue eval = info.m_nodes.back()->IsProvenWin() ? 1 : 0;
+    //         size_t nuMoves = info.m_sequence[i].size();
+    //         if (nuMoves % 2 != 0)
+    //             eval = InverseEval(eval);
+    //         info.m_aborted[i] = abortInTree || state.m_isTreeOutOfMem;
+    //         info.m_eval[i] = eval;
+    //     }
+    // }
+    // else 
+    // {
+    //     state.StartPlayouts();
+    //     for (size_t i = 0; i < m_numberPlayouts; ++i)
+    //     {
+    //         state.StartPlayout();
+    //         info.m_sequence[i] = info.m_inTreeSequence;
+    //         // skipRaveUpdate only used in playout phase
+    //         info.m_skipRaveUpdate[i].assign(nuMovesInTree, false);
+    //         bool abort = abortInTree || state.m_isTreeOutOfMem;
+    //         if (! abort && ! isTerminal)
+    //             abort = ! PlayoutGame(state, i);
+    //         SgUctValue eval;
+    //         if (abort)
+    //             eval = UnknownEval();
+    //         else
+    //             eval = state.Evaluate();
+    //         size_t nuMoves = info.m_sequence[i].size();
+    //         if (nuMoves % 2 != 0)
+    //             eval = InverseEval(eval);
+    //         info.m_aborted[i] = abort;
+    //         info.m_eval[i] = eval;
+    //         state.EndPlayout();
+    //         state.TakeBackPlayout(nuMoves - nuMovesInTree);
+    //     }
+    // }
+
     state.TakeBackInTree(nuMovesInTree);
 
     // End of unlocked part if ! m_lockFree
     if (lock != 0)
         lock->lock();
 
-    UpdateTree(info);
+    UpdateTree(info, leafValue);
     if (m_rave)
         UpdateRaveValues(state);
     UpdateStatistics(info);
@@ -1177,7 +1195,7 @@ void SgUctSearch::PropagateProvenStatus(const std::vector<const SgUctNode*>& nod
     @param[out] isTerminal Was the sequence terminated because of a real
     terminal position (GenerateAllMoves() returned an empty list)?
     @return @c false, if game was aborted due to maximum length */
-bool SgUctSearch::PlayInTree(SgUctThreadState& state, bool& isTerminal)
+bool SgUctSearch::PlayInTree(SgUctThreadState& state, SgUctValue& leafValue, bool& isTerminal)
 {
     vector<SgMove>& sequence = state.m_gameInfo.m_inTreeSequence;
     vector<const SgUctNode*>& nodes = state.m_gameInfo.m_nodes;
@@ -1235,15 +1253,32 @@ bool SgUctSearch::PlayInTree(SgUctThreadState& state, bool& isTerminal)
                 isTerminal = true;
                 break;
             }
-            if (current == root || current->MoveCount() >= m_expandThreshold)
-            {
+            // if (current == root || current->MoveCount() >= m_expandThreshold)
+            // {
                 ExpandNode(state, *current);
+                            
+                SgArray<SgUctValue, SG_MAX_MOVE_VALUE> array;
+                SgUctValue value;
+                state.GetPrioProbability(array, value);
+
+                    // SgDebug() << "after getting prioprobability. \n";
+
+                    // SgPoint samplePoint = SgPointUtil::Pt(4,4);
+
+                    //PrintBoard(state.)
+
+                    // SgDebug() << " sample data:" << array[samplePoint] << std::endl;
+
+                m_tree.ApplyPrioProbabilityToChildren(0, *current, array, value, state.m_threadId);
+
+                leafValue = value;
+
                 if (state.m_isTreeOutOfMem)
                     return true;
                 breakAfterSelect = true;
-            }
-            else
-                break;
+            // }
+            // else
+            //     break;
         }
         else 
         {
@@ -1266,49 +1301,50 @@ bool SgUctSearch::PlayInTree(SgUctThreadState& state, bool& isTerminal)
             
         }
 
-        if (current == root || current->ProbabilityMoveCount()>200){
-            if (!current->m_childPrioProbabilityComputed){
+        // if (current == root || current->ProbabilityMoveCount()>200){
+        //     if (!current->m_childPrioProbabilityComputed){
 
-                // SgDebug() << "Thread:" << state.m_threadId << ".\n";
+        //         // SgDebug() << "Thread:" << state.m_threadId << ".\n";
 
-                 if (state.m_threadId == 0){
+        //          if (state.m_threadId == 0){
                  
 
-                    SgDebug() << "root node or node with 1000 probability move count has no child PrioProbability, thread id is: " << state.m_threadId << " \n";
+        //             SgDebug() << "root node or node with 1000 probability move count has no child PrioProbability, thread id is: " << state.m_threadId << " \n";
 
-                    SgArray<SgUctValue, SG_MAX_MOVE_VALUE> array;
-                    state.GetPrioProbability(array);
+        //             SgArray<SgUctValue, SG_MAX_MOVE_VALUE> array;
+        //             SgUctValue value;
+        //             state.GetPrioProbability(array, value);
 
-                    // SgDebug() << "after getting prioprobability. \n";
+        //             // SgDebug() << "after getting prioprobability. \n";
 
-                    // SgPoint samplePoint = SgPointUtil::Pt(4,4);
+        //             // SgPoint samplePoint = SgPointUtil::Pt(4,4);
 
-                    //PrintBoard(state.)
+        //             //PrintBoard(state.)
 
-                    // SgDebug() << " sample data:" << array[samplePoint] << std::endl;
+        //             // SgDebug() << " sample data:" << array[samplePoint] << std::endl;
 
-                    m_tree.ApplyPrioProbabilityToChildren(0, *current, array, state.m_threadId);
+        //             m_tree.ApplyPrioProbabilityToChildren(0, *current, array, value, state.m_threadId);
 
-                    SgDebug() << "after applying the prioprobability to children. \n";
+        //             SgDebug() << "after applying the prioprobability to children. \n";
 
-                 }
-                // if (state.m_threadId == 0){
+        //          }
+        //         // if (state.m_threadId == 0){
 
-                //     SgDebug() << " trying to get the PrioProbability in thread with id 0" << std::endl;
+        //         //     SgDebug() << " trying to get the PrioProbability in thread with id 0" << std::endl;
 
-                //     SgArray<SgPoint, SG_MAX_MOVES> array;
-                //     state.GetPrioProbability(array);
+        //         //     SgArray<SgPoint, SG_MAX_MOVES> array;
+        //         //     state.GetPrioProbability(array);
 
-                //     SgPoint samplePoint = SgPointUtil::Pt(4,4);
+        //         //     SgPoint samplePoint = SgPointUtil::Pt(4,4);
 
-                //     SgDebug() << " sample data:" << array[samplePoint] << std::endl;
+        //         //     SgDebug() << " sample data:" << array[samplePoint] << std::endl;
 
-                //     if (!current->m_childPrioProbabilityComputed){
-                //         SgDebug() << "childPrioProbabilityComputer not set." << std::endl;
-                //     }
-                // }
-            }
-        }
+        //         //     if (!current->m_childPrioProbabilityComputed){
+        //         //         SgDebug() << "childPrioProbabilityComputer not set." << std::endl;
+        //         //     }
+        //         // }
+        //     }
+        // }
 
 
 
@@ -1446,7 +1482,7 @@ SgUctValue SgUctSearch::Search(SgUctValue maxGames, double maxTime,
             point = SgPointUtil::Pt(col, row);
             SgUctValue displayProbability = childProbability[point]*10;
 
-            if (displayProbability > 0.0299999){
+            if (displayProbability > 0.0099999){
                 SgDebug() << fixed << setprecision(3) << displayProbability << " "; 
             } else {
                 SgDebug() << " .    "; 
@@ -1606,35 +1642,35 @@ const SgUctNode& SgUctSearch::SelectChild(int& randomizeCounter,
                                           bool useBiasTerm,
                                           const SgUctNode& node)
 {
-    bool useRave = m_rave;
-    if (m_randomizeRaveFrequency > 0 && --randomizeCounter == 0)
-    {
-        useRave = false;
-        randomizeCounter = m_randomizeRaveFrequency;
-    }
-    SG_ASSERT(node.HasChildren());
-    SgUctValue posCount = node.PosCount();
-    int virtualLossCount = node.VirtualLossCount();
-    if (virtualLossCount > 1)
-    {
-        // Must remove the virtual loss already added to
-        // node for the current thread.
-        posCount += SgUctValue(virtualLossCount - 1);
-    }
+    // bool useRave = m_rave;
+    // if (m_randomizeRaveFrequency > 0 && --randomizeCounter == 0)
+    // {
+    //     useRave = false;
+    //     randomizeCounter = m_randomizeRaveFrequency;
+    // }
+    // SG_ASSERT(node.HasChildren());
+    // SgUctValue posCount = node.PosCount();
+    // int virtualLossCount = node.VirtualLossCount();
+    // if (virtualLossCount > 1)
+    // {
+    //     // Must remove the virtual loss already added to
+    //     // node for the current thread.
+    //     posCount += SgUctValue(virtualLossCount - 1);
+    // }
 
-    // If position count is zero, return first child
+    // // If position count is zero, return first child
 
     
-    if (posCount == 0)
-         return *SgUctChildIterator(m_tree, node);
+    // if (posCount == 0)
+    //      return *SgUctChildIterator(m_tree, node);
         
-    const SgUctValue logPosCount = Log(posCount);
+    // const SgUctValue logPosCount = Log(posCount);
 
     
     const SgUctNode* bestChild = 0;
     SgUctValue bestUpperBound = 0;
-    const SgUctValue predictorWeight = 
-    	m_additiveKnowledge.PredictorWeight(posCount);
+    // const SgUctValue predictorWeight = 
+    // 	m_additiveKnowledge.PredictorWeight(posCount);
     const SgUctValue epsilon = SgUctValue(1e-7);
     for (SgUctChildIterator it(m_tree, node); it; ++it)
     {
@@ -1642,9 +1678,10 @@ const SgUctNode& SgUctSearch::SelectChild(int& randomizeCounter,
         if (! child.IsProvenWin()) // Avoid losing moves
         {
             // SgUctValue bound = GetCNNBound(child);
-            SgUctValue bound = GetBound(useRave, useBiasTerm, 
-                                        logPosCount, child)
-		                     - predictorWeight * child.PredictorValue();
+            SgUctValue bound = GetBound(false, useBiasTerm, 
+                                        1, child);
+
+		                    //  - predictorWeight * child.PredictorValue();
 
 
             // Compare bound to best bound using a not too small epsilon
@@ -1902,22 +1939,29 @@ void SgUctSearch::UpdateStatistics(const SgUctGameInfo& info)
     }
 }
 
-void SgUctSearch::UpdateTree(const SgUctGameInfo& info)
+void SgUctSearch::UpdateTree(const SgUctGameInfo& info, SgUctValue leafValue)
 {
     SgUctValue eval = 0;
-    for (size_t i = 0; i < m_numberPlayouts; ++i)
-        eval += info.m_eval[i];
-    eval /= SgUctValue(m_numberPlayouts);
+    // for (size_t i = 0; i < m_numberPlayouts; ++i)
+    //     eval += info.m_eval[i];
+    // eval /= SgUctValue(m_numberPlayouts);
 
-    // SgDebug() << eval << "    ";
+    eval = leafValue;
+
+    SgDebug() << "Updating tree, the value is: " << eval << "    .\n";
 
     SgUctValue inverseEval = InverseEval(eval);
     const vector<const SgUctNode*>& nodes = info.m_nodes;
     const SgUctValue count = 
     	SgUctValue(m_updateMultiplePlayoutsAsSingle ? 1 : m_numberPlayouts);
+    
+    // SgDebug() << "nodes list with size: " << nodes.size() << ".\n";
     for (size_t i = 0; i < nodes.size(); ++i)
     {
+        
         const SgUctNode& node = *nodes[i];
+
+        // SgDebug() << "Move:" << node.Move() << ".\n";
         const SgUctNode* father = (i > 0 ? nodes[i - 1] : 0);
         m_tree.AddGameResults(node, father, i % 2 == 0 ? eval : inverseEval,
                               count);

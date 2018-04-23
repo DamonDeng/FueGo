@@ -54,7 +54,7 @@ public:
 
     void ApplyPrioProbability(std::vector<SgUctMoveInfo>& moves, const GoBoard& bd);
 
-    void GetPrioProbability(SgArray<SgUctValue, SG_MAX_MOVE_VALUE>& outputArray, const std::vector<float>& inputData);
+    void GetPrioProbability(SgArray<SgUctValue, SG_MAX_MOVE_VALUE>& outputArray, SgUctValue& outputValue, const std::vector<float>& inputData);
 
 private:
 

@@ -148,7 +148,7 @@ int main(int argc, char** argv)
 {
     /** Settings from command line options */
     struct CommandLineOptions options;
-    options.m_useBook = true;
+    options.m_useBook = false;
     options.m_allowHandicap = true;
     options.m_quiet = false;
 

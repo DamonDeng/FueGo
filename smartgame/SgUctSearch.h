@@ -348,7 +348,7 @@ public:
 
     //added by Damon for applying priProbability
 
-    virtual void GetPrioProbability(SgArray<SgUctValue, SG_MAX_MOVE_VALUE>& array) = 0;
+    virtual void GetPrioProbability(SgArray<SgUctValue, SG_MAX_MOVE_VALUE>& array, SgUctValue& value) = 0;
 
     /** Generate random move.
         Generate a random move in the play-out phase (outside the UCT tree).
@@ -1178,7 +1178,7 @@ private:
 
     void PlayGame(SgUctThreadState& state, GlobalLock* lock);
 
-    bool PlayInTree(SgUctThreadState& state, bool& isTerminal);
+    bool PlayInTree(SgUctThreadState& state, SgUctValue& leafValue, bool& isTerminal);
 
     bool PlayoutGame(SgUctThreadState& state, std::size_t playout);
 
@@ -1205,7 +1205,7 @@ private:
 
     void UpdateStatistics(const SgUctGameInfo& info);
 
-    void UpdateTree(const SgUctGameInfo& info);
+    void UpdateTree(const SgUctGameInfo& info, SgUctValue leafValue);
 };
 
 inline SgAdditiveKnowledge& SgUctSearch::AdditiveKnowledge()

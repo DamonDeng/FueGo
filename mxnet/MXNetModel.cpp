@@ -60,10 +60,24 @@ void MXNetModel::LoadSymbol() {
     // net = Symbol::Load("./model/new_zero_resnet-symbol.json")
     // .GetInternals()["softmax_output"];
 
-    net = Symbol::Load("./model/zeronew_zero_19resnet_l17-symbol.json")
-    .GetInternals()["softmax_output"];
+    // net = Symbol::Load("./model/zeronew_zero_19resnet_l17-symbol.json")
+    // .GetInternals()["softmax_output"];
 
 
+    // Symbol temp_net = Symbol::Load("./model/thetago_dual_res_17L_19res-symbol.json");
+
+    // temp_net.list_outputs();
+
+
+    // net = Symbol::Load("./model/thetago_dual_res_17L_19res-symbol.json");
+    // .GetInternals()["move_output"];
+    
+    net = Symbol::Load("./model/thetago_dual_res_17L_19res_rate_0p02-symbol.json");
+    
+    // net = Symbol::Load("./model/thetago_dual_res_17L_19res_scalevalue_rate_0p02-symbol.json");
+    
+
+    
               
             
               
@@ -81,7 +95,14 @@ void MXNetModel::LoadParameters() {
 
     // NDArray::Load("./model/zeronew_zero_19resnet_l17-0003.params", 0, &paramters);
 
-    NDArray::Load("./model/zeronew_zero_19resnet_l17-0007.params", 0, &paramters);
+    // NDArray::Load("./model/zeronew_zero_19resnet_l17-0007.params", 0, &paramters);
+
+    // NDArray::Load("./model/thetago_dual_res_17L_19res-0001.params", 0, &paramters);
+
+    NDArray::Load("./model/thetago_dual_res_17L_19res_rate_0p02-0001.params", 0, &paramters);
+
+    // NDArray::Load("./model/thetago_dual_res_17L_19res_scalevalue_rate_0p02-0001.params", 0, &paramters);
+ 
 
 
     for (const auto &k : paramters) {
@@ -148,6 +169,7 @@ void MXNetModel::ApplyPrioProbability(std::vector<SgUctMoveInfo>& moves, const G
     /*bind the excutor*/
 
     NDArray array;
+    NDArray move_value;
 
     executor = net.SimpleBind(global_ctx, args_map, map<string, NDArray>(),
                               map<string, OpReqType>(), aux_map);
@@ -155,8 +177,15 @@ void MXNetModel::ApplyPrioProbability(std::vector<SgUctMoveInfo>& moves, const G
     executor->Forward(false);
       
     array = executor->outputs[0].Copy(global_ctx);
+    move_value = executor->outputs[1].Copy(global_ctx);
+
+
+
     NDArray::WaitAll();
 
+    SgDebug() << "----------------------.\n";
+    SgDebug() << move_value << "\n";
+    SgDebug() << "-----------------------------.\n";
 
     delete executor;
     
@@ -195,7 +224,7 @@ void MXNetModel::ApplyPrioProbability(std::vector<SgUctMoveInfo>& moves, const G
 
 }
 
-void MXNetModel::GetPrioProbability(SgArray<SgUctValue, SG_MAX_MOVE_VALUE>& outputArray, const std::vector<float>& inputData){
+void MXNetModel::GetPrioProbability(SgArray<SgUctValue, SG_MAX_MOVE_VALUE>& outputArray, SgUctValue& outputValue, const std::vector<float>& inputData){
 
     SgDebug() << "Trying to call CNN to get prio probability. \n";
 
@@ -227,7 +256,7 @@ void MXNetModel::GetPrioProbability(SgArray<SgUctValue, SG_MAX_MOVE_VALUE>& outp
 
     NDArray array;
 
-   
+    NDArray move_value;
 
     executor = net.SimpleBind(global_ctx, args_map, map<string, NDArray>(),
                               map<string, OpReqType>(), aux_map);
@@ -241,8 +270,16 @@ void MXNetModel::GetPrioProbability(SgArray<SgUctValue, SG_MAX_MOVE_VALUE>& outp
 
       
     array = executor->outputs[0].Copy(global_ctx);
+    move_value = executor->outputs[1].Copy(global_ctx);
+
     NDArray::WaitAll();
 
+    // SgDebug() << "----------------------.\n";
+    // SgDebug() << move_value.At(0,0) << "\n";
+    // SgDebug() << "-----------------------------.\n";
+
+
+    outputValue = move_value.At(0,0);
    
 
     int stoneNumber = boardSize*boardSize;

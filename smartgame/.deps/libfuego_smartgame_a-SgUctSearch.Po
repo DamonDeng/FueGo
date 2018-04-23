@@ -720,7 +720,7 @@ libfuego_smartgame_a-SgUctSearch.o: SgUctSearch.cpp SgSystem.h \
   SgMove.h SgUtil.h SgBWArray.h SgVector.h SgStatisticsVlt.h SgTimer.h \
   SgTime.h SgUctTree.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/stack \
-  SgMpiSynchronizer.h ../go/GoBoard.h ../go/GoPlayerMove.h \
+  SgDebug.h SgMpiSynchronizer.h ../go/GoBoard.h ../go/GoPlayerMove.h \
   ../go/GoRules.h ../go/GoKomi.h ../go/GoSetup.h SgBWSet.h SgPointSet.h \
   SgRect.h SgPointSetUtil.h SgBoardConst.h SgNbIterator.h SgPointArray.h \
   SgPointIterator.h SgMarker.h SgHash.h SgRandom.h \
@@ -747,7 +747,7 @@ libfuego_smartgame_a-SgUctSearch.o: SgUctSearch.cpp SgSystem.h \
   /usr/local/include/boost/random/detail/generator_bits.hpp \
   /usr/local/include/boost/random/detail/generator_seed_seq.hpp \
   /usr/local/include/boost/random/detail/polynomial.hpp \
-  /usr/local/include/boost/random/uniform_01.hpp SgDebug.h SgFastLog.h \
+  /usr/local/include/boost/random/uniform_01.hpp SgFastLog.h \
   SgHashTable.h SgMath.h SgPlatform.h \
   /usr/local/include/boost/filesystem/path.hpp \
   /usr/local/include/boost/filesystem/config.hpp \
@@ -2415,6 +2415,8 @@ SgUctTree.h:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/stack:
 
+SgDebug.h:
+
 SgMpiSynchronizer.h:
 
 ../go/GoBoard.h:
@@ -2496,8 +2498,6 @@ SgRandom.h:
 /usr/local/include/boost/random/detail/polynomial.hpp:
 
 /usr/local/include/boost/random/uniform_01.hpp:
-
-SgDebug.h:
 
 SgFastLog.h:
 

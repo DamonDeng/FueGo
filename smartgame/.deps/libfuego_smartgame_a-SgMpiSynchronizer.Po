@@ -720,10 +720,10 @@ libfuego_smartgame_a-SgMpiSynchronizer.o: SgMpiSynchronizer.cpp \
   /usr/local/include/boost/thread/pthread/shared_mutex.hpp \
   SgAdditiveKnowledge.h SgTimer.h SgTime.h SgUctTree.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/stack \
-  ../go/GoBoard.h ../go/GoPlayerMove.h ../go/GoRules.h ../go/GoKomi.h \
-  ../go/GoSetup.h SgBWSet.h SgPointSet.h SgRect.h SgPointSetUtil.h \
-  SgBoardConst.h SgNbIterator.h SgPointArray.h SgPointIterator.h \
-  SgMarker.h SgHash.h SgRandom.h \
+  SgDebug.h ../go/GoBoard.h ../go/GoPlayerMove.h ../go/GoRules.h \
+  ../go/GoKomi.h ../go/GoSetup.h SgBWSet.h SgPointSet.h SgRect.h \
+  SgPointSetUtil.h SgBoardConst.h SgNbIterator.h SgPointArray.h \
+  SgPointIterator.h SgMarker.h SgHash.h SgRandom.h \
   /usr/local/include/boost/random/mersenne_twister.hpp \
   /usr/local/include/boost/integer/integer_mask.hpp \
   /usr/local/include/boost/integer.hpp \
@@ -747,7 +747,7 @@ libfuego_smartgame_a-SgMpiSynchronizer.o: SgMpiSynchronizer.cpp \
   /usr/local/include/boost/random/detail/generator_bits.hpp \
   /usr/local/include/boost/random/detail/generator_seed_seq.hpp \
   /usr/local/include/boost/random/detail/polynomial.hpp \
-  /usr/local/include/boost/random/uniform_01.hpp SgDebug.h SgFastLog.h
+  /usr/local/include/boost/random/uniform_01.hpp SgFastLog.h
 
 SgSystem.h:
 
@@ -2355,6 +2355,8 @@ SgUctTree.h:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/stack:
 
+SgDebug.h:
+
 ../go/GoBoard.h:
 
 ../go/GoPlayerMove.h:
@@ -2434,7 +2436,5 @@ SgRandom.h:
 /usr/local/include/boost/random/detail/polynomial.hpp:
 
 /usr/local/include/boost/random/uniform_01.hpp:
-
-SgDebug.h:
 
 SgFastLog.h:
