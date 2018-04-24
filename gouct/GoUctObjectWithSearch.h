@@ -15,7 +15,7 @@ class GoUctSearch;
 class GoUctObjectWithSearch
 {
 public:
-    virtual ~GoUctObjectWithSearch();
+    virtual ~GoUctObjectWithSearch() = 0;
 
     virtual GoUctSearch& Search() = 0;
 

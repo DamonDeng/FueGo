@@ -3,7 +3,7 @@ dnl Process this file with autoconf to produce a configure script.
 AC_INIT([fuego], [1.1.SVN])
 AC_PREREQ([2.59])
 AC_CONFIG_SRCDIR([go/GoBoard.cpp])
-CXXFLAGS="$CXXFLAGS -std=c++0x -O2"
+CXXFLAGS="$CXXFLAGS -std=c++0x -O2 -lpthread"
 AC_CONFIG_HEADERS(config.h)
 AM_INIT_AUTOMAKE
 AM_MAINTAINER_MODE
