@@ -253,15 +253,15 @@ void MXNetModel::GetPrioProbability(SgArray<SgUctValue, SG_MAX_MOVE_VALUE>& outp
 
     int dataLength = arrayLength*boardSize*boardSize;
 
-    int batchSize = 18;
+    int batchSize = 1;
 
-    std::vector<float> batchHistoryData(batchSize * dataLength);
+    // std::vector<float> batchHistoryData(batchSize * dataLength);
 
-    for (int i=0; i<batchSize; i++){
-        for (int j=0; j<dataLength; j++){
-            batchHistoryData[i*j] = inputData[j];
-        }
-    }
+    // for (int i=0; i<batchSize; i++){
+    //     for (int j=0; j<dataLength; j++){
+    //         batchHistoryData[i*j] = inputData[j];
+    //     }
+    // }
 
 
     NDArray ret(Shape(batchSize, arrayLength, boardSize, boardSize), global_ctx, false);
@@ -272,7 +272,7 @@ void MXNetModel::GetPrioProbability(SgArray<SgUctValue, SG_MAX_MOVE_VALUE>& outp
   
 
     // ret.SyncCopyFromCPU(inputData.data(), dataLength);
-    ret.SyncCopyFromCPU(batchHistoryData.data(), batchSize*dataLength);
+    ret.SyncCopyFromCPU(inputData.data(), batchSize*dataLength);
     
     
     NDArray::WaitAll();
@@ -308,14 +308,14 @@ void MXNetModel::GetPrioProbability(SgArray<SgUctValue, SG_MAX_MOVE_VALUE>& outp
     // SgDebug() << "-----------------------------.\n";
 
 
-    outputValue = move_value.At(0,0,0);
+    outputValue = move_value.At(0,0);
    
 
     int stoneNumber = boardSize*boardSize;
    
 
 
-    outputArray[SG_MAX_MOVE_VALUE-1] = array.At(0, 0, stoneNumber);
+    outputArray[SG_MAX_MOVE_VALUE-1] = array.At(0, stoneNumber);
 
     SgPoint point;
 

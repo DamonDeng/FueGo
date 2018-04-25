@@ -690,13 +690,19 @@ SgUctValue SgUctSearch::GetBound(bool useRave, bool useBiasTerm,
 
     prioProbability = child.GetPrioProbability();
 
-        // prioProbability = 0.1 * prioProbability/Log(child.m_probabilityLostCount);
-        //prioProbability = prioProbability/(child.m_probabilityLostCount+1);
-    prioProbability = prioProbability/(child.MoveCount()+1);
+    return prioProbability;
 
-    // SgDebug() << "Getting bound of move:" << child.Move() << " value: " << value  << " PrioProbability:" << prioProbability << " . \n";
+    // if (prioProbability <= 0){
+    //     return -2;
+    // }
 
-    return value + prioProbability;
+    //     // prioProbability = 0.1 * prioProbability/Log(child.m_probabilityLostCount);
+    //     //prioProbability = prioProbability/(child.m_probabilityLostCount+1);
+    // prioProbability = prioProbability/(child.MoveCount()+1);
+
+    // // SgDebug() << "Getting bound of move:" << child.Move() << " value: " << value  << " PrioProbability:" << prioProbability << " . \n";
+
+    // return value + prioProbability;
 
 
         // if (prioProbability < 0.03){
@@ -1480,10 +1486,13 @@ SgUctValue SgUctSearch::Search(SgUctValue maxGames, double maxTime,
         for (int col = 1; col <= boardSize; col++){
 
             point = SgPointUtil::Pt(col, row);
-            SgUctValue displayProbability = childProbability[point]*10;
+            if (childProbability[point] > 0){
+                SgUctValue displayProbability = childProbability[point]*10;
 
-            if (displayProbability > 0.0099999){
+            
                 SgDebug() << fixed << setprecision(3) << displayProbability << " "; 
+                // SgDebug()  << displayProbability << " "; 
+                
             } else {
                 SgDebug() << " .    "; 
             }
@@ -1508,7 +1517,7 @@ SgUctValue SgUctSearch::Search(SgUctValue maxGames, double maxTime,
         }
 
         SgDebug() << "\n";
-        SgDebug() << "-------------------------------------------------------------------------------------------------------------\n";
+        // SgDebug() << "-------------------------------------------------------------------------------------------------------------\n";
          
     }
 
