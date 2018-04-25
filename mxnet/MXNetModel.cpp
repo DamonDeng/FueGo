@@ -142,103 +142,103 @@ void MXNetModel::ApplyPrioProbability(std::vector<SgUctMoveInfo>& moves, const G
 {
     // SgDebug() << "Trying to call CNN to generate prio probability. \n";
 
-    int historyLength = 2;
-    int arrayLength = historyLength*2 + 1;
+    // int historyLength = 2;
+    // int arrayLength = historyLength*2 + 1;
 
-    int boardSize = 19;
+    // int boardSize = 19;
 
-    int dataLength = 1*arrayLength*boardSize*boardSize;
+    // int dataLength = 1*arrayLength*boardSize*boardSize;
 
 
-    NDArray ret(Shape(1, arrayLength, boardSize, boardSize), global_ctx, false);
+    // NDArray ret(Shape(1, arrayLength, boardSize, boardSize), global_ctx, false);
 
-    std::vector<float> inputData(dataLength);
+    // std::vector<float> inputData(dataLength);
 
-    bd.GetHistoryData(inputData, dataLength);
+    // bd.GetHistoryData(inputData, dataLength);
   
 
-    ret.SyncCopyFromCPU(inputData.data(), dataLength);
+    // ret.SyncCopyFromCPU(inputData.data(), dataLength);
     
     
-    NDArray::WaitAll();
+    // NDArray::WaitAll();
     
-    // args_map["data"] = generateSampleData();
+    // // args_map["data"] = generateSampleData();
 
-    // SgDebug() << "input data: \n";
-    // for (int i=0; i<arrayLength; i++){
-    //   for (int j=0; j<19; j++){
-    //     for (int k=0; k<19; k++){
-    //       int value_index = i*361 + j*19 + k;
-    //       SgDebug() << ret.At(0,value_index);
-    //     }
-    //     SgDebug() << " \n";
-    //   }
-    //   SgDebug() << "\n \n";
+    // // SgDebug() << "input data: \n";
+    // // for (int i=0; i<arrayLength; i++){
+    // //   for (int j=0; j<19; j++){
+    // //     for (int k=0; k<19; k++){
+    // //       int value_index = i*361 + j*19 + k;
+    // //       SgDebug() << ret.At(0,value_index);
+    // //     }
+    // //     SgDebug() << " \n";
+    // //   }
+    // //   SgDebug() << "\n \n";
 
-    // }
+    // // }
     
-    // SgDebug() << ". \n";
+    // // SgDebug() << ". \n";
     
-    args_map["data"] = ret;
+    // args_map["data"] = ret;
     
     
-    /*bind the excutor*/
+    // /*bind the excutor*/
 
-    NDArray array;
-    NDArray move_value;
+    // NDArray array;
+    // NDArray move_value;
 
-    executor = net.SimpleBind(global_ctx, args_map, map<string, NDArray>(),
-                              map<string, OpReqType>(), aux_map);
+    // executor = net.SimpleBind(global_ctx, args_map, map<string, NDArray>(),
+    //                           map<string, OpReqType>(), aux_map);
 
-    executor->Forward(false);
+    // executor->Forward(false);
 
-    // Context current_cpu(kCPU, 0);
+    // // Context current_cpu(kCPU, 0);
       
-    array = executor->outputs[0].Copy(current_ctx);
-    move_value = executor->outputs[1].Copy(current_ctx);
+    // array = executor->outputs[0].Copy(current_ctx);
+    // move_value = executor->outputs[1].Copy(current_ctx);
 
 
 
-    NDArray::WaitAll();
+    // NDArray::WaitAll();
 
-    SgDebug() << "----------------------.\n";
-    SgDebug() << move_value << "\n";
-    SgDebug() << "-----------------------------.\n";
+    // SgDebug() << "----------------------.\n";
+    // SgDebug() << move_value << "\n";
+    // SgDebug() << "-----------------------------.\n";
 
-    delete executor;
+    // delete executor;
     
-    // for (int i = 0; i < 362; ++i) {
-    //   curValue = array.At(0, i);
+    // // for (int i = 0; i < 362; ++i) {
+    // //   curValue = array.At(0, i);
 
-    //   if (curValue > maxValue) {
-    //     maxValue = curValue;
-    //     maxPosition = i;
-    //   }
-    //   cout << array.At(0, i) << ",";
-    // }
+    // //   if (curValue > maxValue) {
+    // //     maxValue = curValue;
+    // //     maxPosition = i;
+    // //   }
+    // //   cout << array.At(0, i) << ",";
+    // // }
     
-    // SgMove moveValue;
-    SgGrid col;
-    SgGrid row;
+    // // SgMove moveValue;
+    // SgGrid col;
+    // SgGrid row;
 
-    int stoneNumber = boardSize*boardSize;
+    // int stoneNumber = boardSize*boardSize;
 
-    for (size_t j = 0; j < moves.size(); ++j)
-        {
-            if(moves[j].m_move == SG_PASS){
-                moves[j].m_prioProbability = array.At(0, stoneNumber);
-                moves[j].m_hasPrioProbability = true;
-            } else{
-                row = SgPointUtil::Row(moves[j].m_move)-1;
-                col = SgPointUtil::Col(moves[j].m_move)-1;
+    // for (size_t j = 0; j < moves.size(); ++j)
+    //     {
+    //         if(moves[j].m_move == SG_PASS){
+    //             moves[j].m_prioProbability = array.At(0, stoneNumber);
+    //             moves[j].m_hasPrioProbability = true;
+    //         } else{
+    //             row = SgPointUtil::Row(moves[j].m_move)-1;
+    //             col = SgPointUtil::Col(moves[j].m_move)-1;
 
-                moves[j].m_prioProbability = array.At(0, row*boardSize + col);
-                moves[j].m_hasPrioProbability = true;
+    //             moves[j].m_prioProbability = array.At(0, row*boardSize + col);
+    //             moves[j].m_hasPrioProbability = true;
 
-            }
+    //         }
 
             
-        }
+    //     }
 
 }
 
@@ -253,15 +253,26 @@ void MXNetModel::GetPrioProbability(SgArray<SgUctValue, SG_MAX_MOVE_VALUE>& outp
 
     int dataLength = arrayLength*boardSize*boardSize;
 
+    int batchSize = 18;
 
-    NDArray ret(Shape(1, arrayLength, boardSize, boardSize), global_ctx, false);
+    std::vector<float> batchHistoryData(batchSize * dataLength);
+
+    for (int i=0; i<batchSize; i++){
+        for (int j=0; j<dataLength; j++){
+            batchHistoryData[i*j] = inputData[j];
+        }
+    }
+
+
+    NDArray ret(Shape(batchSize, arrayLength, boardSize, boardSize), global_ctx, false);
 
     // std::vector<float> inputData(dataLength);
 
     // bd.GetHistoryData(inputData, dataLength);
   
 
-    ret.SyncCopyFromCPU(inputData.data(), dataLength);
+    // ret.SyncCopyFromCPU(inputData.data(), dataLength);
+    ret.SyncCopyFromCPU(batchHistoryData.data(), batchSize*dataLength);
     
     
     NDArray::WaitAll();
@@ -297,14 +308,14 @@ void MXNetModel::GetPrioProbability(SgArray<SgUctValue, SG_MAX_MOVE_VALUE>& outp
     // SgDebug() << "-----------------------------.\n";
 
 
-    outputValue = move_value.At(0,0);
+    outputValue = move_value.At(0,0,0);
    
 
     int stoneNumber = boardSize*boardSize;
    
 
 
-    outputArray[SG_MAX_MOVE_VALUE-1] = array.At(0, stoneNumber);
+    outputArray[SG_MAX_MOVE_VALUE-1] = array.At(0, 0, stoneNumber);
 
     SgPoint point;
 
