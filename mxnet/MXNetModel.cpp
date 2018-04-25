@@ -21,24 +21,40 @@ using boost::trim_copy;
 // using namespace std;
 // using namespace mxnet::cpp;
 
+int MXNetModel::m_gpuNumber = 0;
+
 MXNetModel::MXNetModel():
-global_ctx(kCPU, 0)
+global_ctx(kCPU, 0),
+current_ctx(kCPU, 0)
 {
-    // global_ctx = Context(kCPU, 0);
-    SgDebug() << "Creating MXNetModel with default cpu: cpu 0. \n";
-    // LoadSymbol();
-    // LoadParameters();
+    if (MXNetModel::m_gpuNumber > 0){
+        SgDebug() << "Using the gpu(0) as device. \n";
+        global_ctx = Context(kGPU, 0);
+    } else {
+
+        SgDebug() << "Creating MXNetModel with default cpu: cpu 0. \n";
+    }
+    
+    LoadSymbol();
+    LoadParameters();
 
     SgDebug() << "Successfully loaded the model. \n";
     
 }
 
 
-MXNetModel::MXNetModel(unsigned int threadId):
-global_ctx(kCPU, threadId)
+MXNetModel::MXNetModel( unsigned int threadId):
+global_ctx(kCPU, threadId),
+current_ctx(kCPU, threadId)
 {
-    // global_ctx = Context(kCPU, 0);
-    SgDebug() << "Creating MXNetModel with cpu number: " << threadId << ". \n";
+    if (MXNetModel::m_gpuNumber > 0){
+        int gpu_id = threadId%MXNetModel::m_gpuNumber;
+        SgDebug() << "Using the gpu(" << gpu_id << ") as device. \n";
+        global_ctx = Context(kGPU, gpu_id);
+    } else {
+
+        SgDebug() << "Creating MXNetModel with cpu number: " << threadId << ". \n";
+    }
     LoadSymbol();
     LoadParameters();
 
@@ -175,9 +191,11 @@ void MXNetModel::ApplyPrioProbability(std::vector<SgUctMoveInfo>& moves, const G
                               map<string, OpReqType>(), aux_map);
 
     executor->Forward(false);
+
+    // Context current_cpu(kCPU, 0);
       
-    array = executor->outputs[0].Copy(global_ctx);
-    move_value = executor->outputs[1].Copy(global_ctx);
+    array = executor->outputs[0].Copy(current_ctx);
+    move_value = executor->outputs[1].Copy(current_ctx);
 
 
 
@@ -267,10 +285,10 @@ void MXNetModel::GetPrioProbability(SgArray<SgUctValue, SG_MAX_MOVE_VALUE>& outp
     executor->Forward(false);
 
    
-
+    // Context current_cpu(kCPU, 0);
       
-    array = executor->outputs[0].Copy(global_ctx);
-    move_value = executor->outputs[1].Copy(global_ctx);
+    array = executor->outputs[0].Copy(current_ctx);
+    move_value = executor->outputs[1].Copy(current_ctx);
 
     NDArray::WaitAll();
 

@@ -22,6 +22,7 @@
 #include "SgException.h"
 #include "SgInit.h"
 #include "SgPlatform.h"
+#include "MXNetModel.h"
 
 using boost::filesystem::path;
 using std::ostream;
@@ -79,11 +80,14 @@ struct CommandLineOptions {
     int m_srand;
     
     vector<string> m_inputFiles;
+
+    int m_gpuNumber;
 };
 
 void ParseOptions(int argc, char** argv, struct CommandLineOptions& options)
 {
     po::options_description normalOptions("Options");
+
     normalOptions.add_options()
         ("config", 
          po::value<std::string>(&options.m_config)->default_value(""),
@@ -98,6 +102,9 @@ void ParseOptions(int argc, char** argv, struct CommandLineOptions& options)
         ("srand", 
          po::value<int>(&options.m_srand)->default_value(0),
          "set random seed (-1:none, 0:time(0))")
+        ("gpunumber",
+         po::value<int>(&options.m_gpuNumber)->default_value(0),
+         "set the gpu number, default is 0, which do not use GPU")
         ("size", 
          po::value<int>(&options.m_fixedBoardSize)->default_value(0),
          "initial (and fixed) board size");
@@ -128,6 +135,9 @@ void ParseOptions(int argc, char** argv, struct CommandLineOptions& options)
         options.m_allowHandicap = false;
     if (vm.count("quiet"))
         options.m_quiet = true;
+
+    MXNetModel::m_gpuNumber = options.m_gpuNumber;
+    
 }
 
 void PrintStartupMessage()
@@ -146,7 +156,7 @@ void PrintStartupMessage()
 
 int main(int argc, char** argv)
 {
-    
+
     /** Settings from command line options */
     struct CommandLineOptions options;
     options.m_useBook = false;

@@ -56,6 +56,8 @@ public:
 
     void GetPrioProbability(SgArray<SgUctValue, SG_MAX_MOVE_VALUE>& outputArray, SgUctValue& outputValue, const std::vector<float>& inputData);
 
+    static int m_gpuNumber;
+
 private:
 
     map<string, NDArray> args_map;
@@ -66,6 +68,7 @@ private:
     // Context global_ctx(kCPU, 0);
 
     Context global_ctx;
+    Context current_ctx;
     
 
     void LoadSymbol();

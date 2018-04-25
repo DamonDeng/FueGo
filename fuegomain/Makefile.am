@@ -12,6 +12,7 @@ FuegoMainUtil.h
 fuego_LDFLAGS = $(BOOST_LDFLAGS)
 
 fuego_LDADD = \
+-all-static \
 ../gouct/libfuego_gouct.a \
 ../go/libfuego_go.a \
 ../features/libfuego_features.a \
