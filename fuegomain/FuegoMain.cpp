@@ -187,7 +187,7 @@ int main(int argc, char** argv)
         PrintStartupMessage();
         SgRandom::SetSeed(options.m_srand);
 
-        SgDebug() << "Trying to create New Fuego Main Engine\n";
+        SgDebug() << "Trying to create New Fuego Main Engine ... \n";
 
         FuegoMainEngine engine(options.m_fixedBoardSize,
                                options.m_programPath,
