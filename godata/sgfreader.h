@@ -1,0 +1,6 @@
+#ifndef GODATA_SGFREADER
+#define GODATA_SGFREADER
+
+
+
+#endif // end of GODATA_SGFREADER

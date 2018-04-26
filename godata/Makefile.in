@@ -14,8 +14,6 @@
 
 @SET_MAKE@
 
-#AUTOMAKE_OPTIONS=foreign  
-
 
 VPATH = @srcdir@
 am__is_gnu_make = { \
@@ -91,7 +89,8 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-subdir = mxnet
+bin_PROGRAMS = sgfreader$(EXEEXT)
+subdir = godata
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ax_boost_base.m4 \
 	$(top_srcdir)/m4/ax_boost_date_time.m4 \
@@ -111,17 +110,13 @@ mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
-LIBRARIES = $(noinst_LIBRARIES)
-AR = ar
-ARFLAGS = cru
-AM_V_AR = $(am__v_AR_@AM_V@)
-am__v_AR_ = $(am__v_AR_@AM_DEFAULT_V@)
-am__v_AR_0 = @echo "  AR      " $@;
-am__v_AR_1 = 
-lib_mxnetmodel_a_AR = $(AR) $(ARFLAGS)
-lib_mxnetmodel_a_LIBADD =
-am_lib_mxnetmodel_a_OBJECTS = lib_mxnetmodel_a-MXNetModel.$(OBJEXT)
-lib_mxnetmodel_a_OBJECTS = $(am_lib_mxnetmodel_a_OBJECTS)
+am__installdirs = "$(DESTDIR)$(bindir)"
+PROGRAMS = $(bin_PROGRAMS)
+am_sgfreader_OBJECTS = sgfreader-sgfreader.$(OBJEXT)
+sgfreader_OBJECTS = $(am_sgfreader_OBJECTS)
+am__DEPENDENCIES_1 =
+sgfreader_LINK = $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) \
+	$(sgfreader_LDFLAGS) $(LDFLAGS) -o $@
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -155,8 +150,8 @@ AM_V_CXXLD = $(am__v_CXXLD_@AM_V@)
 am__v_CXXLD_ = $(am__v_CXXLD_@AM_DEFAULT_V@)
 am__v_CXXLD_0 = @echo "  CXXLD   " $@;
 am__v_CXXLD_1 = 
-SOURCES = $(lib_mxnetmodel_a_SOURCES)
-DIST_SOURCES = $(lib_mxnetmodel_a_SOURCES)
+SOURCES = $(sgfreader_SOURCES)
+DIST_SOURCES = $(sgfreader_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -293,20 +288,46 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-noinst_LIBRARIES = lib_mxnetmodel.a
-lib_mxnetmodel_a_SOURCES = \
-MXNetModel.cpp 
+sgfreader_SOURCES = \
+sgfreader.cpp 
 
 noinst_HEADERS = \
-MXNetModel.h 
+sgfreader.h
 
-lib_mxnetmodel_a_CPPFLAGS = \
+sgfreader_LDFLAGS = $(BOOST_LDFLAGS)
+sgfreader_LDADD = \
+../gouct/libfuego_gouct.a \
+../go/libfuego_go.a \
+../features/libfuego_features.a \
+../smartgame/libfuego_smartgame.a \
+../gtpengine/libfuego_gtpengine.a \
+../lib/libmxnet.so \
+../mxnet/lib_mxnetmodel.a \
+$(BOOST_PROGRAM_OPTIONS_LIB) \
+$(BOOST_FILESYSTEM_LIB) \
+$(BOOST_SYSTEM_LIB) \
+$(BOOST_THREAD_LIB) \
+ -lpthread
+
+sgfreader_DEPENDENCIES = \
+../gouct/libfuego_gouct.a \
+../go/libfuego_go.a \
+../features/libfuego_features.a \
+../smartgame/libfuego_smartgame.a \
+../gtpengine/libfuego_gtpengine.a \
+../lib/libmxnet.so \
+../mxnet/lib_mxnetmodel.a
+
+sgfreader_CPPFLAGS = \
+-DDATADIR='"@datadir@"' \
+-DABS_TOP_SRCDIR='"@abs_top_srcdir@"' \
 $(BOOST_CPPFLAGS) \
+-I@top_srcdir@/gtpengine \
 -I@top_srcdir@/smartgame \
--I@top_srcdir@/include \
+-I@top_srcdir@/features \
 -I@top_srcdir@/go \
 -I@top_srcdir@/gouct \
--I@top_srcdir@/gtpengine \
+-I@top_srcdir@/mxnet \
 -I@top_srcdir@/include
 
 DISTCLEANFILES = *~
@@ -323,9 +344,9 @@ $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__confi
 	      exit 1;; \
 	  esac; \
 	done; \
-	echo ' cd $(top_srcdir) && $(AUTOMAKE) --gnu mxnet/Makefile'; \
+	echo ' cd $(top_srcdir) && $(AUTOMAKE) --gnu godata/Makefile'; \
 	$(am__cd) $(top_srcdir) && \
-	  $(AUTOMAKE) --gnu mxnet/Makefile
+	  $(AUTOMAKE) --gnu godata/Makefile
 Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	@case '$?' in \
 	  *config.status*) \
@@ -343,14 +364,52 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
+install-binPROGRAMS: $(bin_PROGRAMS)
+	@$(NORMAL_INSTALL)
+	@list='$(bin_PROGRAMS)'; test -n "$(bindir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(bindir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(bindir)" || exit 1; \
+	fi; \
+	for p in $$list; do echo "$$p $$p"; done | \
+	sed 's/$(EXEEXT)$$//' | \
+	while read p p1; do if test -f $$p \
+	  ; then echo "$$p"; echo "$$p"; else :; fi; \
+	done | \
+	sed -e 'p;s,.*/,,;n;h' \
+	    -e 's|.*|.|' \
+	    -e 'p;x;s,.*/,,;s/$(EXEEXT)$$//;$(transform);s/$$/$(EXEEXT)/' | \
+	sed 'N;N;N;s,\n, ,g' | \
+	$(AWK) 'BEGIN { files["."] = ""; dirs["."] = 1 } \
+	  { d=$$3; if (dirs[d] != 1) { print "d", d; dirs[d] = 1 } \
+	    if ($$2 == $$4) files[d] = files[d] " " $$1; \
+	    else { print "f", $$3 "/" $$4, $$1; } } \
+	  END { for (d in files) print "f", d, files[d] }' | \
+	while read type dir files; do \
+	    if test "$$dir" = .; then dir=; else dir=/$$dir; fi; \
+	    test -z "$$files" || { \
+	      echo " $(INSTALL_PROGRAM_ENV) $(INSTALL_PROGRAM) $$files '$(DESTDIR)$(bindir)$$dir'"; \
+	      $(INSTALL_PROGRAM_ENV) $(INSTALL_PROGRAM) $$files "$(DESTDIR)$(bindir)$$dir" || exit $$?; \
+	    } \
+	; done
 
-clean-noinstLIBRARIES:
-	-test -z "$(noinst_LIBRARIES)" || rm -f $(noinst_LIBRARIES)
+uninstall-binPROGRAMS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(bin_PROGRAMS)'; test -n "$(bindir)" || list=; \
+	files=`for p in $$list; do echo "$$p"; done | \
+	  sed -e 'h;s,^.*/,,;s/$(EXEEXT)$$//;$(transform)' \
+	      -e 's/$$/$(EXEEXT)/' \
+	`; \
+	test -n "$$list" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(bindir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(bindir)" && rm -f $$files
 
-lib_mxnetmodel.a: $(lib_mxnetmodel_a_OBJECTS) $(lib_mxnetmodel_a_DEPENDENCIES) $(EXTRA_lib_mxnetmodel_a_DEPENDENCIES) 
-	$(AM_V_at)-rm -f lib_mxnetmodel.a
-	$(AM_V_AR)$(lib_mxnetmodel_a_AR) lib_mxnetmodel.a $(lib_mxnetmodel_a_OBJECTS) $(lib_mxnetmodel_a_LIBADD)
-	$(AM_V_at)$(RANLIB) lib_mxnetmodel.a
+clean-binPROGRAMS:
+	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
+
+sgfreader$(EXEEXT): $(sgfreader_OBJECTS) $(sgfreader_DEPENDENCIES) $(EXTRA_sgfreader_DEPENDENCIES) 
+	@rm -f sgfreader$(EXEEXT)
+	$(AM_V_CXXLD)$(sgfreader_LINK) $(sgfreader_OBJECTS) $(sgfreader_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -358,7 +417,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/lib_mxnetmodel_a-MXNetModel.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/sgfreader-sgfreader.Po@am__quote@
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -374,19 +433,19 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
-lib_mxnetmodel_a-MXNetModel.o: MXNetModel.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(lib_mxnetmodel_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT lib_mxnetmodel_a-MXNetModel.o -MD -MP -MF $(DEPDIR)/lib_mxnetmodel_a-MXNetModel.Tpo -c -o lib_mxnetmodel_a-MXNetModel.o `test -f 'MXNetModel.cpp' || echo '$(srcdir)/'`MXNetModel.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/lib_mxnetmodel_a-MXNetModel.Tpo $(DEPDIR)/lib_mxnetmodel_a-MXNetModel.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='MXNetModel.cpp' object='lib_mxnetmodel_a-MXNetModel.o' libtool=no @AMDEPBACKSLASH@
+sgfreader-sgfreader.o: sgfreader.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(sgfreader_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sgfreader-sgfreader.o -MD -MP -MF $(DEPDIR)/sgfreader-sgfreader.Tpo -c -o sgfreader-sgfreader.o `test -f 'sgfreader.cpp' || echo '$(srcdir)/'`sgfreader.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/sgfreader-sgfreader.Tpo $(DEPDIR)/sgfreader-sgfreader.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sgfreader.cpp' object='sgfreader-sgfreader.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(lib_mxnetmodel_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o lib_mxnetmodel_a-MXNetModel.o `test -f 'MXNetModel.cpp' || echo '$(srcdir)/'`MXNetModel.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(sgfreader_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sgfreader-sgfreader.o `test -f 'sgfreader.cpp' || echo '$(srcdir)/'`sgfreader.cpp
 
-lib_mxnetmodel_a-MXNetModel.obj: MXNetModel.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(lib_mxnetmodel_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT lib_mxnetmodel_a-MXNetModel.obj -MD -MP -MF $(DEPDIR)/lib_mxnetmodel_a-MXNetModel.Tpo -c -o lib_mxnetmodel_a-MXNetModel.obj `if test -f 'MXNetModel.cpp'; then $(CYGPATH_W) 'MXNetModel.cpp'; else $(CYGPATH_W) '$(srcdir)/MXNetModel.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/lib_mxnetmodel_a-MXNetModel.Tpo $(DEPDIR)/lib_mxnetmodel_a-MXNetModel.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='MXNetModel.cpp' object='lib_mxnetmodel_a-MXNetModel.obj' libtool=no @AMDEPBACKSLASH@
+sgfreader-sgfreader.obj: sgfreader.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(sgfreader_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sgfreader-sgfreader.obj -MD -MP -MF $(DEPDIR)/sgfreader-sgfreader.Tpo -c -o sgfreader-sgfreader.obj `if test -f 'sgfreader.cpp'; then $(CYGPATH_W) 'sgfreader.cpp'; else $(CYGPATH_W) '$(srcdir)/sgfreader.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/sgfreader-sgfreader.Tpo $(DEPDIR)/sgfreader-sgfreader.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sgfreader.cpp' object='sgfreader-sgfreader.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(lib_mxnetmodel_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o lib_mxnetmodel_a-MXNetModel.obj `if test -f 'MXNetModel.cpp'; then $(CYGPATH_W) 'MXNetModel.cpp'; else $(CYGPATH_W) '$(srcdir)/MXNetModel.cpp'; fi`
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(sgfreader_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sgfreader-sgfreader.obj `if test -f 'sgfreader.cpp'; then $(CYGPATH_W) 'sgfreader.cpp'; else $(CYGPATH_W) '$(srcdir)/sgfreader.cpp'; fi`
 
 ID: $(am__tagged_files)
 	$(am__define_uniq_tagged_files); mkid -fID $$unique
@@ -472,8 +531,11 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile $(LIBRARIES) $(HEADERS)
+all-am: Makefile $(PROGRAMS) $(HEADERS)
 installdirs:
+	for dir in "$(DESTDIR)$(bindir)"; do \
+	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
+	done
 install: install-am
 install-exec: install-exec-am
 install-data: install-data-am
@@ -507,7 +569,7 @@ maintainer-clean-generic:
 	@echo "it deletes files that may require special tools to rebuild."
 clean: clean-am
 
-clean-am: clean-generic clean-noinstLIBRARIES mostlyclean-am
+clean-am: clean-binPROGRAMS clean-generic mostlyclean-am
 
 distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
@@ -533,7 +595,7 @@ install-dvi: install-dvi-am
 
 install-dvi-am:
 
-install-exec-am:
+install-exec-am: install-binPROGRAMS
 
 install-html: install-html-am
 
@@ -572,22 +634,23 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am:
+uninstall-am: uninstall-binPROGRAMS
 
 .MAKE: install-am install-strip
 
-.PHONY: CTAGS GTAGS TAGS all all-am check check-am clean clean-generic \
-	clean-noinstLIBRARIES cscopelist-am ctags ctags-am distclean \
-	distclean-compile distclean-generic distclean-tags distdir dvi \
-	dvi-am html html-am info info-am install install-am \
-	install-data install-data-am install-dvi install-dvi-am \
-	install-exec install-exec-am install-html install-html-am \
-	install-info install-info-am install-man install-pdf \
-	install-pdf-am install-ps install-ps-am install-strip \
-	installcheck installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-compile \
-	mostlyclean-generic pdf pdf-am ps ps-am tags tags-am uninstall \
-	uninstall-am
+.PHONY: CTAGS GTAGS TAGS all all-am check check-am clean \
+	clean-binPROGRAMS clean-generic cscopelist-am ctags ctags-am \
+	distclean distclean-compile distclean-generic distclean-tags \
+	distdir dvi dvi-am html html-am info info-am install \
+	install-am install-binPROGRAMS install-data install-data-am \
+	install-dvi install-dvi-am install-exec install-exec-am \
+	install-html install-html-am install-info install-info-am \
+	install-man install-pdf install-pdf-am install-ps \
+	install-ps-am install-strip installcheck installcheck-am \
+	installdirs maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-compile mostlyclean-generic pdf pdf-am \
+	ps ps-am tags tags-am uninstall uninstall-am \
+	uninstall-binPROGRAMS
 
 .PRECIOUS: Makefile
 

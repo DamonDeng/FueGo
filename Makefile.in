@@ -335,7 +335,8 @@ mxnet \
 fuegomain \
 fuegotest \
 selfplay \
-unittestmain
+unittestmain \
+godata
 
 
 # TODO: This shouldn't include the non-portable makefile doc/Makefile

@@ -18,7 +18,6 @@
 
 
 
-
 am__is_gnu_make = { \
   if test -z '$(MAKELEVEL)'; then \
     false; \
@@ -92,8 +91,6 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = x86_64-apple-darwin15.6.0
 host_triplet = x86_64-apple-darwin15.6.0
-bin_PROGRAMS = MXNetExtract$(EXEEXT) MXNetMain$(EXEEXT) \
-	GoBoardTest$(EXEEXT)
 subdir = mxnet
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ax_boost_base.m4 \
@@ -125,21 +122,6 @@ lib_mxnetmodel_a_AR = $(AR) $(ARFLAGS)
 lib_mxnetmodel_a_LIBADD =
 am_lib_mxnetmodel_a_OBJECTS = lib_mxnetmodel_a-MXNetModel.$(OBJEXT)
 lib_mxnetmodel_a_OBJECTS = $(am_lib_mxnetmodel_a_OBJECTS)
-am__installdirs = "$(DESTDIR)$(bindir)"
-PROGRAMS = $(bin_PROGRAMS)
-am_GoBoardTest_OBJECTS = GoBoardTest-GoBoardTest.$(OBJEXT)
-GoBoardTest_OBJECTS = $(am_GoBoardTest_OBJECTS)
-am__DEPENDENCIES_1 =
-GoBoardTest_LINK = $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) \
-	$(GoBoardTest_LDFLAGS) $(LDFLAGS) -o $@
-am_MXNetExtract_OBJECTS = MXNetExtract-feature_extract.$(OBJEXT)
-MXNetExtract_OBJECTS = $(am_MXNetExtract_OBJECTS)
-MXNetExtract_LINK = $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) \
-	$(MXNetExtract_LDFLAGS) $(LDFLAGS) -o $@
-am_MXNetMain_OBJECTS = MXNetMain-MXNetMain.$(OBJEXT)
-MXNetMain_OBJECTS = $(am_MXNetMain_OBJECTS)
-MXNetMain_LINK = $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) \
-	$(MXNetMain_LDFLAGS) $(LDFLAGS) -o $@
 AM_V_P = $(am__v_P_$(V))
 am__v_P_ = $(am__v_P_$(AM_DEFAULT_VERBOSITY))
 am__v_P_0 = false
@@ -173,10 +155,8 @@ AM_V_CXXLD = $(am__v_CXXLD_$(V))
 am__v_CXXLD_ = $(am__v_CXXLD_$(AM_DEFAULT_VERBOSITY))
 am__v_CXXLD_0 = @echo "  CXXLD   " $@;
 am__v_CXXLD_1 = 
-SOURCES = $(lib_mxnetmodel_a_SOURCES) $(GoBoardTest_SOURCES) \
-	$(MXNetExtract_SOURCES) $(MXNetMain_SOURCES)
-DIST_SOURCES = $(lib_mxnetmodel_a_SOURCES) $(GoBoardTest_SOURCES) \
-	$(MXNetExtract_SOURCES) $(MXNetMain_SOURCES)
+SOURCES = $(lib_mxnetmodel_a_SOURCES)
+DIST_SOURCES = $(lib_mxnetmodel_a_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -329,83 +309,6 @@ $(BOOST_CPPFLAGS) \
 -I../gtpengine \
 -I../include
 
-MXNetMain_SOURCES = MXNetMain.cpp
-MXNetMain_LDFLAGS = $(BOOST_LDFLAGS)
-MXNetMain_LDADD = \
-../smartgame/libfuego_smartgame.a \
-../gouct/libfuego_gouct.a \
-../go/libfuego_go.a \
-../lib/libmxnet.so \
-../simpleplayers/libfuego_simpleplayers.a \
-$(BOOST_PROGRAM_OPTIONS_LIB) \
-$(BOOST_SYSTEM_LIB) \
-$(BOOST_FILESYSTEM_LIB) \
-$(BOOST_THREAD_LIB)
-
-MXNetMain_DEPENDENCIES = \
-../gouct/libfuego_gouct.a \
-../go/libfuego_go.a \
-../smartgame/libfuego_smartgame.a \
-../simpleplayers/libfuego_simpleplayers.a
-
-MXNetMain_CPPFLAGS = \
-$(BOOST_CPPFLAGS) \
--I../smartgame \
--I../include \
--I../go \
--I../gouct \
--I../simpleplayers \
--I../include
-
-MXNetExtract_SOURCES = feature_extract.cpp
-MXNetExtract_LDFLAGS = $(BOOST_LDFLAGS)
-MXNetExtract_LDADD = \
-../smartgame/libfuego_smartgame.a \
-../gouct/libfuego_gouct.a \
-../go/libfuego_go.a \
-../lib/libmxnet.so \
-$(BOOST_PROGRAM_OPTIONS_LIB) \
-$(BOOST_SYSTEM_LIB) \
-$(BOOST_FILESYSTEM_LIB) \
-$(BOOST_THREAD_LIB)
-
-MXNetExtract_DEPENDENCIES = \
-../gouct/libfuego_gouct.a \
-../go/libfuego_go.a \
-../smartgame/libfuego_smartgame.a 
-
-MXNetExtract_CPPFLAGS = \
-$(BOOST_CPPFLAGS) \
--I../smartgame \
--I../include \
--I../go \
--I../gouct 
-
-GoBoardTest_SOURCES = GoBoardTest.cpp
-GoBoardTest_LDFLAGS = $(BOOST_LDFLAGS)
-GoBoardTest_LDADD = \
-../smartgame/libfuego_smartgame.a \
-../gouct/libfuego_gouct.a \
-../go/libfuego_go.a \
-../lib/libmxnet.so \
-$(BOOST_PROGRAM_OPTIONS_LIB) \
-$(BOOST_SYSTEM_LIB) \
-$(BOOST_FILESYSTEM_LIB) \
-$(BOOST_THREAD_LIB)
-
-GoBoardTest_DEPENDENCIES = \
-../gouct/libfuego_gouct.a \
-../go/libfuego_go.a \
-../smartgame/libfuego_smartgame.a 
-
-GoBoardTest_CPPFLAGS = \
-$(BOOST_CPPFLAGS) \
--I../smartgame \
--I../include \
--I../go \
--I../gouct \
--I../include
-
 DISTCLEANFILES = *~
 all: all-am
 
@@ -448,60 +351,6 @@ lib_mxnetmodel.a: $(lib_mxnetmodel_a_OBJECTS) $(lib_mxnetmodel_a_DEPENDENCIES) $
 	$(AM_V_at)-rm -f lib_mxnetmodel.a
 	$(AM_V_AR)$(lib_mxnetmodel_a_AR) lib_mxnetmodel.a $(lib_mxnetmodel_a_OBJECTS) $(lib_mxnetmodel_a_LIBADD)
 	$(AM_V_at)$(RANLIB) lib_mxnetmodel.a
-install-binPROGRAMS: $(bin_PROGRAMS)
-	@$(NORMAL_INSTALL)
-	@list='$(bin_PROGRAMS)'; test -n "$(bindir)" || list=; \
-	if test -n "$$list"; then \
-	  echo " $(MKDIR_P) '$(DESTDIR)$(bindir)'"; \
-	  $(MKDIR_P) "$(DESTDIR)$(bindir)" || exit 1; \
-	fi; \
-	for p in $$list; do echo "$$p $$p"; done | \
-	sed 's/$(EXEEXT)$$//' | \
-	while read p p1; do if test -f $$p \
-	  ; then echo "$$p"; echo "$$p"; else :; fi; \
-	done | \
-	sed -e 'p;s,.*/,,;n;h' \
-	    -e 's|.*|.|' \
-	    -e 'p;x;s,.*/,,;s/$(EXEEXT)$$//;$(transform);s/$$/$(EXEEXT)/' | \
-	sed 'N;N;N;s,\n, ,g' | \
-	$(AWK) 'BEGIN { files["."] = ""; dirs["."] = 1 } \
-	  { d=$$3; if (dirs[d] != 1) { print "d", d; dirs[d] = 1 } \
-	    if ($$2 == $$4) files[d] = files[d] " " $$1; \
-	    else { print "f", $$3 "/" $$4, $$1; } } \
-	  END { for (d in files) print "f", d, files[d] }' | \
-	while read type dir files; do \
-	    if test "$$dir" = .; then dir=; else dir=/$$dir; fi; \
-	    test -z "$$files" || { \
-	      echo " $(INSTALL_PROGRAM_ENV) $(INSTALL_PROGRAM) $$files '$(DESTDIR)$(bindir)$$dir'"; \
-	      $(INSTALL_PROGRAM_ENV) $(INSTALL_PROGRAM) $$files "$(DESTDIR)$(bindir)$$dir" || exit $$?; \
-	    } \
-	; done
-
-uninstall-binPROGRAMS:
-	@$(NORMAL_UNINSTALL)
-	@list='$(bin_PROGRAMS)'; test -n "$(bindir)" || list=; \
-	files=`for p in $$list; do echo "$$p"; done | \
-	  sed -e 'h;s,^.*/,,;s/$(EXEEXT)$$//;$(transform)' \
-	      -e 's/$$/$(EXEEXT)/' \
-	`; \
-	test -n "$$list" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(bindir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(bindir)" && rm -f $$files
-
-clean-binPROGRAMS:
-	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
-
-GoBoardTest$(EXEEXT): $(GoBoardTest_OBJECTS) $(GoBoardTest_DEPENDENCIES) $(EXTRA_GoBoardTest_DEPENDENCIES) 
-	@rm -f GoBoardTest$(EXEEXT)
-	$(AM_V_CXXLD)$(GoBoardTest_LINK) $(GoBoardTest_OBJECTS) $(GoBoardTest_LDADD) $(LIBS)
-
-MXNetExtract$(EXEEXT): $(MXNetExtract_OBJECTS) $(MXNetExtract_DEPENDENCIES) $(EXTRA_MXNetExtract_DEPENDENCIES) 
-	@rm -f MXNetExtract$(EXEEXT)
-	$(AM_V_CXXLD)$(MXNetExtract_LINK) $(MXNetExtract_OBJECTS) $(MXNetExtract_LDADD) $(LIBS)
-
-MXNetMain$(EXEEXT): $(MXNetMain_OBJECTS) $(MXNetMain_DEPENDENCIES) $(EXTRA_MXNetMain_DEPENDENCIES) 
-	@rm -f MXNetMain$(EXEEXT)
-	$(AM_V_CXXLD)$(MXNetMain_LINK) $(MXNetMain_OBJECTS) $(MXNetMain_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -509,9 +358,6 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-include ./$(DEPDIR)/GoBoardTest-GoBoardTest.Po
-include ./$(DEPDIR)/MXNetExtract-feature_extract.Po
-include ./$(DEPDIR)/MXNetMain-MXNetMain.Po
 include ./$(DEPDIR)/lib_mxnetmodel_a-MXNetModel.Po
 
 .cpp.o:
@@ -541,48 +387,6 @@ lib_mxnetmodel_a-MXNetModel.obj: MXNetModel.cpp
 #	$(AM_V_CXX)source='MXNetModel.cpp' object='lib_mxnetmodel_a-MXNetModel.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(lib_mxnetmodel_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o lib_mxnetmodel_a-MXNetModel.obj `if test -f 'MXNetModel.cpp'; then $(CYGPATH_W) 'MXNetModel.cpp'; else $(CYGPATH_W) '$(srcdir)/MXNetModel.cpp'; fi`
-
-GoBoardTest-GoBoardTest.o: GoBoardTest.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(GoBoardTest_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT GoBoardTest-GoBoardTest.o -MD -MP -MF $(DEPDIR)/GoBoardTest-GoBoardTest.Tpo -c -o GoBoardTest-GoBoardTest.o `test -f 'GoBoardTest.cpp' || echo '$(srcdir)/'`GoBoardTest.cpp
-	$(AM_V_at)$(am__mv) $(DEPDIR)/GoBoardTest-GoBoardTest.Tpo $(DEPDIR)/GoBoardTest-GoBoardTest.Po
-#	$(AM_V_CXX)source='GoBoardTest.cpp' object='GoBoardTest-GoBoardTest.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(GoBoardTest_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o GoBoardTest-GoBoardTest.o `test -f 'GoBoardTest.cpp' || echo '$(srcdir)/'`GoBoardTest.cpp
-
-GoBoardTest-GoBoardTest.obj: GoBoardTest.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(GoBoardTest_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT GoBoardTest-GoBoardTest.obj -MD -MP -MF $(DEPDIR)/GoBoardTest-GoBoardTest.Tpo -c -o GoBoardTest-GoBoardTest.obj `if test -f 'GoBoardTest.cpp'; then $(CYGPATH_W) 'GoBoardTest.cpp'; else $(CYGPATH_W) '$(srcdir)/GoBoardTest.cpp'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/GoBoardTest-GoBoardTest.Tpo $(DEPDIR)/GoBoardTest-GoBoardTest.Po
-#	$(AM_V_CXX)source='GoBoardTest.cpp' object='GoBoardTest-GoBoardTest.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(GoBoardTest_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o GoBoardTest-GoBoardTest.obj `if test -f 'GoBoardTest.cpp'; then $(CYGPATH_W) 'GoBoardTest.cpp'; else $(CYGPATH_W) '$(srcdir)/GoBoardTest.cpp'; fi`
-
-MXNetExtract-feature_extract.o: feature_extract.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(MXNetExtract_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT MXNetExtract-feature_extract.o -MD -MP -MF $(DEPDIR)/MXNetExtract-feature_extract.Tpo -c -o MXNetExtract-feature_extract.o `test -f 'feature_extract.cpp' || echo '$(srcdir)/'`feature_extract.cpp
-	$(AM_V_at)$(am__mv) $(DEPDIR)/MXNetExtract-feature_extract.Tpo $(DEPDIR)/MXNetExtract-feature_extract.Po
-#	$(AM_V_CXX)source='feature_extract.cpp' object='MXNetExtract-feature_extract.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(MXNetExtract_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o MXNetExtract-feature_extract.o `test -f 'feature_extract.cpp' || echo '$(srcdir)/'`feature_extract.cpp
-
-MXNetExtract-feature_extract.obj: feature_extract.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(MXNetExtract_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT MXNetExtract-feature_extract.obj -MD -MP -MF $(DEPDIR)/MXNetExtract-feature_extract.Tpo -c -o MXNetExtract-feature_extract.obj `if test -f 'feature_extract.cpp'; then $(CYGPATH_W) 'feature_extract.cpp'; else $(CYGPATH_W) '$(srcdir)/feature_extract.cpp'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/MXNetExtract-feature_extract.Tpo $(DEPDIR)/MXNetExtract-feature_extract.Po
-#	$(AM_V_CXX)source='feature_extract.cpp' object='MXNetExtract-feature_extract.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(MXNetExtract_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o MXNetExtract-feature_extract.obj `if test -f 'feature_extract.cpp'; then $(CYGPATH_W) 'feature_extract.cpp'; else $(CYGPATH_W) '$(srcdir)/feature_extract.cpp'; fi`
-
-MXNetMain-MXNetMain.o: MXNetMain.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(MXNetMain_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT MXNetMain-MXNetMain.o -MD -MP -MF $(DEPDIR)/MXNetMain-MXNetMain.Tpo -c -o MXNetMain-MXNetMain.o `test -f 'MXNetMain.cpp' || echo '$(srcdir)/'`MXNetMain.cpp
-	$(AM_V_at)$(am__mv) $(DEPDIR)/MXNetMain-MXNetMain.Tpo $(DEPDIR)/MXNetMain-MXNetMain.Po
-#	$(AM_V_CXX)source='MXNetMain.cpp' object='MXNetMain-MXNetMain.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(MXNetMain_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o MXNetMain-MXNetMain.o `test -f 'MXNetMain.cpp' || echo '$(srcdir)/'`MXNetMain.cpp
-
-MXNetMain-MXNetMain.obj: MXNetMain.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(MXNetMain_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT MXNetMain-MXNetMain.obj -MD -MP -MF $(DEPDIR)/MXNetMain-MXNetMain.Tpo -c -o MXNetMain-MXNetMain.obj `if test -f 'MXNetMain.cpp'; then $(CYGPATH_W) 'MXNetMain.cpp'; else $(CYGPATH_W) '$(srcdir)/MXNetMain.cpp'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/MXNetMain-MXNetMain.Tpo $(DEPDIR)/MXNetMain-MXNetMain.Po
-#	$(AM_V_CXX)source='MXNetMain.cpp' object='MXNetMain-MXNetMain.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(MXNetMain_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o MXNetMain-MXNetMain.obj `if test -f 'MXNetMain.cpp'; then $(CYGPATH_W) 'MXNetMain.cpp'; else $(CYGPATH_W) '$(srcdir)/MXNetMain.cpp'; fi`
 
 ID: $(am__tagged_files)
 	$(am__define_uniq_tagged_files); mkid -fID $$unique
@@ -668,11 +472,8 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile $(LIBRARIES) $(PROGRAMS) $(HEADERS)
+all-am: Makefile $(LIBRARIES) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(bindir)"; do \
-	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
-	done
 install: install-am
 install-exec: install-exec-am
 install-data: install-data-am
@@ -706,8 +507,7 @@ maintainer-clean-generic:
 	@echo "it deletes files that may require special tools to rebuild."
 clean: clean-am
 
-clean-am: clean-binPROGRAMS clean-generic clean-noinstLIBRARIES \
-	mostlyclean-am
+clean-am: clean-generic clean-noinstLIBRARIES mostlyclean-am
 
 distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
@@ -733,7 +533,7 @@ install-dvi: install-dvi-am
 
 install-dvi-am:
 
-install-exec-am: install-binPROGRAMS
+install-exec-am:
 
 install-html: install-html-am
 
@@ -772,15 +572,14 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-binPROGRAMS
+uninstall-am:
 
 .MAKE: install-am install-strip
 
-.PHONY: CTAGS GTAGS TAGS all all-am check check-am clean \
-	clean-binPROGRAMS clean-generic clean-noinstLIBRARIES \
-	cscopelist-am ctags ctags-am distclean distclean-compile \
-	distclean-generic distclean-tags distdir dvi dvi-am html \
-	html-am info info-am install install-am install-binPROGRAMS \
+.PHONY: CTAGS GTAGS TAGS all all-am check check-am clean clean-generic \
+	clean-noinstLIBRARIES cscopelist-am ctags ctags-am distclean \
+	distclean-compile distclean-generic distclean-tags distdir dvi \
+	dvi-am html html-am info info-am install install-am \
 	install-data install-data-am install-dvi install-dvi-am \
 	install-exec install-exec-am install-html install-html-am \
 	install-info install-info-am install-man install-pdf \
@@ -788,7 +587,7 @@ uninstall-am: uninstall-binPROGRAMS
 	installcheck installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic pdf pdf-am ps ps-am tags tags-am uninstall \
-	uninstall-am uninstall-binPROGRAMS
+	uninstall-am
 
 .PRECIOUS: Makefile
 
