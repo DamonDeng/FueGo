@@ -690,19 +690,19 @@ SgUctValue SgUctSearch::GetBound(bool useRave, bool useBiasTerm,
 
     prioProbability = child.GetPrioProbability();
 
-    return prioProbability;
+   
 
-    // if (prioProbability <= 0){
-    //     return -2;
-    // }
+    if (prioProbability <= 0){
+        return -2;
+    }
 
-    //     // prioProbability = 0.1 * prioProbability/Log(child.m_probabilityLostCount);
-    //     //prioProbability = prioProbability/(child.m_probabilityLostCount+1);
+        // prioProbability = 0.1 * prioProbability/Log(child.m_probabilityLostCount);
+        //prioProbability = prioProbability/(child.m_probabilityLostCount+1);
     // prioProbability = prioProbability/(child.MoveCount()+1);
 
     // // SgDebug() << "Getting bound of move:" << child.Move() << " value: " << value  << " PrioProbability:" << prioProbability << " . \n";
 
-    // return value + prioProbability;
+    return value + prioProbability;
 
 
         // if (prioProbability < 0.03){

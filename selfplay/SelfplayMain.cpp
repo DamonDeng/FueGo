@@ -39,7 +39,7 @@ int main(int argc, char** argv){
 
         SgDebug() << "Round : " << i << ". \n";
 
-        time = SgTimeRecord(true, 60);
+        time = SgTimeRecord(true, 5);
 
         SgPoint point1 = player1.GenMove(time, SG_BLACK);
         if(point1 == SG_RESIGN || point1 == SG_PASS){
@@ -48,7 +48,7 @@ int main(int argc, char** argv){
         bd1.Play(point1, SG_BLACK);
         bd2.Play(point1, SG_BLACK);
 
-        time = SgTimeRecord(true, 60);
+        time = SgTimeRecord(true, 5);
         SgPoint point2 = player2.GenMove(time, SG_WHITE);
         if(point2 == SG_RESIGN || point2 == SG_PASS){
             break;
