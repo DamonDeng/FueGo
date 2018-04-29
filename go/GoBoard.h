@@ -36,6 +36,8 @@
 #include "SgPointSet.h"
 #include "SgDebug.h"
 
+// #include "MXNetModel.h"
+
 //----------------------------------------------------------------------------
 
 /** Board size to choose at startup. */
@@ -534,6 +536,9 @@ public:
     void UndoHistoryData();
 
     void GetHistoryData(std::vector<float>& historyData, int historyLength) const;
+
+    // MXNetModel m_debugModel;
+    // void CheckCNNValue();
 
     
 

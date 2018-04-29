@@ -887,8 +887,33 @@ void GoBoard::Play(SgPoint p, SgBlackWhite player)
 
     RecordHistoryData();
 
+    // CheckCNNValue();
+
     CheckConsistency();
 }
+
+// void GoBoard::CheckCNNValue(){
+
+//     int historyLength = 8;
+//     int arrayLength = historyLength*2 + 1;
+
+//     int boardSize = 19;
+
+//     int dataLength = arrayLength*boardSize*boardSize;
+
+//     std::vector<float> historyData(dataLength);
+
+//     currentBoard.GetHistoryData(historyData, historyLength);
+
+//     SgArray<SgUctValue, SG_MAX_MOVE_VALUE> array;
+//     SgUctValue value;
+
+//     m_debugModel.GetPrioProbability(array, value, historyData);
+
+//     SgDebug() << "CNN Value:" << value << ". \n";
+
+
+// }
 
 void GoBoard::Undo()
 {

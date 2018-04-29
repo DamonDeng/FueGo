@@ -476,8 +476,7 @@ libfuego_smartgame_a_CPPFLAGS = \
 $(BOOST_CPPFLAGS) \
 -I../gtpengine \
 -I../go \
--I../include \
- -lpthread
+-I../include
 
 DISTCLEANFILES = *~
 all: all-am

@@ -467,44 +467,46 @@ void SgUctTree::ApplyPrioProbabilityToChildren(std::size_t allocatorId, const Sg
 
         // trying to get top list of the array value
 
-        int topMemberNumber = 10;
+        // int topMemberNumber = 10;
 
-        std::vector<SgUctValue> topList(topMemberNumber);
-        SgUctValue swapValue = 0;
+        // std::vector<SgUctValue> topList(topMemberNumber);
+        // SgUctValue swapValue = 0;
 
-        for (int row=1; row<=SG_MAX_SIZE; row++){
-            for (int col=1; col<=SG_MAX_SIZE; col++){
-                SgPoint point = SgPointUtil::Pt(col, row);
+        // for (int row=1; row<=SG_MAX_SIZE; row++){
+        //     for (int col=1; col<=SG_MAX_SIZE; col++){
+        //         SgPoint point = SgPointUtil::Pt(col, row);
 
-                if (array[point] > topList[0]){
-                    topList[0] = array[point];
-                    for (int j=0; j<(topMemberNumber-1); j++){
-                        if (topList[j] > topList[j+1]){
-                            swapValue = topList[j+1];
-                            topList[j+1] = topList[j];
-                            topList[j] = swapValue;
-                        } else {
-                            break;
-                        }
-                    }
-                }
-            }
+        //         if (array[point] > topList[0]){
+        //             topList[0] = array[point];
+        //             for (int j=0; j<(topMemberNumber-1); j++){
+        //                 if (topList[j] > topList[j+1]){
+        //                     swapValue = topList[j+1];
+        //                     topList[j+1] = topList[j];
+        //                     topList[j] = swapValue;
+        //                 } else {
+        //                     break;
+        //                 }
+        //             }
+        //         }
+        //     }
             
-        }
+        // }
 
 
-        if (array[SG_MAX_MOVE_VALUE-1] > topList[0]){
-            topList[0] = array[SG_MAX_MOVE_VALUE-1];
-            for (int j=0; j<(topMemberNumber-1); j++){
-                if (topList[j] > topList[j+1]){
-                    swapValue = topList[j+1];
-                    topList[j+1] = topList[j];
-                    topList[j] = swapValue;
-                } else {
-                    break;
-                }
-            }
-        }
+        // if (array[SG_MAX_MOVE_VALUE-1] > topList[0]){
+        //     topList[0] = array[SG_MAX_MOVE_VALUE-1];
+        //     for (int j=0; j<(topMemberNumber-1); j++){
+        //         if (topList[j] > topList[j+1]){
+        //             swapValue = topList[j+1];
+        //             topList[j+1] = topList[j];
+        //             topList[j] = swapValue;
+        //         } else {
+        //             break;
+        //         }
+        //     }
+        // }
+
+        // end of toplist code
 
 
         // SgDebug() << "Top list: ";
@@ -537,11 +539,11 @@ void SgUctTree::ApplyPrioProbabilityToChildren(std::size_t allocatorId, const Sg
                 // SgDebug() << "SG_MAX_MOVE_VALUE: " << SG_MAX_MOVE_VALUE << ". \n";
                 // SgDebug() << "Pass prioprobability: " << array[SG_MAX_MOVE_VALUE-1] << ".\n";
                 
-                if (array[SG_MAX_MOVE_VALUE-1] >= topList[0]){
+                // if (array[SG_MAX_MOVE_VALUE-1] >= topList[0]){
                     child->m_prioProbability = array[SG_MAX_MOVE_VALUE-1];
-                } else {
-                    child->m_prioProbability = -1;
-                }
+                // } else {
+                //     child->m_prioProbability = -1;
+                // }
 
                 
                 // child.m_prioProbability = 0;
@@ -553,16 +555,16 @@ void SgUctTree::ApplyPrioProbabilityToChildren(std::size_t allocatorId, const Sg
                     SgDebug() << "incorrect move value: " << child->Move() << " !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n";
                 } else {
 
-                    if (array[child->Move()] >= topList[0]){
+                    // if (array[child->Move()] >= topList[0]){
 
                         child->m_prioProbability = array[child->Move()];
                         // SgDebug() << "Got one !!!!! prioProbability is:" << array[child->Move()] << ".\n";
 
-                    } else {
-                        // SgDebug() << "topList[0] is: " << topList[0]  << ". \n";
-                        // SgDebug() << "prioProbability is:" << array[child->Move()] << ".\n";
-                        child->m_prioProbability = -1;
-                    }
+                    // } else {
+                    //     // SgDebug() << "topList[0] is: " << topList[0]  << ". \n";
+                    //     // SgDebug() << "prioProbability is:" << array[child->Move()] << ".\n";
+                    //     child->m_prioProbability = -1;
+                    // }
                     // child.m_prioProbability = 0;
                 }
             }

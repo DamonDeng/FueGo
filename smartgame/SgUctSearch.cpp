@@ -692,13 +692,13 @@ SgUctValue SgUctSearch::GetBound(bool useRave, bool useBiasTerm,
 
    
 
-    if (prioProbability <= 0){
-        return -2;
-    }
+    // if (prioProbability <= 0){
+    //     return -2;
+    // }
 
         // prioProbability = 0.1 * prioProbability/Log(child.m_probabilityLostCount);
         //prioProbability = prioProbability/(child.m_probabilityLostCount+1);
-    // prioProbability = prioProbability/(child.MoveCount()+1);
+    prioProbability = prioProbability/(child.MoveCount()+1);
 
     // // SgDebug() << "Getting bound of move:" << child.Move() << " value: " << value  << " PrioProbability:" << prioProbability << " . \n";
 
@@ -1464,6 +1464,7 @@ SgUctValue SgUctSearch::Search(SgUctValue maxGames, double maxTime,
 
     std::vector<SgUctValue> childProbability(SG_MAX_MOVE_VALUE);
     std::vector<int> childMoveCount(SG_MAX_MOVE_VALUE);
+    std::vector<SgUctValue> childMean(SG_MAX_MOVE_VALUE);
     
 
     for (SgUctChildIterator it(m_tree, m_tree.Root()); it; ++it){
@@ -1472,6 +1473,7 @@ SgUctValue SgUctSearch::Search(SgUctValue maxGames, double maxTime,
         } else {
             childProbability[(*it).Move()] = (*it).m_prioProbability;
             childMoveCount[(*it).Move()] = (*it).MoveCount();
+            childMean[(*it).Move()] = (*it).Mean();
         }
     }
 
@@ -1486,7 +1488,7 @@ SgUctValue SgUctSearch::Search(SgUctValue maxGames, double maxTime,
         for (int col = 1; col <= boardSize; col++){
 
             point = SgPointUtil::Pt(col, row);
-            if (childProbability[point] > 0){
+            if (childProbability[point] > 0.000999999){
                 SgUctValue displayProbability = childProbability[point]*10;
 
             
@@ -1496,6 +1498,17 @@ SgUctValue SgUctSearch::Search(SgUctValue maxGames, double maxTime,
             } else {
                 SgDebug() << " .    "; 
             }
+
+        }
+
+        SgDebug() << "\n";
+
+        for (int col = 1; col <= boardSize; col++){
+
+            point = SgPointUtil::Pt(col, row);
+            
+            SgDebug() << fixed << setprecision(3) << childMean[point] << " "; 
+            
 
         }
 
@@ -1950,17 +1963,26 @@ void SgUctSearch::UpdateStatistics(const SgUctGameInfo& info)
 
 void SgUctSearch::UpdateTree(const SgUctGameInfo& info, SgUctValue leafValue)
 {
-    SgUctValue eval = 0;
-    // for (size_t i = 0; i < m_numberPlayouts; ++i)
-    //     eval += info.m_eval[i];
-    // eval /= SgUctValue(m_numberPlayouts);
+    
 
-    eval = leafValue;
+    
 
     // SgDebug() << "Updating tree, the value is: " << eval << "    .\n";
 
-    SgUctValue inverseEval = InverseEval(eval);
+    
     const vector<const SgUctNode*>& nodes = info.m_nodes;
+
+    SgUctValue eval = 0;
+    SgUctValue inverseEval = 0;
+
+    if (nodes.size() % 2 == 0){
+        eval = leafValue;
+        inverseEval = InverseEval(leafValue);
+    } else {
+        inverseEval = leafValue;
+        eval = InverseEval(leafValue);
+    }
+
     const SgUctValue count = 
     	SgUctValue(m_updateMultiplePlayoutsAsSingle ? 1 : m_numberPlayouts);
     

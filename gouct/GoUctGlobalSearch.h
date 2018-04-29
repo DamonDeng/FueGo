@@ -570,7 +570,7 @@ void GoUctGlobalSearchState<POLICY>::GetPrioProbability(SgArray<SgUctValue, SG_M
 
     const GoBoard& currentBoard = Board();
 
-    // currentBoard.TakeSnapshot();
+    
 
     int historyLength = 8;
     int arrayLength = historyLength*2 + 1;
@@ -583,47 +583,6 @@ void GoUctGlobalSearchState<POLICY>::GetPrioProbability(SgArray<SgUctValue, SG_M
 
     currentBoard.GetHistoryData(historyData, historyLength);
 
-    // int historyDataLocation = (historyLength-1)*2 + 1;
-    // SgPointSet currentPointSet = currentBoard.All(currentColor);
-
-    // for (SgSetIterator it(currentPointSet); it; ++it){
-    //     int row = SgPointUtil::Row(*it)-1;
-    //     int col = SgPointUtil::Col(*it)-1;
-    //     historyData[historyDataLocation*361 + row*19 + col] = 1;
-
-    // }
-
-    // historyDataLocation = (historyLength-1)*2;
-    // SgPointSet enemyPointSet = currentBoard.All(enemyColor);
-
-    // for (SgSetIterator it(enemyPointSet); it; ++it){
-    //     int row = SgPointUtil::Row(*it)-1;
-    //     int col = SgPointUtil::Col(*it)-1;
-    //     historyData[historyDataLocation*361 + row*19 + col] = 1;
-
-    // }
-
-    // SgBlackWhite colorToGet = currentColor;
-    // historyDataLocation--;
-
-    // while(currentBoard.CanUndo() && historyDataLocation >= 0){
-    //     currentBoard.Undo();
-    //     SgPointSet setToGet = currentBoard.All(colorToGet);
-
-    //     for (SgSetIterator it(setToGet); it; ++it){
-    //         int row = SgPointUtil::Row(*it)-1;
-    //         int col = SgPointUtil::Col(*it)-1;
-    //         historyData[historyDataLocation*361 + row*19 + col] = 1;
-
-    //     }
-
-    //     colorToGet = SgOppBW(colorToGet);
-    //     historyDataLocation--;
-
-    // }
-
-
-    // currentBoard.RestoreSnapshot();
 
     // SgDebug() << fixed << setprecision(0);
 
@@ -643,9 +602,13 @@ void GoUctGlobalSearchState<POLICY>::GetPrioProbability(SgArray<SgUctValue, SG_M
     //     SgDebug() << "------------------------- \n";
     // }
 
-    // SgDebug() << *m_sharedBoard;
+    
     
     m_MXNetModel.GetPrioProbability(array, value, historyData);
+
+    // SgDebug() << currentBoard;
+
+    // SgDebug() << "CNN value is:" << value << ". \n";
     
 }
 
