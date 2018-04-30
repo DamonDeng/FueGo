@@ -452,7 +452,7 @@ void SgUctTree::MergeChildren(std::size_t allocatorId, const SgUctNode& node,
     }
 }
 
-void SgUctTree::ApplyPrioProbabilityToChildren(std::size_t allocatorId, const SgUctNode& node, SgArray<SgUctValue, SG_MAX_MOVE_VALUE>& array, SgUctValue value, SgBlackWhite toPlay, int threadID){
+void SgUctTree::ApplyPrioProbabilityToChildren(std::size_t allocatorId, const SgUctNode& node, SgArray<SgUctValue, SG_MAX_MOVE_VALUE>& array, SgUctValue value,  int threadID){
 
     // if (threadID == 0){
 
@@ -532,7 +532,7 @@ void SgUctTree::ApplyPrioProbabilityToChildren(std::size_t allocatorId, const Sg
             child->m_hasPrioProbability = true;
 
             child->m_prioWinProbability = value;
-            child->m_toPlay = toPlay;
+            
             // child->m_prioProbability = 0;
 
             if (child->Move() == SG_PASS){

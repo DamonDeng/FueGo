@@ -333,8 +333,7 @@ public:
 
     static constexpr SgUctValue m_lostValue = 0.65;
 
-    volatile SgBlackWhite m_toPlay;
-
+    
 
 
 
@@ -386,7 +385,6 @@ inline SgUctNode::SgUctNode(const SgUctMoveInfo& info)
       m_probabilityMoveCount(0),
       m_hasPrioProbability(info.m_hasPrioProbability),
       m_probabilityLostCount(0),
-      m_toPlay(SG_WHITE),
       m_statistics(info.m_value, info.m_count),
       m_nuChildren(0),
       m_move(info.m_move),
@@ -494,7 +492,7 @@ inline void SgUctNode::CopyDataFrom(const SgUctNode& node)
     m_hasPrioProbability = node.m_hasPrioProbability;
     m_probabilityLostCount = node.m_probabilityLostCount;
     m_prioWinProbability = node.m_prioWinProbability;
-    m_toPlay = node.m_toPlay;
+    
 }
 
 inline const SgUctNode* SgUctNode::FirstChild() const
@@ -969,7 +967,7 @@ public:
                        bool deleteChildTrees);
 
 
-    void ApplyPrioProbabilityToChildren(std::size_t allocatorId, const SgUctNode& node, SgArray<SgUctValue, SG_MAX_MOVE_VALUE>& array, SgUctValue value, SgBlackWhite toPlay, int threadID);
+    void ApplyPrioProbabilityToChildren(std::size_t allocatorId, const SgUctNode& node, SgArray<SgUctValue, SG_MAX_MOVE_VALUE>& array, SgUctValue value, int threadID);
 
     /** Extract subtree to a different tree.
         The tree will be truncated if one of the allocators overflows (can

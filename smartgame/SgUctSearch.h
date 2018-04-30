@@ -345,6 +345,10 @@ public:
                                   std::vector<SgUctMoveInfo>& moves,
                                   SgUctProvenType& provenType) = 0;
 
+    virtual bool GenerateAllMoves(SgUctValue count, 
+                                  std::vector<SgUctMoveInfo>& moves,
+                                  SgUctProvenType& provenType, SgUctValue& value) = 0;
+
 
     //added by Damon for applying priProbability
 
@@ -1168,9 +1172,6 @@ private:
                    SgUctValue logPosCount, 
                    const SgUctNode& child) const;
 
-    SgUctValue GetBound(bool useRave, bool useBiasTerm,
-                   SgUctValue logPosCount, 
-                   const SgUctNode& child, const SgUctNode& root) const;
 
 
     SgUctValue GetValueEstimate(bool useRave, const SgUctNode& child) const;

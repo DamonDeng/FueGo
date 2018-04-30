@@ -186,6 +186,9 @@ public:
     bool GenerateAllMoves(SgUctValue count, std::vector<SgUctMoveInfo>& moves,
                           SgUctProvenType& provenType);
 
+    bool GenerateAllMoves(SgUctValue count, std::vector<SgUctMoveInfo>& moves,
+                          SgUctProvenType& provenType, SgUctValue& value);
+
     void GetPrioProbability(SgArray<SgUctValue, SG_MAX_MOVE_VALUE>& array, SgUctValue& value);
 
     /** Generates all legal moves with no knowledge values. */
@@ -623,31 +626,40 @@ GenerateAllMoves(SgUctValue count,
     provenType = SG_NOT_PROVEN;
     moves.clear();  // FIXME: needed?
     GenerateLegalMoves(moves);
-    // if (! moves.empty() && count == 0) 
-    // {
-    //     if (param.m_useTreeFilter)
-    //         ApplyFilter(moves);
-    //     if (param.m_useDefaultPriorKnowledge)
-    //     {
-    //         m_priorKnowledge.SetPriorWeight(param.m_defaultPriorWeight);
-    //         m_priorKnowledge.ProcessPosition(moves);
-    //     }
-    //     if (  feParam.m_priorKnowledgeType != PRIOR_NONE
-    //        || feParam.m_useAsAdditivePredictor
-    //        )
-    //     {
-    //         SG_ASSERT(m_featureKnowledge);
-    //         m_featureKnowledge->Compute(feParam);
-    //         if (feParam.m_priorKnowledgeType != PRIOR_NONE)
-    //             m_featureKnowledge->SetPriorKnowledge(moves);
-    //     }
-    //     ApplyAdditivePredictors(moves);
+    
+    return false;
+}
 
-    //     // if (m_needPrioProbability){
-    //     //     ApplyPrioProbability(moves);
-    //     // }
+template<class POLICY>
+bool GoUctGlobalSearchState<POLICY>::
+GenerateAllMoves(SgUctValue count,
+                 std::vector<SgUctMoveInfo>& moves,
+                 SgUctProvenType& provenType, SgUctValue& value)
+{
+    const GoUctGlobalSearchStateParam& param = m_param.m_searchStateParam;
+    const GoUctFeatureKnowledgeParam& feParam = m_param.m_featureParam;
+    provenType = SG_NOT_PROVEN;
+    moves.clear();  // FIXME: needed?
+    GenerateLegalMoves(moves);
 
-    // }
+    const GoBoard& currentBoard = Board();
+
+    
+
+    int historyLength = 8;
+    int arrayLength = historyLength*2 + 1;
+
+    int boardSize = 19;
+
+    int dataLength = arrayLength*boardSize*boardSize;
+
+    std::vector<float> historyData(dataLength);
+
+    currentBoard.GetHistoryData(historyData, historyLength);
+    
+
+    m_MXNetModel.ApplyPrioProbability(moves, value, historyData);
+    
     return false;
 }
 
