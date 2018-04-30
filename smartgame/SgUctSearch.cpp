@@ -1881,11 +1881,30 @@ void SgUctSearch::UpdateTree(const SgUctGameInfo& info, SgUctValue leafValue)
 
         // SgDebug() << "Move:" << node.Move() << ".\n";
         const SgUctNode* father = (i > 0 ? nodes[i - 1] : 0);
-        m_tree.AddGameResults(node, father, i % 2 == 0 ? eval : inverseEval, 1);
+        // m_tree.AddGameResults(node, father, i % 2 == 0 ? eval : inverseEval, 1);
+        
+        m_tree.AddGameResults(node, father, eval, 1);
         // Remove the virtual loss
         if (m_virtualLoss && m_numberThreads > 1)
             m_tree.RemoveVirtualLoss(node);
     }
+
+
+    // SgDebug() << "--------------------------------------------------.\n";
+    // SgDebug() << "After updating t tree with nodes: ";
+
+    // for (size_t i = 0; i < nodes.size(); ++i)
+    // {
+        
+    //     const SgUctNode& node = *nodes[i];
+
+    //     SgDebug() << "(" << node.Move() << "," << node.Mean() << "," << node.MoveCount() << "," << node.m_prioProbability/(node.MoveCount()+1) << ")  ";
+    // }
+
+    // SgDebug() << " \n";
+
+    // SgDebug() << " \n";
+
 }
 
 void SgUctSearch::WriteStatistics(std::ostream& out) const
