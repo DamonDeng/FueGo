@@ -1,3 +1,3 @@
 #!/bin/bash
 
-./fuegomain/fuego
+./fuegomain/fuego --gpunumber 1

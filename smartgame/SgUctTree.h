@@ -386,7 +386,7 @@ inline SgUctNode::SgUctNode(const SgUctMoveInfo& info)
       m_probabilityMoveCount(0),
       m_hasPrioProbability(info.m_hasPrioProbability),
       m_probabilityLostCount(0),
-      m_toPlay(SG_BLACK),
+      m_toPlay(SG_WHITE),
       m_statistics(info.m_value, info.m_count),
       m_nuChildren(0),
       m_move(info.m_move),
