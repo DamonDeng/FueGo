@@ -1865,13 +1865,13 @@ void SgUctSearch::UpdateTree(const SgUctGameInfo& info, SgUctValue leafValue)
         
     //     const SgUctNode& node = *nodes[i];
 
-    //     SgDebug() << node.Move() << " ";
+    //     SgDebug() << "(" << node.Move() << "," << node.Mean() << "," << node.MoveCount() << "," << node.m_prioProbability/(node.MoveCount()+1) << ")  ";
     // }
 
-    // SgDebug() << " .\n";
+    // SgDebug() << " \n";
 
-    // const SgUctValue count = 
-    // 	SgUctValue(m_updateMultiplePlayoutsAsSingle ? 1 : m_numberPlayouts);
+    // SgDebug() << "The leafValue is:" << leafValue << ".\n";
+
     
     // SgDebug() << "nodes list with size: " << nodes.size() << ".\n";
     for (size_t i = 0; i < nodes.size(); ++i)

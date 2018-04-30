@@ -656,9 +656,37 @@ GenerateAllMoves(SgUctValue count,
     std::vector<float> historyData(dataLength);
 
     currentBoard.GetHistoryData(historyData, historyLength);
-    
+
 
     m_MXNetModel.ApplyPrioProbability(moves, value, historyData);
+
+    // SgDebug() << fixed << setprecision(0);
+
+    // for (int i=0; i<arrayLength; i++){
+    //     for (int row=18; row>=0; row--){
+    //         for (int col=0; col<19; col++){
+    //             int index = i*boardSize*boardSize + row*boardSize + col;
+    //             if (historyData[index] == 0){
+    //                 SgDebug() << ". ";
+    //             } else {
+    //                 SgDebug() << historyData[index] << " ";
+    //             }
+    //         }
+    //         SgDebug() << "\n";
+    //     }
+
+    //     SgDebug() << "------------------------- \n";
+    // }
+
+    
+    
+    
+
+    // SgDebug() << currentBoard;
+
+    // SgDebug() << fixed << setprecision(4);
+
+    // SgDebug() << "CNN value is:" << value << ". \n";
     
     return false;
 }
