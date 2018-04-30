@@ -1168,6 +1168,11 @@ private:
                    SgUctValue logPosCount, 
                    const SgUctNode& child) const;
 
+    SgUctValue GetBound(bool useRave, bool useBiasTerm,
+                   SgUctValue logPosCount, 
+                   const SgUctNode& child, const SgUctNode& root) const;
+
+
     SgUctValue GetValueEstimate(bool useRave, const SgUctNode& child) const;
 
     SgUctValue GetValueEstimateRave(const SgUctNode& child) const;
@@ -1187,6 +1192,9 @@ private:
     void SearchLoop(SgUctThreadState& state, GlobalLock* lock);
 
     const SgUctNode& SelectChild(int& randomizeCounter, bool useBiasTerm, const SgUctNode& node);
+
+    const SgUctNode& SelectChild(int& randomizeCounter, bool useBiasTerm, const SgUctNode& node, 
+                                          const SgUctNode& root);
 
     std::string SummaryLine(const SgUctGameInfo& info) const;
 

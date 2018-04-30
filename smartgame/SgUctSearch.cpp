@@ -658,6 +658,13 @@ SgUctValue SgUctSearch::GetBound(bool useRave, bool useBiasTerm,
                             SgUctValue logPosCount, 
                             const SgUctNode& child) const
 {
+    SgDebug () << "not implemented GetBound!!!!!!!!.\n";
+}
+
+SgUctValue SgUctSearch::GetBound(bool useRave, bool useBiasTerm,
+                            SgUctValue logPosCount, 
+                            const SgUctNode& child, const SgUctNode& root) const
+{
     // SgTimer timer;
     // double in_start_time;
     // in_start_time = timer.GetTime(); 
@@ -702,7 +709,12 @@ SgUctValue SgUctSearch::GetBound(bool useRave, bool useBiasTerm,
 
     // // SgDebug() << "Getting bound of move:" << child.Move() << " value: " << value  << " PrioProbability:" << prioProbability << " . \n";
 
-    return value + prioProbability;
+    if (root.m_toPlay == child.m_toPlay){
+
+        return value + prioProbability;
+    } else {
+        return -value + prioProbability;
+    }
 
 
         // if (prioProbability < 0.03){
@@ -1245,15 +1257,16 @@ bool SgUctSearch::PlayInTree(SgUctThreadState& state, SgUctValue& leafValue, boo
 
             state.GenerateAllMoves(0, state.m_moves, provenType);
 
-            if (current == root)
-                ApplyRootFilter(state.m_moves);
+            // if (current == root)
+            //     ApplyRootFilter(state.m_moves);
 
-            if (provenType != SG_NOT_PROVEN)
-            {
-                m_tree.SetProvenType(*current, provenType);
-                PropagateProvenStatus(nodes);
-                break;
-            }
+            // if (provenType != SG_NOT_PROVEN)
+            // {
+            //     m_tree.SetProvenType(*current, provenType);
+            //     PropagateProvenStatus(nodes);
+            //     break;
+            // }
+
             if (state.m_moves.empty())
             {
                 isTerminal = true;
@@ -1275,7 +1288,9 @@ bool SgUctSearch::PlayInTree(SgUctThreadState& state, SgUctValue& leafValue, boo
 
                     // SgDebug() << " sample data:" << array[samplePoint] << std::endl;
 
-                m_tree.ApplyPrioProbabilityToChildren(0, *current, array, value, state.m_threadId);
+                SgBlackWhite toPlay = state.Board().ToPlay();
+
+                m_tree.ApplyPrioProbabilityToChildren(0, *current, array, value, toPlay, state.m_threadId);
 
                 leafValue = value;
 
@@ -1354,7 +1369,7 @@ bool SgUctSearch::PlayInTree(SgUctThreadState& state, SgUctValue& leafValue, boo
 
 
 
-        current = &SelectChild(state.m_randomizeRaveCounter, useBiasTerm, *current);
+        current = &SelectChild(state.m_randomizeRaveCounter, useBiasTerm, *current, *root);
 
         // SgUctValue debugMoveCount = current->MoveCount();
         // SgUctValue debugPrioProbability = current->GetPrioProbability();
@@ -1664,6 +1679,14 @@ const SgUctNode& SgUctSearch::SelectChild(int& randomizeCounter,
                                           bool useBiasTerm,
                                           const SgUctNode& node)
 {
+    SgDebug() << "not implemented !!!!!!!!!!!!!!";
+}
+
+const SgUctNode& SgUctSearch::SelectChild(int& randomizeCounter, 
+                                          bool useBiasTerm,
+                                          const SgUctNode& node,
+                                          const SgUctNode& root)
+{
     // bool useRave = m_rave;
     // if (m_randomizeRaveFrequency > 0 && --randomizeCounter == 0)
     // {
@@ -1701,7 +1724,7 @@ const SgUctNode& SgUctSearch::SelectChild(int& randomizeCounter,
         {
             // SgUctValue bound = GetCNNBound(child);
             SgUctValue bound = GetBound(false, useBiasTerm, 
-                                        1, child);
+                                        1, child, root);
 
 		                    //  - predictorWeight * child.PredictorValue();
 
