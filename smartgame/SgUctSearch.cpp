@@ -709,11 +709,18 @@ SgUctValue SgUctSearch::GetBound(bool useRave, bool useBiasTerm,
 
     // // SgDebug() << "Getting bound of move:" << child.Move() << " value: " << value  << " PrioProbability:" << prioProbability << " . \n";
 
+    // if (root.m_toPlay == child.m_toPlay){
+
+    //     return value + prioProbability;
+    // } else {
+    //     return -value + prioProbability;
+    // }
+
     if (root.m_toPlay == child.m_toPlay){
 
-        return value + prioProbability;
-    } else {
         return -value + prioProbability;
+    } else {
+        return value + prioProbability;
     }
 
 
