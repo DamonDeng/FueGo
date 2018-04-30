@@ -224,12 +224,18 @@ void MXNetModel::ApplyPrioProbability(std::vector<SgUctMoveInfo>& moves, SgUctVa
             if(moves[j].m_move == SG_PASS){
                 moves[j].m_prioProbability = array.At(0, stoneNumber);
                 moves[j].m_hasPrioProbability = true;
+                
+                moves[j].m_value = -value;
+                moves[j].m_count = 1;
             } else{
                 row = SgPointUtil::Row(moves[j].m_move)-1;
                 col = SgPointUtil::Col(moves[j].m_move)-1;
 
                 moves[j].m_prioProbability = array.At(0, row*boardSize + col);
                 moves[j].m_hasPrioProbability = true;
+
+                moves[j].m_value = -value;
+                moves[j].m_count = 1;
 
             }
 

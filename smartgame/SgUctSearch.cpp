@@ -1873,7 +1873,8 @@ void SgUctSearch::UpdateTree(const SgUctGameInfo& info, SgUctValue leafValue)
     // SgDebug() << "The leafValue is:" << leafValue << ".\n";
 
     
-    // SgDebug() << "nodes list with size: " << nodes.size() << ".\n";
+   
+
     for (size_t i = 0; i < nodes.size(); ++i)
     {
         
@@ -1881,9 +1882,9 @@ void SgUctSearch::UpdateTree(const SgUctGameInfo& info, SgUctValue leafValue)
 
         // SgDebug() << "Move:" << node.Move() << ".\n";
         const SgUctNode* father = (i > 0 ? nodes[i - 1] : 0);
-        // m_tree.AddGameResults(node, father, i % 2 == 0 ? eval : inverseEval, 1);
+        m_tree.AddGameResults(node, father, i % 2 == 0 ? eval : inverseEval, 1);
         
-        m_tree.AddGameResults(node, father, eval, 1);
+        // m_tree.AddGameResults(node, father, eval, 1);
         // Remove the virtual loss
         if (m_virtualLoss && m_numberThreads > 1)
             m_tree.RemoveVirtualLoss(node);

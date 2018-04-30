@@ -60,6 +60,8 @@ struct SgUctMoveInfo
     float m_prioProbability;
 
     bool m_hasPrioProbability;
+
+    SgUctValue m_initMean;
  
     SgUctMoveInfo();
 
@@ -82,7 +84,8 @@ inline SgUctMoveInfo::SgUctMoveInfo()
       m_raveCount(0),
       m_predictorValue(0.0),
       m_prioProbability(0.0),
-      m_hasPrioProbability(false)
+      m_hasPrioProbability(false),
+      m_initMean(0.0)
 { }
 
 inline SgUctMoveInfo::SgUctMoveInfo(SgMove move)
@@ -93,7 +96,8 @@ inline SgUctMoveInfo::SgUctMoveInfo(SgMove move)
       m_raveCount(0),
       m_predictorValue(0.0),
       m_prioProbability(0.0),
-      m_hasPrioProbability(false)
+      m_hasPrioProbability(false),
+      m_initMean(0.0)
 { }
 
 inline SgUctMoveInfo::SgUctMoveInfo(SgMove move, SgUctValue value, SgUctValue count,
@@ -105,7 +109,8 @@ inline SgUctMoveInfo::SgUctMoveInfo(SgMove move, SgUctValue value, SgUctValue co
       m_raveCount(raveCount),
       m_predictorValue(0.0),
       m_prioProbability(0.0),
-      m_hasPrioProbability(false)
+      m_hasPrioProbability(false),
+      m_initMean(0.0)
 { }
 
 inline void SgUctMoveInfo::Add(const SgUctValue mean, const SgUctValue count)
