@@ -1367,7 +1367,15 @@ SgUctValue SgUctSearch::Search(SgUctValue maxGames, double maxTime,
                 SgDebug() << outputString.substr(outputString.length()-6);
             } else {
 
-                SgDebug() << fixed << setprecision(3) << childMean[point] << "|"; 
+                std::stringstream ss;
+                std::string outputString;
+                        
+                ss<< "________" << fixed << setprecision(2) << childMean[point] << "|";
+                ss>>outputString;
+
+                SgDebug() << outputString.substr(outputString.length()-6);
+
+                // SgDebug() << fixed << setprecision(3) << childMean[point] << "|"; 
             }
             
             
@@ -1392,9 +1400,8 @@ SgUctValue SgUctSearch::Search(SgUctValue maxGames, double maxTime,
         }
 
         SgDebug() << "\n";
-        SgDebug() << "\n";
+        SgDebug() << "_\n";
         
-        // SgDebug() << "-------------------------------------------------------------------------------------------------------------\n";
          
     }
 
@@ -1844,20 +1851,21 @@ void SgUctSearch::UpdateTree(const SgUctGameInfo& info, SgUctValue leafValue)
     
     const vector<const SgUctNode*>& nodes = info.m_nodes;
 
-    SgUctValue eval = 0;
-    SgUctValue inverseEval = 0;
+    SgUctValue eval = leafValue;
+    SgUctValue inverseEval = InverseEval(leafValue);
 
-    if (nodes.size() % 2 == 0){
-        inverseEval = leafValue;
-        eval = InverseEval(leafValue);
+    // if (nodes.size() % 2 == 0){
+    //     inverseEval = leafValue;
+    //     eval = InverseEval(leafValue);
 
         
-    } else {
-        eval = leafValue;
-        inverseEval = InverseEval(leafValue);
+    // } else {
+    //     eval = leafValue;
+    //     inverseEval = InverseEval(leafValue);
         
-    }
+    // }
 
+    // SgDebug() << "The leafValue is:" << leafValue << ".\n";
     // SgDebug() << "Trying to update tree with nodes: ";
 
     // for (size_t i = 0; i < nodes.size(); ++i)
@@ -1870,7 +1878,7 @@ void SgUctSearch::UpdateTree(const SgUctGameInfo& info, SgUctValue leafValue)
 
     // SgDebug() << " \n";
 
-    // SgDebug() << "The leafValue is:" << leafValue << ".\n";
+    
 
     
    
@@ -1882,12 +1890,19 @@ void SgUctSearch::UpdateTree(const SgUctGameInfo& info, SgUctValue leafValue)
 
         // SgDebug() << "Move:" << node.Move() << ".\n";
         const SgUctNode* father = (i > 0 ? nodes[i - 1] : 0);
-        m_tree.AddGameResults(node, father, i % 2 == 1 ? eval : inverseEval, 1);
+        SgUctValue addResult = 0;
+        if ((nodes.size() - i)%2 == 1){
+            addResult = eval;
+        } else {
+            addResult = inverseEval;
+        }
+
+        m_tree.AddGameResults(node, father, addResult, 1);
         
         // m_tree.AddGameResults(node, father, eval, 1);
         // Remove the virtual loss
-        if (m_virtualLoss && m_numberThreads > 1)
-            m_tree.RemoveVirtualLoss(node);
+        // if (m_virtualLoss && m_numberThreads > 1)
+        //     m_tree.RemoveVirtualLoss(node);
     }
 
 

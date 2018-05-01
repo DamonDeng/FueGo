@@ -870,10 +870,12 @@ SgPoint GoUctPlayer<SEARCH, THREAD>::DoSearch(SgBlackWhite toPlay,
         SgDebug() << out.str();
     }
 
-    if (  value < m_resignThreshold
-       && rootMoveCount > m_resignMinGames
-       )
-        return SG_RESIGN;
+    // never resign before we found the right way to play to the end
+    
+    // if (  value < m_resignThreshold
+    //    && rootMoveCount > m_resignMinGames
+    //    )
+    //     return SG_RESIGN;
 
     SgPoint move;
     if (sequence.empty())
