@@ -1891,7 +1891,7 @@ void SgUctSearch::UpdateTree(const SgUctGameInfo& info, SgUctValue leafValue)
         // SgDebug() << "Move:" << node.Move() << ".\n";
         const SgUctNode* father = (i > 0 ? nodes[i - 1] : 0);
         SgUctValue addResult = 0;
-        if ((nodes.size() - i)%2 == 1){
+        if ((nodes.size() - i)%2 == 0){
             addResult = eval;
         } else {
             addResult = inverseEval;
