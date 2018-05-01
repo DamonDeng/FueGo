@@ -957,8 +957,9 @@ libfuego_go_a-GoGtpEngine.o: GoGtpEngine.cpp ../smartgame/SgSystem.h \
   /usr/local/include/boost/filesystem/fstream.hpp GoBoardRestorer.h \
   GoEyeUtil.h GoGtpCommandUtil.h ../smartgame/SgGtpUtil.h GoInfluence.h \
   GoModBoard.h GoAssertBoardRestored.h GoNodeUtil.h GoTimeControl.h \
-  ../smartgame/SgTimeControl.h GoUtil.h ../smartgame/SgEBWArray.h \
-  ../smartgame/SgGameReader.h ../smartgame/SgGameWriter.h
+  ../smartgame/SgTimeControl.h GoUtil.h ../smartgame/SgConfig.h \
+  ../smartgame/SgEBWArray.h ../smartgame/SgGameReader.h \
+  ../smartgame/SgGameWriter.h
 
 ../smartgame/SgSystem.h:
 
@@ -3095,6 +3096,8 @@ GoTimeControl.h:
 ../smartgame/SgTimeControl.h:
 
 GoUtil.h:
+
+../smartgame/SgConfig.h:
 
 ../smartgame/SgEBWArray.h:
 

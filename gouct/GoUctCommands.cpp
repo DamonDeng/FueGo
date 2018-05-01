@@ -363,7 +363,7 @@ void GoUctCommands::CmdBounds(GtpCommand& cmd)
     {
         const SgUctNode& child = *it;
         SgPoint move = child.Move();
-        SgUctValue bound = search.GetBound(search.Rave(), root, child);
+        SgUctValue bound = search.GetBound(root, child);
         if (move == SG_PASS)
         {
             hasPass = true;

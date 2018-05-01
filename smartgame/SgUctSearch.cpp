@@ -12,6 +12,7 @@
 #include <boost/io/ios_state.hpp>
 #include <boost/version.hpp>
 #include "SgDebug.h"
+#include "SgConfig.h"
 #include "SgHashTable.h"
 #include "SgMath.h"
 #include "SgPlatform.h"
@@ -539,7 +540,7 @@ SgUctSearch::FindBestChild(const SgUctNode& node,
             // }
             break;
         case SG_UCTMOVESELECT_BOUND:
-            value = GetBound(m_rave, node, child);
+            value = GetBound(node, child);
             break;
         case SG_UCTMOVESELECT_ESTIMATE:
             value = GetValueEstimate(m_rave, child);
@@ -641,24 +642,22 @@ void SgUctSearch::GenerateAllMoves(std::vector<SgUctMoveInfo>& moves)
 }
 
 
-SgUctValue SgUctSearch::GetBound(bool useRave, const SgUctNode& node,
+SgUctValue SgUctSearch::GetBound(const SgUctNode& node,
                                  const SgUctNode& child) const
 {
-    // SgDebug() << "Getting bound of move        : .\n";
-    SgUctValue posCount = node.PosCount();
-    int virtualLossCount = node.VirtualLossCount();
-    if (virtualLossCount > 0)
-    {
-        posCount += SgUctValue(virtualLossCount);
+    
+    if (child.MoveCount() == 0){
+        // This Child was not visited, return the -Mean + child.prioProbability of current node.
+        return (- node.Mean()) + child.GetPrioProbability();
+    } else {
+
+        return GetBound(child);
     }
-    return GetBound(useRave, true, Log(posCount), child);
 }
 
 
 
-SgUctValue SgUctSearch::GetBound(bool useRave, bool useBiasTerm,
-                            SgUctValue logPosCount, 
-                            const SgUctNode& child) const
+SgUctValue SgUctSearch::GetBound( const SgUctNode& child) const
 {
     
 
@@ -667,7 +666,7 @@ SgUctValue SgUctSearch::GetBound(bool useRave, bool useBiasTerm,
     // mean of the node, which is how possible this node leading current to win.
     value = child.Mean();
 
-    int probabilityDecay = 5;
+    int probabilityDecay = 1;
 
     SgUctValue prioProbability = 0;
 
@@ -1579,8 +1578,7 @@ const SgUctNode& SgUctSearch::SelectChild(int& randomizeCounter,
         if (! child.IsProvenWin()) // Avoid losing moves
         {
             // SgUctValue bound = GetCNNBound(child);
-            SgUctValue bound = GetBound(false, useBiasTerm, 
-                                        1, child);
+            SgUctValue bound = GetBound(node, child);
 
 		                    //  - predictorWeight * child.PredictorValue();
 

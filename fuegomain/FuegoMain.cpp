@@ -19,6 +19,7 @@
 #include "FuegoMainUtil.h"
 #include "GoInit.h"
 #include "SgDebug.h"
+#include "SgConfig.h"
 #include "SgException.h"
 #include "SgInit.h"
 #include "SgPlatform.h"
@@ -105,6 +106,12 @@ void ParseOptions(int argc, char** argv, struct CommandLineOptions& options)
         ("gpunumber",
          po::value<int>(&options.m_gpuNumber)->default_value(0),
          "set the gpu number, default is 0, which do not use GPU")
+        //  ("timelimit",
+        //  po::value<int>(&SgGlobalConfig::timeLimt)->default_value(20),
+        //  "set the time limit of search")
+        //  ("probabilitydecay",
+        //  po::value<int>(&SgGlobalConfig::probabilityDecay)->default_value(30),
+        //  "set the decay value of probability")
         ("size", 
          po::value<int>(&options.m_fixedBoardSize)->default_value(0),
          "initial (and fixed) board size");

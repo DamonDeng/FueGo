@@ -25,6 +25,7 @@
 #include "GoTimeControl.h"
 #include "GoUtil.h"
 #include "SgDebug.h"
+#include "SgConfig.h"
 #include "SgEBWArray.h"
 #include "SgException.h"
 #include "SgGameReader.h"
@@ -96,7 +97,7 @@ GoGtpEngine::GoGtpEngine(int fixedBoardSize, const char* programPath,
       m_maxClearBoard(-1),
       m_numberClearBoard(0),
       m_timeLastMove(0),
-      m_timeLimit(20),
+      m_timeLimit(30),
       m_overhead(0),
       m_game(fixedBoardSize > 0 ? fixedBoardSize : GO_DEFAULT_SIZE),
       m_sgCommands(*this, programPath),

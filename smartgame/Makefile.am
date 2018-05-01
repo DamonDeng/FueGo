@@ -65,6 +65,7 @@ SgBoardColor.h \
 SgBoardConst.h \
 SgCmdLineOpt.h \
 SgConnCompIterator.h \
+SgConfig.h \
 SgDebug.h \
 SgDfpnSearch.h \
 SgEBWArray.h \

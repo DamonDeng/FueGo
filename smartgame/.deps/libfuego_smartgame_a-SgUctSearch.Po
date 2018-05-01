@@ -747,7 +747,7 @@ libfuego_smartgame_a-SgUctSearch.o: SgUctSearch.cpp SgSystem.h \
   /usr/local/include/boost/random/detail/generator_bits.hpp \
   /usr/local/include/boost/random/detail/generator_seed_seq.hpp \
   /usr/local/include/boost/random/detail/polynomial.hpp \
-  /usr/local/include/boost/random/uniform_01.hpp SgFastLog.h \
+  /usr/local/include/boost/random/uniform_01.hpp SgFastLog.h SgConfig.h \
   SgHashTable.h SgMath.h SgPlatform.h \
   /usr/local/include/boost/filesystem/path.hpp \
   /usr/local/include/boost/filesystem/config.hpp \
@@ -2500,6 +2500,8 @@ SgRandom.h:
 /usr/local/include/boost/random/uniform_01.hpp:
 
 SgFastLog.h:
+
+SgConfig.h:
 
 SgHashTable.h:
 

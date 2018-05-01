@@ -636,7 +636,7 @@ public:
         @param useRave Whether rave should be used or not.
         @param node The node corresponding to the position
         @param child The node corresponding to the move */
-    SgUctValue GetBound(bool useRave, const SgUctNode& node, 
+    SgUctValue GetBound(const SgUctNode& node, 
                         const SgUctNode& child) const;
 
     /** Return the bound of CNN and UCT
@@ -1168,9 +1168,7 @@ private:
     void CreateChildren(SgUctThreadState& state, const SgUctNode& node,
                         bool deleteChildTrees);
 
-    SgUctValue GetBound(bool useRave, bool useBiasTerm,
-                   SgUctValue logPosCount, 
-                   const SgUctNode& child) const;
+    SgUctValue GetBound(const SgUctNode& child) const;
 
 
 

@@ -1281,7 +1281,8 @@ fuego-FuegoMain.o: FuegoMain.cpp ../smartgame/SgSystem.h ../config.h \
   ../gouct/GoUctBookBuilder.h ../smartgame/SgGameReader.h \
   ../gouct/GoUctCommands.h ../gouct/GoUctFeatureCommands.h \
   ../features/FeBasicFeatures.h FuegoMainUtil.h ../go/GoInit.h \
-  ../smartgame/SgInit.h ../smartgame/SgPlatform.h
+  ../smartgame/SgConfig.h ../smartgame/SgInit.h \
+  ../smartgame/SgPlatform.h
 
 ../smartgame/SgSystem.h:
 
@@ -4140,6 +4141,8 @@ FuegoMainEngine.h:
 FuegoMainUtil.h:
 
 ../go/GoInit.h:
+
+../smartgame/SgConfig.h:
 
 ../smartgame/SgInit.h:
 
