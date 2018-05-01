@@ -664,8 +664,8 @@ SgUctValue SgUctSearch::GetBound(bool useRave, bool useBiasTerm,
 
     SgUctValue value;
 
-    
-    value = -child.Mean();
+    // mean of the node, which is how possible this node leading current to win.
+    value = child.Mean();
 
     
 
@@ -1851,8 +1851,15 @@ void SgUctSearch::UpdateTree(const SgUctGameInfo& info, SgUctValue leafValue)
     
     const vector<const SgUctNode*>& nodes = info.m_nodes;
 
-    SgUctValue eval = leafValue;
-    SgUctValue inverseEval = InverseEval(leafValue);
+    //leafValue is the value after last move (say black), 
+    //indicating the probability of enemy to win, (that is white to win)
+
+    // inverse the value here,
+    // So the var eval is the probability of last move to win (black to win)
+    // and inverseEval is the probability of other side to win. (white to win)
+    SgUctValue eval = InverseEval(leafValue);
+
+    SgUctValue inverseEval = leafValue;
 
     // if (nodes.size() % 2 == 0){
     //     inverseEval = leafValue;
@@ -1881,6 +1888,9 @@ void SgUctSearch::UpdateTree(const SgUctGameInfo& info, SgUctValue leafValue)
     
 
     
+    // if (nodes.size() - i )% 2 ==0 , that the node[i] is not in the same side with last move(say black).
+    // that means it is the enemy (which is white base on the assumption), 
+    // the value of inverseEval is indicating that how possible white is winning. 
    
 
     for (size_t i = 0; i < nodes.size(); ++i)
@@ -1892,9 +1902,11 @@ void SgUctSearch::UpdateTree(const SgUctGameInfo& info, SgUctValue leafValue)
         const SgUctNode* father = (i > 0 ? nodes[i - 1] : 0);
         SgUctValue addResult = 0;
         if ((nodes.size() - i)%2 == 0){
-            addResult = eval;
-        } else {
+            //other side with last move
             addResult = inverseEval;
+        } else {
+            // same side with last move
+            addResult = eval;
         }
 
         m_tree.AddGameResults(node, father, addResult, 1);

@@ -682,11 +682,11 @@ GenerateAllMoves(SgUctValue count,
     
     
 
-    // SgDebug() << currentBoard;
+    SgDebug() << currentBoard;
 
-    // SgDebug() << fixed << setprecision(4);
+    SgDebug() << fixed << setprecision(4);
 
-    // SgDebug() << "CNN value is:" << value << ". \n";
+    SgDebug() << "CNN value is:" << value << ". \n";
     
     return false;
 }
