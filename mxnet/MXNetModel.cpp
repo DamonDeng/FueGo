@@ -255,18 +255,18 @@ void MXNetModel::ApplyPrioProbability(std::vector<SgUctMoveInfo>& moves, SgUctVa
 
             // trying to get top list of the array value
 
-            if (moves[j].m_prioProbability > topList[0]){
-                topList[0] = moves[j].m_prioProbability;
-                for (int j=0; j<(topMemberNumber-1); j++){
-                    if (topList[j] > topList[j+1]){
-                        swapValue = topList[j+1];
-                        topList[j+1] = topList[j];
-                        topList[j] = swapValue;
-                    } else {
-                        break;
-                    }
-                }
-            }
+            // if (moves[j].m_prioProbability > topList[0]){
+            //     topList[0] = moves[j].m_prioProbability;
+            //     for (int j=0; j<(topMemberNumber-1); j++){
+            //         if (topList[j] > topList[j+1]){
+            //             swapValue = topList[j+1];
+            //             topList[j+1] = topList[j];
+            //             topList[j] = swapValue;
+            //         } else {
+            //             break;
+            //         }
+            //     }
+            // }
 
             
         }
@@ -275,16 +275,16 @@ void MXNetModel::ApplyPrioProbability(std::vector<SgUctMoveInfo>& moves, SgUctVa
 
     //@dangerous, passing reference of local variable out of function.
 
-    std::vector<SgUctMoveInfo> filteredMoves;
-    for (std::vector<SgUctMoveInfo>::const_iterator it = moves.begin();it != moves.end(); ++it){
-        if (it->m_prioProbability >= topList[0]){
-            filteredMoves.push_back(*it);
-        }
+    // std::vector<SgUctMoveInfo> filteredMoves;
+    // for (std::vector<SgUctMoveInfo>::const_iterator it = moves.begin();it != moves.end(); ++it){
+    //     if (it->m_prioProbability >= topList[0]){
+    //         filteredMoves.push_back(*it);
+    //     }
 
-    }
+    // }
 
     
-    moves = filteredMoves;
+    // moves = filteredMoves;
 
 
 }
