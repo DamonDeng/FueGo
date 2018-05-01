@@ -1865,18 +1865,18 @@ void SgUctSearch::UpdateTree(const SgUctGameInfo& info, SgUctValue leafValue)
         
     // }
 
-    // SgDebug() << "The leafValue is:" << leafValue << ".\n";
-    // SgDebug() << "Trying to update tree with nodes: ";
+    SgDebug() << "The leafValue is:" << leafValue << ".\n";
+    SgDebug() << "Trying to update tree with nodes: ";
 
-    // for (size_t i = 0; i < nodes.size(); ++i)
-    // {
+    for (size_t i = 0; i < nodes.size(); ++i)
+    {
         
-    //     const SgUctNode& node = *nodes[i];
+        const SgUctNode& node = *nodes[i];
 
-    //     SgDebug() << "(" << node.Move() << "," << node.Mean() << "," << node.MoveCount() << "," << node.m_prioProbability/(node.MoveCount()+1) << ")  ";
-    // }
+        SgDebug() << "(" << node.Move() << "," << node.Mean() << "," << node.MoveCount() << "," << node.m_prioProbability/(node.MoveCount()+1) << ")  ";
+    }
 
-    // SgDebug() << " \n";
+    SgDebug() << " \n";
 
     
 
@@ -1907,19 +1907,19 @@ void SgUctSearch::UpdateTree(const SgUctGameInfo& info, SgUctValue leafValue)
 
 
     
-    // SgDebug() << "After updating t tree with nodes: ";
+    SgDebug() << "After updating t tree with nodes: ";
 
-    // for (size_t i = 0; i < nodes.size(); ++i)
-    // {
+    for (size_t i = 0; i < nodes.size(); ++i)
+    {
         
-    //     const SgUctNode& node = *nodes[i];
+        const SgUctNode& node = *nodes[i];
 
-    //     SgDebug() << "(" << node.Move() << "," << node.Mean() << "," << node.MoveCount() << "," << node.m_prioProbability/(node.MoveCount()+1) << ")  ";
-    // }
+        SgDebug() << "(" << node.Move() << "," << node.Mean() << "," << node.MoveCount() << "," << node.m_prioProbability/(node.MoveCount()+1) << ")  ";
+    }
 
-    // SgDebug() << " \n";
+    SgDebug() << " \n";
 
-    // SgDebug() << " \n";
+    SgDebug() << " \n";
 
 }
 
