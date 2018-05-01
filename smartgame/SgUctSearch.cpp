@@ -665,7 +665,7 @@ SgUctValue SgUctSearch::GetBound(bool useRave, bool useBiasTerm,
     SgUctValue value;
 
     
-    value = child.Mean();
+    value = -child.Mean();
 
     
 
