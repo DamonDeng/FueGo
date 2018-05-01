@@ -213,7 +213,7 @@ void MXNetModel::ApplyPrioProbability(std::vector<SgUctMoveInfo>& moves, SgUctVa
     // trying to get top list of the array value
     // topList array to record to top topMemberNumber of value.
 
-    int topMemberNumber = 10;
+    int topMemberNumber = 20;
 
     std::vector<SgUctValue> topList(topMemberNumber);
     SgUctValue swapValue = 0;
