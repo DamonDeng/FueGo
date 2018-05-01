@@ -1583,6 +1583,7 @@ const SgUctNode& SgUctSearch::SelectChild(int& randomizeCounter,
 		                    //  - predictorWeight * child.PredictorValue();
 
 
+
             // Compare bound to best bound using a not too small epsilon
             // because the unit tests rely on the fact that the first child is
             // chosen if children have the same bounds and on some platforms
