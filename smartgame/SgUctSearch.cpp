@@ -667,7 +667,7 @@ SgUctValue SgUctSearch::GetBound(bool useRave, bool useBiasTerm,
     // mean of the node, which is how possible this node leading current to win.
     value = child.Mean();
 
-    
+    int probabilityDecay = 5;
 
     SgUctValue prioProbability = 0;
 
@@ -678,7 +678,7 @@ SgUctValue SgUctSearch::GetBound(bool useRave, bool useBiasTerm,
    
 
     
-    prioProbability = prioProbability/(child.MoveCount()+1);
+    prioProbability = prioProbability*probabilityDecay/(child.MoveCount()+probabilityDecay);
 
     
 
