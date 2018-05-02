@@ -93,9 +93,9 @@ void MXNetModel::LoadSymbol() {
     // net = Symbol::Load("./model/thetago_dual_res_17L_19res_scalevalue_rate_0p02-symbol.json");
     
 
-    // net = Symbol::Load("./model/thetago_dual_res_17L_19res_rate_0p002-symbol.json");
+    net = Symbol::Load("./model/thetago_dual_res_17L_19res_rate_0p002-symbol.json");
 
-    net = Symbol::Load("./model/thetago_dual_res_17L_19res_rate_0p001_advance-symbol.json");
+    // net = Symbol::Load("./model/thetago_dual_res_17L_19res_rate_0p001_advance-symbol.json");
 
     
 
@@ -125,9 +125,9 @@ void MXNetModel::LoadParameters() {
 
     // NDArray::Load("./model/thetago_dual_res_17L_19res_scalevalue_rate_0p02-0001.params", 0, &paramters);
  
-    // NDArray::Load("./model/thetago_dual_res_17L_19res_rate_0p002-0003.params", 0, &paramters);
+    NDArray::Load("./model/thetago_dual_res_17L_19res_rate_0p002-0003.params", 0, &paramters);
 
-    NDArray::Load("./model/thetago_dual_res_17L_19res_rate_0p001_advance-0004.params", 0, &paramters);
+    // NDArray::Load("./model/thetago_dual_res_17L_19res_rate_0p001_advance-0004.params", 0, &paramters);
 
     
 
