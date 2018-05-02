@@ -167,6 +167,13 @@ public:
     /** Adds a game result count times. */
     void AddGameResults(SgUctValue eval, SgUctValue count);
 
+    /** Add game result.
+        @param eval The game result (e.g. score or 0/1 for win loss) */
+    void ParentAddGameResult(SgUctValue eval);
+
+    /** Adds a game result count times. */
+    void ParentAddGameResults(SgUctValue eval, SgUctValue count);
+
     /** Add other nodes results to this node's. */
     void MergeResults(const SgUctNode& node);
 
@@ -203,8 +210,14 @@ public:
         Requires: HasMean() */
     SgUctValue Mean() const;
 
+
+    SgUctValue ParentMean() const;
+
+
     /** True, if mean value is defined (move count not zero) */
     bool HasMean() const;
+    
+    bool HasParentMean() const;
 
     /** Get number of children.
         @note This information is an implementation detail of how SgUctTree
@@ -345,6 +358,8 @@ public:
 private:
     SgUctStatisticsVolatile m_statistics;
 
+    SgUctStatisticsVolatile m_parentStatistics;
+
     const SgUctNode* volatile m_firstChild;
 
     volatile int m_nuChildren;
@@ -391,6 +406,7 @@ inline SgUctNode::SgUctNode(const SgUctMoveInfo& info)
       m_hasPrioProbability(info.m_hasPrioProbability),
       m_probabilityLostCount(0),
       m_statistics(info.m_value, info.m_count),
+      m_parentStatistics(0, 0),
       m_nuChildren(0),
       m_move(info.m_move),
       m_predictorValue(info.m_predictorValue),
@@ -439,10 +455,45 @@ inline void SgUctNode::AddGameResults(SgUctValue eval, SgUctValue count)
     // }
 }
 
+inline void SgUctNode::ParentAddGameResult(SgUctValue eval)
+{
+    // SgDebug() << "for move: " << m_move << " adding eval: " << eval << " no count, use default value 1 .\n";
+   
+    // SgDebug() << "Before adding, move count is:" << m_statistics.Count() << ". \n";
+
+    m_parentStatistics.Add(eval);
+
+    // SgDebug() << "After adding, move count is:" << m_statistics.Count() << ". \n";
+
+    // if (m_hasPrioProbability && eval < m_lostValue){
+    //     m_probabilityLostCount++;
+    // }
+}
+
+inline void SgUctNode::ParentAddGameResults(SgUctValue eval, SgUctValue count)
+{
+    // SgDebug() << "for move: " << m_move << " adding eval: " << eval << " count:" << count << ".\n";
+    
+    // SgDebug() << "Before adding, move count is:" << m_statistics.Count() << ". \n";
+
+    m_parentStatistics.Add(eval, count);
+
+    
+    // SgDebug() << "After adding, move count is:" << m_statistics.Count() << ". \n";
+
+    // if (m_hasPrioProbability && eval < m_lostValue){
+    //     m_probabilityLostCount = m_probabilityLostCount + count;
+    // }
+}
+
 inline void SgUctNode::MergeResults(const SgUctNode& node)
 {
     if (node.m_statistics.IsDefined())
         m_statistics.Add(node.m_statistics.Mean(), node.m_statistics.Count());
+
+    if (node.m_parentStatistics.IsDefined())
+        m_parentStatistics.Add(node.m_parentStatistics.Mean(), node.m_parentStatistics.Count());
+    
     if (node.m_raveValue.IsDefined())
         m_raveValue.Add(node.m_raveValue.Mean(), node.m_raveValue.Count());
 
@@ -497,6 +548,7 @@ inline void SgUctNode::CopyDataFrom(const SgUctNode& node)
     m_hasPrioProbability = node.m_hasPrioProbability;
     m_probabilityLostCount = node.m_probabilityLostCount;
     m_prioWinProbability = node.m_prioWinProbability;
+    m_parentStatistics = node.m_parentStatistics;
     
 }
 
@@ -529,6 +581,11 @@ inline bool SgUctNode::HasChildren() const
 inline bool SgUctNode::HasMean() const
 {
     return m_statistics.IsDefined();
+}
+
+inline bool SgUctNode::HasParentMean() const
+{
+    return m_parentStatistics.IsDefined();
 }
 
 inline bool SgUctNode::HasRaveValue() const
@@ -629,6 +686,16 @@ inline SgUctValue SgUctNode::Mean() const
 {
     return m_statistics.Mean();
 }
+
+inline SgUctValue SgUctNode::ParentMean() const
+{
+    if (m_parentStatistics.IsDefined()){
+        return m_parentStatistics.Mean();
+    }
+
+    return 0;
+}
+
 
 inline SgMove SgUctNode::Move() const
 {
@@ -1109,12 +1176,11 @@ inline void SgUctTree::AddGameResult(const SgUctNode& node,
     SG_ASSERT(Contains(node));
     // Parameters are const-references, because only the tree is allowed
     // to modify nodes
-    // if (father != 0){
-    //     const_cast<SgUctNode*>(father)->IncPosCount();
-    //     if (father->m_hasPrioProbability){
-    //        const_cast<SgUctNode*>(father)->IncProbabilityCount();
-    //     }
-    // }
+
+    if (father != 0){
+        const_cast<SgUctNode*>(father)->ParentAddGameResult(eval);
+        
+    }
     const_cast<SgUctNode&>(node).AddGameResult(eval);
 }
 
@@ -1126,12 +1192,11 @@ inline void SgUctTree::AddGameResults(const SgUctNode& node,
     SG_ASSERT(Contains(node));
     // Parameters are const-references, because only the tree is allowed
     // to modify nodes
-    // if (father != 0){
-    //     const_cast<SgUctNode*>(father)->IncPosCount(count);
-    //     if (father->m_hasPrioProbability){
-    //        const_cast<SgUctNode*>(father)->IncProbabilityCount(count);
-    //     }
-    // }
+
+    if (father != 0){
+        const_cast<SgUctNode*>(father)->ParentAddGameResults(eval, count);
+        
+    }
     const_cast<SgUctNode&>(node).AddGameResults(eval, count);
 }
 

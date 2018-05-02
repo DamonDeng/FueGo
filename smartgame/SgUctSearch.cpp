@@ -366,30 +366,32 @@ bool SgUctSearch::CheckAbortSearch(SgUctThreadState& state)
         }
         if (! SgDeterministic::DeterministicMode())
            UpdateCheckTimeInterval(time);
-        if (m_moveSelect == SG_UCTMOVESELECT_COUNT)
-        {
-            double remainingGamesDouble = m_maxGames - rootCount - 1;
-            // Use time based count abort, only if time > 1, otherwise
-            // m_gamesPerSecond is unreliable
-            if (time > 1.)
-            {
-                double remainingTime = m_maxTime - time;
-                remainingGamesDouble =
-                        std::min(remainingGamesDouble,
-                        remainingTime * m_statistics.m_gamesPerSecond);
-            }
-            SgUctValue uctCountMax = numeric_limits<SgUctValue>::max();
-            SgUctValue remainingGames;
-            if (remainingGamesDouble >= static_cast<double>(uctCountMax - 1))
-                remainingGames = uctCountMax;
-            else
-                remainingGames = SgUctValue(remainingGamesDouble);
-            if (CheckCountAbort(state, remainingGames))
-            {
-                Debug(state, "SgUctSearch: move cannot change anymore");
-                return true;
-            }
-        }
+
+        
+        // if (m_moveSelect == SG_UCTMOVESELECT_COUNT)
+        // {
+        //     double remainingGamesDouble = m_maxGames - rootCount - 1;
+        //     // Use time based count abort, only if time > 1, otherwise
+        //     // m_gamesPerSecond is unreliable
+        //     if (time > 1.)
+        //     {
+        //         double remainingTime = m_maxTime - time;
+        //         remainingGamesDouble =
+        //                 std::min(remainingGamesDouble,
+        //                 remainingTime * m_statistics.m_gamesPerSecond);
+        //     }
+        //     SgUctValue uctCountMax = numeric_limits<SgUctValue>::max();
+        //     SgUctValue remainingGames;
+        //     if (remainingGamesDouble >= static_cast<double>(uctCountMax - 1))
+        //         remainingGames = uctCountMax;
+        //     else
+        //         remainingGames = SgUctValue(remainingGamesDouble);
+        //     if (CheckCountAbort(state, remainingGames))
+        //     {
+        //         Debug(state, "SgUctSearch: move cannot change anymore");
+        //         return true;
+        //     }
+        // }
     }
     if (m_mpiSynchronizer->CheckAbort())
     {
@@ -648,7 +650,9 @@ SgUctValue SgUctSearch::GetBound(const SgUctNode& node,
     
     if (child.MoveCount() == 0){
         // This Child was not visited, return the -Mean + child.prioProbability of current node.
-        return (- node.Mean()) + child.GetPrioProbability();
+        // SgDebug() << "Child: " << child.Move() << " has zero visite. \n";
+        // SgDebug() << "Using: " << node.ParentMean() << " and prio: " << child.GetPrioProbability() << ".\n";
+        return (node.ParentMean()) + child.GetPrioProbability();
     } else {
 
         return GetBound(child);
@@ -1597,8 +1601,12 @@ const SgUctNode& SgUctSearch::SelectChild(int& randomizeCounter,
             }
         }
     }
-    if (bestChild != 0)
+    if (bestChild != 0){
+        // if (bestChild->MoveCount() == 0){
+        //     SgDebug() << "child without move count was selected.\n";
+        // }
         return *bestChild;
+    }
     // It can happen with multiple threads that all children are losing
     // in this state but this thread got in here before that information
     // was propagated up the tree. So just return the first child
@@ -1902,13 +1910,18 @@ void SgUctSearch::UpdateTree(const SgUctGameInfo& info, SgUctValue leafValue)
         SgUctValue addResult = 0;
         if ((nodes.size() - i)%2 == 0){
             //other side with last move
-            addResult = inverseEval;
+            // do nothing here, do not add the value for both side.
+            
+            // addResult = inverseEval;
+            // m_tree.AddGameResults(node, father, addResult, 1);
+
         } else {
             // same side with last move
             addResult = eval;
+            m_tree.AddGameResults(node, father, addResult, 1);
         }
 
-        m_tree.AddGameResults(node, father, addResult, 1);
+        
         
         // m_tree.AddGameResults(node, father, eval, 1);
         // Remove the virtual loss
