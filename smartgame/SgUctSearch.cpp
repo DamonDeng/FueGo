@@ -1880,14 +1880,14 @@ void SgUctSearch::UpdateTree(const SgUctGameInfo& info, SgUctValue leafValue)
     // So the var eval is the probability of last move to win (black to win)
     // and inverseEval is the probability of other side to win. (white to win)
 
-    // SgUctValue eval = InverseEval(leafValue);
+    SgUctValue eval = InverseEval(leafValue);
 
-    // SgUctValue inverseEval = leafValue;
+    SgUctValue inverseEval = leafValue;
 
 
-    SgUctValue inverseEval = InverseEval(leafValue);
+    // SgUctValue inverseEval = InverseEval(leafValue);
 
-    SgUctValue eval = leafValue;
+    // SgUctValue eval = leafValue;
 
 
     
