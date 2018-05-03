@@ -127,8 +127,9 @@ void MXNetModel::LoadParameters() {
  
     // NDArray::Load("./model/thetago_dual_res_17L_19res_rate_0p002-0003.params", 0, &paramters);
 
-    NDArray::Load("./model/thetago_dual_res_17L_19res_rate_0p001_advance-0004.params", 0, &paramters);
+    // NDArray::Load("./model/thetago_dual_res_17L_19res_rate_0p001_advance-0004.params", 0, &paramters);
 
+    NDArray::Load("./model/thetago_dual_res_17L_19res_rate_0p001_advance-0009.params", 0, &paramters);
     
 
     for (const auto &k : paramters) {
@@ -275,16 +276,16 @@ void MXNetModel::ApplyPrioProbability(std::vector<SgUctMoveInfo>& moves, SgUctVa
 
     //@dangerous, passing reference of local variable out of function.
 
-    std::vector<SgUctMoveInfo> filteredMoves;
-    for (std::vector<SgUctMoveInfo>::const_iterator it = moves.begin();it != moves.end(); ++it){
-        if (it->m_prioProbability >= topList[0]){
-            filteredMoves.push_back(*it);
-        }
+    // std::vector<SgUctMoveInfo> filteredMoves;
+    // for (std::vector<SgUctMoveInfo>::const_iterator it = moves.begin();it != moves.end(); ++it){
+    //     if (it->m_prioProbability >= topList[0]){
+    //         filteredMoves.push_back(*it);
+    //     }
 
-    }
+    // }
 
     
-    moves = filteredMoves;
+    // moves = filteredMoves;
 
 
 }
