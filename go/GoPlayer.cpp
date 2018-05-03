@@ -66,5 +66,9 @@ SgNode* GoPlayer::TransferSearchTraces()
     return node;
 }
 
+void GoPlayer::AnalyzeBoard(){
+    SgDebug() << "Not implemented AnalyzeBoard(). \n";
+}
+
 //----------------------------------------------------------------------------
 

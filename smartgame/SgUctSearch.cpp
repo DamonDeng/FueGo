@@ -287,6 +287,8 @@ SgUctSearch::SgUctSearch(SgUctThreadStateFactory* threadStateFactory,
     // Don't create thread states here, because the factory passes the search
     // (which is not fully constructed here, because the subclass constructors
     // are not called yet) as an argument to the Create() function
+
+    
 }
 
 SgUctSearch::~SgUctSearch()
@@ -1111,8 +1113,8 @@ void SgUctSearch::PlayGame(SgUctThreadState& state, GlobalLock* lock)
         lock->lock();
 
     UpdateTree(info, leafValue);
-    if (m_rave)
-        UpdateRaveValues(state);
+    // if (m_rave)
+    //     UpdateRaveValues(state);
     UpdateStatistics(info);
 }
 
@@ -1176,8 +1178,8 @@ bool SgUctSearch::PlayInTree(SgUctThreadState& state, SgUctValue& leafValue, boo
             useBiasTerm = false;
         if (sequence.size() == m_maxGameLength)
             return false;
-        if (current->IsProven())
-            break;
+        // if (current->IsProven())
+        //     break;
         if (! current->HasChildren())
         {
             state.m_moves.clear();
@@ -1251,6 +1253,19 @@ bool SgUctSearch::PlayoutGame(SgUctThreadState& state, std::size_t playout)
         skipRaveUpdate.push_back(skipRave);
     }
     return true;
+}
+
+void SgUctSearch::AnalyzeBoardInThread(){
+
+    // SgDebug() << "Trying to analyze in SgUctSearch. \n";
+
+    // SgArray<SgUctValue, SG_MAX_MOVE_VALUE> array;
+    // SgUctValue value;
+
+    // m_threads[0].GetPrioProbability(array, value);
+
+    // SgDebug() << "end of the analyzing code.\n";
+
 }
 
 SgUctValue SgUctSearch::Search(SgUctValue maxGames, double maxTime,
@@ -1898,6 +1913,14 @@ void SgUctSearch::UpdateTree(const SgUctGameInfo& info, SgUctValue leafValue)
     // if (nodes.size() - i )% 2 ==0 , that the node[i] is not in the same side with last move(say black).
     // that means it is the enemy (which is white base on the assumption), 
     // the value of inverseEval is indicating that how possible white is winning. 
+
+
+    //debug code, assuming it is playing white
+    if (nodes.size()%2==0){
+        if (nodes[nodes.size()-1]->m_toPlay != SG_WHITE){
+            SgDebug() << "ERROR: incorrent side of the player. \n";
+        }
+    }
    
 
     for (size_t i = 0; i < nodes.size(); ++i)
@@ -1912,12 +1935,27 @@ void SgUctSearch::UpdateTree(const SgUctGameInfo& info, SgUctValue leafValue)
             //other side with last move
             // do nothing here, do not add the value for both side.
             
-            // addResult = inverseEval;
-            // m_tree.AddGameResults(node, father, addResult, 1);
+            addResult = inverseEval;
+            
+            if (node.m_toPlay == SG_WHITE){
+                SgDebug() << "                                              White accumulate value: " << addResult << ".\n";
+            }
+
+            if (node.m_toPlay == SG_BLACK){
+                SgDebug() << "Black accumulate value: " << addResult << ".\n";
+            }
+            m_tree.AddGameResults(node, father, addResult, 1);
 
         } else {
             // same side with last move
             addResult = eval;
+            if (node.m_toPlay == SG_WHITE){
+                SgDebug() << "                                              White accumulate value: " << addResult << ".\n";
+            }
+
+            if (node.m_toPlay == SG_BLACK){
+                SgDebug() << "Black  accumulate value: " << addResult << ".\n";
+            }
             m_tree.AddGameResults(node, father, addResult, 1);
         }
 

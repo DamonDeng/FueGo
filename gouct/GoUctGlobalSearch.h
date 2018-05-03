@@ -487,7 +487,7 @@ void GoUctGlobalSearchState<POLICY>::GenerateLegalMoves(
            && ! AllSafe(p)
            && bd.IsLegal(p, toPlay)
            )
-            moves.push_back(SgUctMoveInfo(p));
+            moves.push_back(SgUctMoveInfo(p, toPlay));
     }
 
     // Full randomization is too expensive and in most cases not necessary,
@@ -497,7 +497,7 @@ void GoUctGlobalSearchState<POLICY>::GenerateLegalMoves(
     // a bad corner move
     if (moves.size() > 1)
         std::swap(moves[0], moves[m_random.SmallInt(moves.size())]);
-    moves.push_back(SgUctMoveInfo(SG_PASS));
+    moves.push_back(SgUctMoveInfo(SG_PASS, toPlay));
 }
 
 inline float invsqrt(float value)

@@ -76,6 +76,9 @@ public:
         values; the units of the values are not specified. */
     virtual int MoveValue(SgPoint p);
 
+    // added by Damon, to analyst current board
+    virtual void AnalyzeBoard();
+
     /** Inform the player that the game was finished.
         This function gives the player the opportunity to do some work at
         the end of a game, for example perform some learning.

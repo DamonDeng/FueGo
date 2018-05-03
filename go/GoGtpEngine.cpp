@@ -97,7 +97,7 @@ GoGtpEngine::GoGtpEngine(int fixedBoardSize, const char* programPath,
       m_maxClearBoard(-1),
       m_numberClearBoard(0),
       m_timeLastMove(0),
-      m_timeLimit(30),
+      m_timeLimit(60),
       m_overhead(0),
       m_game(fixedBoardSize > 0 ? fixedBoardSize : GO_DEFAULT_SIZE),
       m_sgCommands(*this, programPath),
@@ -1201,6 +1201,13 @@ void GoGtpEngine::CmdSetupPlayer(GtpCommand& cmd)
 void GoGtpEngine::CmdShowBoard(GtpCommand& cmd)
 {
     cmd.CheckArgNone();
+
+    SgDebug() << "Trying to analzye the board. \n";
+
+    GoPlayer& player = Player();
+
+    player.AnalyzeBoard();
+
     cmd << '\n' << Board();
 }
 

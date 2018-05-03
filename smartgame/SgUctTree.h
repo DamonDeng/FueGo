@@ -61,11 +61,15 @@ struct SgUctMoveInfo
 
     bool m_hasPrioProbability;
 
+    SgBlackWhite m_toPlay;
+
     SgUctValue m_initMean;
  
     SgUctMoveInfo();
 
     SgUctMoveInfo(SgMove move);
+
+    SgUctMoveInfo(SgMove move, SgBlackWhite toPlay);
 
     SgUctMoveInfo(SgMove move, SgUctValue value, SgUctValue count,
                SgUctValue raveValue, SgUctValue raveCount);
@@ -85,6 +89,7 @@ inline SgUctMoveInfo::SgUctMoveInfo()
       m_predictorValue(0.0),
       m_prioProbability(0.0),
       m_hasPrioProbability(false),
+      m_toPlay(SG_BLACK),
       m_initMean(0.0)
 { }
 
@@ -97,6 +102,20 @@ inline SgUctMoveInfo::SgUctMoveInfo(SgMove move)
       m_predictorValue(0.0),
       m_prioProbability(0.0),
       m_hasPrioProbability(false),
+      m_toPlay(SG_BLACK),
+      m_initMean(0.0)
+{ }
+
+inline SgUctMoveInfo::SgUctMoveInfo(SgMove move, SgBlackWhite toPlay)
+    : m_move(move),
+      m_value(0),
+      m_count(0),
+      m_raveValue(0),
+      m_raveCount(0),
+      m_predictorValue(0.0),
+      m_prioProbability(0.0),
+      m_hasPrioProbability(false),
+      m_toPlay(toPlay),
       m_initMean(0.0)
 { }
 
@@ -110,6 +129,7 @@ inline SgUctMoveInfo::SgUctMoveInfo(SgMove move, SgUctValue value, SgUctValue co
       m_predictorValue(0.0),
       m_prioProbability(0.0),
       m_hasPrioProbability(false),
+      m_toPlay(SG_BLACK),
       m_initMean(0.0)
 { }
 
@@ -351,7 +371,7 @@ public:
 
     static constexpr SgUctValue m_lostValue = 0.65;
 
-    
+    volatile SgBlackWhite m_toPlay;
 
 
 
@@ -405,6 +425,7 @@ inline SgUctNode::SgUctNode(const SgUctMoveInfo& info)
       m_probabilityMoveCount(0),
       m_hasPrioProbability(info.m_hasPrioProbability),
       m_probabilityLostCount(0),
+      m_toPlay(info.m_toPlay),
       m_statistics(info.m_value, info.m_count),
       m_parentStatistics(0, 0),
       m_nuChildren(0),
@@ -498,6 +519,15 @@ inline void SgUctNode::MergeResults(const SgUctNode& node)
         m_raveValue.Add(node.m_raveValue.Mean(), node.m_raveValue.Count());
 
     m_probabilityLostCount = m_probabilityLostCount + node.m_probabilityLostCount;
+
+    if (m_toPlay != node.m_toPlay){
+        SgDebug() << "ERROR!!!! merging node for different side.\n";
+    }
+
+    if (m_prioProbability != node.m_prioProbability){
+        SgDebug() << "ERROR!!!! merging node with different m_prioProbability.\n";
+    }
+    // m_toPlay = node.m_toPlay;
 }
 
 inline void SgUctNode::RemoveGameResult(SgUctValue eval)
@@ -549,6 +579,7 @@ inline void SgUctNode::CopyDataFrom(const SgUctNode& node)
     m_probabilityLostCount = node.m_probabilityLostCount;
     m_prioWinProbability = node.m_prioWinProbability;
     m_parentStatistics = node.m_parentStatistics;
+    m_toPlay = node.m_toPlay;
     
 }
 

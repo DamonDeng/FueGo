@@ -30,6 +30,8 @@
 #include "SgUctTreeUtil.h"
 #include "SgWrite.h"
 
+#include "MXNetModel.h"
+
 template<typename T,int SIZE> class SgSList;
 
 //----------------------------------------------------------------------------
@@ -99,6 +101,8 @@ public:
 
     /** @name Virtual functions of GoPlayer */
     // @{
+
+    void AnalyzeBoard();
 
     SgPoint GenMove(const SgTimeRecord& time, SgBlackWhite toPlay);
 
@@ -327,6 +331,8 @@ public:
     void SetDefaultParameters(int boardSize);
 
     bool VerifyNeutralMove(SgUctValue maxGames, double maxTime, SgPoint move);
+
+    MXNetModel m_debugModel;
 };
 
 template <class SEARCH, class THREAD>
@@ -951,6 +957,40 @@ void GoUctPlayer<SEARCH, THREAD>::FindInitTree(SgUctTree& initTree,
                 SG_ASSERT(false);
             }
     }
+}
+
+template <class SEARCH, class THREAD>
+void GoUctPlayer<SEARCH, THREAD>::AnalyzeBoard(){
+
+    // SgDebug() << "Analyze board implementation in GoUctPlayer. \n";
+
+    // m_search.AnalyzeBoardInThread();
+
+    const GoBoard& currentBoard = Board();
+
+    
+
+    int historyLength = 8;
+    int arrayLength = historyLength*2 + 1;
+
+    int boardSize = 19;
+
+    int dataLength = arrayLength*boardSize*boardSize;
+
+    std::vector<float> historyData(dataLength);
+
+    currentBoard.GetHistoryData(historyData, historyLength);
+
+    SgArray<SgUctValue, SG_MAX_MOVE_VALUE> array;
+    SgUctValue value;
+    
+    m_debugModel.GetPrioProbability(array, value, historyData);
+
+    SgDebug() << currentBoard;
+
+    SgDebug() << "The CNN Value is: " << value << " .\n"; 
+
+
 }
 
 template <class SEARCH, class THREAD>

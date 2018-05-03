@@ -610,6 +610,9 @@ public:
                       SgUctTree* initTree = 0,
                       SgUctEarlyAbortParam* earlyAbort = 0);
 
+
+    void AnalyzeBoardInThread();
+
     /** Do a one-ply Monte Carlo search instead of the UCT search.
         @param maxGames
         @param maxTime
