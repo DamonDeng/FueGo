@@ -1927,11 +1927,11 @@ void SgUctSearch::UpdateTree(const SgUctGameInfo& info, SgUctValue leafValue)
 
 
     //debug code, assuming it is playing white
-    if (nodes.size()%2==0){
-        if (nodes[nodes.size()-1]->m_toPlay != SG_WHITE){
-            SgDebug() << "ERROR: incorrent side of the player. \n";
-        }
-    }
+    // if (nodes.size()%2==0){
+    //     if (nodes[nodes.size()-1]->m_toPlay != SG_WHITE){
+    //         SgDebug() << "ERROR: incorrent side of the player. \n";
+    //     }
+    // }
    
 
     for (size_t i = 0; i < nodes.size(); ++i)
