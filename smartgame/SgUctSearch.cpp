@@ -689,6 +689,7 @@ SgUctValue SgUctSearch::GetBound( const SgUctNode& child) const
 
     return value + prioProbability;
 
+    // return prioProbability;
 
      
 }

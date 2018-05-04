@@ -1060,20 +1060,28 @@ void GoBoard::GetHistoryData(std::vector<float>& historyData, int historyLength)
     SgBlackWhite currentColor = ToPlay();
     SgBlackWhite enemyColor = SgOppBW(currentColor);
 
-    if (currentColor == SG_BLACK){
-        for (int row=0; row<19; row++){
-                for (int col=0; col<19; col++){
-                    historyData[historyLength*2*361 + row*19 + col] = 1;
+    // if (currentColor == SG_BLACK){
+    //     for (int row=0; row<19; row++){
+    //             for (int col=0; col<19; col++){
+    //                 historyData[historyLength*2*361 + row*19 + col] = 1;
                                 
-                }
-            }
-    } else if (currentColor == SG_WHITE){
-        for (int row=0; row<19; row++){
-                for (int col=0; col<19; col++){
-                    historyData[historyLength*2*361 + row*19 + col] = 0;
+    //             }
+    //         }
+    // } else if (currentColor == SG_WHITE){
+    //     for (int row=0; row<19; row++){
+    //             for (int col=0; col<19; col++){
+    //                 historyData[historyLength*2*361 + row*19 + col] = 0;
                                 
-                }
-            }
+    //             }
+    //         }
+    // }
+
+    //setting all the value of color layer to 1, as we don't use this layer now
+    for (int row=0; row<19; row++){
+        for (int col=0; col<19; col++){
+            historyData[historyLength*2*361 + row*19 + col] = 1;
+                        
+        }
     }
 
     for ( int targetLocation=0; targetLocation<historyLength; targetLocation++){
