@@ -1962,7 +1962,12 @@ void SgUctSearch::UpdateTree(const SgUctGameInfo& info, SgUctValue leafValue)
             //     SgDebug() << "Black accumulate value: " << addResult << ".\n";
             // }
             m_tree.AddGameResults(node, father, addResult, 1);
-            if (node.m_maxValue < addResult){
+
+            // as it is the other side of last move.
+            // when the enemy select the last move, current player has no choice.
+            // if the value of last move is less valueable for current player, 
+            // current player need to update m_maxValue to this less value.
+            if (node.m_maxValue > addResult){
                 noneConstNode.m_maxValue = addResult;
             }
 
