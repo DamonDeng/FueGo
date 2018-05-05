@@ -571,7 +571,7 @@ SgUctSearch::FindBestChild(const SgUctNode& node,
         //     value = 0;
         // }
 
-        if (bestChild == 0 || value > bestValue)
+        if (bestChild == 0 || (value > bestValue && child.Move()!=SG_PASS) )
         {
             bestChild = &child;
             bestValue = value;
