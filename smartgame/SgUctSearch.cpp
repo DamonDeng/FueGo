@@ -650,15 +650,15 @@ SgUctValue SgUctSearch::GetBound(const SgUctNode& node,
                                  const SgUctNode& child) const
 {
     
-    if (child.MoveCount() == 0){
-        // This Child was not visited, return the -Mean + child.prioProbability of current node.
-        // SgDebug() << "Child: " << child.Move() << " has zero visite. \n";
-        // SgDebug() << "Using: " << node.ParentMean() << " and prio: " << child.GetPrioProbability() << ".\n";
-        return (node.ParentMean()) + child.GetPrioProbability();
-    } else {
+    // if (child.MoveCount() == 0){
+    //     // This Child was not visited, return the -Mean + child.prioProbability of current node.
+    //     // SgDebug() << "Child: " << child.Move() << " has zero visite. \n";
+    //     // SgDebug() << "Using: " << node.ParentMean() << " and prio: " << child.GetPrioProbability() << ".\n";
+    //     return (node.ParentMean()) + child.GetPrioProbability();
+    // } else {
 
         return GetBound(child);
-    }
+    // }
 }
 
 
@@ -686,8 +686,13 @@ SgUctValue SgUctSearch::GetBound( const SgUctNode& child) const
     prioProbability = prioProbability*probabilityDecay/(child.MoveCount()+probabilityDecay);
 
     
+    
 
-    return value + prioProbability;
+    // return value + prioProbability;
+
+    SgUctValue maxValue = child.m_maxValue;
+
+    return maxValue + prioProbability;
 
     // return prioProbability;
 
@@ -1938,6 +1943,7 @@ void SgUctSearch::UpdateTree(const SgUctGameInfo& info, SgUctValue leafValue)
     {
         
         const SgUctNode& node = *nodes[i];
+        SgUctNode& noneConstNode = const_cast<SgUctNode&>(node);
 
         // SgDebug() << "Move:" << node.Move() << ".\n";
         const SgUctNode* father = (i > 0 ? nodes[i - 1] : 0);
@@ -1948,27 +1954,88 @@ void SgUctSearch::UpdateTree(const SgUctGameInfo& info, SgUctValue leafValue)
             
             addResult = inverseEval;
             
-            if (node.m_toPlay == SG_WHITE){
-                SgDebug() << "                                              White accumulate value: " << addResult << ".\n";
-            }
+            // if (node.m_toPlay == SG_WHITE){
+            //     SgDebug() << "                                              White accumulate value: " << addResult << ".\n";
+            // }
 
-            if (node.m_toPlay == SG_BLACK){
-                SgDebug() << "Black accumulate value: " << addResult << ".\n";
-            }
+            // if (node.m_toPlay == SG_BLACK){
+            //     SgDebug() << "Black accumulate value: " << addResult << ".\n";
+            // }
             m_tree.AddGameResults(node, father, addResult, 1);
+            if (node.m_maxValue < addResult){
+                noneConstNode.m_maxValue = addResult;
+            }
 
         } else {
             // same side with last move
             addResult = eval;
-            if (node.m_toPlay == SG_WHITE){
-                SgDebug() << "                                              White accumulate value: " << addResult << ".\n";
+            // if (node.m_toPlay == SG_WHITE){
+            //     SgDebug() << "                                              White accumulate value: " << addResult << ".\n";
+            // }
+
+            // if (node.m_toPlay == SG_BLACK){
+            //     SgDebug() << "Black  accumulate value: " << addResult << ".\n";
+            // }
+            m_tree.AddGameResults(node, father, addResult, 1);
+            if (node.m_maxValue < addResult){
+                noneConstNode.m_maxValue = addResult;
             }
 
-            if (node.m_toPlay == SG_BLACK){
-                SgDebug() << "Black  accumulate value: " << addResult << ".\n";
-            }
-            m_tree.AddGameResults(node, father, addResult, 1);
         }
+
+        // int maxIndex = nodes.size()-1;
+
+        // for (size_t i = 0; i < nodes.size(); ++i)
+        // {
+            
+        //     const SgUctNode& node = *nodes[maxIndex - i];
+        //     SgUctNode& noneConstNode = const_cast<SgUctNode&>(node);
+
+        //     // SgDebug() << "Move:" << node.Move() << ".\n";
+        //     const SgUctNode* father = (maxIndex - i > 0 ? nodes[maxIndex - i -1] : 0);
+        //     SgUctValue addResult = 0;
+
+        //     if (i%2 == 1){
+        //         //other side with last move
+        //         // do nothing here, do not add the value for both side.
+                
+        //         addResult = inverseEval;
+                
+        //         if (node.m_toPlay == SG_WHITE){
+        //             SgDebug() << "                                              White accumulate value: " << addResult << ".\n";
+        //         }
+
+        //         if (node.m_toPlay == SG_BLACK){
+        //             SgDebug() << "Black accumulate value: " << addResult << ".\n";
+        //         }
+
+        //         if (node.m_maxValue < addResult){
+        //             noneConstNode.m_maxValue = addResult;
+        //         } else {
+        //             break;
+        //         }
+
+        //         m_tree.AddGameResults(node, father, addResult, 1);
+
+        //     } else {
+        //         // same side with last move
+        //         addResult = eval;
+        //         if (node.m_toPlay == SG_WHITE){
+        //             SgDebug() << "                                              White accumulate value: " << addResult << ".\n";
+        //         }
+
+        //         if (node.m_toPlay == SG_BLACK){
+        //             SgDebug() << "Black  accumulate value: " << addResult << ".\n";
+        //         }
+
+        //         m_tree.AddGameResults(node, father, addResult, 1);
+                
+        //         if (node.m_maxValue < addResult){
+        //             noneConstNode.m_maxValue = addResult;
+        //         } else {
+        //             break;
+        //         }
+        //     }
 
         
         

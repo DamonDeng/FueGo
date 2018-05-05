@@ -372,6 +372,7 @@ public:
     static constexpr SgUctValue m_lostValue = 0.65;
 
     volatile SgBlackWhite m_toPlay;
+    volatile SgUctValue m_maxValue;
 
 
 
@@ -426,6 +427,7 @@ inline SgUctNode::SgUctNode(const SgUctMoveInfo& info)
       m_hasPrioProbability(info.m_hasPrioProbability),
       m_probabilityLostCount(0),
       m_toPlay(info.m_toPlay),
+      m_maxValue(0),
       m_statistics(info.m_value, info.m_count),
       m_parentStatistics(0, 0),
       m_nuChildren(0),
@@ -527,6 +529,10 @@ inline void SgUctNode::MergeResults(const SgUctNode& node)
     if (m_prioProbability != node.m_prioProbability){
         SgDebug() << "ERROR!!!! merging node with different m_prioProbability.\n";
     }
+
+    if (m_maxValue < node.m_maxValue){
+        m_maxValue = node.m_maxValue;
+    }
     // m_toPlay = node.m_toPlay;
 }
 
@@ -580,6 +586,7 @@ inline void SgUctNode::CopyDataFrom(const SgUctNode& node)
     m_prioWinProbability = node.m_prioWinProbability;
     m_parentStatistics = node.m_parentStatistics;
     m_toPlay = node.m_toPlay;
+    m_maxValue = node.m_maxValue;
     
 }
 
