@@ -373,6 +373,7 @@ public:
 
     volatile SgBlackWhite m_toPlay;
     volatile SgUctValue m_maxValue;
+    volatile SgUctValue m_predictCNNValue;
 
 
 
@@ -428,6 +429,7 @@ inline SgUctNode::SgUctNode(const SgUctMoveInfo& info)
       m_probabilityLostCount(0),
       m_toPlay(info.m_toPlay),
       m_maxValue(0),
+      m_predictCNNValue(0),
       m_statistics(info.m_value, info.m_count),
       m_parentStatistics(0, 0),
       m_nuChildren(0),
@@ -533,6 +535,10 @@ inline void SgUctNode::MergeResults(const SgUctNode& node)
     if (m_maxValue < node.m_maxValue){
         m_maxValue = node.m_maxValue;
     }
+
+    if (m_predictCNNValue < node.m_predictCNNValue){
+        m_predictCNNValue = node.m_predictCNNValue;
+    }
     // m_toPlay = node.m_toPlay;
 }
 
@@ -540,18 +546,18 @@ inline void SgUctNode::RemoveGameResult(SgUctValue eval)
 {
     m_statistics.Remove(eval);
 
-    if (m_hasPrioProbability && eval < m_lostValue){
-        m_probabilityLostCount--;
-    }
+    // if (m_hasPrioProbability && eval < m_lostValue){
+    //     m_probabilityLostCount--;
+    // }
 }
 
 inline void SgUctNode::RemoveGameResults(SgUctValue eval, SgUctValue count)
 {
     m_statistics.Remove(eval, count);
 
-    if (m_hasPrioProbability && eval < m_lostValue){
-        m_probabilityLostCount = m_probabilityLostCount - count;
-    }
+    // if (m_hasPrioProbability && eval < m_lostValue){
+    //     m_probabilityLostCount = m_probabilityLostCount - count;
+    // }
 }
 
 inline void SgUctNode::AddRaveValue(SgUctValue value, SgUctValue weight)
@@ -587,6 +593,7 @@ inline void SgUctNode::CopyDataFrom(const SgUctNode& node)
     m_parentStatistics = node.m_parentStatistics;
     m_toPlay = node.m_toPlay;
     m_maxValue = node.m_maxValue;
+    m_predictCNNValue = node.m_predictCNNValue;
     
 }
 

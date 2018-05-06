@@ -688,11 +688,11 @@ SgUctValue SgUctSearch::GetBound( const SgUctNode& child) const
     
     
 
-    // return value + prioProbability;
+    return value + prioProbability;
 
-    SgUctValue maxValue = child.m_maxValue;
+    // SgUctValue maxValue = child.m_maxValue;
 
-    return maxValue + prioProbability;
+    // return maxValue + prioProbability;
 
     // return prioProbability;
 
@@ -1870,78 +1870,59 @@ void SgUctSearch::UpdateStatistics(const SgUctGameInfo& info)
 
 void SgUctSearch::UpdateTree(const SgUctGameInfo& info, SgUctValue leafValue)
 {
-    
-
-    
-
-    // SgDebug() << "Updating tree, the value is: " << eval << "    .\n";
-
-    
+   
     const vector<const SgUctNode*>& nodes = info.m_nodes;
 
     //leafValue is the value after last move (say black), 
     //indicating the probability of enemy to win, (that is white to win)
-
     // inverse the value here,
     // So the var eval is the probability of last move to win (black to win)
     // and inverseEval is the probability of other side to win. (white to win)
 
     SgUctValue eval = InverseEval(leafValue);
-
     SgUctValue inverseEval = leafValue;
 
+    SgUctNode& lastNode = const_cast<SgUctNode&>(*nodes[nodes.size()-1]);
 
-    // SgUctValue inverseEval = InverseEval(leafValue);
+    lastNode.m_predictCNNValue = eval;
 
-    // SgUctValue eval = leafValue;
+    const SgUctNode* lastFather;
+    if (nodes.size() > 1){
+        lastFather = nodes[nodes.size()-2];
+    } else {
+        lastFather = 0;
+    }
 
+    if (lastFather != 0){
+        // last node has father
+        if (lastFather->NuChildren() == 1){
+            // current last node is the only child of lastFather.
+            // need to remove the game result of lastFather.
+            // so that the game result of current last node can replace the value of his father
 
+            SgUctValue fatherGameResult = lastFather->m_predictCNNValue;
+
+            for (size_t i = 0; i < nodes.size()-1; ++i)
+            {
+                const SgUctNode& node = *nodes[i];
+                const SgUctNode* father = (i > 0 ? nodes[i - 1] : 0);
+
+                if (((nodes.size()-1)-i)%2 == 0){
+                    // other side of lastFather
+                    m_tree.RemoveGameResults(node, father, -fatherGameResult, 1);
+                
+                } else {
+                    // same side of lastFater
+                    m_tree.RemoveGameResults(node, father, fatherGameResult, 1);
+                }
+
+            }
+
+        }
+    }
     
-
-
-    // if (nodes.size() % 2 == 0){
-    //     inverseEval = leafValue;
-    //     eval = InverseEval(leafValue);
-
-        
-    // } else {
-    //     eval = leafValue;
-    //     inverseEval = InverseEval(leafValue);
-        
-    // }
-
-    // SgDebug() << "The leafValue is:" << leafValue << ".\n";
-    // SgDebug() << "Trying to update tree with nodes: ";
-
-    // for (size_t i = 0; i < nodes.size(); ++i)
-    // {
-        
-    //     const SgUctNode& node = *nodes[i];
-
-    //     SgDebug() << "(" << node.Move() << "," << node.Mean() << "," << node.MoveCount() << "," << node.m_prioProbability/(node.MoveCount()+1) << ")  ";
-    // }
-
-    // SgDebug() << " \n";
-
-    
-
-    
-    // if (nodes.size() - i )% 2 ==0 , that the node[i] is not in the same side with last move(say black).
-    // that means it is the enemy (which is white base on the assumption), 
-    // the value of inverseEval is indicating that how possible white is winning. 
-
-
-    //debug code, assuming it is playing white
-    // if (nodes.size()%2==0){
-    //     if (nodes[nodes.size()-1]->m_toPlay != SG_WHITE){
-    //         SgDebug() << "ERROR: incorrent side of the player. \n";
-    //     }
-    // }
-   
-
     for (size_t i = 0; i < nodes.size(); ++i)
     {
-        
         const SgUctNode& node = *nodes[i];
         SgUctNode& noneConstNode = const_cast<SgUctNode&>(node);
 
@@ -1967,9 +1948,9 @@ void SgUctSearch::UpdateTree(const SgUctGameInfo& info, SgUctValue leafValue)
             // when the enemy select the last move, current player has no choice.
             // if the value of last move is less valueable for current player, 
             // current player need to update m_maxValue to this less value.
-            if (node.m_maxValue > addResult){
-                noneConstNode.m_maxValue = addResult;
-            }
+            // if (node.m_maxValue > addResult){
+            //     noneConstNode.m_maxValue = addResult;
+            // }
 
         } else {
             // same side with last move
@@ -1982,75 +1963,94 @@ void SgUctSearch::UpdateTree(const SgUctGameInfo& info, SgUctValue leafValue)
             //     SgDebug() << "Black  accumulate value: " << addResult << ".\n";
             // }
             m_tree.AddGameResults(node, father, addResult, 1);
-            if (node.m_maxValue < addResult){
-                noneConstNode.m_maxValue = addResult;
-            }
+
+            // if (node.m_maxValue < addResult){
+            //     noneConstNode.m_maxValue = addResult;
+            // }
 
         }
 
-        // int maxIndex = nodes.size()-1;
-
-        // for (size_t i = 0; i < nodes.size(); ++i)
-        // {
-            
-        //     const SgUctNode& node = *nodes[maxIndex - i];
-        //     SgUctNode& noneConstNode = const_cast<SgUctNode&>(node);
-
-        //     // SgDebug() << "Move:" << node.Move() << ".\n";
-        //     const SgUctNode* father = (maxIndex - i > 0 ? nodes[maxIndex - i -1] : 0);
-        //     SgUctValue addResult = 0;
-
-        //     if (i%2 == 1){
-        //         //other side with last move
-        //         // do nothing here, do not add the value for both side.
-                
-        //         addResult = inverseEval;
-                
-        //         if (node.m_toPlay == SG_WHITE){
-        //             SgDebug() << "                                              White accumulate value: " << addResult << ".\n";
-        //         }
-
-        //         if (node.m_toPlay == SG_BLACK){
-        //             SgDebug() << "Black accumulate value: " << addResult << ".\n";
-        //         }
-
-        //         if (node.m_maxValue < addResult){
-        //             noneConstNode.m_maxValue = addResult;
-        //         } else {
-        //             break;
-        //         }
-
-        //         m_tree.AddGameResults(node, father, addResult, 1);
-
-        //     } else {
-        //         // same side with last move
-        //         addResult = eval;
-        //         if (node.m_toPlay == SG_WHITE){
-        //             SgDebug() << "                                              White accumulate value: " << addResult << ".\n";
-        //         }
-
-        //         if (node.m_toPlay == SG_BLACK){
-        //             SgDebug() << "Black  accumulate value: " << addResult << ".\n";
-        //         }
-
-        //         m_tree.AddGameResults(node, father, addResult, 1);
-                
-        //         if (node.m_maxValue < addResult){
-        //             noneConstNode.m_maxValue = addResult;
-        //         } else {
-        //             break;
-        //         }
-        //     }
-
-        
-        
-        // m_tree.AddGameResults(node, father, eval, 1);
-        // Remove the virtual loss
-        // if (m_virtualLoss && m_numberThreads > 1)
-        //     m_tree.RemoveVirtualLoss(node);
     }
 
+    
 
+
+    // int maxIndex = nodes.size()-1;
+    // SgUctValue addResult = 0;
+    // SgUctValue originalChildValue = 0;
+    // SgUctValue newChildValue = 0;
+
+    // for (size_t i = 0; i < nodes.size(); ++i)
+    // {
+        
+    //     const SgUctNode& node = *nodes[maxIndex - i];
+    //     SgUctNode& noneConstNode = const_cast<SgUctNode&>(node);
+
+    //     // SgDebug() << "Move:" << node.Move() << ".\n";
+    //     const SgUctNode* father = (maxIndex - i > 0 ? nodes[maxIndex - i -1] : 0);
+
+    //     if (i == 0){
+    //         // it is the last move:
+    //         if (father == 0){
+    //             // if last move don't have father.
+    //             addResult = eval;
+    //             m_tree.AddGameResults(node, father, addResult, 1);
+    //         } else {
+    //             // last move have father
+    //             addResult = eval;
+    //             originalChildValue = 0;
+    //             m_tree.AddGameResults(node, father, addResult, 1);
+    //             newChildValue = eval;
+               
+
+    //         }
+    //     }
+       
+
+    //     if (i%2 == 1){
+    //         //other side with last move
+    //         // do nothing here, do not add the value for both side.
+            
+    //         addResult = inverseEval;
+            
+    //         // if (node.m_toPlay == SG_WHITE){
+    //         //     SgDebug() << "                                              White accumulate value: " << addResult << ".\n";
+    //         // }
+
+    //         // if (node.m_toPlay == SG_BLACK){
+    //         //     SgDebug() << "Black accumulate value: " << addResult << ".\n";
+    //         // }
+
+    //         // if (node.m_maxValue < addResult){
+    //         //     noneConstNode.m_maxValue = addResult;
+    //         // } else {
+    //         //     break;
+    //         // }
+
+    //         m_tree.AddGameResults(node, father, addResult, 1);
+
+    //     } else {
+    //         // same side with last move
+    //         addResult = eval;
+    //         if (node.m_toPlay == SG_WHITE){
+    //             SgDebug() << "                                              White accumulate value: " << addResult << ".\n";
+    //         }
+
+    //         if (node.m_toPlay == SG_BLACK){
+    //             SgDebug() << "Black  accumulate value: " << addResult << ".\n";
+    //         }
+
+    //         m_tree.AddGameResults(node, father, addResult, 1);
+            
+    //         // if (node.m_maxValue < addResult){
+    //         //     noneConstNode.m_maxValue = addResult;
+    //         // } else {
+    //         //     break;
+    //         // }
+    //     }
+
+        
+    // }
     
     // SgDebug() << "After updating t tree with nodes: ";
 
