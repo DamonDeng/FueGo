@@ -1960,24 +1960,46 @@ void SgUctSearch::UpdateTree(const SgUctGameInfo& info, SgUctValue leafValue)
 
         // SgDebug() << "Move:" << node.Move() << ".\n";
         const SgUctNode* father = (maxIndex - i > 0 ? nodes[maxIndex - i -1] : 0);
+        // SgUctNode& noneConstfather = const_cast<SgUctNode&>(*father);
 
         noneConstNode.m_boundValue = newChildValue;
         noneConstNode.m_searchVisitCount++;
 
+        // SgDebug() << "Child " << node.Move() << " new value:" << newChildValue << ".\n";
+
         if (father == 0){
+            // SgDebug() << "No father, end.\n";
+            // SgDebug() << "...\n";
+            // SgDebug() << "...\n";
+            // SgDebug() << "...\n";
             break;
         }
 
         if ( -newChildValue > father->m_boundValue){
             // negative newChildValue is larger than father's bound, 
             // be ready to set father's bound to negative newChildValue in next loop.
+            // SgDebug() << "   - Child(" << node.Move() << ") value:" << -newChildValue << " > father(" << father->Move() << "):"  << father->m_boundValue << ".\n";
+            
             newChildValue = -newChildValue;
+
+            // SgDebug() << "   Passing the value "<< newChildValue <<" up to father.\n";
+
         } else {
+            
+
+            // SgDebug() << "   - Child(" << node.Move() << ") value:" << -newChildValue << " <= father(" << father->Move() << "):"  << father->m_boundValue << ".\n";
+            
+
             SgUctValue minChildValue = GetMinChildBound(*father);
             newChildValue = -minChildValue;
 
+            // SgDebug() << "   Get the minChildValue: " << minChildValue <<", passing " << -minChildValue << " to father.\n";
+            
+
             // newChildValue = father->m_boundValue;
         }
+
+        // SgDebug() << ".\n";
 
         
     }
