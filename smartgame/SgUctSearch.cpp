@@ -1968,15 +1968,15 @@ void SgUctSearch::UpdateTree(const SgUctGameInfo& info, SgUctValue leafValue)
             break;
         }
 
-        if ( -newChildValue <= father->m_boundValue){
+        if ( -newChildValue > father->m_boundValue){
             // negative newChildValue is larger than father's bound, 
             // be ready to set father's bound to negative newChildValue in next loop.
             newChildValue = -newChildValue;
         } else {
-            // SgUctValue maxChildValue = GetMaxChildBound(*father);
-            // newChildValue = -maxChildValue;
+            SgUctValue minChildValue = GetMinChildBound(*father);
+            newChildValue = -minChildValue;
 
-            newChildValue = father->m_boundValue;
+            // newChildValue = father->m_boundValue;
         }
 
         
