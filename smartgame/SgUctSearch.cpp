@@ -526,6 +526,34 @@ SgUctValue SgUctSearch::GetMinChildBound(const SgUctNode& node){
 
 }
 
+SgUctValue SgUctSearch::GetMaxChildBound(const SgUctNode& node){
+    if (! node.HasChildren()){
+        //incorrent call, return a extreamly small value
+        return -10000;
+    }
+
+    // const SgUctNode* bestChild = 0;
+    SgUctValue maxValue = -1;
+
+    for (SgUctChildIterator it(m_tree, node); it; ++it)
+    {
+        const SgUctNode& child = *it;
+       
+        if (child.MoveCount() > 0){
+            // only search child which were visited.
+            if (child.m_boundValue  > maxValue){
+                maxValue = child.m_boundValue;
+            }
+        }
+
+        
+    }
+
+    return maxValue;
+
+
+}
+
 const SgUctNode*
 SgUctSearch::FindBestChild(const SgUctNode& node,
                            const vector<SgMove>* excludeMoves) const
@@ -1940,13 +1968,15 @@ void SgUctSearch::UpdateTree(const SgUctGameInfo& info, SgUctValue leafValue)
             break;
         }
 
-        if ( -newChildValue >= father->m_boundValue){
+        if ( -newChildValue <= father->m_boundValue){
             // negative newChildValue is larger than father's bound, 
             // be ready to set father's bound to negative newChildValue in next loop.
             newChildValue = -newChildValue;
         } else {
-            SgUctValue minChildValue = GetMinChildBound(*father);
-            newChildValue = -minChildValue;
+            // SgUctValue maxChildValue = GetMaxChildBound(*father);
+            // newChildValue = -maxChildValue;
+
+            newChildValue = father->m_boundValue;
         }
 
         

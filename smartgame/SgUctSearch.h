@@ -632,6 +632,8 @@ public:
 
     SgUctValue GetMinChildBound(const SgUctNode& node);
 
+    SgUctValue GetMaxChildBound(const SgUctNode& node);
+
     /** Extract sequence of best moves from root node.
         @param[out] sequence The resulting sequence. */
     void FindBestSequence(std::vector<SgMove>& sequence) const;
