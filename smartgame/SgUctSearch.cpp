@@ -540,8 +540,9 @@ SgUctSearch::FindBestChild(const SgUctNode& node,
             // if (child.m_hasPrioProbability){
             //     value = child.ProbabilityMoveCount();
             // } else {
-                value = child.MoveCount();
+                // value = child.MoveCount();
             // }
+                value = child.m_searchVisitCount;
             break;
         case SG_UCTMOVESELECT_BOUND:
             value = GetBound(node, child);
@@ -554,8 +555,9 @@ SgUctSearch::FindBestChild(const SgUctNode& node,
             // if (child.m_hasPrioProbability){
             //     value = child.ProbabilityMoveCount();
             // } else {
-                value = child.MoveCount();
+                // value = child.MoveCount();
             // }
+                value = child.m_searchVisitCount;
 
             
         }

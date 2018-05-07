@@ -383,6 +383,8 @@ public:
     volatile SgUctValue m_maxValue;
     volatile SgUctValue m_predictCNNValue;
 
+    volatile int m_searchVisitCount;
+
 
 
 private:
@@ -440,6 +442,7 @@ inline SgUctNode::SgUctNode(const SgUctMoveInfo& info)
       m_predictCNNValue(0),
       m_statistics(info.m_value, info.m_count),
       m_parentStatistics(0, 0),
+      m_searchVisitCount(0),
       m_nuChildren(0),
       m_move(info.m_move),
       m_predictorValue(info.m_predictorValue),
@@ -465,6 +468,8 @@ inline void SgUctNode::AddGameResult(SgUctValue eval)
 
     m_statistics.Add(eval);
 
+    m_searchVisitCount++;
+
     // SgDebug() << "After adding, move count is:" << m_statistics.Count() << ". \n";
 
     // if (m_hasPrioProbability && eval < m_lostValue){
@@ -479,6 +484,8 @@ inline void SgUctNode::AddGameResults(SgUctValue eval, SgUctValue count)
     // SgDebug() << "Before adding, move count is:" << m_statistics.Count() << ". \n";
 
     m_statistics.Add(eval, count);
+
+    m_searchVisitCount += count;
 
     
     // SgDebug() << "After adding, move count is:" << m_statistics.Count() << ". \n";
@@ -563,6 +570,8 @@ inline void SgUctNode::MergeResults(const SgUctNode& node)
 
     m_probabilityLostCount = m_probabilityLostCount + node.m_probabilityLostCount;
 
+    m_searchVisitCount = m_searchVisitCount + node.m_searchVisitCount;
+
     if (m_toPlay != node.m_toPlay){
         SgDebug() << "ERROR!!!! merging node for different side.\n";
     }
@@ -570,6 +579,8 @@ inline void SgUctNode::MergeResults(const SgUctNode& node)
     if (m_prioProbability != node.m_prioProbability){
         SgDebug() << "ERROR!!!! merging node with different m_prioProbability.\n";
     }
+
+
 
     if (m_maxValue < node.m_maxValue){
         m_maxValue = node.m_maxValue;
@@ -633,6 +644,7 @@ inline void SgUctNode::CopyDataFrom(const SgUctNode& node)
     m_toPlay = node.m_toPlay;
     m_maxValue = node.m_maxValue;
     m_predictCNNValue = node.m_predictCNNValue;
+    m_searchVisitCount = node.m_searchVisitCount;
     
 }
 
