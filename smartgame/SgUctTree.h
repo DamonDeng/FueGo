@@ -384,6 +384,7 @@ public:
     volatile SgUctValue m_predictCNNValue;
 
     volatile int m_searchVisitCount;
+    volatile SgUctValue m_boundValue;
 
 
 
@@ -443,6 +444,7 @@ inline SgUctNode::SgUctNode(const SgUctMoveInfo& info)
       m_statistics(info.m_value, info.m_count),
       m_parentStatistics(0, 0),
       m_searchVisitCount(0),
+      m_boundValue(0),
       m_nuChildren(0),
       m_move(info.m_move),
       m_predictorValue(info.m_predictorValue),
@@ -590,6 +592,10 @@ inline void SgUctNode::MergeResults(const SgUctNode& node)
         m_predictCNNValue = node.m_predictCNNValue;
     }
     // m_toPlay = node.m_toPlay;
+
+    if (m_boundValue < node.m_boundValue){
+        m_boundValue = node.m_boundValue;
+    }
 }
 
 inline void SgUctNode::RemoveGameResult(SgUctValue eval)
@@ -645,6 +651,7 @@ inline void SgUctNode::CopyDataFrom(const SgUctNode& node)
     m_maxValue = node.m_maxValue;
     m_predictCNNValue = node.m_predictCNNValue;
     m_searchVisitCount = node.m_searchVisitCount;
+    m_boundValue = node.m_boundValue;
     
 }
 
@@ -676,7 +683,8 @@ inline bool SgUctNode::HasChildren() const
 
 inline bool SgUctNode::HasMean() const
 {
-    return m_statistics.IsDefined();
+    // return m_statistics.IsDefined();
+    return true;
 }
 
 inline bool SgUctNode::HasParentMean() const
@@ -780,7 +788,9 @@ inline void SgUctNode::InitializeRaveValue(SgUctValue value, SgUctValue count)
 
 inline SgUctValue SgUctNode::Mean() const
 {
-    return m_statistics.Mean();
+    // return m_statistics.Mean();
+
+    return m_boundValue;
 }
 
 inline SgUctValue SgUctNode::ParentMean() const
@@ -810,7 +820,9 @@ inline SgMove SgUctNode::Move() const
 inline SgUctValue SgUctNode::MoveCount() const
 {
     // SgDebug() << "Getting Move count for:" << m_move << ", it is:" << m_statistics.Count() << ". \n";
-    return m_statistics.Count();
+    // return m_statistics.Count();
+
+    return m_searchVisitCount;
 }
 
 inline int SgUctNode::NuChildren() const
