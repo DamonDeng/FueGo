@@ -650,15 +650,15 @@ SgUctValue SgUctSearch::GetBound(const SgUctNode& node,
                                  const SgUctNode& child) const
 {
     
-    // if (child.MoveCount() == 0){
-    //     // This Child was not visited, return the -Mean + child.prioProbability of current node.
-    //     // SgDebug() << "Child: " << child.Move() << " has zero visite. \n";
-    //     // SgDebug() << "Using: " << node.ParentMean() << " and prio: " << child.GetPrioProbability() << ".\n";
-    //     return (node.ParentMean()) + child.GetPrioProbability();
-    // } else {
+    if (child.MoveCount() == 0){
+        // This Child was not visited, return the -Mean + child.prioProbability of current node.
+        // SgDebug() << "Child: " << child.Move() << " has zero visite. \n";
+        // SgDebug() << "Using: " << node.ParentMean() << " and prio: " << child.GetPrioProbability() << ".\n";
+        return (node.ParentMean()) + child.GetPrioProbability();
+    } else {
 
         return GetBound(child);
-    // }
+    }
 }
 
 

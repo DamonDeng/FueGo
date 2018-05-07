@@ -194,6 +194,14 @@ public:
     /** Adds a game result count times. */
     void ParentAddGameResults(SgUctValue eval, SgUctValue count);
 
+    /** Add game result.
+        @param eval The game result (e.g. score or 0/1 for win loss) */
+    void ParentRemoveGameResult(SgUctValue eval);
+
+    /** Adds a game result count times. */
+    void ParentRemoveGameResults(SgUctValue eval, SgUctValue count);
+
+
     /** Add other nodes results to this node's. */
     void MergeResults(const SgUctNode& node);
 
@@ -502,6 +510,37 @@ inline void SgUctNode::ParentAddGameResults(SgUctValue eval, SgUctValue count)
     // SgDebug() << "Before adding, move count is:" << m_statistics.Count() << ". \n";
 
     m_parentStatistics.Add(eval, count);
+
+    
+    // SgDebug() << "After adding, move count is:" << m_statistics.Count() << ". \n";
+
+    // if (m_hasPrioProbability && eval < m_lostValue){
+    //     m_probabilityLostCount = m_probabilityLostCount + count;
+    // }
+}
+
+inline void SgUctNode::ParentRemoveGameResult(SgUctValue eval)
+{
+    // SgDebug() << "for move: " << m_move << " adding eval: " << eval << " no count, use default value 1 .\n";
+   
+    // SgDebug() << "Before adding, move count is:" << m_statistics.Count() << ". \n";
+
+    m_parentStatistics.Remove(eval);
+
+    // SgDebug() << "After adding, move count is:" << m_statistics.Count() << ". \n";
+
+    // if (m_hasPrioProbability && eval < m_lostValue){
+    //     m_probabilityLostCount++;
+    // }
+}
+
+inline void SgUctNode::ParentRemoveGameResults(SgUctValue eval, SgUctValue count)
+{
+    // SgDebug() << "for move: " << m_move << " adding eval: " << eval << " count:" << count << ".\n";
+    
+    // SgDebug() << "Before adding, move count is:" << m_statistics.Count() << ". \n";
+
+    m_parentStatistics.Remove(eval, count);
 
     
     // SgDebug() << "After adding, move count is:" << m_statistics.Count() << ". \n";
@@ -1290,6 +1329,11 @@ inline void SgUctTree::RemoveGameResult(const SgUctNode& node,
     //     }
         
     // }
+
+    if (father != 0){
+        const_cast<SgUctNode*>(father)->ParentRemoveGameResult(eval);
+        
+    }
     
     const_cast<SgUctNode&>(node).RemoveGameResult(eval);
 }
@@ -1307,6 +1351,12 @@ inline void SgUctTree::RemoveGameResults(const SgUctNode& node,
     //        const_cast<SgUctNode*>(father)->DecProbabilityCount(count);
     //     }
     // }
+
+    if (father != 0){
+        const_cast<SgUctNode*>(father)->ParentRemoveGameResults(eval, count);
+        
+    }
+
     const_cast<SgUctNode&>(node).RemoveGameResults(eval, count);
 }
 
