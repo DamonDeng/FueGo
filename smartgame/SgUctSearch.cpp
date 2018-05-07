@@ -511,9 +511,11 @@ SgUctValue SgUctSearch::GetMinChildBound(const SgUctNode& node){
     {
         const SgUctNode& child = *it;
        
-        
-        if (child.m_boundValue < minValue){
-            minValue = child.m_boundValue;
+        if (child.MoveCount() > 0){
+            // only search child which were visited.
+            if (child.m_boundValue < minValue){
+                minValue = child.m_boundValue;
+            }
         }
 
         
