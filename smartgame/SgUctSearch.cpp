@@ -656,9 +656,9 @@ void SgUctSearch::FindBestSequence(vector<SgMove>& sequence) const
                 SgDebug() << "Root  :";
             } else {
 
-                SgDebug() << "Move " << debugCount << " :";
+                SgDebug() << "Move" << debugCount << " :";
             }
-            SgDebug() << "  prioProbability:";
+            SgDebug() << "  Prob:";
             SgDebug() << current->m_prioProbability;  
             // SgDebug() << "  probabilityCount:";
             // SgDebug() << current->m_probabilityMoveCount;  
@@ -666,27 +666,29 @@ void SgUctSearch::FindBestSequence(vector<SgMove>& sequence) const
             // SgDebug() << current->m_probabilityLostCount;  
             
               
-            SgDebug() << "  MoveCount:";
-            SgDebug() << current->MoveCount();    
+            SgDebug() << "  MCount:";
+            SgDebug() << fixed << setprecision(0) << current->MoveCount();    
 
             SgDebug() << "  Mean:";
             if (current->HasMean()){
 
-                SgDebug() << current->Mean();    
+                SgDebug() << fixed << setprecision(3) << current->Mean();    
             } else {
                 SgDebug() << "no";
             }
 
             if ( current->HasChildPredictMean()){
 
-                SgDebug() << "  ChildPredictCount:";
+                SgDebug() << "  ChildPreCount:";
                 SgDebug() << current->ChildPredictCount();   
 
-                SgDebug() << "  ChildPredictMean:";
+                SgDebug() << "  ChildPreMean:";
                 SgDebug() << current->ChildPredictMean();    
 
                 SgDebug() << "\n";
             }
+
+        }
         
         current = FindBestChild(*current);
 
@@ -697,8 +699,8 @@ void SgUctSearch::FindBestSequence(vector<SgMove>& sequence) const
 
         
 
-            debugCount++;
-        }
+        debugCount++;
+        
 
         sequence.push_back(current->Move());
         if (! current->HasChildren())
