@@ -599,9 +599,9 @@ SgUctSearch::FindBestChild(const SgUctNode& node,
             // if (child.m_hasPrioProbability){
             //     value = child.ProbabilityMoveCount();
             // } else {
-                // value = child.MoveCount();
+                value = child.MoveCount();
             // }
-                value = child.m_searchVisitCount;
+                // value = child.m_searchVisitCount;
             break;
         case SG_UCTMOVESELECT_BOUND:
             value = GetBound(node, child);
@@ -614,9 +614,9 @@ SgUctSearch::FindBestChild(const SgUctNode& node,
             // if (child.m_hasPrioProbability){
             //     value = child.ProbabilityMoveCount();
             // } else {
-                // value = child.MoveCount();
+                value = child.MoveCount();
             // }
-                value = child.m_searchVisitCount;
+                // value = child.m_searchVisitCount;
 
             
         }
@@ -680,10 +680,16 @@ void SgUctSearch::FindBestSequence(vector<SgMove>& sequence) const
                 SgDebug() << "no";
             }
 
-            SgDebug() << "  PosCount:";
-            SgDebug() << current->PosCount();    
+            if ( current->HasChildPredictMean()){
 
-            SgDebug() << "\n";
+                SgDebug() << "  ChildPredictCount:";
+                SgDebug() << current->ChildPredictCount();   
+
+                SgDebug() << "  ChildPredictMean:";
+                SgDebug() << current->ChildPredictMean();    
+
+                SgDebug() << "\n";
+            }
 
             debugCount++;
         }
@@ -707,19 +713,24 @@ void SgUctSearch::GenerateAllMoves(std::vector<SgUctMoveInfo>& moves)
 }
 
 
-SgUctValue SgUctSearch::GetBound(const SgUctNode& node,
+SgUctValue SgUctSearch::GetBound(const SgUctNode& father,
                                  const SgUctNode& child) const
 {
     
-    // if (child.MoveCount() == 0){
-    //     // This Child was not visited, return the -Mean + child.prioProbability of current node.
-    //     // SgDebug() << "Child: " << child.Move() << " has zero visite. \n";
-    //     // SgDebug() << "Using: " << node.ParentMean() << " and prio: " << child.GetPrioProbability() << ".\n";
-    //     return (node.ParentMean()) + child.GetPrioProbability();
-    // } else {
+    if (child.MoveCount() == 0){
+        // This Child was not visited, return the -Mean + child.prioProbability of current node.
+        // SgDebug() << "Child: " << child.Move() << " has zero visite. \n";
+        // SgDebug() << "Using: " << node.ParentMean() << " and prio: " << child.GetPrioProbability() << ".\n";
+        if (father.HasChildPredictMean()){
+            return father.ChildPredictMean() + child.GetPrioProbability();
+        } else {
+            return child.GetPrioProbability();
+        }
+        
+    } else {
 
         return GetBound(child);
-    // }
+    }
 }
 
 
@@ -1946,64 +1957,82 @@ void SgUctSearch::UpdateTree(const SgUctGameInfo& info, SgUctValue leafValue)
     SgUctNode& lastNode = const_cast<SgUctNode&>(*nodes[nodes.size()-1]);
 
     lastNode.m_predictCNNValue = eval;
-    // lastNode.m_boundValue = eval;
-    SgUctValue newChildValue = eval;
+
+    // SgDebug() << "Trying to set father predict value. node size:" << nodes.size() << ".\n";
+
+    // SgDebug() << "Trying to set father predict value. node size -2 :" << (nodes.size()-2) << ".\n";
 
     
-    int maxIndex = nodes.size()-1;
+    if (nodes.size() >= 2){
+        // SgDebug() << "Nodes size >= 2\n";
+
+        SgUctNode* lastFather = const_cast<SgUctNode*> (nodes[nodes.size()-2]);
+
+        if (lastFather != 0){
+            lastFather -> AddChildPredict(eval);
+        } else {
+            SgDebug() << "ERROR: Got a father point which is 0 !!!!!!!!!!!!!!!!!!\n";
+        }
+
+        // SgUctNode& lastFather = const_cast<SgUctNode&>(*nodes[nodes.size()-2]);
+        // SgDebug() << "i1\n";
+        // lastFather.AddChildPredict( eval );
+        // SgDebug() << "i1\n";
+    }
+
+    // SgDebug() << "1\n";
 
     for (size_t i = 0; i < nodes.size(); ++i)
     {
-        
-        const SgUctNode& node = *nodes[maxIndex - i];
+        const SgUctNode& node = *nodes[i];
         SgUctNode& noneConstNode = const_cast<SgUctNode&>(node);
 
         // SgDebug() << "Move:" << node.Move() << ".\n";
-        const SgUctNode* father = (maxIndex - i > 0 ? nodes[maxIndex - i -1] : 0);
-        // SgUctNode& noneConstfather = const_cast<SgUctNode&>(*father);
-
-        noneConstNode.m_boundValue = newChildValue;
-        noneConstNode.m_searchVisitCount++;
-
-        // SgDebug() << "Child " << node.Move() << " new value:" << newChildValue << ".\n";
-
-
-        if (father == 0){
-            // SgDebug() << "No father, end.\n";
-            // SgDebug() << "...\n";
-            // SgDebug() << "...\n";
-            // SgDebug() << "...\n";
-            break;
-        }
-
-        if ( -newChildValue > father->m_boundValue){
-            // negative newChildValue is larger than father's bound, 
-            // be ready to set father's bound to negative newChildValue in next loop.
-            // SgDebug() << "   - Child(" << node.Move() << ") value:" << -newChildValue << " > father(" << father->Move() << "):"  << father->m_boundValue << ".\n";
+        const SgUctNode* father = (i > 0 ? nodes[i - 1] : 0);
+        SgUctValue addResult = 0;
+        if ((nodes.size() - i)%2 == 0){
+            //other side with last move
+            // do nothing here, do not add the value for both side.
             
-            newChildValue = -newChildValue;
+            addResult = inverseEval;
+            
+            // if (node.m_toPlay == SG_WHITE){
+            //     SgDebug() << "                                              White accumulate value: " << addResult << ".\n";
+            // }
 
-            // SgDebug() << "   Passing the value "<< newChildValue <<" up to father.\n";
+            // if (node.m_toPlay == SG_BLACK){
+            //     SgDebug() << "Black accumulate value: " << addResult << ".\n";
+            // }
+            m_tree.AddGameResults(node, father, addResult, 1);
+
+            // as it is the other side of last move.
+            // when the enemy select the last move, current player has no choice.
+            // if the value of last move is less valueable for current player, 
+            // current player need to update m_maxValue to this less value.
+            // if (node.m_maxValue > addResult){
+            //     noneConstNode.m_maxValue = addResult;
+            // }
 
         } else {
-            
+            // same side with last move
+            addResult = eval;
+            // if (node.m_toPlay == SG_WHITE){
+            //     SgDebug() << "                                              White accumulate value: " << addResult << ".\n";
+            // }
 
-            // SgDebug() << "   - Child(" << node.Move() << ") value:" << -newChildValue << " <= father(" << father->Move() << "):"  << father->m_boundValue << ".\n";
-            
+            // if (node.m_toPlay == SG_BLACK){
+            //     SgDebug() << "Black  accumulate value: " << addResult << ".\n";
+            // }
+            m_tree.AddGameResults(node, father, addResult, 1);
 
-            SgUctValue minChildValue = GetMinChildBound(*father);
-            newChildValue = -minChildValue;
+            // if (node.m_maxValue < addResult){
+            //     noneConstNode.m_maxValue = addResult;
+            // }
 
-            // SgDebug() << "   Get the minChildValue: " << minChildValue <<", passing " << -minChildValue << " to father.\n";
-            
-
-            // newChildValue = father->m_boundValue;
         }
 
-        // SgDebug() << ".\n";
-
-        
     }
+    
 
 }
 

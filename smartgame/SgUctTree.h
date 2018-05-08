@@ -180,6 +180,9 @@ public:
     /** Initializes node with given move, value and count. */
     SgUctNode(const SgUctMoveInfo& info);
 
+
+    void AddChildPredict(SgUctValue predictValue);
+
     /** Add game result.
         @param eval The game result (e.g. score or 0/1 for win loss) */
     void AddGameResult(SgUctValue eval);
@@ -234,6 +237,12 @@ public:
     /** Does the node have at least one child? */
     bool HasChildren() const;
 
+    bool HasChildPredictMean() const;
+
+    SgUctValue ChildPredictMean() const;
+
+    int ChildPredictCount() const;
+
     /** Average game result.
         Requires: HasMean() */
     SgUctValue Mean() const;
@@ -244,6 +253,10 @@ public:
 
     /** True, if mean value is defined (move count not zero) */
     bool HasMean() const;
+
+    bool HasChildPredictMean();
+
+    SgUctValue ChildPredictMean();
     
     bool HasParentMean() const;
 
@@ -389,7 +402,12 @@ public:
 
 
 private:
+
+    
+
     SgUctStatisticsVolatile m_statistics;
+
+    SgUctStatisticsVolatile m_childPredictStatistics;
 
     SgUctStatisticsVolatile m_parentStatistics;
 
@@ -442,6 +460,7 @@ inline SgUctNode::SgUctNode(const SgUctMoveInfo& info)
       m_maxValue(0),
       m_predictCNNValue(0),
       m_statistics(info.m_value, info.m_count),
+      m_childPredictStatistics(0, 0),
       m_parentStatistics(0, 0),
       m_searchVisitCount(0),
       m_boundValue(0),
@@ -461,6 +480,19 @@ inline SgUctNode::SgUctNode(const SgUctMoveInfo& info)
     // m_col = SgPointUtil::Col(m_move);
     // m_row = SgPointUtil::Row(m_move);
 }
+
+inline void SgUctNode::AddChildPredict(SgUctValue predictValue)
+{
+    
+    // SgDebug() << "in the AddChildPredict. \n";
+
+    // SgDebug() << "is it defined?" << m_childPredictStatistics.IsDefined() << ". \n";
+
+    m_childPredictStatistics.Add(predictValue);
+
+    
+}
+
 
 inline void SgUctNode::AddGameResult(SgUctValue eval)
 {
@@ -564,6 +596,10 @@ inline void SgUctNode::MergeResults(const SgUctNode& node)
     if (node.m_statistics.IsDefined())
         m_statistics.Add(node.m_statistics.Mean(), node.m_statistics.Count());
 
+    if (node.m_childPredictStatistics.IsDefined()){
+        m_childPredictStatistics.Add(node.m_childPredictStatistics.Mean(), node.m_childPredictStatistics.Count());
+    }
+
     if (node.m_parentStatistics.IsDefined())
         m_parentStatistics.Add(node.m_parentStatistics.Mean(), node.m_parentStatistics.Count());
     
@@ -634,6 +670,7 @@ inline void SgUctNode::RemoveRaveValue(SgUctValue value, SgUctValue weight)
 inline void SgUctNode::CopyDataFrom(const SgUctNode& node)
 {
     m_statistics = node.m_statistics;
+    m_childPredictStatistics = node.m_childPredictStatistics;
     m_move = node.m_move;
     m_predictorValue = node.m_predictorValue;
     m_raveValue = node.m_raveValue;
@@ -683,8 +720,8 @@ inline bool SgUctNode::HasChildren() const
 
 inline bool SgUctNode::HasMean() const
 {
-    // return m_statistics.IsDefined();
-    return true;
+    return m_statistics.IsDefined();
+    // return true;
 }
 
 inline bool SgUctNode::HasParentMean() const
@@ -786,11 +823,36 @@ inline void SgUctNode::InitializeRaveValue(SgUctValue value, SgUctValue count)
     m_raveValue.Initialize(value, count);
 }
 
+
+
+
+inline bool SgUctNode::HasChildPredictMean() const
+{
+    return m_childPredictStatistics.IsDefined();
+    
+}
+
+inline int SgUctNode::ChildPredictCount() const
+{
+    return m_childPredictStatistics.Count();
+    
+}
+
+
+
+inline SgUctValue SgUctNode::ChildPredictMean() const
+{
+    return m_childPredictStatistics.Mean();
+
+}
+
+
+
 inline SgUctValue SgUctNode::Mean() const
 {
-    // return m_statistics.Mean();
+    return m_statistics.Mean();
 
-    return m_boundValue;
+    // return m_boundValue;
 }
 
 inline SgUctValue SgUctNode::ParentMean() const
@@ -820,9 +882,9 @@ inline SgMove SgUctNode::Move() const
 inline SgUctValue SgUctNode::MoveCount() const
 {
     // SgDebug() << "Getting Move count for:" << m_move << ", it is:" << m_statistics.Count() << ". \n";
-    // return m_statistics.Count();
+    return m_statistics.Count();
 
-    return m_searchVisitCount;
+    // return m_searchVisitCount;
 }
 
 inline int SgUctNode::NuChildren() const
