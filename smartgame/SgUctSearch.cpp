@@ -1967,6 +1967,7 @@ void SgUctSearch::UpdateTree(const SgUctGameInfo& info, SgUctValue leafValue)
 
         // SgDebug() << "Child " << node.Move() << " new value:" << newChildValue << ".\n";
 
+
         if (father == 0){
             // SgDebug() << "No father, end.\n";
             // SgDebug() << "...\n";
