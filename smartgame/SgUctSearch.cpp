@@ -724,15 +724,16 @@ void SgUctSearch::GenerateAllMoves(std::vector<SgUctMoveInfo>& moves)
 SgUctValue SgUctSearch::GetBound(const SgUctNode& father,
                                  const SgUctNode& child) const
 {
-    
+    SgUctValue probabilityScale = 10.0;
+
     if (child.MoveCount() == 0){
         // This Child was not visited, return the -Mean + child.prioProbability of current node.
         // SgDebug() << "Child: " << child.Move() << " has zero visite. \n";
         // SgDebug() << "Using: " << node.ParentMean() << " and prio: " << child.GetPrioProbability() << ".\n";
         if (father.HasChildPredictMean()){
-            return father.ChildPredictMean() + child.GetPrioProbability();
+            return father.ChildPredictMean() + child.GetPrioProbability() * probabilityScale;
         } else {
-            return child.GetPrioProbability();
+            return child.GetPrioProbability() * probabilityScale;
         }
         
     } else {
@@ -753,7 +754,7 @@ SgUctValue SgUctSearch::GetBound( const SgUctNode& child) const
     value = child.Mean();
 
     int probabilityDecay = 1;
-    SgUctValue probabilityScale = 3.0;
+    SgUctValue probabilityScale = 10.0;
 
     SgUctValue prioProbability = 0;
 
