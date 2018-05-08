@@ -753,6 +753,7 @@ SgUctValue SgUctSearch::GetBound( const SgUctNode& child) const
     value = child.Mean();
 
     int probabilityDecay = 1;
+    SgUctValue probabilityScale = 3.0;
 
     SgUctValue prioProbability = 0;
 
@@ -763,7 +764,7 @@ SgUctValue SgUctSearch::GetBound( const SgUctNode& child) const
    
 
     
-    prioProbability = prioProbability*probabilityDecay/(child.MoveCount()+probabilityDecay);
+    prioProbability = probabilityScale * prioProbability * probabilityDecay / (child.MoveCount()+probabilityDecay);
 
     
     
