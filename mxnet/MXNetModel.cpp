@@ -132,7 +132,9 @@ void MXNetModel::LoadParameters() {
 
     // NDArray::Load("./model/thetago_dual_res_17L_19res_0p001_advanced_no_color-0001.params", 0, &paramters);
     
-    NDArray::Load("./model/thetago_dual_res_17L_19res_0p001_advanced_no_color-0006.params", 0, &paramters);
+    // NDArray::Load("./model/thetago_dual_res_17L_19res_0p001_advanced_no_color-0006.params", 0, &paramters);
+    
+    NDArray::Load("./model/thetago_dual_res_17L_19res_0p001_advanced_no_color-0009.params", 0, &paramters);
     
 
     for (const auto &k : paramters) {
