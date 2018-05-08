@@ -651,16 +651,13 @@ void SgUctSearch::FindBestSequence(vector<SgMove>& sequence) const
 
     while (true)
     {
-        
-        current = FindBestChild(*current);
-
-        
-
-        if (current == 0)
-            break;
-
         if (debugCount < debugLength){
-            SgDebug() << "Move " << debugCount << " :";
+            if (debugCount == 0){
+                SgDebug() << "Root  :";
+            } else {
+
+                SgDebug() << "Move " << debugCount << " :";
+            }
             SgDebug() << "  prioProbability:";
             SgDebug() << current->m_prioProbability;  
             // SgDebug() << "  probabilityCount:";
@@ -690,6 +687,15 @@ void SgUctSearch::FindBestSequence(vector<SgMove>& sequence) const
 
                 SgDebug() << "\n";
             }
+        
+        current = FindBestChild(*current);
+
+        
+
+        if (current == 0)
+            break;
+
+        
 
             debugCount++;
         }
