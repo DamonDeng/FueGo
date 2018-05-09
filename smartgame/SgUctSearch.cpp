@@ -1654,7 +1654,7 @@ const SgUctNode& SgUctSearch::SelectChild(int& randomizeCounter,
 
     
     const SgUctNode* bestChild = 0;
-    SgUctValue bestUpperBound = 0;
+    SgUctValue bestUpperBound = -1;
     // const SgUctValue predictorWeight = 
     // 	m_additiveKnowledge.PredictorWeight(posCount);
     const SgUctValue epsilon = SgUctValue(1e-7);
