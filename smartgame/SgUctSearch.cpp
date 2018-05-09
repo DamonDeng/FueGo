@@ -1678,21 +1678,22 @@ const SgUctNode& SgUctSearch::SelectChild(int& randomizeCounter,
 
     
     const SgUctNode* bestChild = 0;
-    SgUctValue bestUpperBound = 0;
+    SgUctValue bestUpperBound = -1;
     // const SgUctValue predictorWeight = 
     // 	m_additiveKnowledge.PredictorWeight(posCount);
     const SgUctValue epsilon = SgUctValue(1e-7);
     for (SgUctChildIterator it(m_tree, node); it; ++it)
     {
         const SgUctNode& child = *it;
-        if (! child.IsProvenWin()) // Avoid losing moves
-        {
+        // if (! child.IsProvenWin()) // Avoid losing moves
+        // {
             // SgUctValue bound = GetCNNBound(child);
             SgUctValue bound = GetBound(node, child);
 
 		                    //  - predictorWeight * child.PredictorValue();
 
-
+            // SgDebug() << "Move:" << child.Move() << "\t Bound:" << fixed << setprecision(2) << bound ;
+            // SgDebug() << "\t MC:" << child.MoveCount() << "\t Probability:" << child.GetPrioProbability() << "\n"; 
 
             // Compare bound to best bound using a not too small epsilon
             // because the unit tests rely on the fact that the first child is
@@ -1702,11 +1703,21 @@ const SgUctNode& SgUctSearch::SelectChild(int& randomizeCounter,
             // and value of the children are exactly the same.
             if (bestChild == 0 || bound > bestUpperBound + epsilon)
             {
+                // SgDebug () << "Better than prev best one: " << bestUpperBound << "   "; 
                 bestChild = &child;
                 bestUpperBound = bound;
+
+                // SgDebug () << "After setting best value is: " << bestUpperBound << "\n"; 
+                
             }
-        }
+        // }
     }
+
+    // SgDebug() << "End of search!!\n";
+    // SgDebug() << "-\n";
+    // SgDebug() << "-\n";
+    // SgDebug() << "-\n";
+    
     if (bestChild != 0){
         // if (bestChild->MoveCount() == 0){
         //     SgDebug() << "child without move count was selected.\n";
