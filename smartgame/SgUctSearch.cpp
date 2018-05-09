@@ -753,7 +753,7 @@ SgUctValue SgUctSearch::GetBound( const SgUctNode& child) const
     // mean of the node, which is how possible this node leading current to win.
     value = child.Mean();
 
-    int probabilityDecay = 1;
+    int probabilityDecay = 5;
 
     // setting the probabilityScale of move which were visited to 1.
     // doesn't scale, to give no visited move more chance.
