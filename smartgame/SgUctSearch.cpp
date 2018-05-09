@@ -651,6 +651,44 @@ void SgUctSearch::FindBestSequence(vector<SgMove>& sequence) const
 
     while (true)
     {
+        if (debugCount < debugLength){
+            if (debugCount == 0){
+                SgDebug() << "Root  :";
+            } else {
+
+                SgDebug() << "Move" << debugCount << " :";
+            }
+            SgDebug() << "  Prob:";
+            SgDebug() << current->m_prioProbability;  
+            // SgDebug() << "  probabilityCount:";
+            // SgDebug() << current->m_probabilityMoveCount;  
+            // SgDebug() << "  probabilityLostCount:";
+            // SgDebug() << current->m_probabilityLostCount;  
+            
+              
+            SgDebug() << "  MCount:";
+            SgDebug() << fixed << setprecision(0) << current->MoveCount();    
+
+            SgDebug() << "  MaxMin:";
+            if (current->HasMean()){
+
+                SgDebug() << fixed << setprecision(3) << current->Mean();    
+            } else {
+                SgDebug() << "no";
+            }
+
+            if ( current->HasChildPredictMean()){
+
+                SgDebug() << "  ChildPreCount:";
+                SgDebug() << current->ChildPredictCount();   
+
+                SgDebug() << "  ChildPreMean:";
+                SgDebug() << current->ChildPredictMean();    
+
+                SgDebug() << "\n";
+            }
+
+        }
         
         current = FindBestChild(*current);
 
@@ -659,34 +697,7 @@ void SgUctSearch::FindBestSequence(vector<SgMove>& sequence) const
         if (current == 0)
             break;
 
-        if (debugCount < debugLength){
-            SgDebug() << "Move " << debugCount << " :";
-            SgDebug() << "  prioProbability:";
-            SgDebug() << current->m_prioProbability;  
-            // SgDebug() << "  probabilityCount:";
-            // SgDebug() << current->m_probabilityMoveCount;  
-            // SgDebug() << "  probabilityLostCount:";
-            // SgDebug() << current->m_probabilityLostCount;  
-            
-              
-            SgDebug() << "  MoveCount:";
-            SgDebug() << current->MoveCount();    
-
-            SgDebug() << "  Mean:";
-            if (current->HasMean()){
-
-                SgDebug() << current->Mean();    
-            } else {
-                SgDebug() << "no";
-            }
-
-            SgDebug() << "  PosCount:";
-            SgDebug() << current->PosCount();    
-
-            SgDebug() << "\n";
-
-            debugCount++;
-        }
+        debugCount++;
 
         sequence.push_back(current->Move());
         if (! current->HasChildren())
@@ -707,19 +718,26 @@ void SgUctSearch::GenerateAllMoves(std::vector<SgUctMoveInfo>& moves)
 }
 
 
-SgUctValue SgUctSearch::GetBound(const SgUctNode& node,
+SgUctValue SgUctSearch::GetBound(const SgUctNode& father,
                                  const SgUctNode& child) const
 {
     
-    // if (child.MoveCount() == 0){
-    //     // This Child was not visited, return the -Mean + child.prioProbability of current node.
-    //     // SgDebug() << "Child: " << child.Move() << " has zero visite. \n";
-    //     // SgDebug() << "Using: " << node.ParentMean() << " and prio: " << child.GetPrioProbability() << ".\n";
-    //     return (node.ParentMean()) + child.GetPrioProbability();
-    // } else {
+    SgUctValue probabilityScale = 10.0;
+
+    if (child.MoveCount() == 0){
+        // This Child was not visited, return the -Mean + child.prioProbability of current node.
+        // SgDebug() << "Child: " << child.Move() << " has zero visite. \n";
+        // SgDebug() << "Using: " << node.ParentMean() << " and prio: " << child.GetPrioProbability() << ".\n";
+        if (father.HasChildPredictMean()){
+            return father.ChildPredictMean() + child.GetPrioProbability() * probabilityScale;
+        } else {
+            return child.GetPrioProbability() * probabilityScale;
+        }
+        
+    } else {
 
         return GetBound(child);
-    // }
+    }
 }
 
 
@@ -1946,6 +1964,24 @@ void SgUctSearch::UpdateTree(const SgUctGameInfo& info, SgUctValue leafValue)
     SgUctNode& lastNode = const_cast<SgUctNode&>(*nodes[nodes.size()-1]);
 
     lastNode.m_predictCNNValue = eval;
+
+    if (nodes.size() >= 2){
+        // SgDebug() << "Nodes size >= 2\n";
+
+        SgUctNode* lastFather = const_cast<SgUctNode*> (nodes[nodes.size()-2]);
+
+        if (lastFather != 0){
+            lastFather -> AddChildPredict(eval);
+        } else {
+            SgDebug() << "ERROR: Got a father point which is 0 !!!!!!!!!!!!!!!!!!\n";
+        }
+
+        // SgUctNode& lastFather = const_cast<SgUctNode&>(*nodes[nodes.size()-2]);
+        // SgDebug() << "i1\n";
+        // lastFather.AddChildPredict( eval );
+        // SgDebug() << "i1\n";
+    }
+
     // lastNode.m_boundValue = eval;
     SgUctValue newChildValue = eval;
 

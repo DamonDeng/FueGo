@@ -234,6 +234,20 @@ public:
     /** Does the node have at least one child? */
     bool HasChildren() const;
 
+    void AddChildPredict(SgUctValue predictValue);
+
+    bool HasChildPredictMean() const;
+
+    SgUctValue ChildPredictMean() const;
+
+    int ChildPredictCount() const;
+
+    bool HasChildPredictMean();
+
+    SgUctValue ChildPredictMean();
+
+
+
     /** Average game result.
         Requires: HasMean() */
     SgUctValue Mean() const;
@@ -391,6 +405,8 @@ public:
 private:
     SgUctStatisticsVolatile m_statistics;
 
+    SgUctStatisticsVolatile m_childPredictStatistics;
+
     SgUctStatisticsVolatile m_parentStatistics;
 
     const SgUctNode* volatile m_firstChild;
@@ -442,6 +458,7 @@ inline SgUctNode::SgUctNode(const SgUctMoveInfo& info)
       m_maxValue(0),
       m_predictCNNValue(0),
       m_statistics(info.m_value, info.m_count),
+      m_childPredictStatistics(0, 0),
       m_parentStatistics(0, 0),
       m_searchVisitCount(0),
       m_boundValue(0),
@@ -461,6 +478,19 @@ inline SgUctNode::SgUctNode(const SgUctMoveInfo& info)
     // m_col = SgPointUtil::Col(m_move);
     // m_row = SgPointUtil::Row(m_move);
 }
+
+inline void SgUctNode::AddChildPredict(SgUctValue predictValue)
+{
+    
+    // SgDebug() << "in the AddChildPredict. \n";
+
+    // SgDebug() << "is it defined?" << m_childPredictStatistics.IsDefined() << ". \n";
+
+    m_childPredictStatistics.Add(predictValue);
+
+    
+}
+
 
 inline void SgUctNode::AddGameResult(SgUctValue eval)
 {
@@ -564,6 +594,10 @@ inline void SgUctNode::MergeResults(const SgUctNode& node)
     if (node.m_statistics.IsDefined())
         m_statistics.Add(node.m_statistics.Mean(), node.m_statistics.Count());
 
+    if (node.m_childPredictStatistics.IsDefined()){
+        m_childPredictStatistics.Add(node.m_childPredictStatistics.Mean(), node.m_childPredictStatistics.Count());
+    }
+
     if (node.m_parentStatistics.IsDefined())
         m_parentStatistics.Add(node.m_parentStatistics.Mean(), node.m_parentStatistics.Count());
     
@@ -634,6 +668,7 @@ inline void SgUctNode::RemoveRaveValue(SgUctValue value, SgUctValue weight)
 inline void SgUctNode::CopyDataFrom(const SgUctNode& node)
 {
     m_statistics = node.m_statistics;
+    m_childPredictStatistics = node.m_childPredictStatistics;
     m_move = node.m_move;
     m_predictorValue = node.m_predictorValue;
     m_raveValue = node.m_raveValue;
@@ -785,6 +820,27 @@ inline void SgUctNode::InitializeRaveValue(SgUctValue value, SgUctValue count)
 {
     m_raveValue.Initialize(value, count);
 }
+
+inline bool SgUctNode::HasChildPredictMean() const
+{
+    return m_childPredictStatistics.IsDefined();
+    
+}
+
+inline int SgUctNode::ChildPredictCount() const
+{
+    return m_childPredictStatistics.Count();
+    
+}
+
+
+
+inline SgUctValue SgUctNode::ChildPredictMean() const
+{
+    return m_childPredictStatistics.Mean();
+
+}
+
 
 inline SgUctValue SgUctNode::Mean() const
 {
