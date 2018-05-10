@@ -724,7 +724,7 @@ void SgUctSearch::GenerateAllMoves(std::vector<SgUctMoveInfo>& moves)
 SgUctValue SgUctSearch::GetBound(const SgUctNode& father,
                                  const SgUctNode& child) const
 {
-    SgUctValue probabilityScale = 10.0;
+    SgUctValue probabilityScale = 30.0;
 
     if (child.MoveCount() == 0){
         // This Child was not visited, return the -Mean + child.prioProbability of current node.
@@ -753,7 +753,7 @@ SgUctValue SgUctSearch::GetBound( const SgUctNode& child) const
     // mean of the node, which is how possible this node leading current to win.
     value = child.Mean();
 
-    int probabilityDecay = 5;
+    int probabilityDecay = 50;
 
     // setting the probabilityScale of move which were visited to 1.
     // doesn't scale, to give no visited move more chance.
@@ -2062,16 +2062,18 @@ void SgUctSearch::UpdateTree(const SgUctGameInfo& info, SgUctValue leafValue)
 
 void SgUctSearch::WriteStatistics(std::ostream& out) const
 {
-    out << SgWriteLabel("Count") << m_tree.Root().MoveCount() << '\n'
-        << SgWriteLabel("GamesPlayed") << GamesPlayed() << '\n'
-        << SgWriteLabel("Nodes") << m_tree.NuNodes() << '\n';
-    if (! m_knowledgeThreshold.empty())
-        out << SgWriteLabel("Knowledge") 
-            << m_statistics.m_knowledge << " (" << fixed << setprecision(1) 
-            << m_statistics.m_knowledge * 100.0 / m_tree.Root().MoveCount()
-            << "%)\n";
-    m_statistics.Write(out);
-    m_mpiSynchronizer->WriteStatistics(out);
+    //remove statistics output
+    
+    // out << SgWriteLabel("Count") << m_tree.Root().MoveCount() << '\n'
+    //     << SgWriteLabel("GamesPlayed") << GamesPlayed() << '\n'
+    //     << SgWriteLabel("Nodes") << m_tree.NuNodes() << '\n';
+    // if (! m_knowledgeThreshold.empty())
+    //     out << SgWriteLabel("Knowledge") 
+    //         << m_statistics.m_knowledge << " (" << fixed << setprecision(1) 
+    //         << m_statistics.m_knowledge * 100.0 / m_tree.Root().MoveCount()
+    //         << "%)\n";
+    // m_statistics.Write(out);
+    // m_mpiSynchronizer->WriteStatistics(out);
 }
 
 //----------------------------------------------------------------------------

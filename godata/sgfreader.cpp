@@ -57,9 +57,20 @@ int main(int argc, char** argv){
 
     testingGame.Init(root);
 
-    std::ofstream out(outFileName);
-    SgGameWriter writer(out);
-    writer.WriteGame(testingGame.Root(), true, 0, 1, 19);
+    GoBoard testingBoard(19);
+
+    SgNode* current = root->NodeInDirection(SgNode::NEXT);
+
+    while (!current->IsTerminal()){
+        testingBoard.Play(current->NodeMove());
+        SgDebugGotoXY(0, 0);
+        SgDebug() << testingBoard;
+        current = current->NodeInDirection(SgNode::NEXT);
+    }
+
+    // std::ofstream out(outFileName);
+    // SgGameWriter writer(out);
+    // writer.WriteGame(testingGame.Root(), true, 0, 1, 19);
 
 
 

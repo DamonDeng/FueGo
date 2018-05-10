@@ -858,6 +858,8 @@ SgPoint GoUctPlayer<SEARCH, THREAD>::DoSearch(SgBlackWhite toPlay,
     
     m_mpiSynchronizer->SynchronizeSearchStatus(value, wasEarlyAbort, rootMoveCount);
 
+    m_writeDebugOutput = false;
+
     if (m_writeDebugOutput)
     {
         // Write debug output to a string stream first to avoid intermingling
