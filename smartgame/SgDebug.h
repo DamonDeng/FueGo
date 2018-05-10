@@ -24,6 +24,17 @@ std::ostream& SgWarning();
 
 //----------------------------------------------------------------------------
 
+inline void SgDebugGotoXY(int x,int y)
+
+{ 
+
+  printf("%c[%d;%df",0x1B,y,x); 
+
+} 
+
+
+
+
 /** Set logging stream to file. */
 void SgDebugToFile(const char* filename);
 

@@ -31,6 +31,8 @@ int main(int argc, char** argv){
     SgInit();
     GoInit();
 
+    
+
     SgDebug() << "Starting SGF reader. \n";
 
     std::string inFileName("./godata/kgs_sgf/2000-7-19-2.sgf");
@@ -57,9 +59,43 @@ int main(int argc, char** argv){
 
     testingGame.Init(root);
 
-    std::ofstream out(outFileName);
-    SgGameWriter writer(out);
-    writer.WriteGame(testingGame.Root(), true, 0, 1, 19);
+    GoBoard testingBoard(19);
+
+    SgNode* current = root->NodeInDirection(SgNode::NEXT);
+
+    double l ;
+
+    for (int i=0; i<100; i++){
+
+        for (int j=1; j<10000; j++){
+            for (int k=1; k<1000; k++){
+                for (int m=1; m<10000; m++){
+
+                   l += j/k;
+                    
+                }
+            }
+        }
+
+        if (!current->IsTerminal()){
+
+            testingBoard.Play(current->NodeMove());
+
+            SgDebugGotoXY(0,2);
+
+            SgDebug() << testingBoard;
+
+            current = current->NodeInDirection(SgNode::NEXT);
+        } else {
+            break;
+        }
+
+    }
+
+    
+    // std::ofstream out(outFileName);
+    // SgGameWriter writer(out);
+    // writer.WriteGame(testingGame.Root(), true, 0, 1, 19);
 
 
 
