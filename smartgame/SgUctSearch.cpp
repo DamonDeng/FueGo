@@ -724,7 +724,7 @@ void SgUctSearch::GenerateAllMoves(std::vector<SgUctMoveInfo>& moves)
 SgUctValue SgUctSearch::GetBound(const SgUctNode& father,
                                  const SgUctNode& child) const
 {
-    SgUctValue probabilityScale = 30.0;
+    SgUctValue probabilityScale = 10.0;
 
     if (child.MoveCount() == 0){
         // This Child was not visited, return the -Mean + child.prioProbability of current node.
@@ -753,7 +753,7 @@ SgUctValue SgUctSearch::GetBound( const SgUctNode& child) const
     // mean of the node, which is how possible this node leading current to win.
     value = child.Mean();
 
-    int probabilityDecay = 50;
+    int probabilityDecay = 1;
 
     // setting the probabilityScale of move which were visited to 1.
     // doesn't scale, to give no visited move more chance.
